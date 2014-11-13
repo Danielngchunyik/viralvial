@@ -1,0 +1,4 @@
+# Heroku's .slugignore
+# https://devcenter.heroku.com/articles/slug-compiler
+/test
+/spec
