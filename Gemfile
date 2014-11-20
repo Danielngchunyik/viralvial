@@ -1,5 +1,5 @@
 source 'https://rubygems.org'
-ruby "2.1.4"
+ruby "2.1.5"
 
 gem 'rails', '~> 4.1.7'
 
@@ -15,6 +15,9 @@ gem 'jquery-rails'
 
 # third-party services
 gem 'appsignal'
+
+# authentication
+gem 'sorcery'
 
 # server and database stacks
 gem 'unicorn-rails'
