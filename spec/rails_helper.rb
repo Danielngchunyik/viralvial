@@ -8,7 +8,7 @@ require File.expand_path('../../config/environment', __FILE__)
 require 'rspec/rails'
 require 'webmock/rspec'
 
-WebMock.disable_net_connect!(allow_localhost: true)
+WebMock.disable_net_connect!(allow: "codeclimate.com", allow_localhost: true)
 
 # Add additional requires below this line. Rails is not loaded until this point!
 
