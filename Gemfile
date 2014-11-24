@@ -26,6 +26,12 @@ gem 'sorcery'
 gem 'unicorn-rails'
 gem 'pg'
 
+# Facebook API wrapper
+gem 'fb_graph'
+
+# Mailer
+gem 'mailcatcher'
+
 group :production, :staging do
   gem 'heroku-deflater'
   gem 'rails_12factor'

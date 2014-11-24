@@ -2,7 +2,7 @@
 # The default is nothing which will include only core features (password encryption, login/logout).
 # Available submodules are: :user_activation, :http_basic_auth, :remember_me,
 # :reset_password, :session_timeout, :brute_force_protection, :activity_logging, :external
-Rails.application.config.sorcery.submodules = [:external]
+Rails.application.config.sorcery.submodules = [:external, :reset_password]
 
 # Here you can configure each submodule's features.
 Rails.application.config.sorcery.configure do |config|
@@ -113,8 +113,7 @@ Rails.application.config.sorcery.configure do |config|
   config.facebook.secret = ENV['FACEBOOK_SECRET']
   config.facebook.callback_url = "http://localhost:3000/oauth/callback?provider=facebook"
   config.facebook.user_info_mapping = {:email => "email", :name => "name"}
-  config.facebook.scope = "email, offline_access, user_hometown"
-  config.facebook.access_permissions = ["email", "publish_stream"]
+  config.facebook.scope = "email, offline_access, user_hometown, publish_actions, publish_stream"
   config.facebook.display = "popup"
 
   #
@@ -310,7 +309,7 @@ Rails.application.config.sorcery.configure do |config|
     # mailer class. Needed.
     # Default: `nil`
     #
-    # user.reset_password_mailer =
+    user.reset_password_mailer = UserMailer
 
 
     # reset password email method on your mailer class.

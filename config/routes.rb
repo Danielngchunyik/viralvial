@@ -9,6 +9,8 @@ Rails.application.routes.draw do
   resources :users
   resources :user_sessions, except: [:update, :edit]
 
+  resources :password_resets
+
   #Oauth
   post "oauth/callback" => "oauths#callback"
   get "oauth/callback" => "oauths#callback"

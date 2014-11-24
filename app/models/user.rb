@@ -1,4 +1,5 @@
 class User < ActiveRecord::Base
+  authenticates_with_sorcery!
   before_save :set_default_password
 
   authenticates_with_sorcery! do |config|

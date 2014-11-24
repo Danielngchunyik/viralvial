@@ -1,3 +1,4 @@
+require 'pry'
 class OauthsController < ApplicationController
   skip_before_action :require_login
 
@@ -7,6 +8,7 @@ class OauthsController < ApplicationController
 
   def callback
     if @user = login_from(auth_params[:provider])
+      binding.pry
       redirect_to root_path, notice: "Logged in from #{auth_params[:provider].titleize}!"
     else
       begin
