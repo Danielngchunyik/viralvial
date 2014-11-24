@@ -1,12 +1,10 @@
 require 'rails_helper'
 
 RSpec.describe User, type: :model do
-  
-  let(:user_attributes) { FactoryGirl.attributes_for(:user, :without_password) }
 
   describe "create user without password" do
     it "should assign default password" do
-      expect(User.create(user_attributes)).to be_valid
+      expect(User.create(email: 'facebook@faceobok.com').crypted_password).not_to be_nil
     end
   end
 

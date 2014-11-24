@@ -1,6 +1,5 @@
 class User < ActiveRecord::Base
-
-  before_validation :set_default_password
+  before_save :set_default_password
 
   authenticates_with_sorcery! do |config|
     config.authentications_class = Authentication
@@ -18,11 +17,10 @@ class User < ActiveRecord::Base
 
   private
 
-    def set_default_password
-      return unless self.password.nil?
-      password = SecureRandom.hex
-      self.password = password
-      self.password_confirmation = password
-    end
-
+  def set_default_password
+    return unless self.password.nil?
+    password = SecureRandom.hex
+    self.password = password
+    self.password_confirmation = password
+  end
 end

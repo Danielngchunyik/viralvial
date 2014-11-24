@@ -11,7 +11,6 @@ class OauthsController < ApplicationController
     else
       begin
         @user = create_from(auth_params[:provider])
-        binding.pry
         reset_session
         auto_login(@user)
         redirect_to root_path, notice: "Logged in from #{auth_params[:provider].titleize}!"
