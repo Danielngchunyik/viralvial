@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+
   root 'users#index'
 
   get 'login' => 'user_sessions#new', as: :login
@@ -7,6 +8,11 @@ Rails.application.routes.draw do
 
   resources :users
   resources :user_sessions, except: [:update, :edit]
+
+  #Oauth
+  post "oauth/callback" => "oauths#callback"
+  get "oauth/callback" => "oauths#callback"
+  get "oauth/:provider" => "oauths#oauth", as: :auth_at_provider
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
