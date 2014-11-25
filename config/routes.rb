@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
 
-  root 'users#index'
+  root 'static_pages#index'
 
   get 'login' => 'user_sessions#new', as: :login
 
@@ -18,5 +18,6 @@ Rails.application.routes.draw do
 
   namespace :admin do
     resources :campaigns
+    resources :announcements
   end
 end
