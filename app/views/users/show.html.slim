@@ -1,14 +1,36 @@
-p#notice = notice
+h1 = "User: #{@user.email}"
 
 p
-  strong Email:
-  = @user.email
+  strong Followers:
+  = @user.followers
+
 p
-  strong Crypted password:
-  = @user.crypted_password
+  strong Klout Score:
+  = @user.klout
+
 p
-  strong Salt:
-  = @user.salt
+  strong Localization:
+  = @user.localization
+
+p
+  strong Reach:
+  = @user.reach_score
+
+p
+  strong SX Index:
+  = @user.sx_index
+
+p
+  strong Influence Score:
+  = @user.influence_score
+
+p
+  strong Karma:
+  = @user.karma
+
+p
+  strong Socialite Score:
+  = @user.socialite_score
 
 = link_to 'Edit', edit_user_path(@user)
 '|
