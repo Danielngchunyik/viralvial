@@ -7,10 +7,11 @@ class PasswordResetsController < ApplicationController
 
     if @user
       @user.deliver_reset_password_instructions!
-      redirect_to(root_path, notice: 'Instructions have been sent to your email.')
+      flash[:notice] = 'Instructions have been sent to your email.'
     else
-      redirect_to(root_path, notice: 'User not found!')
+      flash[:notice] = 'User not found!'
     end
+    redirect_to root_path
   end
 
   def edit
@@ -26,7 +27,8 @@ class PasswordResetsController < ApplicationController
     return not_authenticated if @user.blank?
     
     if @user.change_password!(params[:user][:password])
-      redirect_to(root_path, notice: 'Password was successfully updated.')
+      flash[:notice] = 'Password was successfully updated.'
+      redirect_to root_path
     else
       render :edit
     end
