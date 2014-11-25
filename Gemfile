@@ -13,6 +13,9 @@ gem 'coffee-rails', '~> 4.0.0'
 gem 'sass-rails', '~> 4.0.3'
 gem 'jquery-rails'
 
+# Styling
+gem 'neat'
+
 # functions
 gem 'acts-as-taggable-on'
 
@@ -26,6 +29,12 @@ gem 'pundit'
 # server and database stacks
 gem 'unicorn-rails'
 gem 'pg'
+
+# Facebook API wrapper
+gem 'fb_graph'
+
+# Mailer
+gem 'mailcatcher'
 
 group :production, :staging do
   gem 'heroku-deflater'

@@ -1,0 +1,16 @@
+h1 Campaign index
+
+= link_to 'New campaign', new_admin_campaign_path
+
+.spacing
+  - @campaigns.each do |campaign|
+
+    table
+      tr
+        td= link_to campaign.title, [:admin, campaign]
+        td= campaign.description
+        td= campaign.start_date
+        td= campaign.end_date
+        td= link_to 'Edit', edit_admin_campaign_path(campaign)
+        td= link_to [:admin, campaign], method: :delete, data: { confirm: 'delete?'} do
+          = "Delete"

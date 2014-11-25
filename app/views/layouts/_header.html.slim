@@ -1,7 +1,8 @@
-#nav
+.nav
   - if current_user
-    = link_to "Edit profile", edit_user_path(current_user.id)
-    = link_to "Logout", :logout, method: :post
+    p= link_to "Edit profile", edit_user_path(current_user.id)
+    p= link_to "Logout", :logout, method: :post
   - else
-    = link_to "Register", new_user_path
-    = link_to "Login", :login
+    p= link_to "Register", new_user_path
+    p= link_to "Login", :login
+  p= link_to 'Home', root_path

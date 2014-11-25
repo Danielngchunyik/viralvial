@@ -1,0 +1,27 @@
+.container
+  = form_for campaign do |f|
+    - if f.object.errors.any?
+      .alert.alert-danger
+        h4= "There are #{pluralize(campaign.errors.count, "error")}."
+        ul
+          - f.object.errors.full_messages.each do |msg|
+            li= msg
+
+    .spacing
+      = f.label "Title:"
+      = f.text_field :title, placeholder: "Enter campaign title"
+
+    .spacing
+      = f.label "Description:"
+      = f.text_area :description, rows: 4, placeholder: "Enter campaign description"
+
+    .spacing
+      = f.label "Start date:"
+      = f.date_select :start_date
+
+    .spacing
+      = f.label "End date:"
+      = f.date_select :end_date
+
+    .spacing
+      = f.submit "Submit"
