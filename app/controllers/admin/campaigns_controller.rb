@@ -36,6 +36,15 @@ class Admin::CampaignsController < ApplicationController
     end
   end
 
+  def destroy
+    if @campaign.destroy
+      flash[:alert] = 'deleted'
+      redirect_to admin_campaigns_path
+    else
+      flash[:error] = 'error'
+    end
+  end
+
   private
 
   def set_campaign
