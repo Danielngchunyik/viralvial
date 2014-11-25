@@ -1,7 +1,7 @@
 FactoryGirl.define do
   factory :announcement do
     message "MyText"
-title "MyString"
+    title "MyString"
   end
 
 end
