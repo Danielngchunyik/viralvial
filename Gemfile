@@ -19,8 +19,9 @@ gem 'acts-as-taggable-on'
 # third-party services
 gem 'appsignal'
 
-# authentication
+# authentication and authorization
 gem 'sorcery'
+gem 'pundit'
 
 # server and database stacks
 gem 'unicorn-rails'
