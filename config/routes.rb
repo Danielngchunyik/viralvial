@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
 
-  root 'users#index'
+  root 'static_pages#index'
 
   get 'login' => 'user_sessions#new', as: :login
 

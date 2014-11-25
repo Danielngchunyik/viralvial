@@ -17,7 +17,7 @@ class Admin::CampaignsController < ApplicationController
     else
       flash[:error] = "Error creating campaign"
     end
-    redirect_to @campaign
+    redirect_to [:admin, @campaign]
   end
 
   def show
@@ -27,6 +27,13 @@ class Admin::CampaignsController < ApplicationController
   end
 
   def update
+    if @campaign.update(campaign_params)
+      flash[:notice] = "campaign updated"
+      redirect_to [:admin, @campaign]
+    else
+      flash[:error] = "error updating"
+      render action: 'edit'
+    end
   end
 
   private

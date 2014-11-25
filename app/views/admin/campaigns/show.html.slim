@@ -1,9 +1,11 @@
 h2 Campaign
 
-p= "#{@campaign.title}"
+p = @campaign.title
 
-p= "#{@campaign.description}"
+p = @campaign.description
 
-p= "#{@campaign.start_date}"
+p = @campaign.start_date
 
-p= "#{@campaign.end_date}"
+p = @campaign.end_date
+
+p = link_to 'Edit', edit_admin_campaign_path(@campaign)
