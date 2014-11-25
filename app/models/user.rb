@@ -1,6 +1,8 @@
 class User < ActiveRecord::Base
   authenticates_with_sorcery!
-  before_save :set_default_password
+  after_initialize :set_default_password, :set_default_role, :if => :new_record?
+
+  enum role: [:banned, :user, :admin]
 
   authenticates_with_sorcery! do |config|
     config.authentications_class = Authentication
@@ -23,5 +25,9 @@ class User < ActiveRecord::Base
     password = SecureRandom.hex
     self.password = password
     self.password_confirmation = password
+  end
+
+  def set_default_role
+    self.role ||= :user
   end
 end
