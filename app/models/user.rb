@@ -1,11 +1,10 @@
 class User < ActiveRecord::Base
-
-  store_accessor :followers, :klout, :localization, :karma
+  store_accessor :scores, :followers, :klout, :localization, :karma
 
   authenticates_with_sorcery!
-  after_initialize :set_default_password, :set_default_role, :if => :new_record?
+  after_initialize :set_default_password, if: :new_record?
 
-  enum role: [:banned, :user, :admin]
+  enum role: [:user, :admin, :banned]
 
   authenticates_with_sorcery! do |config|
     config.authentications_class = Authentication
@@ -28,9 +27,5 @@ class User < ActiveRecord::Base
     password = SecureRandom.hex
     self.password = password
     self.password_confirmation = password
-  end
-
-  def set_default_role
-    self.role ||= :user
   end
 end

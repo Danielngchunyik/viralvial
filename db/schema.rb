@@ -89,7 +89,7 @@ ActiveRecord::Schema.define(version: 20141125093518) do
     t.string   "reset_password_token"
     t.datetime "reset_password_token_expires_at"
     t.datetime "reset_password_email_sent_at"
-    t.string   "role"
+    t.integer  "role",                            default: 0
     t.hstore   "scores",                          default: {}
   end
 
