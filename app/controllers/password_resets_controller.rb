@@ -34,7 +34,7 @@ class PasswordResetsController < ApplicationController
 
   private
 
-    def set_token
-      @token = params[:id]
-    end
+  def set_token
+    @token = params[:id]
+  end
 end

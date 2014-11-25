@@ -1,19 +1,26 @@
-= form_for @user do |f|
-  - if @user.errors.any?
-    #error_explanation
-      h2 = "#{pluralize(@user.errors.count, "error")} prohibited this user from being saved:"
-      ul
-        - @user.errors.full_messages.each do |message|
-          li = message
+.container
+  h2 Sign Up
 
-  .field
-    = f.label :email
-    = f.text_field :email
-  .field
-    = f.label :password
-    = f.password_field :password
-  .field
-    = f.label :password_confirmation
-    = f.password_field :password_confirmation
-    
-  .actions = f.submit 'Save'
+  .col-md-6
+    = form_for @user do |f|
+      - if @user.errors.any?
+        #error_explanation
+          h2 = "#{pluralize(@user.errors.count, "error")} prohibited this user from being saved:"
+          ul
+            - @user.errors.full_messages.each do |message|
+              li = message
+
+      .spacing
+        = f.label "#{:email}:"
+        = f.email_field :email, autofocus: true, placeholder: 'Enter email here'
+
+      .spacing
+        = f.label "#{:password}:"
+        = f.password_field :password
+
+      .spacing
+        = f.label "#{:password_confirmation}:"
+        = f.password_field :password_confirmation
+       
+      .spacing
+          p= f.submit 'Save'
