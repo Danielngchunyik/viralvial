@@ -21,7 +21,7 @@ RSpec.describe UserSessionsController, :type => :controller do
   describe "GET destroy" do
     it "returns http success" do
       get :destroy      
-      expect(response).to redirect_to :users
+      expect(response).to redirect_to root_path
     end
   end
 
