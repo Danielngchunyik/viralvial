@@ -1,4 +1,7 @@
 class User < ActiveRecord::Base
+
+  store_accessor :followers, :klout, :localization, :karma
+
   authenticates_with_sorcery!
   after_initialize :set_default_password, :set_default_role, :if => :new_record?
 
