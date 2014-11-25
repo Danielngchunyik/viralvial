@@ -1,0 +1,19 @@
+.container
+  = form_for announcement do |f|
+    - if f.object.errors.any?
+      .alert.alert-danger
+        h4= "There are #{pluralize(announcement.errors.count, "error")}."
+        ul
+          - f.object.errors.full_messages.each do |msg|
+            li= msg
+
+    .spacing
+      = f.label "Title:"
+      = f.text_field :title, placeholder: "Enter announcement title"
+
+    .spacing
+      = f.label "Message:"
+      = f.text_area :message, rows: 4, placeholder: "Enter announcement message"
+
+    .spacing
+      = f.submit "Submit"
