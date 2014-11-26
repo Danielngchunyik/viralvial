@@ -3,16 +3,16 @@ class ScoresWorker
 
   def perform
     #get user followers percentile
-    total_followers = User.pluck("(scores -> 'followers')::integer")
+    follower_scores = User.pluck("(scores -> 'followers')::integer")
 
     User.find_each do |user|
       less_followers = []
       same_followers = []
-      total_followers.each do |tf|
-        if tf < user.followers.to_i
-          less_followers.push(tf)
-        elsif tf == user.followers.to_i
-          same_followers.push(tf)
+      follower_scores.each do |score|
+        if score < user.followers.to_i
+          less_followers << score
+        elsif score == user.followers.to_i
+          same_followers << score
         end
       end
 
