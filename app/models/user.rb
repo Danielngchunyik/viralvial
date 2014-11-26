@@ -4,7 +4,6 @@ class User < ActiveRecord::Base
 
   authenticates_with_sorcery!
   after_initialize :set_default_password, if: :new_record?
-  after_create :update_social_scores
 
   enum role: [:user, :admin, :banned]
   enum gender: [:female, :male]
@@ -23,11 +22,11 @@ class User < ActiveRecord::Base
   has_many :authentications, dependent: :destroy
   accepts_nested_attributes_for :authentications
 
-  private
-
-  def update_social_scores
+  def self.update_social_scores!
     ScoresWorker.perform_async
   end
+
+  private
 
   def set_default_password
     return unless self.password.nil?

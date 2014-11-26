@@ -3,23 +3,19 @@ h1 Listing users
 table
   thead
     tr
-      th= link_to "No."
       th= link_to "Email", sort: "email"
       th= link_to "Followers", sort: "(users.scores -> 'followers')::integer"
-      th= link_to "Klout Score", sort: "klout"
-      th= link_to "Localization", sort: "localization"
-      th= link_to "Reach"
-      th= link_to "SX Index"
-      th= link_to "Influence Score" 
-      th= link_to "Karma"
-      th= link_to "Socialite Score"
+      th= link_to "Klout Score", sort: "(users.scores -> 'klout')::integer"
+      th= link_to "Localization", sort: "(users.scores -> 'localization')::integer"
+      th= link_to "Reach", sort: "(users.scores -> 'reach_score')::float(2)"
+      th= link_to "SX Index", sort: "(users.scores -> 'sx_index')::float(2)"
+      th= link_to "Influence Score", sort: "(users.scores -> 'influence_score')::float(2)" 
+      th= link_to "Karma", sort: "(users.scores -> 'karma')::float(2)"
+      th= link_to "Socialite Score", sort: "(users.scores -> 'socialite_score')::float(2)"
 
   tbody
-    - x = 0
     - @users.each do |user|
       tr
-        - x += 1
-        td = x
         td = user.email
         td = user.followers
         td = user.klout

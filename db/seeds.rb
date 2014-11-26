@@ -8,7 +8,7 @@
 
 require 'faker'
 
-20.times do
+5.times do
   User.create!(
     email: Faker::Internet.email,
     followers: rand(50000),
