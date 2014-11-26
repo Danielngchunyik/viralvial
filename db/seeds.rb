@@ -14,6 +14,7 @@ require 'faker'
     followers: rand(50000),
     klout: rand(100),
     localization: 100,
-    karma: rand(10)
+    karma: rand(10),
+    gender: rand(2)
   )
 end

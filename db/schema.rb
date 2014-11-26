@@ -77,7 +77,7 @@ ActiveRecord::Schema.define(version: 20141125093518) do
     t.datetime "updated_at"
     t.string   "name"
     t.datetime "birthdate"
-    t.string   "gender"
+    t.integer  "gender"
     t.string   "race"
     t.string   "religion"
     t.string   "contact_number"

@@ -1,11 +1,13 @@
 class User < ActiveRecord::Base
 
-  store_accessor :scores, :followers, :klout, :localization, :karma
+  store_accessor :scores, :followers, :klout, :localization, :reach_score, :sx_index, :influence_score, :socialite_score, :karma
 
   authenticates_with_sorcery!
   after_initialize :set_default_password, if: :new_record?
+  after_initialize :set_social_scores
 
   enum role: [:user, :admin, :banned]
+  enum gender: [:female, :male]
 
   authenticates_with_sorcery! do |config|
     config.authentications_class = Authentication
@@ -21,8 +23,12 @@ class User < ActiveRecord::Base
   has_many :authentications, dependent: :destroy
   accepts_nested_attributes_for :authentications
 
-  def reach_score
-    return @reach_score unless @reach_score.nil?
+  private
+
+  # TODO: Background worker
+  def set_social_scores
+    #get user followers percentile
+    total_followers ||= User.pluck("(scores -> 'followers')::integer")
     less_followers = []
     same_followers = []
 
@@ -33,25 +39,18 @@ class User < ActiveRecord::Base
         same_followers.push(tf)
       end
     end
-    @reach_score = ((less_followers.length + (0.5 * same_followers.length))/total_followers.length * 100).round(2)
-  end
 
-  def sx_index
-    @sx_index ||= ((self.localization.to_i + reach_score)/200*100).round(2)
-  end
+    #set reach_score
+    self.reach_score ||= ((less_followers.length + (0.5 * same_followers.length))/total_followers.length * 100).round(2)
+    
+    #set sx_index
+    self.sx_index ||= ((self.localization.to_f + self.reach_score.to_f)/200*100).round(2)
+    
+    #set_influence_score
+    self.influence_score ||= ((self.klout.to_f + self.sx_index.to_f)/200*100).round(2)
 
-  def influence_score
-    @influence_score ||= ((self.klout.to_i + sx_index)/200*100).round(2)
-  end
-
-  def socialite_score
-    @socialite_score ||= (influence_score + self.karma.to_i).round(2)
-  end
-
-  private
-
-  def total_followers
-    @total_followers ||= User.pluck("(scores -> 'followers')::integer")
+    #set_socialite_score
+    self.socialite_score ||= (self.influence_score.to_f + self.karma.to_f).round(2)
   end
 
   def set_default_password
