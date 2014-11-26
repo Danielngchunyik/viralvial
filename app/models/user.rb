@@ -4,7 +4,7 @@ class User < ActiveRecord::Base
 
   authenticates_with_sorcery!
   after_initialize :set_default_password, if: :new_record?
-  after_initialize :set_social_scores
+  after_create :update_social_scores
 
   enum role: [:user, :admin, :banned]
   enum gender: [:female, :male]
@@ -23,19 +23,16 @@ class User < ActiveRecord::Base
   has_many :authentications, dependent: :destroy
   accepts_nested_attributes_for :authentications
 
-  private
-
-  # TODO: Background worker
-  def set_social_scores
+  def self.set_social_scores
     #get user followers percentile
     total_followers ||= User.pluck("(scores -> 'followers')::integer")
     less_followers = []
     same_followers = []
 
     total_followers.each do |tf|
-      if tf < self.followers.to_i
+      if tf < self.scores["followers"].to_i
         less_followers.push(tf)
-      elsif tf == self.followers.to_i
+      elsif tf == self.scores["followers"].to_i
         same_followers.push(tf)
       end
     end
@@ -51,6 +48,12 @@ class User < ActiveRecord::Base
 
     #set_socialite_score
     self.socialite_score ||= (self.influence_score.to_f + self.karma.to_f).round(2)
+  end
+
+  private
+
+  def update_social_scores
+    ScoresWorker.perform_async()
   end
 
   def set_default_password
