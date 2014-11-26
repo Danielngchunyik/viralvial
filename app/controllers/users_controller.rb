@@ -16,7 +16,6 @@ class UsersController < ApplicationController
     @user = User.new(user_params)
 
     if @user.save
-      User.update_social_scores!
       flash[:notice] = "User registered"
       redirect_to @user
     else
