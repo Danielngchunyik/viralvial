@@ -4,7 +4,7 @@ class Admin::UsersController < AdminController
                 only: [:show, :edit, :update, :destroy]
 
   def index
-    @users = User.order("#{column_params[params[:sort].to_s] || 'id'} #{sort_direction}")
+    @users = User.order("#{column_name} #{direction}")
   end
 
   def show
@@ -55,7 +55,11 @@ class Admin::UsersController < AdminController
 
   private
 
-  def sort_direction
+  def column_name
+    column_params[params[:sort].to_s] || 'id'
+  end
+
+  def direction
     %w(asc desc).include?(params[:direction]) ? params[:direction] : 'asc'
   end
 
@@ -74,7 +78,7 @@ class Admin::UsersController < AdminController
     }
   end
 
-  def set_user  
+  def set_user
     @user = User.find(params[:id])
   end
 
