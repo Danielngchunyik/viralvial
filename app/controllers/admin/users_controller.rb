@@ -1,5 +1,4 @@
 class Admin::UsersController < UsersController
-  helper_method :sort_direction
 
   def index
     @users = User.order("#{column_params[params[:sort].to_s] || 'id'} #{sort_direction}")

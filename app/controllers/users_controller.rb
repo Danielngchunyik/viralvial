@@ -1,8 +1,9 @@
 class UsersController < ApplicationController
-  before_action :set_user, only: [:show, :edit, :update, :destroy]
-  skip_before_action :require_login, only: [:index, :new, :create]
+  before_action :set_user, :require_login, only: [:show, :edit, :update, :destroy]
+  #before_action :authorize_user, except: [:new, :create]
 
   def show
+    authorize @user
   end
 
   def new
@@ -17,7 +18,7 @@ class UsersController < ApplicationController
 
     if @user.save
       flash[:notice] = "User registered"
-      redirect_to @user
+      redirect_to root_url
     else
       flash[:error] = "error :#{@user.errors.full_messages}"
       render action: 'new'
@@ -37,7 +38,7 @@ class UsersController < ApplicationController
   def destroy
     if @user.destroy
       flash[:notice] = "User deleted"
-      redirect_to root_path
+      redirect_to root_url
     else
       flash[:error] = "error :#{@user.errors.full_messages}"
       redirect_to @user
@@ -48,6 +49,10 @@ class UsersController < ApplicationController
 
   def set_user  
     @user = User.find(params[:id])
+  end
+
+  def authorize_user
+    authorize @user
   end
 
   def user_params

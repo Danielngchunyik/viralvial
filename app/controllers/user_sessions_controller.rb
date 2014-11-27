@@ -1,5 +1,6 @@
 class UserSessionsController < ApplicationController
-  skip_before_action :require_login, except: [:destroy]
+  before_action :require_login, only: [:destroy]
+
   def new
     @user = User.new
   end
@@ -17,6 +18,6 @@ class UserSessionsController < ApplicationController
   def destroy
     logout
     flash[:notice] = 'Logged out!'
-    redirect_to root_path
+    redirect_to root_url
   end
 end
