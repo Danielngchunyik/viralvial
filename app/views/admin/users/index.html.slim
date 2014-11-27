@@ -3,15 +3,15 @@ h1 Listing users
 table
   thead
     tr
-      th= link_to "Email", sort: "email"
-      th= link_to "Followers", sort: "(users.scores -> 'followers')::integer"
-      th= link_to "Klout Score", sort: "(users.scores -> 'klout')::integer"
-      th= link_to "Localization", sort: "(users.scores -> 'localization')::integer"
-      th= link_to "Reach", sort: "(users.scores -> 'reach_score')::float(2)"
-      th= link_to "SX Index", sort: "(users.scores -> 'sx_index')::float(2)"
-      th= link_to "Influence Score", sort: "(users.scores -> 'influence_score')::float(2)" 
-      th= link_to "Karma", sort: "(users.scores -> 'karma')::float(2)"
-      th= link_to "Socialite Score", sort: "(users.scores -> 'socialite_score')::float(2)"
+      th= sortable "email", "Email"
+      th= sortable "(users.scores -> 'followers')::integer", "Followers"
+      th= sortable "(users.scores -> 'klout')::integer", "Klout score"
+      th= sortable "(users.scores -> 'localization')::integer", "Localization"
+      th= sortable "(users.scores -> 'reach_score')::float(2)", "Reach"
+      th= sortable "(users.scores -> 'sx_index')::float(2)", "SX index"
+      th= sortable "(users.scores -> 'influence_score')::float(2)", "Influence score"
+      th= sortable "(users.scores -> 'karma')::float(2)", "Karma"
+      th= sortable "(users.scores -> 'socialite_score')::float(2)", "Socialite score"
 
   tbody
     - @users.each do |user|
