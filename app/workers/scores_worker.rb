@@ -2,7 +2,6 @@ class ScoresWorker
   include Sidekiq::Worker
 
   def perform
-    #get user followers percentile
     total_followers = User.pluck("(scores -> 'followers')::integer")
 
     User.find_each do |user|
