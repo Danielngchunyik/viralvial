@@ -3,15 +3,15 @@ h1 Listing users
 table
   thead
     tr
-      th= sortable "email", "Email"
-      th= sortable "(users.scores -> 'followers')::integer", "Followers"
-      th= sortable "(users.scores -> 'klout')::integer", "Klout score"
-      th= sortable "(users.scores -> 'localization')::integer", "Localization"
-      th= sortable "(users.scores -> 'reach_score')::float(2)", "Reach"
-      th= sortable "(users.scores -> 'sx_index')::float(2)", "SX index"
-      th= sortable "(users.scores -> 'influence_score')::float(2)", "Influence score"
-      th= sortable "(users.scores -> 'karma')::float(2)", "Karma"
-      th= sortable "(users.scores -> 'socialite_score')::float(2)", "Socialite score"
+      th = link_to 'Email', url_for(sort: 'email')
+      th = link_to 'Followers', url_for(sort: 'followers', direction: render_direction)
+      th = link_to 'Klout score', url_for(sort: 'klout', direction: render_direction)
+      th = link_to 'Localization', url_for(sort: 'localization', direction: render_direction)
+      th = link_to 'Reach', url_for(sort: 'reach', direction: render_direction)
+      th = link_to 'SX index', url_for(sort: 'sx', direction: render_direction)
+      th = link_to 'Influence score', url_for(sort: 'influence', direction: render_direction)
+      th = link_to 'Karma', url_for(sort: 'karma', direction: render_direction)
+      th = link_to 'Socialite score', url_for(sort: 'socialite', direction: render_direction)
 
   tbody
     - @users.each do |user|
