@@ -17,6 +17,7 @@ Rails.application.routes.draw do
 
   #Admin Panel
   namespace :admin do
+    get 'dashboard' => 'dashboard#index', as: :dashboard
     resources :campaigns
     resources :announcements
     resources :users

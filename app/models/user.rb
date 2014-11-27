@@ -35,5 +35,4 @@ class User < ActiveRecord::Base
     self.password = password
     self.password_confirmation = password
   end
-
 end

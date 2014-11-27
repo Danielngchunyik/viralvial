@@ -1,5 +1,4 @@
 class PasswordResetsController < ApplicationController
-  skip_before_action :require_login
   before_action :set_token, only: [:edit, :update]
 
   def create
@@ -11,7 +10,7 @@ class PasswordResetsController < ApplicationController
     else
       flash[:notice] = 'User not found!'
     end
-    redirect_to root_path
+    redirect_to root_url
   end
 
   def edit
@@ -28,7 +27,7 @@ class PasswordResetsController < ApplicationController
     
     if @user.change_password!(params[:user][:password])
       flash[:notice] = 'Password was successfully updated.'
-      redirect_to root_path
+      redirect_to root_url
     else
       render :edit
     end

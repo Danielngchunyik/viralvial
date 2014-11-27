@@ -1,3 +1,10 @@
+GIT
+  remote: git://github.com/elabs/pundit.git
+  revision: 1609690fc45d0389af38d6fe19aad79478895252
+  specs:
+    pundit (0.3.0)
+      activesupport (>= 3.0.0)
+
 GEM
   remote: https://rubygems.org/
   specs:
@@ -167,8 +174,6 @@ GEM
       slop (~> 3.4)
     pry-rails (0.3.2)
       pry (>= 0.9.10)
-    pundit (0.3.0)
-      activesupport (>= 3.0.0)
     quiet_assets (1.0.3)
       railties (>= 3.1, < 5.0)
     rack (1.5.2)
@@ -356,7 +361,7 @@ DEPENDENCIES
   nyan-cat-formatter
   pg
   pry-rails
-  pundit
+  pundit!
   quiet_assets
   rails (~> 4.1.7)
   rails_12factor

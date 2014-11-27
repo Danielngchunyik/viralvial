@@ -1,5 +1,6 @@
 class UserSessionsController < ApplicationController
-  skip_before_action :require_login, except: [:destroy]
+  before_action :require_login, only: [:destroy]
+
   def new
     @user = User.new
   end
@@ -7,7 +8,11 @@ class UserSessionsController < ApplicationController
   def create
     if @user = login(params[:email], params[:password])
       flash[:notice] = 'Login successful'
-      redirect_back_or_to @user
+      if @user.admin?
+        redirect_to admin_dashboard_url
+      else 
+        redirect_back_or_to @user
+      end
     else
       flash[:alert] = 'Login failed'
       render action: 'new'
@@ -17,6 +22,6 @@ class UserSessionsController < ApplicationController
   def destroy
     logout
     flash[:notice] = 'Logged out!'
-    redirect_to root_path
+    redirect_to root_url
   end
 end

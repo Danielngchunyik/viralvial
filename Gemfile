@@ -24,7 +24,7 @@ gem 'appsignal'
 
 # authentication and authorization
 gem 'sorcery'
-gem 'pundit'
+gem 'pundit', github: 'elabs/pundit'
 
 # server and database stacks
 gem 'unicorn-rails'
