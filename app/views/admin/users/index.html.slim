@@ -1,0 +1,34 @@
+h1 Listing users
+
+table
+  thead
+    tr
+      th = link_to 'Email', url_for(sort: 'email')
+      th = link_to 'Followers', url_for(sort: 'followers', direction: render_direction)
+      th = link_to 'Klout score', url_for(sort: 'klout', direction: render_direction)
+      th = link_to 'Localization', url_for(sort: 'localization', direction: render_direction)
+      th = link_to 'Reach', url_for(sort: 'reach', direction: render_direction)
+      th = link_to 'SX index', url_for(sort: 'sx', direction: render_direction)
+      th = link_to 'Influence score', url_for(sort: 'influence', direction: render_direction)
+      th = link_to 'Karma', url_for(sort: 'karma', direction: render_direction)
+      th = link_to 'Socialite score', url_for(sort: 'socialite', direction: render_direction)
+
+  tbody
+    - @users.each do |user|
+      tr
+        td = user.email
+        td = user.followers
+        td = user.klout
+        td = user.localization
+        td = user.reach_score
+        td = user.sx_index
+        td = user.influence_score
+        td = user.karma
+        td = user.socialite_score
+        td = link_to 'Show', [:admin, user]
+        td = link_to 'Edit', edit_admin_user_path(user)
+        td = link_to 'Destroy', user, data: {:confirm => 'Are you sure?'}, :method => :delete
+
+br
+
+= link_to 'New User', new_user_path

@@ -1,16 +1,21 @@
 class User < ActiveRecord::Base
-  authenticates_with_sorcery!
-  after_initialize :set_default_password, :set_default_role, :if => :new_record?
 
-  enum role: [:banned, :user, :admin]
+  store_accessor :scores, :followers, :klout, :localization, :reach_score, :sx_index, :influence_score, :socialite_score, :karma
+
+  authenticates_with_sorcery!
+  after_initialize :set_default_password, if: :new_record?
+  after_commit :update_social_scores, on: :create
+
+  enum role: [:user, :admin, :banned]
+  enum gender: [:female, :male]
 
   authenticates_with_sorcery! do |config|
     config.authentications_class = Authentication
   end
 
-  validates :password, length: { minimum: 8 }
-  validates :password, confirmation: true
-  validates :password_confirmation, presence: true
+  validates :password, length: { minimum: 8 }, if: :password
+  validates :password, confirmation: true, if: :password
+  validates :password_confirmation, presence: true, if: :password
   validates :email, uniqueness: true
 
   acts_as_taggable_on :specializations, :interests
@@ -20,6 +25,10 @@ class User < ActiveRecord::Base
 
   private
 
+  def update_social_scores
+    ScoresWorker.perform_async
+  end
+
   def set_default_password
     return unless self.password.nil?
     password = SecureRandom.hex
@@ -27,7 +36,4 @@ class User < ActiveRecord::Base
     self.password_confirmation = password
   end
 
-  def set_default_role
-    self.role ||= :user
-  end
 end

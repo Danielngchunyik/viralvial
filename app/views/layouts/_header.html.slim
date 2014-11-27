@@ -1,8 +1,12 @@
 .nav
+  = link_to 'Home', root_path
+  '
   - if current_user
-    p= link_to "Edit profile", edit_user_path(current_user.id)
-    p= link_to "Logout", :logout, method: :post
+    = link_to "Edit profile", edit_user_path(current_user.id)
+    '
+    = link_to "Logout", :logout, method: :post
   - else
-    p= link_to "Register", new_user_path
-    p= link_to "Login", :login
-  p= link_to 'Home', root_path
+    = link_to "Register", new_user_path
+    '
+    = link_to "Login", :login
+    

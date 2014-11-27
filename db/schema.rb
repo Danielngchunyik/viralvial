@@ -11,10 +11,11 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141125025126) do
+ActiveRecord::Schema.define(version: 20141125093518) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+  enable_extension "hstore"
 
   create_table "announcements", force: true do |t|
     t.text     "message"
@@ -69,14 +70,14 @@ ActiveRecord::Schema.define(version: 20141125025126) do
   end
 
   create_table "users", force: true do |t|
-    t.string   "email",                           null: false
-    t.string   "crypted_password",                null: false
-    t.string   "salt",                            null: false
+    t.string   "email",                                        null: false
+    t.string   "crypted_password",                             null: false
+    t.string   "salt",                                         null: false
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "name"
     t.datetime "birthdate"
-    t.string   "gender"
+    t.integer  "gender"
     t.string   "race"
     t.string   "religion"
     t.string   "contact_number"
@@ -88,7 +89,8 @@ ActiveRecord::Schema.define(version: 20141125025126) do
     t.string   "reset_password_token"
     t.datetime "reset_password_token_expires_at"
     t.datetime "reset_password_email_sent_at"
-    t.string   "role"
+    t.integer  "role",                            default: 0
+    t.hstore   "scores",                          default: {}
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree

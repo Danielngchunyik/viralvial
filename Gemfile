@@ -30,6 +30,9 @@ gem 'pundit'
 gem 'unicorn-rails'
 gem 'pg'
 
+# Background worker
+gem 'sidekiq'
+
 # Facebook API wrapper
 gem 'fb_graph'
 
