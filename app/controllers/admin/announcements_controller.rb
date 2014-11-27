@@ -1,4 +1,4 @@
-class Admin::AnnouncementsController < ApplicationController
+class Admin::AnnouncementsController < AdminController
   before_action :set_announcement, only: [:show, :edit, :update, :destroy]
   skip_before_action :require_login
 

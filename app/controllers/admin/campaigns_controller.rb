@@ -1,4 +1,4 @@
-class Admin::CampaignsController < ApplicationController
+class Admin::CampaignsController < AdminController
   before_action :set_campaign, only: [:show, :edit, :update, :destroy]
   skip_before_action :require_login, except: [:index, :show]
 
@@ -8,10 +8,12 @@ class Admin::CampaignsController < ApplicationController
 
   def new
     @campaign = Campaign.new
+    authorize @campaign
   end
 
   def create
     @campaign = Campaign.new(campaign_params)
+    authorize @campaign
     if @campaign.save
       flash[:notice] = "Campaign created"
     else
@@ -47,6 +49,10 @@ class Admin::CampaignsController < ApplicationController
 
   private
 
+  def authorize_campaign
+    authorize @campaign
+  end
+  
   def set_campaign
     @campaign = Campaign.find(params[:id])
   end

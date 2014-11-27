@@ -8,7 +8,11 @@ class UserSessionsController < ApplicationController
   def create
     if @user = login(params[:email], params[:password])
       flash[:notice] = 'Login successful'
-      redirect_back_or_to @user
+      if @user.admin?
+        redirect_to admin_dashboard_url
+      else 
+        redirect_back_or_to @user
+      end
     else
       flash[:alert] = 'Login failed'
       render action: 'new'
