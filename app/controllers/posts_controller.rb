@@ -15,31 +15,23 @@ class PostsController < ApplicationController
     @post.facebook_post_id = @fb_post.raw_attributes["id"]
     @post.campaign = @campaign
 
-    binding.pry
     if @post.save
       flash[:notice] = "Post created"
+      redirect_to @post
+    else
+      flash[:error] = "Error!"
+      render :new
     end
   end
 
   def show
     @post = @campaign.posts.find(params[:id])
-    @fb_post = FbGraph::Post.fetch(@post.facebook_post_id, access_token: @fb_token)
-    
-    @fb_likes = 0
-    @fb_post.raw_attributes["likes"]["data"].each do |like|
-      if like["name"] != current_user.name
-        @fb_likes += 1
-      end
-    end
 
-    @fb_comments = 0
-    @fb_post.raw_attributes["comments"]["data"].each do |comment|
-      if comment["from"]["name"] != current_user.name
-        @fb_comments += 1
-      end
-    end
+    stats = @post.retrieve_facebook_stats(@fb_token, current_user)
 
+    @fb_likes, @fb_comments, @fb_privacy = stats[0], stats[1], stats[2]
   end
+
   private
 
   def set_fb_token
