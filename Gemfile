@@ -14,7 +14,7 @@ gem 'sass-rails', '~> 4.0.3'
 gem 'jquery-rails'
 
 # Styling
-gem 'neat'
+gem 'semantic-ui-sass'
 
 # functions
 gem 'acts-as-taggable-on'

@@ -6,20 +6,19 @@ class OauthsController < ApplicationController
 
   def callback
     if @user = login_from(auth_params[:provider])
+      binding.pry
       flash[:notice] = "Logged in from #{auth_params[:provider].titleize}!"
-      redirect_to root_url
     else
       begin
         @user = create_from(auth_params[:provider])
         reset_session
         auto_login(@user)
         flash[:notice] = "Logged in from #{auth_params[:provider].titleize}!"
-        redirect_to root_url
       rescue
         flash[:alert] = "Failed to login from #{auth_params[:provider].titleize}"
-        redirect_to root_url
       end
     end
+    redirect_to root_url
   end
 
   private

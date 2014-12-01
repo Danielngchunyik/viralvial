@@ -49,9 +49,6 @@ GEM
       rack (>= 0.9.0)
     binding_of_caller (0.7.2)
       debug_inspector (>= 0.0.1)
-    bourbon (3.2.3)
-      sass (~> 3.2)
-      thor
     builder (3.2.2)
     capybara (2.4.4)
       mime-types (>= 1.16)
@@ -153,9 +150,6 @@ GEM
     multi_json (1.10.1)
     multi_xml (0.5.5)
     multipart-post (2.0.0)
-    neat (1.5.1)
-      bourbon (>= 3.1)
-      sass (~> 3.2.19)
     nokogiri (1.6.4.1)
       mini_portile (~> 0.6.0)
     nyan-cat-formatter (0.10.1)
@@ -256,6 +250,8 @@ GEM
       multi_json (~> 1.0)
       rubyzip (~> 1.0)
       websocket (~> 1.0)
+    semantic-ui-sass (0.19.3.1)
+      sass (~> 3.2)
     shoulda-matchers (2.7.0)
       activesupport (>= 3.0.0)
     sidekiq (3.3.0)
@@ -357,7 +353,6 @@ DEPENDENCIES
   jbuilder (~> 2.0)
   jquery-rails
   mailcatcher
-  neat
   nyan-cat-formatter
   pg
   pry-rails
@@ -373,6 +368,7 @@ DEPENDENCIES
   sass-rails (~> 4.0.3)
   sdoc (~> 0.4.0)
   selenium-webdriver
+  semantic-ui-sass
   shoulda-matchers
   sidekiq
   slim-rails
