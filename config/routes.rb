@@ -3,6 +3,11 @@ Rails.application.routes.draw do
   #Home
   root 'home#index'
 
+  #Campaigns
+  resources :campaigns do
+    resources :posts
+  end
+  
   #Users
   get 'login' => 'user_sessions#new', as: :login
   post 'logout' => 'user_sessions#destroy', as: :logout

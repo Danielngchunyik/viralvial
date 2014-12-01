@@ -21,6 +21,7 @@ class User < ActiveRecord::Base
   acts_as_taggable_on :specializations, :interests
 
   has_many :authentications, dependent: :destroy
+  has_many :posts
   accepts_nested_attributes_for :authentications
 
   private

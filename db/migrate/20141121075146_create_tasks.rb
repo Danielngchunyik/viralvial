@@ -2,7 +2,7 @@ class CreateTasks < ActiveRecord::Migration
   def change
     create_table :tasks do |t|
       t.text :description
-      t.integer :campaign_id
+      t.integer :post_id
 
       t.timestamps
     end
