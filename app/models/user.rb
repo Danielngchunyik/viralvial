@@ -24,6 +24,8 @@ class User < ActiveRecord::Base
   has_many :posts
   accepts_nested_attributes_for :authentications
 
+  mount_uploader :profilepic, ProfilepicUploader
+
   private
 
   def update_social_scores
