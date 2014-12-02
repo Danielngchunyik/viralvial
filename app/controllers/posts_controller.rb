@@ -6,17 +6,12 @@ class PostsController < ApplicationController
     @post = @campaign.posts.build
   end
 
-  def create
-    
-    @fb_post = FbGraph::User.me(@fb_token).feed!(message: post_params[:message])
+  def create    
+    post_service = PostService.new(@fb_token, post_params, @campaign.id, current_user)
 
-    @post = current_user.posts.build(post_params)
-    @post.facebook_post_id = @fb_post.raw_attributes["id"]
-    @post.campaign = @campaign
-
-    if @post.save
+    if post_service.save
       flash[:notice] = "Post created"
-      redirect_to @post
+      redirect_to [@campaign, post_service.post]
     else
       flash[:error] = "Error!"
       render :new
@@ -25,8 +20,8 @@ class PostsController < ApplicationController
 
   def show
     @post = @campaign.posts.find(params[:id])
-
-    stats = @post.retrieve_facebook_stats(@fb_token, current_user)
+    facebook_service = FacebookService.new(@fb_token, current_user, @post)
+    stats = facebook_service.display
 
     @fb_likes, @fb_comments, @fb_privacy = stats[0], stats[1], stats[2]
   end
@@ -34,7 +29,7 @@ class PostsController < ApplicationController
   private
 
   def set_fb_token
-    @fb_token = current_user.authentications.where(provider: 'facebook').first.token
+    @fb_token = current_user.authentications.find_by(provider: 'facebook').token
   end
 
   def set_campaign
