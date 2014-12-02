@@ -19,6 +19,13 @@ gem 'semantic-ui-sass'
 # functions
 gem 'acts-as-taggable-on'
 
+# S3 Amazon
+gem 'fog'
+
+#Image Uploaders
+gem 'carrierwave'
+gem 'mini_magick'
+
 # third-party services
 gem 'appsignal'
 

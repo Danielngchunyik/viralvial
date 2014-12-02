@@ -74,8 +74,9 @@ ActiveRecord::Schema.define(version: 20141201090952) do
   add_index "tags", ["name"], name: "index_tags_on_name", unique: true, using: :btree
 
   create_table "tasks", force: true do |t|
-    t.text     "description"
-    t.integer  "post_id"
+    t.integer  "fb_likes"
+    t.integer  "fb_comments"
+    t.integer  "campaign_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
