@@ -2,6 +2,8 @@ class CampaignsController < ApplicationController
   before_action :require_login, only: [:share]
 
   def index
+    @campaigns = Campaign.order("created_at DESC")
+    @posts = Post.where(user_id: current_user.id).order("created_at DESC")
   end
 
   def show
