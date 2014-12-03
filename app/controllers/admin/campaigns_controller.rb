@@ -58,6 +58,6 @@ class Admin::CampaignsController < AdminController
   end
 
   def campaign_params
-    params.require(:campaign).permit(:status, :start_date, :end_date, :title, :description)
+    params.require(:campaign).permit(:status, :start_date, :end_date, :title, :description, :image)
   end
 end
