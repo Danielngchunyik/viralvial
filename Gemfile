@@ -1,7 +1,7 @@
 source 'https://rubygems.org'
 ruby "2.1.5"
 
-gem 'rails', '~> 4.1.7'
+gem 'rails', '~> 4.1.8'
 
 gem 'turbolinks'
 gem 'uglifier', '>= 1.3.0'
@@ -46,6 +46,9 @@ gem 'fb_graph'
 # Mailer
 gem 'mailcatcher'
 
+#Environment Variables
+gem 'figaro'
+
 group :production, :staging do
   gem 'heroku-deflater'
   gem 'rails_12factor'
@@ -67,7 +70,6 @@ group :developement do
 end
 
 group :development, :test do
-  gem 'dotenv-rails'
   gem 'rspec-rails'
   gem 'factory_girl_rails'
   gem 'faker'

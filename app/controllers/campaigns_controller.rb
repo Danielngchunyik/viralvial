@@ -1,5 +1,4 @@
 class CampaignsController < ApplicationController
-  before_action :require_login, only: [:share]
 
   def index
     @campaigns = Campaign.order("created_at DESC")

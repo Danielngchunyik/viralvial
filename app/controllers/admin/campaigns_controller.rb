@@ -8,6 +8,7 @@ class Admin::CampaignsController < AdminController
 
   def new
     @campaign = Campaign.new
+    3.times { @campaign.images.build }
     authorize @campaign
   end
 
@@ -58,6 +59,6 @@ class Admin::CampaignsController < AdminController
   end
 
   def campaign_params
-    params.require(:campaign).permit(:status, :start_date, :end_date, :title, :description, :image)
+    params.require(:campaign).permit(:status, :start_date, :end_date, :title, :description, images_attributes: [:storage])
   end
 end

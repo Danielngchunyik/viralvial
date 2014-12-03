@@ -1,9 +1,0 @@
-@import "bourbon";
-@import "grid_settings";
-@import "neat";
-
-@import "spacing";
-
-body {
-  @include outer-container();
-}

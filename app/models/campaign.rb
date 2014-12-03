@@ -3,6 +3,8 @@ class Campaign < ActiveRecord::Base
 
   has_many :posts
   has_many :tasks
+  has_many :images, dependent: :destroy
+  
+  accepts_nested_attributes_for :images, reject_if: proc { |a| a['storage'].blank? }, allow_destroy: true
 
-  mount_uploader :image, ImageUploader
 end

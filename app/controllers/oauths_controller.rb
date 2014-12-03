@@ -1,4 +1,3 @@
-require 'pry'
 class OauthsController < ApplicationController
 
   def oauth

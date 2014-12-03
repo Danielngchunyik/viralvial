@@ -4,7 +4,6 @@ class Admin::TasksController < AdminController
   end
 
   def create
-    @task = 
   end
 
   def edit
