@@ -6,6 +6,7 @@ Rails.application.routes.draw do
   #Campaigns
   resources :campaigns do
     resources :posts
+    resources :tasks
   end
   
   #Users
@@ -23,7 +24,9 @@ Rails.application.routes.draw do
   #Admin Panel
   namespace :admin do
     get 'dashboard' => 'dashboard#index', as: :dashboard
-    resources :campaigns
+    resources :campaigns do
+      resources :tasks
+    end
     resources :announcements
     resources :users
   end

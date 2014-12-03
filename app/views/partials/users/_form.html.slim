@@ -21,6 +21,15 @@
       .spacing
         = f.label "#{:password_confirmation}:"
         = f.password_field :password_confirmation
+
+      - if current_user
+        .spacing
+          = image_tag(current_user.profilepic.profile.url) if current_user.profilepic?
+
+      .spacing
+        = f.label "Profile Picture"
+        = f.file_field :profilepic
+        = f.hidden_field :profilepic_cache
        
       .spacing
           p= f.submit 'Save'
