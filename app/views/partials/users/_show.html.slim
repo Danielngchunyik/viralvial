@@ -1,6 +1,18 @@
 h1 = "User: #{@user.email}"
 
 p
+  strong Name:
+  = @user.name
+
+p
+  strong Email:
+  = @user.email
+
+p
+  strong Profile:
+  = image_tag @user.image.profile.url
+
+p
   strong Followers:
   = @user.followers
 

@@ -3,4 +3,6 @@ class Campaign < ActiveRecord::Base
 
   has_many :posts
   has_many :tasks
+
+  mount_uploader :image, ImageUploader
 end

@@ -23,5 +23,15 @@
       = f.label "End date:"
       = f.date_select :end_date
 
+    - if @campaign.image != nil
+      .spacing
+        = image_tag(@campaign.image.thumb.url)
+        = "Current Image"
+
+    .spacing
+      = f.label "Image"
+      = f.file_field :image
+      = f.hidden_field :image_cache
+
     .spacing
       = f.submit "Submit"
