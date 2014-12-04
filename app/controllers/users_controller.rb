@@ -8,6 +8,6 @@ class UsersController < ApplicationController
   end
 
   def successful_redirection_url
-    root_url
+    root_path
   end
 end

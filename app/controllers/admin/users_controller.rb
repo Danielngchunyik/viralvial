@@ -23,7 +23,7 @@ class Admin::UsersController < AdminController
   end
 
   def successful_redirection_url
-    @user
+    [:admin, @user]
   end
 
   def column_name

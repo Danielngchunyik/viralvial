@@ -11,14 +11,20 @@
               li = message
 
       .spacing
-        = f.label "Name: "
-        = f.text_field :name, placeholder: 'Enter name here'
-
-      .spacing
         = f.label "Profile Picture: "
         p= image_tag(current_user.image.profile.url) if current_user.image?
         p= f.file_field :image
         p= f.hidden_field :image_cache
+
+      .spacing
+        = f.label "Name: "
+        = f.text_field :name, placeholder: 'Enter name here'
+
+      -if current_user.admin?
+        .spacing
+          = f.label "Role: "
+          = f.select :role, User.roles.keys.map { |role| [role.titleize, role]}
+
       
       .spacing
         = f.label "Birthday: "
@@ -38,11 +44,13 @@
                                               ["", ""])
       .spacing
         = f.label "Religion: "
-        = f.select :religion, options_for_select([["Buddhism", "buddhism"],
+        = f.select :religion, options_for_select([["", ""],
+                                                  ["Buddhism", "buddhism"],
                                                   ["Christianity", "christianity"],
                                                   ["Hinduism", "hinduism"],
                                                   ["Islam", "islam"],
-                                                  ["Others", "others"]])
+                                                  ["Others", "others"]],
+                                                  [])
 
       .spacing
         = f.label "Marital Status: "
@@ -62,11 +70,6 @@
 
       .spacing
         = f.label "Marital Status: "
-
-      -if current_user.admin?
-        .spacing
-          = f.label "Role: "
-          = f.select :role, User.roles.keys.map { |role| [role.titleize, role]}
 
       .spacing
           p= f.submit 'Save'
