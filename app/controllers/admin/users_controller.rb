@@ -1,45 +1,8 @@
 class Admin::UsersController < AdminController
-  before_action :set_user,
-                :require_login,
-                only: [:show, :edit, :update, :destroy]
+  include UserManagementActions
 
   def index
     @users = User.order("#{column_name} #{direction}")
-  end
-
-  def show
-    authorize @user
-  end
-
-  def new
-    @user = User.new
-  end
-
-  def edit
-    authorize @user
-  end
-
-  def create
-    @user = User.new(user_params)
-
-    if @user.save
-      flash[:notice] = "User created"
-      redirect_to @user
-    else
-      flash[:error] = "error :#{@user.errors.full_messages}"
-      render action: 'new'
-    end
-  end
-
-  def update
-    authorize @user
-    if @user.update(user_params)
-      flash[:notice] = "User details updated"
-      redirect_to @user
-    else
-      flash[:error] = "error :#{@user.errors.full_messages}"
-      render action: 'edit'
-    end
   end
 
   def destroy
@@ -54,6 +17,14 @@ class Admin::UsersController < AdminController
   end
 
   private
+
+  def successful_creation_message
+    "User created"
+  end
+
+  def successful_redirection_url
+    @user
+  end
 
   def column_name
     column_params[params[:sort].to_s] || 'id'
@@ -76,13 +47,5 @@ class Admin::UsersController < AdminController
       'email' => 'email',
       'id' => 'id'
     }
-  end
-
-  def set_user
-    @user = User.find(params[:id])
-  end
-
-  def user_params
-    params.require(:user).permit(:email, :password, :password_confirmation, :image, authentication_attributes: [])
   end
 end

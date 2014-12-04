@@ -12,6 +12,7 @@ gem 'slim-rails'
 gem 'coffee-rails', '~> 4.0.0'
 gem 'sass-rails', '~> 4.0.3'
 gem 'jquery-rails'
+gem 'country_select', github: 'stefanpenner/country_select'
 
 # Styling
 gem 'semantic-ui-sass'

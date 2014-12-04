@@ -95,14 +95,13 @@ ActiveRecord::Schema.define(version: 20141203055042) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "name"
-    t.datetime "birthdate"
+    t.date     "birthday"
     t.integer  "gender"
     t.string   "race"
     t.string   "religion"
     t.string   "contact_number"
-    t.string   "income_range"
     t.string   "nationality"
-    t.string   "state"
+    t.string   "location"
     t.string   "country"
     t.string   "marital_status"
     t.string   "reset_password_token"
@@ -111,7 +110,6 @@ ActiveRecord::Schema.define(version: 20141203055042) do
     t.integer  "role",                            default: 0
     t.hstore   "scores",                          default: {}
     t.string   "image"
-    t.string   "facebook_id"
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree

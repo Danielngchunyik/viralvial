@@ -6,7 +6,6 @@ class OauthsController < ApplicationController
 
   def callback
     if @user = login_from(auth_params[:provider])
-      binding.pry
       get_access_token
       flash[:notice] = "Logged in from #{auth_params[:provider].titleize}!"
     else

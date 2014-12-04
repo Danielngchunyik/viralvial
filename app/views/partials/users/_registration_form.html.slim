@@ -22,15 +22,5 @@
         = f.label "#{:password_confirmation}:"
         = f.password_field :password_confirmation
 
-      - if current_user
-        .spacing
-          = image_tag(current_user.image.profile.url) if current_user.image?
-
-      
-      .spacing
-        = f.label "Profile Picture"
-        p= f.file_field :image
-        p= f.hidden_field :image_cache
-
       .spacing
           p= f.submit 'Save'

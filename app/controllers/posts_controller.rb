@@ -8,7 +8,6 @@ class PostsController < ApplicationController
 
   def create    
     post_service = PostService.new(@fb_token, post_params, @campaign.id, current_user)
-
     if post_service.save
       flash[:notice] = "Post created"
       redirect_to [@campaign, post_service.post]
