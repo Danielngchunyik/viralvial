@@ -6,7 +6,7 @@ __     ___           _  __     ___       _
    \_/  |_|_|  \__,_|_|    \_/  |_|\__,_|_|
 </pre>
 
-[![Circle CI](https://circleci.com/gh/vltlabs/viral-vial.png?style=badge)](https://circleci.com/gh/vltlabs/viral-vial)
+[![Circle CI](https://circleci.com/gh/vltlabs/viral-vial.svg?style=svg)](https://circleci.com/gh/vltlabs/viral-vial)
 
 [![Code Climate](https://codeclimate.com/repos/546b1c05695680464c016d17/badges/3a143515d2030fa9e0a4/gpa.svg)](https://codeclimate.com/repos/546b1c05695680464c016d17/feed)
 [![Test Coverage](https://codeclimate.com/repos/546b1c05695680464c016d17/badges/3a143515d2030fa9e0a4/coverage.svg)](https://codeclimate.com/repos/546b1c05695680464c016d17/feed)
