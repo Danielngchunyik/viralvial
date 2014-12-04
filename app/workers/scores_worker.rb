@@ -5,16 +5,8 @@ class ScoresWorker
     total_followers = User.pluck("(scores -> 'followers')::integer").compact
 
     User.find_each do |user|
-      if user.followers != nil
-        less_followers = []
-        same_followers = []
-        total_followers.each do |tf|
-          if tf < user.followers.to_i
-            less_followers.push(tf)
-          elsif tf == user.followers.to_i
-            same_followers.push(tf)
-          end
-        end
+      if user.followers.present?
+        less_followers, same_followers = split_followers(total_followers, user)
 
         user.reach_score = ((less_followers.length + (0.5 * same_followers.length))/total_followers.length * 100).round(2)
         user.sx_index = ((user.localization.to_f + user.reach_score.to_f)/200*100).round(2)
@@ -25,5 +17,19 @@ class ScoresWorker
         user.save
       end
     end
+  end
+
+  private
+
+  def split_followers(followers, user)
+    less, same = []
+    followers.each do |tf|
+      if tf < user.followers.to_i
+        less << tf
+      elsif tf == user.followers.to_i
+        same << tf
+      end
+    end
+    [less, same]
   end
 end
