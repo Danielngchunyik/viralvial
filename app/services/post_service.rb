@@ -11,7 +11,7 @@ class PostService
   def save
     create_fb_post!
     @post = @current_user.posts.build(post_params)
-    @post.facebook_post_id = @fb_post.raw_attributes["id"]
+    @post.facebook_post_id = @fb_post.raw_attributes['id']
     @post.campaign_id = @campaign_id
     @post.save
   end
@@ -19,6 +19,6 @@ class PostService
   private
 
   def create_fb_post!
-    @fb_post = FbGraph::User.me(@fb_token).feed!(message: @post_params[:message]) 
+    @fb_post = FbGraph::User.me(@fb_token).feed!(message: @post_params[:message])
   end
 end
