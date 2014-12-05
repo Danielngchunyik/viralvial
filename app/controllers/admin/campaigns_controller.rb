@@ -8,7 +8,6 @@ class Admin::CampaignsController < AdminController
 
   def new
     @campaign = Campaign.new
-    3.times { @campaign.images.build }
     authorize @campaign
   end
 

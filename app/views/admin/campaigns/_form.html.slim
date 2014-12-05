@@ -24,7 +24,7 @@
       = f.label "End date:"
       = f.date_select :end_date
 
-    - if campaign.images.all.blank?
+    - if campaign.images.all.blank? && value.nil?
       - campaign.images.each do |image|
         .spacing
         = image_tag(image.storage.thumb.url)
@@ -33,6 +33,7 @@
     .spacing
       = f.fields_for :images do |builder|
         = render partial: 'image_fields', locals: { f: builder }
+      = link_to_add_fields "Add Image", f, :images
 
     .spacing
       = f.submit "Submit"
