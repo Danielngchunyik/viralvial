@@ -39,7 +39,7 @@ p
 
 p
   strong Country:
-  = @user.country
+  = IsoCountryCodes.find(@user.country).name
 
 p
   strong Marital Status:
