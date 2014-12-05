@@ -25,3 +25,5 @@ config/database.yml
 #Ignore .DS_Store
 **/.DS_Store
 .DS_Store
+
+public/uploads/
