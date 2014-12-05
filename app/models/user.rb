@@ -33,6 +33,7 @@ class User < ActiveRecord::Base
 
   def sync_with_facebook!
     fb_user = FbGraph::User.fetch("me?access_token=#{@token}")
+    # OPTIMIZE: use @user.save in the future
     @user.remote_image_url = "#{fb_user.picture}?redirect=1&height=300&type=normal&width=300"
     location_array = fb_user.location.name.split(', ')
     self.update(birthday: fb_user.birthday,
