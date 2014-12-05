@@ -1,5 +1,4 @@
 class User < ActiveRecord::Base
-
   store_accessor :scores, :followers, :klout, :localization, :reach_score,
                  :sx_index, :influence_score, :socialite_score, :karma
 
@@ -26,6 +25,21 @@ class User < ActiveRecord::Base
   accepts_nested_attributes_for :authentications
 
   mount_uploader :image, ImageUploader
+
+  def set_access_token(token, provider)
+    auth = self.authentications.find_by(provider: provider)
+    auth.update(token: token)
+  end
+
+  def sync_with_facebook!
+    fb_user = FbGraph::User.fetch("me?access_token=#{@token}")
+    # OPTIMIZE: use @user.save in the future
+    @user.remote_image_url = "#{fb_user.picture}?redirect=1&height=300&type=normal&width=300"
+    location_array = fb_user.location.name.split(', ')
+    self.update(birthday: fb_user.birthday,
+                location: location_array[0],
+                country: IsoCountryCodes.search_by_name(location_array[1])[0].alpha2)
+  end
 
   private
 
