@@ -1,0 +1,70 @@
+.container
+  h2 = title
+
+  .col-md-6
+    = form_for user do |f|
+      - if @user.errors.any?
+        #error_explanation
+          h2 = "#{pluralize(@user.errors.count, "error")} prohibited this user from being saved:"
+          ul
+            - @user.errors.full_messages.each do |message|
+              li = message
+
+      .spacing
+        = f.label "Profile Picture: "
+        p= image_tag(current_user.image.profile.url) if current_user.image?
+        p= f.file_field :image
+        p= f.hidden_field :image_cache
+
+      .spacing
+        = f.label "Name: "
+        = f.text_field :name, placeholder: 'Enter name here'
+
+      -if current_user.admin?
+        .spacing
+          = f.label "Role: "
+          = f.select :role, User.roles.keys.map { |role| [role.titleize, role]}
+
+      
+      .spacing
+        = f.label "Birthday: "
+        = f.date_select :birthday, order: [:day, :month, :year], end_year: 1920, start_year: Time.now.year
+
+      .spacing
+        = f.label "Gender: "
+        = f.select :gender, User.genders.keys.map { |gender| [gender.titleize, gender]}
+      
+      .spacing
+        = f.label :race
+        = f.select :race, options_for_select(["", "Malay", "Chinese", "Indian", "Others"], f.object.race)
+
+      .spacing
+        = f.label "Religion: "
+        = f.select :religion, options_for_select([["", ""],
+                                                  ["Buddhism", "buddhism"],
+                                                  ["Christianity", "christianity"],
+                                                  ["Hinduism", "hinduism"],
+                                                  ["Islam", "islam"],
+                                                  ["Others", "others"]], f.object.religion)
+
+      .spacing
+        = f.label "Marital Status: "
+        = f.select :marital_status, options_for_select(["Single", "In a relationship", "Married"], f.object.marital_status)
+
+      .spacing
+        = f.label "Where do you stay right now? "
+        = f.text_field :location, placeholder: 'Location here!'
+
+      .spacing
+        = f.label "Country: "
+        = f.country_select :country
+
+      .spacing
+        = f.label "Contact Number: "
+        = f.text_field :contact_number, placeholder: 'Enter contact number here'
+
+      .spacing
+        = f.label "Marital Status: "
+
+      .spacing
+          p= f.submit 'Save'

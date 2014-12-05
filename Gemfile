@@ -1,7 +1,7 @@
 source 'https://rubygems.org'
 ruby "2.1.5"
 
-gem 'rails', '~> 4.1.7'
+gem 'rails', '~> 4.1.8'
 
 gem 'turbolinks'
 gem 'uglifier', '>= 1.3.0'
@@ -12,12 +12,20 @@ gem 'slim-rails'
 gem 'coffee-rails', '~> 4.0.0'
 gem 'sass-rails', '~> 4.0.3'
 gem 'jquery-rails'
+gem 'country_select', github: 'stefanpenner/country_select'
 
 # Styling
 gem 'semantic-ui-sass'
 
 # functions
 gem 'acts-as-taggable-on'
+
+# S3 Amazon
+gem 'fog'
+
+#Image Uploaders
+gem 'carrierwave'
+gem 'mini_magick'
 
 # third-party services
 gem 'appsignal'
@@ -38,6 +46,9 @@ gem 'fb_graph'
 
 # Mailer
 gem 'mailcatcher'
+
+#Environment Variables
+gem 'figaro'
 
 group :production, :staging do
   gem 'heroku-deflater'
@@ -60,7 +71,6 @@ group :developement do
 end
 
 group :development, :test do
-  gem 'dotenv-rails'
   gem 'rspec-rails'
   gem 'factory_girl_rails'
   gem 'faker'

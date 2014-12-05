@@ -8,5 +8,9 @@ FactoryGirl.define do
       password nil
       password_confirmation nil
     end
+
+    trait :admin do
+      role 'admin'
+    end
   end
 end

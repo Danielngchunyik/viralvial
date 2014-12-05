@@ -8,4 +8,11 @@ p = @campaign.start_date
 
 p = @campaign.end_date
 
+- if @campaign.images.present?
+  - @campaign.images.each do |image|
+    .spacing
+    = image_tag(image.storage.thumb.url)
+    = "Current Image"
+
 p = link_to 'Edit', edit_admin_campaign_path(@campaign)
+p = link_to 'Add new task'

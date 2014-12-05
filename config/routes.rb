@@ -3,6 +3,12 @@ Rails.application.routes.draw do
   #Home
   root 'home#index'
 
+  #Campaigns
+  resources :campaigns do
+    resources :posts
+    resources :tasks
+  end
+  
   #Users
   get 'login' => 'user_sessions#new', as: :login
   post 'logout' => 'user_sessions#destroy', as: :logout
@@ -18,7 +24,9 @@ Rails.application.routes.draw do
   #Admin Panel
   namespace :admin do
     get 'dashboard' => 'dashboard#index', as: :dashboard
-    resources :campaigns
+    resources :campaigns do
+      resources :tasks
+    end
     resources :announcements
     resources :users
   end

@@ -1,27 +1,37 @@
 require 'rails_helper'
 
-RSpec.describe UserSessionsController, :type => :controller do
+RSpec.describe UserSessionsController, type: :controller do
 
   let(:user) { FactoryGirl.create(:user) }
-  before { login_user(user) }
-  describe "GET new" do
-    it "returns http success" do
-      get :new
-      expect(response).to have_http_status(:success)
+  let(:admin) { FactoryGirl.create(:user, :admin) }
+
+  describe 'GET new' do
+    before { get :new }
+    it { expect(response).to have_http_status(:success) }
+  end
+
+  describe 'GET create' do
+    context 'admin user' do
+      before { post :create, email: admin.email, password: 'password' }
+      it { expect(response).to redirect_to(admin_dashboard_path) }
+    end
+
+    context 'non-admin user' do
+      before { post :create, email: user.email, password: 'password' }
+      it { expect(response).to redirect_to(user) }
+    end
+
+    context 'invalid credential' do
+      before { post :create }
+      it { expect(response).to render_template(:new) }
     end
   end
 
-  describe "GET create" do
-    it "returns http success" do
-      get :create
-      expect(response).to have_http_status(:success)
-    end
-  end
-
-  describe "GET destroy" do
-    it "returns http success" do
-      get :destroy      
-      expect(response).to redirect_to root_path
+  describe 'GET destroy' do
+    before { login_user user }
+    it do
+      delete :destroy
+      expect(response).to redirect_to(root_path)
     end
   end
 

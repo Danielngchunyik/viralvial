@@ -1,0 +1,12 @@
+h1 Post
+
+.container
+
+  = form_for [@campaign, @post] do |f|
+
+    .spacing
+      = f.label "Message:"
+      = f.text_field :message, placeholder: "Enter message"
+
+    .spacing
+      = f.submit "Submit"

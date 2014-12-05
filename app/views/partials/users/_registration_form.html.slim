@@ -2,7 +2,7 @@
   h2 = title
 
   .col-md-6
-    = form_for @user do |f|
+    = form_for user do |f|
       - if @user.errors.any?
         #error_explanation
           h2 = "#{pluralize(@user.errors.count, "error")} prohibited this user from being saved:"
@@ -21,6 +21,6 @@
       .spacing
         = f.label "#{:password_confirmation}:"
         = f.password_field :password_confirmation
-       
+
       .spacing
           p= f.submit 'Save'

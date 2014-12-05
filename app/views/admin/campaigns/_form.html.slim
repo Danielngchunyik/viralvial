@@ -1,5 +1,6 @@
+= puts campaign.inspect
 .container
-  = form_for campaign do |f|
+  = form_for [:admin, campaign] do |f|
     - if f.object.errors.any?
       .alert.alert-danger
         h4= "There are #{pluralize(campaign.errors.count, "error")}."
@@ -20,8 +21,18 @@
       = f.date_select :start_date
 
     .spacing
-      = f.label "End date:"©
+      = f.label "End date:"
       = f.date_select :end_date
+
+    - if campaign.images.all.blank?
+      - campaign.images.each do |image|
+        .spacing
+        = image_tag(image.storage.thumb.url)
+        = "Current Image"
+
+    .spacing
+      = f.fields_for :images do |builder|
+        = render partial: 'image_fields', locals: { f: builder }
 
     .spacing
       = f.submit "Submit"

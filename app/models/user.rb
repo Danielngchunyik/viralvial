@@ -1,6 +1,7 @@
 class User < ActiveRecord::Base
 
-  store_accessor :scores, :followers, :klout, :localization, :reach_score, :sx_index, :influence_score, :socialite_score, :karma
+  store_accessor :scores, :followers, :klout, :localization, :reach_score,
+                 :sx_index, :influence_score, :socialite_score, :karma
 
   authenticates_with_sorcery!
   after_initialize :set_default_password, if: :new_record?
@@ -21,7 +22,10 @@ class User < ActiveRecord::Base
   acts_as_taggable_on :specializations, :interests
 
   has_many :authentications, dependent: :destroy
+  has_many :posts
   accepts_nested_attributes_for :authentications
+
+  mount_uploader :image, ImageUploader
 
   private
 

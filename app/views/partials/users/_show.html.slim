@@ -1,6 +1,51 @@
 h1 = "User: #{@user.email}"
 
 p
+  strong Name:
+  = @user.name
+
+p
+  strong Gender:
+  = @user.gender
+
+-if current_user.admin?
+  p
+    strong Role:
+    = @user.role.titleize
+
+p
+  strong Email:
+  = @user.email
+
+p
+  strong Birthday:
+  = l@user.birthday
+
+p
+  strong Profile Image:
+  = image_tag @user.image.profile.url
+
+p
+  strong Race:
+  = @user.race
+
+p
+  strong Religion:
+  = @user.religion
+
+p
+  strong Location:
+  = @user.location
+
+p
+  strong Country:
+  = @user.country
+
+p
+  strong Marital Status:
+  = @user.marital_status
+
+p
   strong Followers:
   = @user.followers
 

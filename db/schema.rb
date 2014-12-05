@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141128065754) do
+ActiveRecord::Schema.define(version: 20141203055042) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -30,6 +30,7 @@ ActiveRecord::Schema.define(version: 20141128065754) do
     t.string   "uid",        null: false
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "token"
   end
 
   create_table "campaigns", force: true do |t|
@@ -41,6 +42,22 @@ ActiveRecord::Schema.define(version: 20141128065754) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.boolean  "public",      default: true
+  end
+
+  create_table "images", force: true do |t|
+    t.string   "storage"
+    t.integer  "campaign_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "posts", force: true do |t|
+    t.integer  "campaign_id"
+    t.integer  "user_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.string   "facebook_post_id"
+    t.string   "message"
   end
 
   create_table "taggings", force: true do |t|
@@ -64,7 +81,8 @@ ActiveRecord::Schema.define(version: 20141128065754) do
   add_index "tags", ["name"], name: "index_tags_on_name", unique: true, using: :btree
 
   create_table "tasks", force: true do |t|
-    t.text     "description"
+    t.integer  "fb_likes"
+    t.integer  "fb_comments"
     t.integer  "campaign_id"
     t.datetime "created_at"
     t.datetime "updated_at"
@@ -77,14 +95,13 @@ ActiveRecord::Schema.define(version: 20141128065754) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "name"
-    t.datetime "birthdate"
+    t.date     "birthday"
     t.integer  "gender"
     t.string   "race"
     t.string   "religion"
     t.string   "contact_number"
-    t.string   "income_range"
     t.string   "nationality"
-    t.string   "state"
+    t.string   "location"
     t.string   "country"
     t.string   "marital_status"
     t.string   "reset_password_token"
@@ -92,6 +109,7 @@ ActiveRecord::Schema.define(version: 20141128065754) do
     t.datetime "reset_password_email_sent_at"
     t.integer  "role",                            default: 0
     t.hstore   "scores",                          default: {}
+    t.string   "image"
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
