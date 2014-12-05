@@ -2,7 +2,7 @@
   h2 = title
 
   .col-md-6
-    = form_for @user do |f|
+    = form_for user do |f|
       - if @user.errors.any?
         #error_explanation
           h2 = "#{pluralize(@user.errors.count, "error")} prohibited this user from being saved:"
@@ -28,20 +28,16 @@
       
       .spacing
         = f.label "Birthday: "
-        = f.date_select :birthday, order: [:day, :month, :year]
+        = f.date_select :birthday, order: [:day, :month, :year], end_year: 1920, start_year: Time.now.year
 
       .spacing
         = f.label "Gender: "
-        = f.select :gender, options_for_select([["Male", "male"],["Female", "female"]])
+        = f.select :gender, User.genders.keys.map { |gender| [gender.titleize, gender]}
       
       .spacing
-        = f.label "Race: "
-        = f.select :race, options_for_select([["", ""],
-                                              ["Malay", "malay"],
-                                              ["Chinese", "chinese"],
-                                              ["Indian", "indian"],
-                                              ["Others", "others"]],
-                                              ["", ""])
+        = f.label :race
+        = f.select :race, options_for_select(["", "Malay", "Chinese", "Indian", "Others"], f.object.race)
+
       .spacing
         = f.label "Religion: "
         = f.select :religion, options_for_select([["", ""],
@@ -49,12 +45,11 @@
                                                   ["Christianity", "christianity"],
                                                   ["Hinduism", "hinduism"],
                                                   ["Islam", "islam"],
-                                                  ["Others", "others"]],
-                                                  [])
+                                                  ["Others", "others"]], f.object.religion)
 
       .spacing
         = f.label "Marital Status: "
-        = f.select :marital_status, options_for_select(["Single", "In a relationship", "Married"])
+        = f.select :marital_status, options_for_select(["Single", "In a relationship", "Married"], f.object.marital_status)
 
       .spacing
         = f.label "Where do you stay right now? "

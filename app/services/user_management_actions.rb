@@ -33,7 +33,7 @@ module UserManagementActions
     authorize @user
     if @user.update(user_params)
       flash[:notice] = "User details updated"
-      redirect_to @user
+      redirect_to successful_redirection_url
     else
       flash[:error] = "error :#{@user.errors.full_messages}"
       render action: 'edit'

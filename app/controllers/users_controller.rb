@@ -8,6 +8,10 @@ class UsersController < ApplicationController
   end
 
   def successful_redirection_url
-    root_path
+    if current_user
+      @user
+    else
+      root_path
+    end
   end
 end

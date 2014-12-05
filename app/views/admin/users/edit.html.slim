@@ -1,6 +1,6 @@
 h1 Editing user
 
-= render partial: '/partials/users/edit_form', locals: { title: "Edit user" }
+= render partial: '/partials/users/edit_form', locals: { title: "Edit user", user: [:admin, @user] }
 
 = link_to 'Show', @user
 '
