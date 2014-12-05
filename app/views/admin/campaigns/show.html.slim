@@ -8,7 +8,7 @@ p = @campaign.start_date
 
 p = @campaign.end_date
 
-- if !@campaign.images.all.blank?
+- if @campaign.images.present?
   - @campaign.images.each do |image|
     .spacing
     = image_tag(image.storage.thumb.url)
