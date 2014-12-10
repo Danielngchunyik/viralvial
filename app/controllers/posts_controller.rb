@@ -1,4 +1,3 @@
-require 'pry'
 class PostsController < ApplicationController
   before_action :set_campaign
   before_action :set_fb_token, except: [:new]

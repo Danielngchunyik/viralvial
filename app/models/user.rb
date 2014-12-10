@@ -1,4 +1,3 @@
-require 'pry'
 class User < ActiveRecord::Base
 
   store_accessor :scores, :followers, :klout, :localization, :reach_score,
