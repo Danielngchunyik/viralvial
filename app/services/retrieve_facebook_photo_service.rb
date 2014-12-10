@@ -1,4 +1,4 @@
-class FacebookService
+class RetrieveFacebookPhotoService
   attr_accessor :fb_token, :current_user, :post
 
   def initialize(fb_token, current_user, post)
