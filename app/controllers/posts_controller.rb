@@ -23,7 +23,7 @@ class PostsController < ApplicationController
     facebook_service = FacebookService.new(@fb_token, current_user, @post)
     stats = facebook_service.display
 
-    @fb_likes, @fb_comments, @fb_privacy = stats[0], stats[1], stats[2]
+    @fb_likes, @fb_comments = stats[0], stats[1]
   end
 
   private
@@ -37,6 +37,6 @@ class PostsController < ApplicationController
   end
 
   def post_params
-    params.require(:post).permit(:message, :external_post_id, :external_post_id_type, :campaign_id, :user_id)
+    params.require(:post).permit(:message, :image, :external_post_id, :external_post_id_type, :campaign_id, :user_id)
   end
 end
