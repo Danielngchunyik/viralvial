@@ -5,14 +5,22 @@ Rails.application.routes.draw do
 
   #Campaigns
   resources :campaigns do
-    resources :posts
+    resources :posts do
+      collection do
+        post 'create_fb_post'
+      end
+    end
     resources :tasks
   end
   
   #Users
   get 'login' => 'user_sessions#new', as: :login
   post 'logout' => 'user_sessions#destroy', as: :logout
-  resources :users
+  resources :users do
+    member do
+      patch 'change_password_and_email'
+    end
+  end
   resources :user_sessions, except: [:update, :edit]
   resources :password_resets
 

@@ -1,11 +1,10 @@
 h1 Post
 
 .container
-
-  = form_for [@campaign, @post] do |f|
+  = form_for [@campaign, @post], url: create_fb_post_campaign_posts_path do |f|
 
     .spacing
-      = f.label "Message:"
+      = f.label "Message: "
       = f.text_field :message, placeholder: "Enter message"
 
     .spacing

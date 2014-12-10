@@ -13,6 +13,10 @@ class UserPolicy < ApplicationPolicy
     update?
   end
 
+  def change_password_and_email?
+    user.present? && user == record
+  end
+
   def update?
     user.present? && (user.admin? || user == record)
   end

@@ -1,0 +1,11 @@
+p.nested_form_field
+  = f.label "Tasks"
+  = f.label "Facebook posts: "
+  = f.number_field :posts
+  = f.label "Facebook likes needed: "
+  = f.number_field :likes
+  = f.label "Facebook comments needed: "
+  = f.number_field :comments
+  = f.hidden_field :social_media_platform, value: "facebook"
+  = f.hidden_field :_destroy
+  = link_to "Remove", '#', class: "remove_fields"

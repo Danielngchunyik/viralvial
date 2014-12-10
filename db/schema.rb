@@ -56,7 +56,8 @@ ActiveRecord::Schema.define(version: 20141203055042) do
     t.integer  "user_id"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.string   "facebook_post_id"
+    t.string   "external_post_id"
+    t.string   "external_post_id_type"
     t.string   "message"
   end
 
@@ -81,9 +82,11 @@ ActiveRecord::Schema.define(version: 20141203055042) do
   add_index "tags", ["name"], name: "index_tags_on_name", unique: true, using: :btree
 
   create_table "tasks", force: true do |t|
-    t.integer  "fb_likes"
-    t.integer  "fb_comments"
+    t.integer  "posts"
+    t.integer  "likes"
+    t.integer  "comments"
     t.integer  "campaign_id"
+    t.string   "social_media_platform"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -100,7 +103,6 @@ ActiveRecord::Schema.define(version: 20141203055042) do
     t.string   "race"
     t.string   "religion"
     t.string   "contact_number"
-    t.string   "nationality"
     t.string   "location"
     t.string   "country"
     t.string   "marital_status"

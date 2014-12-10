@@ -1,7 +1,7 @@
 jQuery(function() {
   $('form').on('click', '.remove_fields', function(event) {
     $(this).prev('input[type=hidden]').val('1');
-    $(this).closest('.image_field').hide();
+    $(this).closest('.nested_form_field').hide();
     return event.preventDefault();
   });
 

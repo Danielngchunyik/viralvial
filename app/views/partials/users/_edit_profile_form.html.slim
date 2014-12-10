@@ -2,6 +2,37 @@
   h2 = title
 
   .col-md-6
+    h1 Change email or password
+    = form_for user, url: change_password_and_email_user_path do |f|
+      - if @user.errors.any?
+        #error_explanation
+          h2 = "#{pluralize(@user.errors.count, "error")} prohibited this user from being saved:"
+          ul
+           - @user.errors.full_messages.each do |message|
+            li = message
+
+      .spacing 
+        = f.label "Email"
+        = f.email_field :email, autofocus: true
+
+      .spacing
+        = f.label "New password"
+        = f.password_field :password
+
+      .spacing
+        = f.label "Confirm new password"
+        = f.password_field :password_confirmation
+
+      .spacing
+        = f.label "Current password"
+        = f.password_field :current_password, placeholder: "Enter your current password"
+
+      .spacing
+        = f.submit "Save"
+
+  .col-md-6
+    h1 Change user profile
+
     = form_for user do |f|
       - if @user.errors.any?
         #error_explanation
@@ -57,11 +88,11 @@
 
       .spacing
         = f.label "Country: "
-        = f.country_select :country
+        = f.country_select :country, { priority_countries: ["MY", "SG"], selected: "MY" }
 
       .spacing
         = f.label "Contact Number: "
-        = f.text_field :contact_number, placeholder: 'Enter contact number here'
+        = f.number_field :contact_number, placeholder: 'Enter contact number here'
 
       .spacing
           p= f.submit 'Save'
