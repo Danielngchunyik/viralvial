@@ -3,8 +3,8 @@ module NestedFormsHelper
     new_object = f.object.send(association).klass.new
     id = new_object.object_id
 
-    if extra_name == ""
-      header_name = extra_name
+    if extra_name == "image"
+      header_name = ""
     else
       header_name = extra_name + "_"
     end
@@ -12,6 +12,6 @@ module NestedFormsHelper
     fields = f.fields_for(association, new_object, child_index: id) do |builder|
       render(header_name + association.to_s.singularize + "_fields", f: builder)
     end
-    link_to(name, '#', class: "add_fields", data: {id: id, fields: fields.gsub("\n", "")})
+    link_to(name, '#', class: "add_fields", id: extra_name, data: {id: id, fields: fields.gsub("\n", "")})
   end
 end
