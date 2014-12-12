@@ -39,7 +39,8 @@ class User < ActiveRecord::Base
     self.update(birthday: fb_user.birthday,
                 location: location_array[0],
                 country: IsoCountryCodes.search_by_name(location_array[1])[0].alpha2)
-
+  end
+  
   #For campaign filters
   def age
     birthday && ((Date.today - birthday) / 365.25)
