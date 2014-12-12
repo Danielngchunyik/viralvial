@@ -8,11 +8,22 @@ p = @campaign.start_date
 
 p = @campaign.end_date
 
+p = @campaign.criteria_min_age
+
 - if @campaign.images.present?
   - @campaign.images.each do |image|
     .spacing
     = image_tag(image.storage.thumb.url)
     = "Current Image"
+
+- if @campaign.tasks.present?
+ - @campaign.tasks.each do |task|
+  .spacing
+  p = "Task media platform: #{task.social_media_platform}"
+  p = "Task posts: #{task.posts}"
+  p = "Task likes: #{task.likes}"
+  p = "Task comments: #{task.comments}"
+
 
 p = link_to 'Edit', edit_admin_campaign_path(@campaign)
 p = link_to 'Add new task'

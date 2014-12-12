@@ -3,12 +3,12 @@ class Admin::CampaignsController < AdminController
   before_action :require_login, except: [:index, :show]
 
   def index
-    @campaigns = Campaign.order("created_at DESC")
+    #@campaigns = Campaign.order("created_at DESC")
+    @campaigns = Campaign.order("created_at DESC").targeted_at(current_user)
   end
 
   def new
     @campaign = Campaign.new
-    3.times { @campaign.images.build }
     authorize @campaign
   end
 
@@ -59,6 +59,6 @@ class Admin::CampaignsController < AdminController
   end
 
   def campaign_params
-    params.require(:campaign).permit(:status, :start_date, :end_date, :title, :description, images_attributes: [:storage])
+    params.require(:campaign).permit(:status, :start_date, :end_date, :title, :description, :criteria_min_age, images_attributes: [:campaign_id, :storage, :_destroy, :id], tasks_attributes: [:id, :posts, :comments, :likes, :social_media_platform, :_destroy])
   end
 end

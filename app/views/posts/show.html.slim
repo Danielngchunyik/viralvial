@@ -1,10 +1,18 @@
 h1 Show
 
-p= "Post ID: #{@post.id}"
-p= "Campaign ID: #{@post.campaign_id}"
-p= "User ID: #{@post.user_id}"
-p= "Facebook post ID: #{@post.facebook_post_id}"
-p= "Facebook post message: #{@post.message}"
-p= "Facebook likes: #{@fb_likes}"
-p= "Facebook comments: #{@fb_comments}"
-p= "Facebook privacy set to: #{@fb_privacy}"
+p = "Post ID: #{@post.id}"
+p = "Campaign ID: #{@post.campaign_id}"
+p = "User ID: #{@post.user_id}"
+p = "Facebook post ID: #{@post.external_post_id}"
+p = "Facebook post message: #{@post.message}"
+
+- if @facebook.present?
+  .spacing
+    p Required comments and/or likes
+    p = "Required posts: #{@facebook.posts}"
+    p = "Required comments: #{@facebook.comments}"
+    p = "Required likes: #{@facebook.likes}"
+
+.spacing
+  p = "Facebook likes: #{@fb_likes}"
+  p = "Facebook comments: #{@fb_comments}"

@@ -1,6 +1,6 @@
-p
+p.nested_form_field
   = f.label "Image"
   = f.file_field :storage
   = f.hidden_field :storage_cache
-  = f.check_box :_destroy
-  = f.label :_destroy, "Remove image field"
+  = f.hidden_field :_destroy
+  = link_to "Remove", '#', class: "remove_fields", id: "#image"

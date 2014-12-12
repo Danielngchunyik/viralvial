@@ -18,8 +18,11 @@ p
   = @user.email
 
 p
+  strong Contact Number:
+  = @user.contact_number
+p
   strong Birthday:
-  = l@user.birthday
+  = l@user.birthday unless @user.birthday.nil?
 
 p
   strong Profile Image:
@@ -39,7 +42,7 @@ p
 
 p
   strong Country:
-  = IsoCountryCodes.find(@user.country).name
+  = IsoCountryCodes.find(@user.country).name unless @user.country.nil?
 
 p
   strong Marital Status:

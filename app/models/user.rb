@@ -7,7 +7,7 @@ class User < ActiveRecord::Base
   after_commit :update_social_scores, on: :create
 
   enum role: [:user, :admin, :banned]
-  enum gender: [:female, :male]
+  enum gender: [:unspecified, :female, :male]
 
   authenticates_with_sorcery! do |config|
     config.authentications_class = Authentication
@@ -26,6 +26,7 @@ class User < ActiveRecord::Base
 
   mount_uploader :image, ImageUploader
 
+<<<<<<< HEAD
   def set_access_token(token, provider)
     auth = self.authentications.find_by(provider: provider)
     auth.update(token: token)
@@ -39,6 +40,18 @@ class User < ActiveRecord::Base
     self.update(birthday: fb_user.birthday,
                 location: location_array[0],
                 country: IsoCountryCodes.search_by_name(location_array[1])[0].alpha2)
+
+  #For campaign filters
+  def age
+    birthday && ((Date.today - birthday) / 365.25)
+  end
+
+  def update_password_and_email(current_password, new_email, new_password, new_password_confirmation)
+    if User.authenticate(self.email, current_password).present?
+      self.password_confirmation = new_password_confirmation
+      self.update(email: new_email)
+      self.change_password!(new_password)
+    end
   end
 
   private

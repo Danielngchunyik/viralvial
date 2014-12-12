@@ -12,9 +12,24 @@
       = f.label "Title:"
       = f.text_field :title, placeholder: "Enter campaign title"
 
+    - if campaign.images.all.blank? && value == "new"
+      - campaign.images.each do |image|
+        .spacing
+        = image_tag(image.storage.thumb.url)
+        = "Current Image"
+
+    .spacing
+      = f.fields_for :images do |builder|
+        = render partial: 'image_fields', locals: { f: builder }
+      = link_to_add_fields "Add Image", f, :images, "image"
+
     .spacing
       = f.label "Description:"
       = f.text_area :description, rows: 4, placeholder: "Enter campaign description"
+
+    .spacing
+      = f.label "Minimum age: "
+      = f.number_field :criteria_min_age
 
     .spacing
       = f.label "Start date:"
@@ -24,15 +39,10 @@
       = f.label "End date:"
       = f.date_select :end_date
 
-    - if campaign.images.all.blank?
-      - campaign.images.each do |image|
-        .spacing
-        = image_tag(image.storage.thumb.url)
-        = "Current Image"
-
     .spacing
-      = f.fields_for :images do |builder|
-        = render partial: 'image_fields', locals: { f: builder }
+      = f.fields_for :tasks do |builder|
+        = render partial: 'facebook_task_fields', locals: { f: builder }
+      = link_to_add_fields "Add Task (Facebook)", f, :tasks, "facebook"
 
     .spacing
       = f.submit "Submit"
