@@ -18,7 +18,7 @@ class User < ActiveRecord::Base
   validates :password_confirmation, presence: true, if: :password
   validates :email, uniqueness: true
 
-  acts_as_taggable_on :specializations, :interests
+  acts_as_taggable_on :secondary_interests
 
   has_many :authentications, dependent: :destroy
   has_many :posts
