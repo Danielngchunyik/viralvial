@@ -28,10 +28,6 @@
       = f.text_area :description, rows: 4, placeholder: "Enter campaign description"
 
     .spacing
-      = f.label "Minimum age: "
-      = f.number_field :criteria_min_age
-
-    .spacing
       = f.label "Start date:"
       = f.date_select :start_date
 
@@ -40,9 +36,55 @@
       = f.date_select :end_date
 
     .spacing
+      = f.label :category_list, "Category tags (separated by commas) "
+      = f.text_field :category_list
+
+    .spacing
       = f.fields_for :tasks do |builder|
         = render partial: 'facebook_task_fields', locals: { f: builder }
       = link_to_add_fields "Add Task (Facebook)", f, :tasks, "facebook"
+
+    .spacing
+      h1 
+        b
+          u Restrictions
+
+    .spacing
+      p Campaign privacy:
+
+      span Private
+      = f.radio_button :privacy, true
+
+      span Public
+      = f.radio_button :privacy, false
+
+    .spacing
+      = f.label "Minimum age: "
+      = f.number_field :min_age
+
+    .spacing
+      = f.label "Maximum age: "
+      = f.number_field :max_age
+
+    .spacing
+      = f.label "Religion: "
+      = f.text_field :religion_list
+
+    .spacing
+      = f.label "Race: "
+      = f.text_field :race_list
+
+    .spacing
+      = f.label "Country: "
+      = f.text_field :country_list
+
+    .spacing
+      = f.label "Minimum socialite score: "
+      = f.number_field :min_socialite_score, in: 0..100
+
+    .spacing
+      = f.label "Maximum socialite score: "
+      = f.number_field :max_socialite_score, in: 0..100
 
     .spacing
       = f.submit "Submit"

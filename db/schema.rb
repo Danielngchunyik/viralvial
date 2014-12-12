@@ -41,8 +41,8 @@ ActiveRecord::Schema.define(version: 20141210064653) do
     t.text     "description"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.boolean  "public",      default: true
-    t.text     "criteria"
+    t.boolean  "privacy",     default: false
+    t.hstore   "criteria",    default: {}
   end
 
   create_table "images", force: true do |t|

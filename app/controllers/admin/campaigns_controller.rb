@@ -59,6 +59,11 @@ class Admin::CampaignsController < AdminController
   end
 
   def campaign_params
-    params.require(:campaign).permit(:status, :start_date, :end_date, :title, :description, :criteria_min_age, images_attributes: [:campaign_id, :storage, :_destroy, :id], tasks_attributes: [:id, :posts, :comments, :likes, :social_media_platform, :_destroy])
+    params.require(:campaign).permit(:status, :start_date, :end_date, :title, 
+                                     :description, :min_age, :max_age, :min_socialite_score, 
+                                     :max_socialite_score, :category_list, :race_list, 
+                                     :religion_list, :country_list, :public,
+                                     images_attributes: [:campaign_id, :storage, :_destroy, :id], 
+                                     tasks_attributes: [:id, :posts, :comments, :likes, :social_media_platform, :_destroy])
   end
 end

@@ -1,14 +1,14 @@
 h2 Campaign
 
-p = @campaign.title
+p = "Title: #{@campaign.title}"
 
-p = @campaign.description
+p = "Description: #{@campaign.description}"
 
-p = @campaign.start_date
+p = "Starting date: #{@campaign.start_date}"
 
-p = @campaign.end_date
+p = "Ending date: #{@campaign.end_date}"
 
-p = @campaign.criteria_min_age
+p = "Categories: #{@campaign.category_list}"
 
 - if @campaign.images.present?
   - @campaign.images.each do |image|
@@ -24,6 +24,20 @@ p = @campaign.criteria_min_age
   p = "Task likes: #{task.likes}"
   p = "Task comments: #{task.comments}"
 
+h3
+  b
+    u Restrictions
+
+p = "Campaign privacy: #{@campaign.privacy}"
+
+p = "Minimum age: #{@campaign.min_age}"
+
+p = "Maximum age: #{@campaign.max_age}"
+
+p = "Races: #{@campaign.race_list}"
+
+p = "Religions: #{@campaign.religion_list}"
+
+p = "Countries: #{@campaign.country_list}"
 
 p = link_to 'Edit', edit_admin_campaign_path(@campaign)
-p = link_to 'Add new task'
