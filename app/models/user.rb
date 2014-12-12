@@ -27,6 +27,7 @@ class User < ActiveRecord::Base
 
   mount_uploader :image, ImageUploader
 
+  #For campaign filters
   def age
     birthday && ((Date.today - birthday) / 365.25)
   end
