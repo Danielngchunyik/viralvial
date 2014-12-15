@@ -18,133 +18,60 @@ class Campaign < ActiveRecord::Base
       campaign.targeted_at?(user)
     end
   end
-  #write tests!!
+
   def targeted_at?(user)
-    show = true
-    conditions = [min_age?(user), max_age?(user), min_socialite_score?(user), 
-                  max_socialite_score?(user), religion?(user), country?(user), 
-                  race?(user), categories?(user)]
-  
-
-    conditions.each do |condition|
-      if show == false
-        break
-      elsif condition == false
-        show = false
-      end
-    end
-
-    show
+    [
+      min_age?(user), 
+      max_age?(user), 
+      min_socialite_score?(user), 
+      max_socialite_score?(user), 
+      religion?(user), 
+      country?(user), 
+      race?(user), 
+      categories?(user)
+    ].all?
   end
 
   def min_age?(user)
-    if min_age.present? 
-      if user.age.present?
-        user.age >= min_age.to_i
-      else
-        false
-      end
-    else
-      true
-    end
+    min_age.blank? || (user.age.present? && user.age >= min_age.to_i)
   end
 
   def max_age?(user)
-    if max_age.present?
-      if user.age.present?
-        user.age <= max_age.to_i
-      else
-        false
-      end
-    else
-      true
-    end
+    max_age.blank? || (user.age.present? && user.age <= max_age.to_i)
   end
 
   def min_socialite_score?(user)
-    if min_socialite_score.present?
-      if user.socialite_score.present?
-        user.socialite_score.to_i >= min_socialite_score.to_i
-      else
-        false
-      end
-    else
-      true
-    end
+    min_socialite_score.blank? || 
+    (user.socialite_score.present? && user.socialite_score.to_i >= min_socialite_score.to_i)
   end
 
   def max_socialite_score?(user)
-    if max_socialite_score.present?
-      if user.socialite_score.present?
-        user.socialite_score.to_i <= max_socialite_score.to_i
-      else
-        false
-      end
-    else
-      true
-    end
+    max_socialite_score.blank? ||
+    (user.socialite_score.present? && user.socialite_score.to_i <= max_socialite_score.to_i)
   end
 
   def religion?(user)
-    if religion_list.present?
-      if user.religion.present?
-        religion_list.include?(user.religion)
-      else
-        false
-      end
-    else
-      true
-    end
+    religion_list.blank? || (user.religion.present? && religion_list.include?(user.religion))
   end
 
   def country?(user)
-    list = []
 
-    if country_list.present?
-      if user.country.present?
-        country_list.each do |country|
-          list.push IsoCountryCodes.search_by_name(country)[0].alpha2
-        end
-        
-        list.include?(user.country)
-      else
-        false
-      end
-    else
-      true
+    list = []
+    country_list.each do |country|
+      list.push IsoCountryCodes.search_by_name(country)[0].alpha2
     end
+
+    country_list.blank? || (user.country.present? && list.include?(user.country))
   end
 
   def race?(user)
-
-    if race_list.present?
-      if user.race.present?
-        race_list.include?(user.race)
-      else
-        false
-      end
-    else
-      true
-    end
+    race_list.blank? || (user.race.present? && race_list.include?(user.race))
   end
 
   def categories?(user)
-    if category_list.present?
-      if user.main_interest.present?
-        if category_list.include?(user.main_interest)
-          true
-        elsif user.secondary_interest_list.present? && allow_interest?
-          user.secondary_interest_list.any? { |interest| category_list.include?(interest) }
-        else
-          false
-        end
-      elsif user.secondary_interest_list.present? && allow_interest?
-        user.secondary_interest_list.any? { |interest| category_list.include?(interest) }
-      else
-        false
-      end
-    else
-      true
-    end
+    category_list.blank? || 
+      (user.main_interest.present? && category_list.include?(user.main_interest)) || 
+      (user.secondary_interest_list.present? && allow_interest? && 
+        user.secondary_interest_list.any? { |interest| category_list.include?(interest) })
   end
 end

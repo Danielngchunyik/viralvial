@@ -167,7 +167,7 @@ GEM
     fog-softlayer (0.3.25)
       fog-core
       fog-json
-    fog-storm_on_demand (0.0.1)
+    fog-storm_on_demand (0.1.0)
       fog-core
       fog-json
     fog-terremark (0.0.3)
@@ -378,7 +378,7 @@ GEM
       oauth (~> 0.4, >= 0.4.4)
       oauth2 (>= 0.8.0, < 1.0.0)
     spring (1.2.0)
-    spring-commands-rspec (1.0.3)
+    spring-commands-rspec (1.0.4)
       spring (>= 0.9.1)
     sprockets (2.12.3)
       hike (~> 1.2)
