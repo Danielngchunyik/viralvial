@@ -1,5 +1,9 @@
 class AnnouncementPolicy < ApplicationPolicy
 
+  def new?
+    update?
+  end
+  
   def show?
     scope.where(id: record.id).exists?
     edit?

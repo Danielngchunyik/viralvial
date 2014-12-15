@@ -1,6 +1,5 @@
 class Admin::CampaignsController < AdminController
   before_action :set_campaign, only: [:show, :edit, :update, :destroy]
-  before_action :require_login, except: [:index, :show]
 
   def index
     #@campaigns = Campaign.order("created_at DESC")
