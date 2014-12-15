@@ -2,8 +2,7 @@ class Admin::CampaignsController < AdminController
   before_action :set_campaign, only: [:show, :edit, :update, :destroy]
 
   def index
-    #@campaigns = Campaign.order("created_at DESC")
-    @campaigns = Campaign.order("created_at DESC").targeted_at(current_user)
+    @campaigns = Campaign.order("created_at DESC")
   end
 
   def new
