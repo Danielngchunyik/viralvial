@@ -1,4 +1,3 @@
-require 'pry'
 class Users::OauthRegistration
   attr_accessor :token, :user
   
@@ -11,7 +10,7 @@ class Users::OauthRegistration
     fb_user = FbGraph::User.fetch("me?access_token=#{@token}")
     @user.remote_image_url = "#{fb_user.picture}?redirect=1&height=300&type=normal&width=300"
     location_array = fb_user.location.name.split(', ')
-    binding.pry
+
     @user.update(birthday: fb_user.birthday,
                  religion: fb_user.religion.downcase,
                  location: location_array[0].downcase,
