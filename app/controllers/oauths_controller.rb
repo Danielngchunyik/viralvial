@@ -12,8 +12,9 @@ class OauthsController < ApplicationController
       begin
         user = create_from(params[:provider])
         reset_session
-        user.set_access_token(@access_token.token, params[:provider])
-        user.sync_with_facebook!
+        
+        oauth_service = Users::OauthRegistration.new(@access_token.token, params[:provider], user).save
+
         auto_login(user)
         flash[:notice] = "Logged in from #{params[:provider].titleize}!"
       rescue
