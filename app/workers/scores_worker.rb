@@ -23,7 +23,6 @@ class ScoresWorker
     user.socialite_score = (user.influence_score.to_f + user.karma.to_f).round(2)
   end
 
-
   def split_followers(followers, user)
     less = []
     same = []

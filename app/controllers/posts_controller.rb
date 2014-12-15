@@ -8,9 +8,9 @@ class PostsController < ApplicationController
 
   def create_fb_post
     if post_params[:image].nil?
-      post_service = FacebookPostService.new(@fb_token, post_params, @campaign.id, current_user)
+      post_service = Posts::FacebookPostService.new(@fb_token, post_params, @campaign.id, current_user)
     else
-      post_service = FacebookPhotoService.new(@fb_token, post_params, @campaign.id, current_user)
+      post_service = Posts::FacebookPhotoService.new(@fb_token, post_params, @campaign.id, current_user)
     end
 
     if post_service.save
@@ -26,9 +26,9 @@ class PostsController < ApplicationController
     @post = @campaign.posts.find(params[:id])
     @facebook = @campaign.tasks.where(social_media_platform: 'facebook').first
     if @post.image.present?
-      facebook_service = RetrieveFacebookPhotoService.new(@fb_token, current_user, @post)
+      facebook_service = Posts::RetrieveFacebookPhotoService.new(@fb_token, current_user, @post)
     else
-      facebook_service = RetrieveFacebookPostService.new(@fb_token, current_user, @post)
+      facebook_service = Posts::RetrieveFacebookPostService.new(@fb_token, current_user, @post)
     end
     stats = facebook_service.display
 

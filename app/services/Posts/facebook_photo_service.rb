@@ -1,4 +1,4 @@
-class FacebookPhotoService
+class Posts::FacebookPhotoService
   attr_accessor :fb_token, :post_params, :fb_post, :campaign_id, :current_user, :post
 
   def initialize(fb_token, post_params, campaign_id, current_user)
