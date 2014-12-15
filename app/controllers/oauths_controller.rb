@@ -13,7 +13,7 @@ class OauthsController < ApplicationController
         user = create_from(params[:provider])
         reset_session
         
-        oauth_service = Users::OauthRegistration.new(@access_token.token, params[:provider], user).save
+        Users::OauthRegistration.new(@access_token.token, params[:provider], user).save
 
         auto_login(user)
         flash[:notice] = "Logged in from #{params[:provider].titleize}!"
