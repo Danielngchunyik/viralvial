@@ -1,5 +1,6 @@
 class CampaignPolicy < ApplicationPolicy
-  
+  include Campaigns::Filters
+
   def new?
     create?
   end
@@ -10,7 +11,7 @@ class CampaignPolicy < ApplicationPolicy
 
   def show?
     scope.where(id: record.id).exists?
-    user.present?
+    user.present? && record.conditions?(user)
   end
 
   def edit?

@@ -67,6 +67,7 @@ module Users::ManagementActions
                                   :password_confirmation, :name, 
                                   :birthday, :gender, :race, :religion, 
                                   :contact_number, :nationality, :location, :country, 
-                                  :marital_status, :role, authentication_attributes: [])
+                                  :marital_status, :role, :main_interest, :secondary_interest_list,
+                                  authentication_attributes: [])
   end
 end

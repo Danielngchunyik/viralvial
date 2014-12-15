@@ -30,15 +30,15 @@ p
 
 p
   strong Race:
-  = @user.race
+  = @user.race.capitalize unless @user.race.nil?
 
 p
   strong Religion:
-  = @user.religion
+  = @user.religion.capitalize unless @user.religion.nil?
 
 p
   strong Location:
-  = @user.location
+  = @user.location.split.map(&:capitalize).join(' ')
 
 p
   strong Country:
@@ -46,7 +46,7 @@ p
 
 p
   strong Marital Status:
-  = @user.marital_status
+  = @user.marital_status.capitalize unless @user.marital_status.nil?
 
 p
   strong Followers:

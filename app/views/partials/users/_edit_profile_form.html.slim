@@ -68,14 +68,18 @@
       
       .spacing
         = f.label :race
-        = f.select :race, options_for_select(["", "Malay", "Chinese", "Indian", "Others"], f.object.race)
+        = f.select :race, options_for_select([["", ""], 
+                                             ["Malay", "malay"],
+                                             ["Chinese", "chinese"],
+                                             ["Indian", "indian"],
+                                             ["Others", "others"]], f.object.race)
 
       .spacing
         = f.label "Religion: "
         = f.select :religion, options_for_select([["", ""],
                                                   ["Buddhist", "buddhist"],
                                                   ["Christian", "christian"],
-                                                  ["Hindu", "hinduism"],
+                                                  ["Hindu", "hindu"],
                                                   ["Islam", "islam"],
                                                   ["Others", "others"]], f.object.religion)
 
@@ -95,5 +99,12 @@
         = f.label "Contact Number: "
         = f.number_field :contact_number, placeholder: 'Enter contact number here'
 
+      .spacing
+        = f.label "Main interest: "
+        = f.text_field :main_interest, placeholder: "What's your main interest?"
+
+      .spacing
+        = f.label "Other interests: "
+        = f.text_field :secondary_interest_list, placeholder: "Other interests" 
       .spacing
           p= f.submit 'Save'

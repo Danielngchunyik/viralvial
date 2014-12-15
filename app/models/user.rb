@@ -25,7 +25,12 @@ class User < ActiveRecord::Base
   accepts_nested_attributes_for :authentications
 
   mount_uploader :image, ImageUploader
-  
+   
+  def set_access_token(token, provider)
+    auth = self.authentications.find_by(provider: provider)
+    auth.update(token: token)
+  end
+
   def age
     birthday && ((Date.today - birthday) / 365.25)
   end
