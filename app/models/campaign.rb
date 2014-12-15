@@ -3,7 +3,7 @@ class Campaign < ActiveRecord::Base
   extend Campaigns::Filters::ClassMethods
 
   acts_as_taggable
-  acts_as_taggable_on :categories, :religions, :races, :countries
+  acts_as_taggable_on :categories, :religions, :races, :countries, :marital_status
 
   store_accessor :criteria, :min_age, :max_age, :min_socialite_score, :max_socialite_score
 

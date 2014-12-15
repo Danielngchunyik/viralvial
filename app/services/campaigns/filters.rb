@@ -57,6 +57,10 @@ module Campaigns::Filters
     race_list.blank? || (user.race.present? && race_list.include?(user.race))
   end
 
+  def marital_status?(user)
+    marital_status.blank? || (user.marital_status.present? && marital_status.include?(user.marital_status))
+  end
+
   def categories?(user)
     category_list.blank? || 
       (user.main_interest.present? && category_list.include?(user.main_interest)) || 
