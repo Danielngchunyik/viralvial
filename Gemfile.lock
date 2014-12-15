@@ -1,6 +1,6 @@
 GIT
   remote: git://github.com/elabs/pundit.git
-  revision: 1609690fc45d0389af38d6fe19aad79478895252
+  revision: ce62bc5cd160efa9b59555376eeddc32acc02191
   specs:
     pundit (0.3.0)
       activesupport (>= 3.0.0)
@@ -45,7 +45,7 @@ GEM
     acts-as-taggable-on (3.4.2)
       activerecord (>= 3.2, < 5)
     addressable (2.3.6)
-    appsignal (0.11.0)
+    appsignal (0.11.1)
       rack
       thread_safe
     arel (5.0.1.20140414130214)

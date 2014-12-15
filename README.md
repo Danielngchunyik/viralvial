@@ -26,15 +26,13 @@ Setting up `database.yml` based on your needs. (Use the default settings if you'
 
     cp config/database.yml.sample config/database.yml
 
-### Using `.env` file
+### Using `application.yml` file
 
-[dotenv](https://github.com/bkeepers/dotenv "dotenv") loads environment variables on an application-basis. Follow the instructions to use it
+[figaro](https://github.com/laserlemon/figaro "figaro") loads environment variables on an application-basis. Follow the instructions to use it
 
-1. Create a new `.env` file based on `.env.sample`
+1. "figaro install" creates a commented config/application.yml file and adds it to your .gitignore.
 
-    cp .env.sample .env
-
-2. Ask the project administrator for the other env values. (If applicable)
+2. Ask the project administrator for the env values. (If applicable)
 
 Create the database and migrate
 
