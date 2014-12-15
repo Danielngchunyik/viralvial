@@ -85,7 +85,7 @@
 
       .spacing
         = f.label "Marital Status: "
-        = f.select :marital_status, options_for_select(["Single", "In a relationship", "Married"], f.object.marital_status)
+        = f.select :marital_status, options_for_select(["Single", "Married"], f.object.marital_status)
 
       .spacing
         = f.label "Where do you stay right now? "
