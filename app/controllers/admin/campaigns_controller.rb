@@ -63,6 +63,6 @@ class Admin::CampaignsController < AdminController
                                      :max_socialite_score, :category_list, :race_list, 
                                      :religion_list, :country_list, :public,
                                      images_attributes: [:campaign_id, :storage, :_destroy, :id], 
-                                     tasks_attributes: [:id, :posts, :comments, :likes, :social_media_platform, :_destroy])
+                                     tasks_attributes: [:id, :posts, :comments, :likes, :description, :social_media_platform, :_destroy])
   end
 end
