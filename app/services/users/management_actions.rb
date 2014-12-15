@@ -1,4 +1,4 @@
-module UserManagementActions
+module Users::ManagementActions
   
   def self.included(base)
     base.before_action :set_user,

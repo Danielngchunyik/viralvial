@@ -1,5 +1,5 @@
 class UsersController < ApplicationController
-  include UserManagementActions
+  include Users::ManagementActions
 
   private
 
