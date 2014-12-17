@@ -1,3 +1,4 @@
+require 'pry'
 class OauthsController < ApplicationController
 
   def oauth
@@ -12,26 +13,49 @@ class OauthsController < ApplicationController
 
       set_access_token!
       flash[:notice] = "Logged in from #{provider.titleize}!"
+      redirect_to root_path
     else
 
       if logged_in?
         link_account(provider)
-        redirect_to root_path
+        redirect_to user_path(@user)
       else
         begin
-          @user = create_from(provider)
-          reset_session
           
-          set_access_token!
-          Users::FacebookOauthRegistration.new(@access_token.token, @user).save
+          @user = create_and_validate_from(provider)
 
-          auto_login(@user)
-          flash[:notice] = "Logged in from #{provider.titleize}!"
+          case provider
+          when "twitter"
+            finish_signup_path(@user)
+
+          when "facebook"
+            reset_session
+            set_access_token!
+            Oauth::FacebookRegistration.new(@access_token.token, @user).save
+
+          end
+            auto_login(@user)
+            flash[:notice] = "Logged in from #{provider.titleize}!"
+            redirect_to user_path(@user)
         rescue
           flash[:alert] = "Failed to login from #{provider.titleize}"
+          redirect_to root_path
         end
       end
     end
+  end
+
+  def destroy
+    provider = params[:provider]
+
+    authentication = current_user.authentications.find_by(provider: provider)
+    if authentication.present?
+      authentication.destroy
+      flash[:notice] = "You have successfully unlinked your #{provider.titleize} account."
+    else
+      flash[:alert] = "You do not currently have a linked #{provider.titleize} account."
+    end
+
     redirect_to user_path(@user)
   end
 
@@ -50,6 +74,11 @@ class OauthsController < ApplicationController
   end
 
   def set_access_token!
-    @user.set_access_token(@access_token.token, params[:provider])
+    case params[:provider]
+    when "facebook"
+      @user.set_access_token(@access_token.token, nil, params[:provider])
+    when "twitter"
+      @user.set_access_token(@access_token.params[:oauth_token], @access_token.params[:oauth_token_secret], params[:provider])
+    end
   end
 end

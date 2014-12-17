@@ -1,4 +1,4 @@
-class Users::FacebookOauthRegistration
+class Oauth::FacebookRegistration
   attr_accessor :token, :user
   
   def initialize(token, user)

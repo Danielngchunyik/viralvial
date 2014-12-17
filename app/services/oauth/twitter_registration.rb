@@ -1,0 +1,2 @@
+class Oauth::TwitterRegistration
+end

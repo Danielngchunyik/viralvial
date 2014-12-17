@@ -26,9 +26,9 @@ class User < ActiveRecord::Base
 
   mount_uploader :image, ImageUploader
    
-  def set_access_token(token, provider)
+  def set_access_token(token, secret, provider)
     auth = self.authentications.find_by(provider: provider)
-    auth.update(token: token)
+    auth.update(token: token, secret: secret)
   end
 
   def has_linked_provider?(provider)
