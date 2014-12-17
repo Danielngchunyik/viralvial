@@ -9,8 +9,15 @@ h1 Post
       = f.hidden_field :image_cache
 
     .spacing
-      = f.label "Message: "
-      = f.text_field :message, placeholder: "Enter message"
+      p Tasks
+      - @campaign.tasks.each do |task|
+        .spacing
+          = f.label task.description
+          = f.radio_button :task_id, task.id
+
+    .spacing
+      p = f.label "Message: "
+      p = f.text_area :message, placeholder: "Enter message"
 
     .spacing
       = f.submit "Submit"

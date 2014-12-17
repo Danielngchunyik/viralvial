@@ -52,11 +52,14 @@
         = f.label "Name: "
         = f.text_field :name, placeholder: 'Enter name here'
 
+      .spacing
+       = f.label "Email: "
+       = f.text_field :email, placeholder: 'Enter email here'
+
       -if current_user.admin?
         .spacing
           = f.label "Role: "
           = f.select :role, User.roles.keys.map { |role| [role.titleize, role]}
-
       
       .spacing
         = f.label "Birthday: "
@@ -108,3 +111,13 @@
         = f.text_field :secondary_interest_list, placeholder: "Other interests" 
       .spacing
           p= f.submit 'Save'
+
+  .col-md-6
+    h1 Link your accounts
+
+    - providers = ["facebook", "twitter"]
+
+    - if current_user.has_linked_provider?('twitter')
+      = link_to 'Unlink your twitter account', delete_oauth_path('twitter'), method: :delete
+    - else
+      = link_to 'Link your twitter account', auth_at_provider_path(provider: :twitter)

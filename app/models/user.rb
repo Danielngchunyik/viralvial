@@ -31,6 +31,10 @@ class User < ActiveRecord::Base
     auth.update(token: token)
   end
 
+  def has_linked_provider?(provider)
+    authentications.where(provider: provider).present?
+  end
+
   def age
     birthday && ((Date.today - birthday) / 365.25)
   end

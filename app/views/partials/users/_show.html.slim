@@ -80,6 +80,12 @@ p
   strong Socialite Score:
   = @user.socialite_score
 
+p
+  strong Linked Accounts:
+  - @user.authentications.each do |auth|
+    ul 
+      li = auth.provider
+
 = link_to 'Edit', edit_user_path(@user)
 '|
 = link_to 'Back', admin_users_path

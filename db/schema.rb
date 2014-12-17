@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141215063354) do
+ActiveRecord::Schema.define(version: 20141217064352) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -62,6 +62,7 @@ ActiveRecord::Schema.define(version: 20141215063354) do
     t.string   "external_post_id_type"
     t.string   "message"
     t.string   "image"
+    t.integer  "task_id"
   end
 
   create_table "taggings", force: true do |t|
@@ -89,7 +90,7 @@ ActiveRecord::Schema.define(version: 20141215063354) do
     t.integer  "likes"
     t.integer  "comments"
     t.integer  "campaign_id"
-    t.string   "social_media_platform"
+    t.integer  "social_media_platform"
     t.datetime "created_at"
     t.datetime "updated_at"
     t.text     "description"
@@ -117,6 +118,9 @@ ActiveRecord::Schema.define(version: 20141215063354) do
     t.hstore   "scores",                          default: {}
     t.string   "image"
     t.string   "main_interest"
+    t.integer  "failed_logins_count",             default: 0
+    t.datetime "lock_expires_at"
+    t.string   "unlock_token"
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
