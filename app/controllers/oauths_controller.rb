@@ -1,6 +1,4 @@
-require 'pry'
 class OauthsController < ApplicationController
-
   def oauth
     login_at(auth_params[:provider])
   end
@@ -18,25 +16,26 @@ class OauthsController < ApplicationController
 
       if logged_in?
         link_account(provider)
-        redirect_to user_path(@user)
+        redirect_to edit_user_path(current_user)
       else
         begin
-          
+
           @user = create_and_validate_from(provider)
+          reset_session
 
           case provider
           when "twitter"
-            finish_signup_path(@user)
+            set_access_token!
+            Oauth::TwitterRegistration.new(@access_token.token, @access_token.secret, @user, @access_token.params[:screen_name]).save
 
           when "facebook"
-            reset_session
             set_access_token!
             Oauth::FacebookRegistration.new(@access_token.token, @user).save
 
           end
             auto_login(@user)
             flash[:notice] = "Logged in from #{provider.titleize}!"
-            redirect_to user_path(@user)
+            redirect_to edit_user_path(current_user)
         rescue
           flash[:alert] = "Failed to login from #{provider.titleize}"
           redirect_to root_path
@@ -49,6 +48,7 @@ class OauthsController < ApplicationController
     provider = params[:provider]
 
     authentication = current_user.authentications.find_by(provider: provider)
+
     if authentication.present?
       authentication.destroy
       flash[:notice] = "You have successfully unlinked your #{provider.titleize} account."
@@ -56,7 +56,7 @@ class OauthsController < ApplicationController
       flash[:alert] = "You do not currently have a linked #{provider.titleize} account."
     end
 
-    redirect_to user_path(@user)
+    redirect_to user_path(current_user)
   end
 
   private
@@ -66,7 +66,7 @@ class OauthsController < ApplicationController
   end
 
   def link_account(provider)
-    if @user = add_provider_to_user(provider)
+    if current_user.authentications.find_by(provider: provider).blank? && @user = add_provider_to_user(provider)
       flash[:notice] = "You have successfully linked your #{provider.titleize} account."
     else
       flash[:alert] = "There was a problem linking your #{provider.titleize} account."

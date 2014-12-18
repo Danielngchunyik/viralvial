@@ -1,7 +1,7 @@
 .container
   h2 = title
 
-  - if current_user == user
+  - if current_user == user && current_user.admin?
     .col-md-6
       h1 Change email or password
       = form_for user, url: change_password_and_email_user_path do |f|
@@ -115,9 +115,17 @@
   .col-md-6
     h1 Link your accounts
 
+    p
+      strong Linked Accounts:
+      - @user.authentications.each do |auth|
+        ul 
+          li = auth.provider
+
     - providers = ["facebook", "twitter"]
 
-    - if current_user.has_linked_provider?('twitter')
-      = link_to 'Unlink your twitter account', delete_oauth_path('twitter'), method: :delete
-    - else
-      = link_to 'Link your twitter account', auth_at_provider_path(provider: :twitter)
+    -providers.each do |provider|
+      - if current_user.has_linked_provider?(provider)
+        - if current_user.authentications.count > 1
+          p = link_to "Unlink your #{provider.capitalize} account", delete_oauth_path(provider), method: :delete
+      - else
+        p = link_to "Link your #{provider.capitalize} account", auth_at_provider_path(provider: provider)
