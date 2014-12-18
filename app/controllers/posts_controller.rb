@@ -46,6 +46,6 @@ class PostsController < ApplicationController
   end
 
   def post_params
-    params.require(:post).permit(:message, :image, :external_post_id, :external_post_id_type, :campaign_id, :user_id)
+    params.require(:post).permit(:message, :image, :external_post_id, :external_post_id_type, :campaign_id, :task_id, :user_id)
   end
 end

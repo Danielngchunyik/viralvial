@@ -5,7 +5,7 @@ class CreateTasks < ActiveRecord::Migration
         t.integer :likes
         t.integer :comments
         t.integer :campaign_id
-        t.string :social_media_platform
+        t.integer :social_media_platform
 
       t.timestamps
     end

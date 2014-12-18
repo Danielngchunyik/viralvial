@@ -21,11 +21,11 @@
     .spacing
       = f.fields_for :images do |builder|
         = render partial: 'image_fields', locals: { f: builder }
-      = link_to_add_fields "Add Image", f, :images, "image"
+      = link_to_add_fields "Add Image", f, :images
 
     .spacing
-      = f.label "Description:"
-      = f.text_area :description, rows: 4, placeholder: "Enter campaign description"
+      p = f.label "Description:"
+      = f.text_area :description, cols: 100, rows: 10, placeholder: "Enter campaign description"
 
     .spacing
       = f.label "Start date:"
@@ -42,7 +42,7 @@
     .spacing
       = f.fields_for :tasks do |builder|
         = render partial: 'facebook_task_fields', locals: { f: builder }
-      = link_to_add_fields "Add Task (Facebook)", f, :tasks, "facebook"
+      = link_to_add_fields "Add Task", f, :tasks
 
     .spacing
       h1 

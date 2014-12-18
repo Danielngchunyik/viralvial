@@ -38,7 +38,7 @@ p
 
 p
   strong Location:
-  = @user.location.split.map(&:capitalize).join(' ')
+  = @user.location.split.map(&:capitalize).join(' ') unless @user.location.nil?
 
 p
   strong Country:
@@ -79,6 +79,12 @@ p
 p
   strong Socialite Score:
   = @user.socialite_score
+
+p
+  strong Linked Accounts:
+  - @user.authentications.each do |auth|
+    ul 
+      li = auth.provider
 
 = link_to 'Edit', edit_user_path(@user)
 '|

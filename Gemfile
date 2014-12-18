@@ -42,8 +42,9 @@ gem 'pg'
 # Background worker
 gem 'sidekiq'
 
-# Facebook API wrapper
+# Social Media API wrappers
 gem 'fb_graph'
+gem 'twitter'
 
 # Mailer
 gem 'mailcatcher'
