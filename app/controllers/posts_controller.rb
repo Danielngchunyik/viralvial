@@ -6,7 +6,7 @@ class PostsController < ApplicationController
     @post = @campaign.posts.build
   end
 
-  def create_fb_post
+  def create_social_post
     if post_params[:image].nil?
       post_service = Posts::FacebookPostService.new(@fb_token, post_params, @campaign.id, current_user)
     else

@@ -7,7 +7,7 @@ Rails.application.routes.draw do
   resources :campaigns do
     resources :posts do
       collection do
-        post 'create_fb_post'
+        post 'create_social_post'
       end
     end
     resources :tasks
