@@ -22,6 +22,9 @@ class PostsController < ApplicationController
     end
   end
 
+  def create_twitter_post
+  end
+
   def show
     @post = @campaign.posts.find(params[:id])
     @facebook = @campaign.tasks.where(social_media_platform: 'facebook').first

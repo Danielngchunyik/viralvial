@@ -1,3 +1,4 @@
+require 'pry'
 class Posts::FacebookPhotoService
   attr_accessor :fb_token, :post_params, :fb_post, :campaign_id, :current_user, :post
 
@@ -18,6 +19,7 @@ class Posts::FacebookPhotoService
   private
 
   def create_fb_post!
+    binding.pry
     @fb_post = FbGraph::User.me(@fb_token).photo!(
       url: @post.image.url,
       message: @post.message

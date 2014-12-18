@@ -44,7 +44,11 @@ module Users::ManagementActions
   def change_password_and_email
     authorize @user
     if params[:user][:password] == params[:user][:password_confirmation]
-      if @user.update_password_and_email(params[:user][:current_password], params[:user][:email], params[:user][:password], params[:user][:password_confirmation])
+      if @user.update_password_and_email(params[:user][:current_password], 
+                                         params[:user][:email], 
+                                         params[:user][:password], 
+                                         params[:user][:password_confirmation])
+
         flash[:notice] = "User details updated"
         redirect_to successful_redirection_url
       else

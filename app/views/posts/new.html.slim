@@ -1,23 +1,8 @@
-h1 Post
+h1 New Post
 
-.container
-  = form_for [@campaign, @post], url: create_fb_post_campaign_posts_path do |f|
-    
-    .spacing
-      = f.label "Image: "
-      = f.file_field :image
-      = f.hidden_field :image_cache
-
-    .spacing
-      p Tasks
-      - @campaign.tasks.each do |task|
-        .spacing
-          = f.label task.description
-          = f.radio_button :task_id, task.id
-
-    .spacing
-      p = f.label "Message: "
-      p = f.text_area :message, placeholder: "Enter message"
-
-    .spacing
-      = f.submit "Submit"
+.spacing
+  = render partial: 'form', locals: { provider: "facebook", 
+                                                                   campaign: @campaign,
+                                                                   post: @post,
+                                                                   url: create_fb_post_campaign_posts_path }
+p = link_to 'Back', :back

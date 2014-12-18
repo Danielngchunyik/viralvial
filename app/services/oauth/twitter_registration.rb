@@ -1,3 +1,4 @@
+require 'pry'
 class Oauth::TwitterRegistration
   include Twitter::Initializer
 
@@ -15,6 +16,7 @@ class Oauth::TwitterRegistration
 
     twitter_user = @client.user(@screen_name)
     upload_profile_image(twitter_user)
+
     @user.update(location: twitter_user.location, name: twitter_user.name)
   end
 
@@ -22,9 +24,7 @@ class Oauth::TwitterRegistration
 
   def upload_profile_image(user)
     image_extract = user.profile_image_url_https.to_str.split("__")
-    image = "#{image_extract[0]}__300x300.jpeg"
-
-    @user.remote_image_url = image
+    @user.remote_image_url = "#{image_extract[0]}__200x200.jpeg"
   end
 
 end
