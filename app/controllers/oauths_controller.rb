@@ -16,29 +16,10 @@ class OauthsController < ApplicationController
     else
 
       if logged_in?
-        link_account_set_access_token!(provider)
+        link_account!(provider)
         
       else
-        begin
-
-          @user = create_and_validate_from(provider)
-          reset_session
-          
-          case provider
-          when "twitter"
-            save_twitter_info!
-
-          when "facebook"
-            save_facebook_info!
-
-          end
-            auto_login(@user)
-            flash[:notice] = "Logged in from #{provider.titleize}!"
-            redirect_to edit_user_path(current_user)
-        rescue
-          flash[:alert] = "Failed to login from #{provider.titleize}"
-          redirect_to root_path
-        end
+        register_new_user!(provider)
       end
     end
   end
@@ -74,7 +55,29 @@ class OauthsController < ApplicationController
     params.permit(:code, :provider)
   end
 
-  def link_account_set_access_token!(provider)
+  def register_new_user!(provider)
+    begin
+      @user = create_and_validate_from(provider)
+      reset_session
+      
+      case provider
+      when "twitter"
+        save_twitter_info!
+
+      when "facebook"
+        save_facebook_info!
+
+      end
+        auto_login(@user)
+        flash[:notice] = "Logged in from #{provider.titleize}!"
+        redirect_to edit_user_path(current_user)
+    rescue
+      flash[:alert] = "Failed to login from #{provider.titleize}"
+      redirect_to root_path
+    end
+  end
+
+  def link_account!(provider)
     if current_user.authentications.find_by(provider: provider).blank? && @user = add_provider_to_user(provider)
       flash[:notice] = "You have successfully linked your #{provider.titleize} account."
     else
