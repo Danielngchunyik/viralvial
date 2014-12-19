@@ -7,8 +7,11 @@ class ScoresWorker
     User.find_each do |user|
       if user.followers.present?
         less_followers, same_followers = split_followers(total_followers, user)
-
-        update_scores(user, less_followers, same_followers, total_followers)
+        
+        calculate_reach_score(user, less_followers, same_followers, total_followers)
+        calculate_sx_index(user)
+        calculate_influence_score(user)
+        calculate_socialite_score(user)
         user.save
       end
     end
@@ -16,10 +19,19 @@ class ScoresWorker
 
   private
 
-  def update_scores(user, less_followers, same_followers, total_followers)
+  def calculate_reach_score(user, less_followers, same_followers, total_followers)
     user.reach_score = ((less_followers.length + (0.5 * same_followers.length))/total_followers.length * 100).round(2)
-    user.sx_index = ((user.localization.to_f + user.reach_score.to_f)/200*100).round(2)
-    user.influence_score = ((user.klout.to_f + user.sx_index.to_f)/200*100).round(2)
+  end
+
+  def calculate_sx_index(user)
+    user.sx_index = ((user.localization.to_f + user.reach_score.to_f)/2).round(2)
+  end
+
+  def calculate_influence_score(user)
+    user.influence_score = ((user.klout.to_f + user.sx_index.to_f)/2).round(2)
+  end
+
+  def calculate_socialite_score(user)
     user.socialite_score = (user.influence_score.to_f + user.karma.to_f).round(2)
   end
 
