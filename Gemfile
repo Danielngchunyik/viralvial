@@ -18,7 +18,7 @@ gem 'iso_country_codes'
 # Styling
 gem 'semantic-ui-sass'
 
-# functions
+# Database Tagging
 gem 'acts-as-taggable-on'
 
 # S3 Amazon

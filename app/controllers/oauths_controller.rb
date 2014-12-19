@@ -16,9 +16,7 @@ class OauthsController < ApplicationController
     else
 
       if logged_in?
-        link_account(provider)
-        set_access_token!(current_user)
-        redirect_to edit_user_path(current_user)
+        link_account_set_access_token!(provider)
         
       else
         begin
@@ -76,12 +74,15 @@ class OauthsController < ApplicationController
     params.permit(:code, :provider)
   end
 
-  def link_account(provider)
+  def link_account_set_access_token!(provider)
     if current_user.authentications.find_by(provider: provider).blank? && @user = add_provider_to_user(provider)
       flash[:notice] = "You have successfully linked your #{provider.titleize} account."
     else
       flash[:alert] = "There was a problem linking your #{provider.titleize} account."
     end
+
+    set_access_token!(current_user)
+    redirect_to edit_user_path(current_user)
   end
 
   def set_access_token!(user)
