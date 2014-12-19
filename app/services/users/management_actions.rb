@@ -43,11 +43,11 @@ module Users::ManagementActions
 
   def change_password_and_email
     authorize @user
-    if params[:user][:password] == params[:user][:password_confirmation]
-      if @user.update_password_and_email(params[:user][:current_password], 
-                                         params[:user][:email], 
-                                         params[:user][:password], 
-                                         params[:user][:password_confirmation])
+
+    account = params[:user]
+
+    if account[:password] == account[:password_confirmation]
+      if update_user_email_and_password(account)
 
         flash[:notice] = "User details updated"
         redirect_to successful_redirection_url
@@ -62,6 +62,13 @@ module Users::ManagementActions
   end
 
   private
+
+  def update_user_email_and_password(account)
+    @user.update_password_and_email(account[:current_password], 
+                                         account[:email], 
+                                         account[:password], 
+                                         account[:password_confirmation])
+  end
   
   def set_user  
     @user = User.find(params[:id])
