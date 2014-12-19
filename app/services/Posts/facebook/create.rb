@@ -1,4 +1,4 @@
-class Posts::FacebookPostService
+class Posts::Facebook::Create
   attr_accessor :fb_token, :post_params, :fb_post, :campaign_id, :current_user, :post
 
   def initialize(fb_token, post_params, campaign_id, current_user)
@@ -10,12 +10,11 @@ class Posts::FacebookPostService
 
   def save
     create_fb_post!
-    @post = @current_user.posts.build(post_params)
+    @post = @current_user.posts.build(@post_params)
     @post.external_post_id = @fb_post.raw_attributes['id']
     @post.external_post_id_type = "facebook"
     @post.campaign_id = @campaign_id
     @post.save
-
   end
 
   private

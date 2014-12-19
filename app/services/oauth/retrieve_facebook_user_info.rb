@@ -1,4 +1,4 @@
-class Oauth::FacebookRegistration
+class Oauth::RetrieveFacbookUserInfo
   attr_accessor :token, :user
   
   def initialize(token, user)

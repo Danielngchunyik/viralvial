@@ -1,4 +1,5 @@
 class OauthsController < ApplicationController
+  before_action :require_login, only: [:destroy]
   def oauth
     login_at(auth_params[:provider])
   end
@@ -27,11 +28,11 @@ class OauthsController < ApplicationController
           case provider
           when "twitter"
             set_access_token!(@user)
-            Oauth::TwitterRegistration.new(@access_token.token, @access_token.secret, @user, @access_token.params[:screen_name]).save
+            Oauth::RetrieveTwitterUserInfo.new(@access_token.token, @access_token.secret, @user, @access_token.params[:screen_name]).save
 
           when "facebook"
             set_access_token!(@user)
-            Oauth::FacebookRegistration.new(@access_token.token, @user).save
+            Oauth::RetrieveFacebookUserInfo.new(@access_token.token, @user).save
 
           end
             auto_login(@user)

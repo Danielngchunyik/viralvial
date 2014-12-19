@@ -1,5 +1,4 @@
-require 'pry'
-class Oauth::TwitterRegistration
+class Oauth::RetrieveTwitterUserInfo
   include Twitter::Initializer
 
   attr_accessor :token, :secret, :user, :screen_name

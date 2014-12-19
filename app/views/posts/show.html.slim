@@ -4,7 +4,6 @@ p = "Post ID: #{@post.id}"
 p = "Campaign ID: #{@post.campaign_id}"
 p = "User ID: #{@post.user_id}"
 p = "Facebook post ID: #{@post.external_post_id}"
-p = "Facebook post message: #{@post.message}"
 
 - if @facebook.present?
   .spacing
@@ -14,5 +13,10 @@ p = "Facebook post message: #{@post.message}"
     p = "Required likes: #{@facebook.likes}"
 
 .spacing
-  p = "Facebook likes: #{@fb_likes}"
-  p = "Facebook comments: #{@fb_comments}"
+- case @post.external_post_id_type 
+- when "facebook"
+  p = "Likes: #{@fb_likes}"
+  p = "Comments: #{@fb_comments}"
+- when "twitter"
+  p = "Favourites: #{@favourites}"
+  p = "Retweets: #{@retweets}"
