@@ -19,6 +19,7 @@ class OauthsController < ApplicationController
         link_account(provider)
         set_access_token!(current_user)
         redirect_to edit_user_path(current_user)
+        
       else
         begin
 
@@ -27,12 +28,10 @@ class OauthsController < ApplicationController
           
           case provider
           when "twitter"
-            set_access_token!(@user)
-            Oauth::RetrieveTwitterUserInfo.new(@access_token.token, @access_token.secret, @user, @access_token.params[:screen_name]).save
+            save_twitter_info!
 
           when "facebook"
-            set_access_token!(@user)
-            Oauth::RetrieveFacebookUserInfo.new(@access_token.token, @user).save
+            save_facebook_info!
 
           end
             auto_login(@user)
@@ -62,6 +61,16 @@ class OauthsController < ApplicationController
   end
 
   private
+
+  def save_twitter_info!
+    set_access_token!(@user)
+    Oauth::RetrieveTwitterUserInfo.new(@access_token.token, @access_token.secret, @user, @access_token.params[:screen_name]).save
+  end
+
+  def save_facebook_info!
+    set_access_token!(@user)
+    Oauth::RetrieveFacebookUserInfo.new(@access_token.token, @user).save
+  end
 
   def auth_params
     params.permit(:code, :provider)
