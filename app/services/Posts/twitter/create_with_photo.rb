@@ -12,10 +12,16 @@ class Posts::Twitter::CreateWithPhoto
   end
 
   def save
-    initialize_client(@token, @secret)
     @post = @current_user.posts.build(@post_params)
     @post.save
-    tweet = @client.update_with_media(@post.message, open(@post.image.url), options = {})
-    @post.update_attributes(external_post_id: tweet.id, external_post_id_type: "twitter", campaign_id: @campaign_id)
+    tweet!
+    @post.update_attributes(external_post_id: @tweet.id, external_post_id_type: "twitter", campaign_id: @campaign_id)
+  end
+
+  private
+
+  def tweet!
+    initialize_client(@token, @secret)
+    @tweet = @client.update_with_media(@post.message, open(@post.image.url), options = {})
   end
 end

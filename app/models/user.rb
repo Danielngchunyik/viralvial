@@ -50,17 +50,17 @@ class User < ActiveRecord::Base
   end
 
   private
-  
+
+  def update_social_scores
+    ScoresWorker.perform_async
+  end
+
   def set_default_email
     return unless self.email.nil?
     self.email = loop do
       email = "#{SecureRandom.urlsafe_base64}@changeme.com"
       break email unless User.where(email: email).exists?
     end
-  end
-
-  def update_social_scores
-    ScoresWorker.perform_async
   end
 
   def set_default_password

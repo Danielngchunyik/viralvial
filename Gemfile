@@ -45,6 +45,7 @@ gem 'sidekiq'
 # Social Media API wrappers
 gem 'fb_graph'
 gem 'twitter'
+gem 'klout'
 
 # Mailer
 gem 'mailcatcher'

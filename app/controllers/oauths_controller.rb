@@ -41,16 +41,6 @@ class OauthsController < ApplicationController
 
   private
 
-  def save_twitter_info!
-    set_access_token!(@user)
-    Oauth::RetrieveTwitterUserInfo.new(@access_token.token, @access_token.secret, @user, @access_token.params[:screen_name]).save
-  end
-
-  def save_facebook_info!
-    set_access_token!(@user)
-    Oauth::RetrieveFacebookUserInfo.new(@access_token.token, @user).save
-  end
-
   def auth_params
     params.permit(:code, :provider)
   end
@@ -75,6 +65,16 @@ class OauthsController < ApplicationController
       flash[:alert] = "Failed to login from #{provider.titleize}"
       redirect_to root_path
     end
+  end
+
+  def save_twitter_info!
+    set_access_token!(@user)
+    Oauth::RetrieveTwitterUserInfo.new(@access_token.token, @access_token.secret, @user, @access_token.params[:screen_name]).save
+  end
+
+  def save_facebook_info!
+    set_access_token!(@user)
+    Oauth::RetrieveFacebookUserInfo.new(@access_token.token, @user).save
   end
 
   def link_account!(provider)
