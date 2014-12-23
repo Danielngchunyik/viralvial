@@ -3,7 +3,7 @@
   = form_for [:admin, campaign] do |f|
     - if f.object.errors.any?
       .alert.alert-danger
-        h4= "There are #{pluralize(campaign.errors.count, "error")}."
+        h4= "#{pluralize(campaign.errors.count, "error")}."
         ul
           - f.object.errors.full_messages.each do |msg|
             li= msg
@@ -37,12 +37,12 @@
 
     .spacing
       = f.label :category_list, "Category tags (separated by commas) "
-      = f.text_field :category_list
+      = f.text_field :category_list, size: 50
 
     .spacing
-      = f.fields_for :tasks do |builder|
-        = render partial: 'facebook_task_fields', locals: { f: builder }
-      = link_to_add_fields "Add Task", f, :tasks
+      = f.fields_for :topics do |builder|
+        = render partial: 'topic_fields', locals: { f: builder }
+      = link_to_add_fields "Add Topic", f, :topics
 
     .spacing
       h1 
@@ -52,11 +52,15 @@
     .spacing
       p Campaign privacy:
 
-      span Private
-      = f.radio_button :privacy, true
-
       span Public
-      = f.radio_button :privacy, false
+      = f.radio_button :private, false, name: "campaign_privacy"
+
+      span Private
+      = f.radio_button :private, true, name: "campaign_privacy"
+
+    .spacing#campaign_invite_list
+      = f.label :invitation_list, "Invite users (separated by commas) "
+      = f.text_field :invitation_list, size: 50
 
     .spacing
       = f.label "Minimum age: "
@@ -89,6 +93,10 @@
     .spacing
       = f.label "Maximum socialite score: "
       = f.number_field :max_socialite_score, in: 0..100
+
+    .spacing
+      = f.label "Language: "
+      = f.select :language, Campaign.languages.keys.map { |language| [language.titleize, language]}
 
     .spacing
       = f.submit "Submit"

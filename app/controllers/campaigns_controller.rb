@@ -2,8 +2,8 @@ class CampaignsController < ApplicationController
   before_action :set_campaign, only: [:show]
 
   def index
-    @campaigns = Campaign.where(privacy: true).order("created_at DESC").targeted_at(current_user)
-    @posts = Post.where(user_id: current_user.id).order('created_at DESC')
+    @campaigns = Campaign.order("created_at DESC").targeted_at(current_user)
+    @invited_campaigns = Campaign.order("created_at DESC").invited?(current_user)
   end
 
   def show

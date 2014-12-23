@@ -17,7 +17,7 @@ class Admin::AnnouncementsController < AdminController
     else
       flash[:error] = "Error"
     end
-    redirect_to admin_announcements_url
+    redirect_to admin_announcements_path
   end
 
   def edit
@@ -29,13 +29,13 @@ class Admin::AnnouncementsController < AdminController
     else
       flash[:error] = "Error"
     end
-    redirect_to admin_announcements_url
+    redirect_to admin_announcements_path
   end
 
   def destroy
     if @announcement.destroy
       flash[:alert] = 'deleted'
-      redirect_to admin_announcements_url
+      redirect_to admin_announcements_path
     else
       flash[:error] = 'error'
     end

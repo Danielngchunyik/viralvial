@@ -1,6 +1,6 @@
 
   h1 New user
 
-  = render partial: '/partials/users/registration_form', locals: { title: "Create new user", user: [:admin, @user] }
+  = render partial: '/shared/partials/users/registration_form', locals: { title: "Create new user", user: [:admin, @user] }
 
   p= link_to 'Back', :back

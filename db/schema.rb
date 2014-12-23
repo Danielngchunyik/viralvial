@@ -11,20 +11,20 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141217100830) do
+ActiveRecord::Schema.define(version: 20141223081858) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
   enable_extension "hstore"
 
-  create_table "announcements", force: true do |t|
+  create_table "announcements", force: :cascade do |t|
     t.text     "message"
     t.string   "title"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
-  create_table "authentications", force: true do |t|
+  create_table "authentications", force: :cascade do |t|
     t.integer  "user_id",    null: false
     t.string   "provider",   null: false
     t.string   "uid",        null: false
@@ -34,27 +34,27 @@ ActiveRecord::Schema.define(version: 20141217100830) do
     t.string   "secret"
   end
 
-  create_table "campaigns", force: true do |t|
+  create_table "campaigns", force: :cascade do |t|
     t.boolean  "status"
-    t.datetime "start_date"
-    t.datetime "end_date"
+    t.date     "start_date"
+    t.date     "end_date"
     t.string   "title"
     t.text     "description"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.boolean  "privacy",        default: false
+    t.boolean  "private",        default: false
     t.hstore   "criteria",       default: {}
     t.boolean  "allow_interest", default: false
   end
 
-  create_table "images", force: true do |t|
+  create_table "images", force: :cascade do |t|
     t.string   "storage"
     t.integer  "campaign_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
-  create_table "posts", force: true do |t|
+  create_table "posts", force: :cascade do |t|
     t.integer  "campaign_id"
     t.integer  "user_id"
     t.datetime "created_at"
@@ -63,10 +63,10 @@ ActiveRecord::Schema.define(version: 20141217100830) do
     t.string   "external_post_id_type"
     t.string   "message"
     t.string   "image"
-    t.integer  "task_id"
+    t.integer  "topic_id"
   end
 
-  create_table "taggings", force: true do |t|
+  create_table "taggings", force: :cascade do |t|
     t.integer  "tag_id"
     t.integer  "taggable_id"
     t.string   "taggable_type"
@@ -79,17 +79,17 @@ ActiveRecord::Schema.define(version: 20141217100830) do
   add_index "taggings", ["tag_id", "taggable_id", "taggable_type", "context", "tagger_id", "tagger_type"], name: "taggings_idx", unique: true, using: :btree
   add_index "taggings", ["taggable_id", "taggable_type", "context"], name: "index_taggings_on_taggable_id_and_taggable_type_and_context", using: :btree
 
-  create_table "tags", force: true do |t|
+  create_table "tags", force: :cascade do |t|
     t.string  "name"
     t.integer "taggings_count", default: 0
   end
 
   add_index "tags", ["name"], name: "index_tags_on_name", unique: true, using: :btree
 
-  create_table "tasks", force: true do |t|
-    t.integer  "posts"
-    t.integer  "likes"
-    t.integer  "comments"
+  create_table "topics", force: :cascade do |t|
+    t.integer  "num_of_posts"
+    t.integer  "num_of_likes"
+    t.integer  "num_of_comments"
     t.integer  "campaign_id"
     t.integer  "social_media_platform"
     t.datetime "created_at"
@@ -97,7 +97,7 @@ ActiveRecord::Schema.define(version: 20141217100830) do
     t.text     "description"
   end
 
-  create_table "users", force: true do |t|
+  create_table "users", force: :cascade do |t|
     t.string   "email",                                        null: false
     t.string   "crypted_password",                             null: false
     t.string   "salt",                                         null: false
@@ -122,6 +122,7 @@ ActiveRecord::Schema.define(version: 20141217100830) do
     t.integer  "failed_logins_count",             default: 0
     t.datetime "lock_expires_at"
     t.string   "unlock_token"
+    t.string   "blog_url"
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree

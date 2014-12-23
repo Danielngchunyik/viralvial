@@ -15,6 +15,7 @@ class User < ActiveRecord::Base
     config.authentications_class = Authentication
   end
 
+  validates_presence_of :name
   validates :password, length: { minimum: 8 }, if: :password
   validates :password, confirmation: true, if: :password
   validates :password_confirmation, presence: true, if: :password

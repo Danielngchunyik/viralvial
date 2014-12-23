@@ -9,7 +9,7 @@ class UserSessionsController < ApplicationController
     if @user = login(params[:email], params[:password])
       flash[:notice] = 'Login successful'
       if @user.admin?
-        redirect_to admin_dashboard_url
+        redirect_to admin_dashboard_path
       else 
         redirect_back_or_to @user
       end
@@ -22,6 +22,6 @@ class UserSessionsController < ApplicationController
   def destroy
     logout
     flash[:notice] = 'Logged out!'
-    redirect_to root_url
+    redirect_to root_path
   end
 end

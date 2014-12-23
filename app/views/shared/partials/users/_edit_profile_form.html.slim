@@ -53,8 +53,12 @@
         = f.text_field :name, placeholder: 'Enter name here'
 
       .spacing
-       = f.label "Email: "
-       = f.text_field :email, placeholder: 'Enter email here'
+        = f.label "Email: "
+        = f.text_field :email, placeholder: 'Enter email here'
+
+      .spacing
+        = f.label "Blog URL: "
+        = f.text_field :blog_url, placeholder: 'Enter blog URL'
 
       -if current_user.admin?
         .spacing

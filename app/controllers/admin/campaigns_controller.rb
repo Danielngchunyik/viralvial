@@ -15,10 +15,11 @@ class Admin::CampaignsController < AdminController
     authorize @campaign
     if @campaign.save
       flash[:notice] = "Campaign created"
+      redirect_to [:admin, @campaign]
     else
       flash[:error] = "Error creating campaign"
+      render action: 'new'
     end
-    redirect_to [:admin, @campaign]
   end
 
   def show
@@ -60,8 +61,8 @@ class Admin::CampaignsController < AdminController
     params.require(:campaign).permit(:status, :start_date, :end_date, :title, 
                                      :description, :min_age, :max_age, :min_socialite_score, 
                                      :max_socialite_score, :marital_status_list, :category_list, 
-                                     :race_list, :religion_list, :country_list, :public,
+                                     :race_list, :religion_list, :country_list, :language, :private,
                                      images_attributes: [:campaign_id, :storage, :_destroy, :id], 
-                                     tasks_attributes: [:id, :posts, :comments, :likes, :description, :social_media_platform, :_destroy])
+                                     topics_attributes: [:id, :num_of_posts, :num_of_comments, :num_of_likes, :description, :social_media_platform, :_destroy])
   end
 end
