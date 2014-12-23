@@ -24,3 +24,12 @@ en:
   date:
     formats:
       default: "%d / %m / %Y"
+  activerecord:
+    attributes:
+      user:
+        name: "Your name"
+      topics:
+        description: "Your topic's description"
+      campaign:
+        title: "Your campaign's title"
+        description: "Your campaign's description"

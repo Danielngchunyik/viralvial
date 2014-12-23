@@ -1,5 +1,5 @@
 class AddPublicToCampaigns < ActiveRecord::Migration
   def change
-    add_column :campaigns, :privacy, :boolean, default: false
+    add_column :campaigns, :private, :boolean, default: false
   end
 end

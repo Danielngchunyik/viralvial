@@ -10,7 +10,7 @@ class PasswordResetsController < ApplicationController
     else
       flash[:notice] = 'User not found!'
     end
-    redirect_to root_url
+    redirect_to root_path
   end
 
   def edit
@@ -27,7 +27,7 @@ class PasswordResetsController < ApplicationController
     
     if @user.change_password!(params[:user][:password])
       flash[:notice] = 'Password was successfully updated.'
-      redirect_to root_url
+      redirect_to root_path
     else
       render :edit
     end

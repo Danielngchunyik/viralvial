@@ -9,7 +9,7 @@ class Admin::UsersController < AdminController
     authorize @user
     if @user.destroy
       flash[:notice] = "User deleted"
-      redirect_to admin_users_url
+      redirect_to admin_users_path
     else
       flash[:error] = "error :#{@user.errors.full_messages}"
       redirect_to @user
@@ -22,7 +22,7 @@ class Admin::UsersController < AdminController
     "User created"
   end
 
-  def successful_redirection_url
+  def successful_redirection_path
     [:admin, @user]
   end
 

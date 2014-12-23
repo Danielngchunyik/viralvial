@@ -7,7 +7,7 @@ class UsersController < ApplicationController
     "User registered"
   end
 
-  def successful_redirection_url
+  def successful_redirection_path
     if current_user
       @user
     else

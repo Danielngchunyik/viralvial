@@ -15,7 +15,7 @@ module Users::ManagementActions
     @user = User.new(user_params)
     if @user.save
       flash[:notice] = successful_creation_message
-      redirect_to successful_redirection_url
+      redirect_to successful_redirection_path
     else
       flash[:error] = "error :#{@user.errors.full_messages}"
       render action: 'new'
@@ -34,7 +34,7 @@ module Users::ManagementActions
     authorize @user
     if @user.update(user_params)
       flash[:notice] = "User details updated"
-      redirect_to successful_redirection_url
+      redirect_to successful_redirection_path
     else
       flash[:error] = "error :#{@user.errors.full_messages}"
       render action: 'edit'
@@ -50,7 +50,7 @@ module Users::ManagementActions
       if update_user_email_and_password(account)
 
         flash[:notice] = "User details updated"
-        redirect_to successful_redirection_url
+        redirect_to successful_redirection_path
       else
         flash[:error] = "Wrong current password"
         render action: 'edit'
@@ -75,7 +75,7 @@ module Users::ManagementActions
   end
 
   def user_params
-    params.require(:user).permit(:email, :password, 
+    params.require(:user).permit(:email, :password, :blog_url, 
                                   :password_confirmation, :name, 
                                   :birthday, :gender, :race, :religion, 
                                   :contact_number, :nationality, :location, :country, 

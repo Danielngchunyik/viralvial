@@ -1,15 +1,15 @@
 .nested_form_field
   = f.label "Social media platform:  "
-  = f.select :social_media_platform, Task.social_media_platforms.keys.map { |social_media_platform| [social_media_platform.titleize, social_media_platform]}
+  = f.select :social_media_platform, Topic.social_media_platforms.keys.map { |social_media_platform| [social_media_platform.titleize, social_media_platform]}
 
   = f.label "Posts needed: "
-  = f.number_field :posts
+  = f.number_field :num_of_posts
 
   = f.label "Likes needed: "
-  = f.number_field :likes
+  = f.number_field :num_of_likes
 
   = f.label "Comments needed: "
-  = f.number_field :comments
+  = f.number_field :num_of_comments
 
   p = f.label "Description: "
   p = f.text_area :description, cols: 100, rows: 10, placeholder: "Enter campaign objectives here"
