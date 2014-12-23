@@ -9,6 +9,6 @@ module Campaigns::Invitation
   end
 
   def in_invite_list?(user)
-    private && (invitation_list.blank? || (user.name.present? && invitation_list.include?(user.name)))
+    private && (user.name.present? && invitation_list.include?(user.name))
   end
 end
