@@ -21,7 +21,7 @@ class PostsController < ApplicationController
       end
         
       if @post_service.save
-        flash[:notice] = "#{params[:provider] == 'facebook' ? 'Post' : 'Tweet'} created"
+        flash[:notice] = "#{post_type} created"
         redirect_to [@campaign, @post_service.post]
       else
         flash[:error] = "Error!"
@@ -67,6 +67,15 @@ class PostsController < ApplicationController
   end
 
   private
+
+  def post_type
+    case params[:provider]
+    when "facebook"
+      "Post"
+    when "twitter"
+      "Tweet"
+    end
+  end
 
   def set_campaign
     @campaign = Campaign.find(params[:campaign_id])
