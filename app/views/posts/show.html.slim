@@ -8,9 +8,9 @@ p = "Facebook post ID: #{@post.external_post_id}"
 - if @facebook.present?
   .spacing
     p Required comments and/or likes
-    p = "Required posts: #{@facebook.posts}"
-    p = "Required comments: #{@facebook.comments}"
-    p = "Required likes: #{@facebook.likes}"
+    p = "Required posts: #{@facebook.num_of_posts}"
+    p = "Required comments: #{@facebook.num_of_comments}"
+    p = "Required likes: #{@facebook.num_of_likes}"
 
 .spacing
 - case @post.external_post_id_type 
@@ -20,3 +20,5 @@ p = "Facebook post ID: #{@post.external_post_id}"
 - when "twitter"
   p = "Favourites: #{@favourites}"
   p = "Retweets: #{@retweets}"
+
+= link_to "Delete", [@campaign, @post], method: :delete

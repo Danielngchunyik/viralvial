@@ -1,5 +1,5 @@
-jQuery(function() {
-
+$(document).ready(function() {
+  
   $('form').on('click', '.remove_fields', function(event) {
     $('this').prev('input[type=hidden]').val('1');
     $(this).closest('.nested_form_field').hide();

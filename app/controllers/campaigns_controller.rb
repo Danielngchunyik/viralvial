@@ -7,6 +7,7 @@ class CampaignsController < ApplicationController
   end
 
   def show
+    authorize @campaign
   end
 
   private

@@ -15,6 +15,7 @@ class Posts::Twitter::CreateWithPhoto
     @post = @current_user.posts.build(@post_params)
     @post.save
     tweet!
+    @user.remove_image!
     @post.update_attributes(external_post_id: @tweet.id, external_post_id_type: "twitter", campaign_id: @campaign_id)
   end
 
