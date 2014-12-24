@@ -1,4 +1,3 @@
-require 'pry'
 class PostsController < ApplicationController
   before_action :set_campaign
   before_action :require_login
@@ -13,29 +12,50 @@ class PostsController < ApplicationController
     authorize @campaign
 
     begin
-      case params[:provider]
-      when "facebook"
-        post_on_facebook!
-      when "twitter"
-        post_on_twitter!
-      end
-        
-      if @post_service.save
-        flash[:notice] = "#{post_type} created"
-        redirect_to [@campaign, @post_service.post]
-      else
-        flash[:error] = "Error!"
-        render :new
-      end
+      get_social_media_and_post!
+      
+      save_post_and_redirect
+      
     rescue
-      flash[:error] = "Error posting on #{params[:provider].capitalize}. Please link your account first!"
-      redirect_to action: 'new'
+     flash[:error] = "Error posting on #{params[:provider].capitalize}. Please link your account first!"
+     redirect_to action: 'new'
     end
   end
 
   def show
     set_post
-   
+    
+    get_social_media_and_show!
+  end
+
+  def destroy
+    set_post
+    
+    provider = @post.external_post_id_type
+
+    begin
+      get_social_media_and_delete!
+
+      delete_post_and_redirect(provider)
+
+    rescue
+      flash[:error] = "Error deleting #{post_type(provider)}"
+      redirect_to [@campaign, @post]
+    end
+  end
+
+  private
+
+  def post_type(provider)
+    case provider
+    when "facebook"
+      "Post"
+    when "twitter"
+      "Tweet"
+    end
+  end
+
+  def get_social_media_and_show!
     case @post.external_post_id_type
     when "facebook"
       retrieve_facebook_post!
@@ -44,36 +64,41 @@ class PostsController < ApplicationController
     end
   end
 
-  def destroy
-    set_post
-    provider = @post.external_post_id_type
+  def get_social_media_and_post!
+    case params[:provider]
+    when "facebook"
+      post_on_facebook!
+    when "twitter"
+      post_on_twitter!
+    end
+  end
 
-    # begin
+  def get_social_media_and_delete!
     case @post.external_post_id_type
     when "facebook"
       delete_facebook_post!
     when "twitter"
       delete_twitter_post!
     end
+  end
 
+  def save_post_and_redirect
+    if @post_service.save
+      flash[:notice] = "#{post_type(params[:provider])} created"
+      redirect_to [@campaign, @post_service.post]
+    else
+      flash[:error] = "Error!"
+      render :new
+    end
+  end
+
+  def delete_post_and_redirect(provider)
     if @post_service.destroy
-      flash[:notice] = "#{provider == 'facebook' ? 'Post' : 'Tweet'} deleted"
-      redirect_to @campaign
+      flash[:notice] = "#{post_type(provider)} deleted"
+      redirect_to root_path
     else
       flash[:error] = "Error!"
       redirect_to [@campaign, @post]
-    end
-    # rescue
-  end
-
-  private
-
-  def post_type
-    case params[:provider]
-    when "facebook"
-      "Post"
-    when "twitter"
-      "Tweet"
     end
   end
 
@@ -160,9 +185,9 @@ class PostsController < ApplicationController
   end
 
   def set_twitter_token
-      auth = current_user.authentications.find_by(provider: 'twitter')
-      @tw_token = auth.token
-      @tw_secret = auth.secret
+    auth = current_user.authentications.find_by(provider: 'twitter')
+    @tw_token = auth.token
+    @tw_secret = auth.secret
   end
 
   def post_params
