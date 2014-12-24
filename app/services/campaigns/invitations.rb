@@ -1,4 +1,4 @@
-module Campaigns::Invitation
+module Campaigns::Invitations
 
   module ClassMethods
     def invited?(user)

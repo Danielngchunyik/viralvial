@@ -6,11 +6,12 @@ $(document).ready(function() {
 
     if(this.value == 'true' && this.checked) 
     {
-      $('#campaign_invite_list').show();
+      $('#campaign_invite_list').toggle();
     }
     else
     {
-      $('#campaign_invite_list').hide();
+      $('#campaign_invite_list').hide()
+      $('#campaign_invitation_list').val('');
     }
   });
 });

@@ -9,10 +9,10 @@ p = "Ending date: #{campaign.end_date}"
 p = "Categories: #{campaign.category_list}"
 
 - if campaign.images.present?
+  = "Current Images: "
   - campaign.images.each do |image|
     .spacing
     = image_tag(image.storage.thumb.url)
-    = "Current Image"
 
 - if campaign.topics.present?
  - campaign.topics.each do |topic|

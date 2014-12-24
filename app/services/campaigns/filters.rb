@@ -11,7 +11,7 @@ module Campaigns::Filters
   def conditions?(user)
     [
       check_privacy,
-      campaign_expired?,
+      campaign_active?,
       min_age?(user), 
       max_age?(user), 
       min_socialite_score?(user), 
@@ -27,7 +27,7 @@ module Campaigns::Filters
     private == false
   end
 
-  def campaign_expired?
+  def campaign_active?
     end_date > Date.today
   end
 

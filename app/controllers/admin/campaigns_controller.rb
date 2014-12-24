@@ -48,10 +48,6 @@ class Admin::CampaignsController < AdminController
   end
 
   private
-
-  def authorize_campaign
-    authorize @campaign
-  end
   
   def set_campaign
     @campaign = Campaign.find(params[:id])

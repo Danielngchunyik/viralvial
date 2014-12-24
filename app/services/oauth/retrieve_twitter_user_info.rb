@@ -25,5 +25,4 @@ class Oauth::RetrieveTwitterUserInfo
     image_extract = user.profile_image_url_https.to_str.split("__")
     @user.remote_image_url = "#{image_extract[0]}__200x200.jpeg"
   end
-
 end

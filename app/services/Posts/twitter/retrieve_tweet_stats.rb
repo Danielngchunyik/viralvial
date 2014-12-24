@@ -1,4 +1,4 @@
-class Posts::Twitter::RetrievePostStats
+class Posts::Twitter::RetrieveTweetStats
   include Twitter::Initializer
 
   attr_accessor :tw_token, :tw_secret, :current_user, :post

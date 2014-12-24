@@ -1,8 +1,8 @@
 class Campaign < ActiveRecord::Base
   include Campaigns::Filters
-  include Campaigns::Invitation
+  include Campaigns::Invitations
   extend Campaigns::Filters::ClassMethods
-  extend Campaigns::Invitation::ClassMethods
+  extend Campaigns::Invitations::ClassMethods
 
   acts_as_taggable
   acts_as_taggable_on :categories, :religions, :races, :countries, :marital_status
@@ -15,7 +15,7 @@ class Campaign < ActiveRecord::Base
   has_many :images, dependent: :destroy
   validates_presence_of :title
   validates_presence_of :description
-  enum language: [:chinese, :english, :malay]
+  enum language: [:unspecified, :chinese, :english, :malay]
 
   accepts_nested_attributes_for :images, reject_if: proc { |a| a['storage'].blank? }, allow_destroy: true
   accepts_nested_attributes_for :topics

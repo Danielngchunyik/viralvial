@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141223081858) do
+ActiveRecord::Schema.define(version: 20141223090158) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -45,6 +45,7 @@ ActiveRecord::Schema.define(version: 20141223081858) do
     t.boolean  "private",        default: false
     t.hstore   "criteria",       default: {}
     t.boolean  "allow_interest", default: false
+    t.integer  "language"
   end
 
   create_table "images", force: :cascade do |t|
