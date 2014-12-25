@@ -9,6 +9,6 @@ module Campaigns::Invitations
   end
 
   def has_user_invited?(user)
-    private && (user.name.present? && invitation_list.include?(user.name))
+    private && (user.name.present? && invitation_list.include?(user.name)) && end_date > Date.today
   end
 end
