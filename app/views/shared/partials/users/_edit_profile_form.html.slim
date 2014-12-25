@@ -44,7 +44,7 @@
 
       .spacing
         = f.label "Profile Picture: "
-        p= image_tag(current_user.image.profile.url) if current_user.image?
+        p= image_tag(current_user.image.thumb.url) if current_user.image?
         p= f.file_field :image
         p= f.hidden_field :image_cache
 
