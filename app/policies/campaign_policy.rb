@@ -1,7 +1,5 @@
 class CampaignPolicy < ApplicationPolicy
-  include Campaigns::Filters
-  include Campaigns::Invitations
-
+  
   def new?
     campaign_criteria
   end

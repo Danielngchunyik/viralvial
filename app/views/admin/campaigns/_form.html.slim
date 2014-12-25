@@ -53,14 +53,14 @@
       p Campaign privacy:
 
       span Public
-      = f.radio_button :private, false, name: "campaign_privacy"
+      = f.radio_button :private, false
 
       span Private
-      = f.radio_button :private, true, name: "campaign_privacy"
+      = f.radio_button :private, true
 
     .spacing#campaign_invite_list
       = f.label :invitation_list, "Invite users (separated by commas) "
-      = f.text_field :invitation_list, size: 50
+      = f.text_field :invitation_list, size: 50, id: "campaign_invitation_text_field"
 
     .spacing
       = f.label "Minimum age: "

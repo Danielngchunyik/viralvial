@@ -2,7 +2,7 @@ $(document).ready(function() {
   
   $('#campaign_invite_list').hide();
 
-  $("input:radio[name='campaign_privacy']").change(function() {
+  $("input:radio[name='campaign[private]']").change(function() {
 
     if(this.value == 'true' && this.checked) 
     {
@@ -10,8 +10,8 @@ $(document).ready(function() {
     }
     else
     {
-      $('#campaign_invite_list').hide()
-      $('#campaign_invitation_list').val('');
+      $('#campaign_invite_list').hide();
+      $('#campaign_invitation_text_field').val('');
     }
   });
 });

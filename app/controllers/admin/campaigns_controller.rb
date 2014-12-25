@@ -54,7 +54,7 @@ class Admin::CampaignsController < AdminController
   end
 
   def campaign_params
-    params.require(:campaign).permit(:status, :start_date, :end_date, :title, 
+    params.require(:campaign).permit(:status, :start_date, :end_date, :title, :invitation_list,
                                      :description, :min_age, :max_age, :min_socialite_score, 
                                      :max_socialite_score, :marital_status_list, :category_list, 
                                      :race_list, :religion_list, :country_list, :language, :private,
