@@ -10,10 +10,6 @@ class ApplicationController < ActionController::Base
 
   private
 
-  def admin_redirection
-    redirect_to admin_dashboard if current_user.admin?
-  end
-
   def not_authenticated
     flash[:alert] = 'Please login first'
     redirect_to login_path
