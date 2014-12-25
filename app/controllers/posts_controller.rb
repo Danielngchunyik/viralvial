@@ -1,6 +1,6 @@
 class PostsController < ApplicationController
   include Posts::Controller::Methods
-  
+
   before_action :set_campaign
   before_action :require_login
 
@@ -10,7 +10,7 @@ class PostsController < ApplicationController
     @post = @campaign.posts.build
   end
 
-  def create_social_post
+  def create
     authorize @campaign
 
     begin

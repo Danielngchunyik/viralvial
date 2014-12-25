@@ -5,11 +5,7 @@ Rails.application.routes.draw do
 
   #Campaigns
   resources :campaigns do
-    resources :posts do
-      collection do
-        post 'create_social_post'
-      end
-    end
+    resources :posts
     resources :tasks
   end
   
