@@ -1,6 +1,6 @@
 class AddVariousDetailsToUsers < ActiveRecord::Migration
   def change
-    add_column :users, :name, :string
+    add_column :users, :name, :string, default: ""
     add_column :users, :birthday, :date
     add_column :users, :gender, :integer
     add_column :users, :race, :string

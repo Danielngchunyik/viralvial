@@ -1,11 +1,11 @@
 class OauthsController < ApplicationController
   before_action :require_login, only: [:destroy]
+  
   def oauth
     login_at(auth_params[:provider])
   end
 
   def callback
-
     provider = auth_params[:provider]
 
     if @user = login_from(provider)

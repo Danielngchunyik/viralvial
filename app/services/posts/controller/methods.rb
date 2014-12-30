@@ -1,5 +1,7 @@
 module Posts::Controller::Methods
 
+#methods for Posts Controller
+
   def post_type(provider)
     case provider
     when "facebook"

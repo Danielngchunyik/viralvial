@@ -104,7 +104,7 @@ ActiveRecord::Schema.define(version: 20141223090158) do
     t.string   "salt",                                         null: false
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.string   "name"
+    t.string   "name",                            default: ""
     t.date     "birthday"
     t.integer  "gender"
     t.string   "race"
