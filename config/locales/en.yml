@@ -34,7 +34,7 @@ en:
         title: "Your campaign's title"
         description: "Your campaign's description"
       post:
-        topic_id: "Please select a"
+        topic_id: "Please select"
     errors:
       models:
         post:

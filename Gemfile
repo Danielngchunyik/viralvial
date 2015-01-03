@@ -15,21 +15,24 @@ gem 'jquery-rails'
 gem 'country_select', github: 'stefanpenner/country_select'
 gem 'iso_country_codes'
 
-# Styling
+# styling
 gem 'semantic-ui-sass'
 
-# Database Tagging
+# database tagging
 gem 'acts-as-taggable-on'
 
 # S3 Amazon
 gem 'fog'
 
-#Image Uploaders
+# image Uploaders
 gem 'carrierwave'
 gem 'mini_magick'
 
 # third-party services
 gem 'appsignal'
+
+# geolocation
+gem 'geoip'
 
 # authentication and authorization
 gem 'sorcery'
@@ -39,17 +42,17 @@ gem 'pundit', github: 'elabs/pundit'
 gem 'unicorn-rails'
 gem 'pg'
 
-# Background worker
+# background worker
 gem 'sidekiq'
 
-# Social Media API wrappers
+# social media API wrappers
 gem 'fb_graph'
 gem 'twitter'
 
-# Mailer
+# mailer
 gem 'mailcatcher'
 
-#Environment Variables
+# environment variables
 gem 'figaro'
 
 group :production, :staging do
