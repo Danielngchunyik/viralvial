@@ -23,6 +23,6 @@ class ApplicationController < ActionController::Base
   end
 
   def get_location
-    location = GeoIP.new('db/geoip/GeoIP-city.dat').country(request.remote_ip)
+    @location = GeoIP.new('db/geoip/GeoIP-city.dat').country(request.remote_ip)
   end
 end
