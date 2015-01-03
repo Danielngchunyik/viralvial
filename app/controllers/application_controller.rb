@@ -11,12 +11,18 @@ class ApplicationController < ActionController::Base
   private
 
   def current_location
-    @current_location ||= GeoIP.new('db/geoip/GeoIP-city.dat').country(request.remote_ip)
+    if get_location
+      @current_location ||= "#{@location.city_name}, #{@location.country_name}"
+    end
   end
   helper_method :current_location
   
   def not_authenticated
     flash[:alert] = 'Please login first'
     redirect_to login_path
+  end
+
+  def get_location
+    location = GeoIP.new('db/geoip/GeoIP-city.dat').country(request.remote_ip)
   end
 end
