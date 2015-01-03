@@ -49,9 +49,6 @@ gem 'sidekiq'
 gem 'fb_graph'
 gem 'twitter'
 
-# mailer
-gem 'mailcatcher'
-
 # environment variables
 gem 'figaro'
 
@@ -86,7 +83,6 @@ group :test do
   gem 'codeclimate-test-reporter', require: false
   gem 'database_cleaner'
   gem 'webmock'
-  gem 'nyan-cat-formatter'
   gem 'selenium-webdriver'
   gem 'shoulda-matchers'
   gem 'terminal-notifier-guard', '~> 1.6.1' #OSX 10.9+
