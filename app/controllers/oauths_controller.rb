@@ -1,4 +1,3 @@
-require 'pry'
 class OauthsController < ApplicationController
   before_action :require_login, only: [:destroy]
   
@@ -12,7 +11,6 @@ class OauthsController < ApplicationController
     if @user = login_from(provider)
 
       set_access_token!(@user)
-      binding.pry
       flash[:notice] = "Logged in from #{provider.titleize}!"
       redirect_to root_path
     else
