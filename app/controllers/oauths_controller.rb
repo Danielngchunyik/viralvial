@@ -1,7 +1,7 @@
 require 'pry'
 class OauthsController < ApplicationController
   before_action :require_login, only: [:destroy]
-  
+
   def oauth
     login_at(auth_params[:provider])
   end
@@ -18,7 +18,7 @@ class OauthsController < ApplicationController
 
       if logged_in?
         link_account!(provider)
-        
+
       else
         register_new_user!(provider)
       end
@@ -47,11 +47,11 @@ class OauthsController < ApplicationController
   end
 
   def register_new_user!(provider)
-    # begin
+    begin
       @user = create_and_validate_from(provider)
       binding.pry
       reset_session
-      
+
       case provider
       when "twitter"
         save_twitter_info!
@@ -63,10 +63,11 @@ class OauthsController < ApplicationController
         auto_login(@user)
         flash[:notice] = "Logged in from #{provider.titleize}!"
         redirect_to edit_user_path(current_user)
-    # rescue
-    #   flash[:alert] = "Failed to login from #{provider.titleize}"
-    #   redirect_to root_path
-    # end
+    rescue e
+      logger.info "[ERROR]: #{e.inspect}"
+      flash[:alert] = "Failed to login from #{provider.titleize}"
+      redirect_to root_path
+    end
   end
 
   def save_twitter_info!
