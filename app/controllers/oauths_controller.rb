@@ -1,4 +1,3 @@
-require 'pry'
 class OauthsController < ApplicationController
   before_action :require_login, only: [:destroy]
 
@@ -49,7 +48,6 @@ class OauthsController < ApplicationController
   def register_new_user!(provider)
     begin
       @user = create_and_validate_from(provider)
-      binding.pry
       reset_session
 
       case provider

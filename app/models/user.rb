@@ -1,4 +1,3 @@
-require 'pry'
 class User < ActiveRecord::Base
 
   store_accessor :scores, :followers, :klout, :localization, :reach_score,
@@ -31,7 +30,6 @@ class User < ActiveRecord::Base
    
   def set_access_token(token, secret, provider)
     auth = self.authentications.find_by(provider: provider)
-    binding.pry
     auth.update(token: token, secret: secret)
   end
 
