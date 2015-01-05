@@ -61,7 +61,8 @@ class OauthsController < ApplicationController
         auto_login(@user)
         flash[:notice] = "Logged in from #{provider.titleize}!"
         redirect_to edit_user_path(current_user)
-    rescue
+    rescue => e
+      logger.info "[ERROR]: #{e.inspect}"
       flash[:alert] = "Failed to login from #{provider.titleize}"
       redirect_to root_path
     end
