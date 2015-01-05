@@ -37,4 +37,5 @@ Rails.application.configure do
   config.action_mailer.default_url_options = { host: 'localhost:3000' }
   config.action_mailer.delivery_method = :smtp
   config.action_mailer.smtp_settings = { address: 'localhost', port: 1025 }
+  ENV["REDISTOGO_URL"] = 'redis://redistogo:1fd6379b39d86d2e3cd3862412dbd54a@mummichog.redistogo.com:9731/'
 end
