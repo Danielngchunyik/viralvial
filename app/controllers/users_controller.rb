@@ -1,5 +1,9 @@
 class UsersController < ApplicationController
   include Users::ManagementActions
+  before_action :set_user,
+                :require_login,
+                only: [:show, :edit, :update, 
+                       :change_password_and_email, :destroy]
 
   private
 

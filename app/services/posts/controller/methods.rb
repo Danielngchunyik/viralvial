@@ -81,8 +81,10 @@ module Posts::Controller::Methods
       
       @stats = @facebook_service.display
       @fb_likes, @fb_comments = @stats[0], @stats[1]
-    rescue
 
+    rescue => e
+
+      logger.info "[ERROR]: #{e.inspect}"
       flash[:alert] = "Facebook post does not exist!"
       redirect_to root_path
     end
@@ -99,8 +101,10 @@ module Posts::Controller::Methods
 
       @stats = @twitter_service.display
       @favourites, @retweets = @stats[0], @stats[1]
-    rescue
 
+    rescue => e
+
+      logger.info "[ERROR]: #{e.inspect}"
       flash[:alert] = "Twitter post does not exist!"
       redirect_to root_path
     end

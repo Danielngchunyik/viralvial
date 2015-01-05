@@ -18,9 +18,10 @@ class PostsController < ApplicationController
       
       save_post_and_redirect
       
-    rescue
-     flash[:error] = "Error posting on #{params[:provider].capitalize}. Please link your account first!"
-     redirect_to action: 'new'
+    rescue => e
+      logger.info "[ERROR]: #{e.inspect}"
+      flash[:error] = "Error posting on #{params[:provider].capitalize}. Please link your account first!"
+      redirect_to action: 'new'
     end
   end
 
@@ -40,7 +41,8 @@ class PostsController < ApplicationController
 
       delete_post_and_redirect(provider)
 
-    rescue
+    rescue => e
+      logger.info "[ERROR]: #{e.inspect}"
       flash[:error] = "Error deleting #{post_type(provider)}"
       redirect_to [@campaign, @post]
     end
