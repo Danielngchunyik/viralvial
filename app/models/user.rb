@@ -1,3 +1,4 @@
+require 'pry'
 class User < ActiveRecord::Base
 
   store_accessor :scores, :followers, :klout, :localization, :reach_score,
@@ -15,7 +16,6 @@ class User < ActiveRecord::Base
     config.authentications_class = Authentication
   end
 
-  validates_presence_of :name
   validates :password, length: { minimum: 8 }, if: :password
   validates :password, confirmation: true, if: :password
   validates :password_confirmation, presence: true, if: :password
@@ -31,6 +31,7 @@ class User < ActiveRecord::Base
    
   def set_access_token(token, secret, provider)
     auth = self.authentications.find_by(provider: provider)
+    binding.pry
     auth.update(token: token, secret: secret)
   end
 
