@@ -7,12 +7,10 @@ class Admin::CampaignsController < AdminController
 
   def new
     @campaign = Campaign.new
-    authorize @campaign
   end
 
   def create
     @campaign = Campaign.new(campaign_params)
-    authorize @campaign
     if @campaign.save
       flash[:notice] = "Campaign created"
       redirect_to [:admin, @campaign]
