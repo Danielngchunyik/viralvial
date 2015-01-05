@@ -28,7 +28,7 @@ module Campaigns::Filters
   end
 
   def campaign_active?
-    end_date > Date.today
+    end_date >= Date.today
   end
 
   def min_age?(user)
