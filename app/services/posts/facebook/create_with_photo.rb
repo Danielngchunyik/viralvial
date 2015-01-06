@@ -13,6 +13,7 @@ class Posts::Facebook::CreateWithPhoto
     @post.save
     create_fb_post!
     @post.update_attributes(external_post_id: @fb_post.raw_attributes['id'], external_post_id_type: "facebook", campaign_id: @campaign_id)
+    @post.remove_image!
   end
 
   private
