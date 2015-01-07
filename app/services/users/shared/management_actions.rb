@@ -1,4 +1,4 @@
-module Users::ManagementActions
+module Users::Shared::ManagementActions
   
   def new
     @user = User.new

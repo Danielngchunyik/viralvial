@@ -1,5 +1,5 @@
 class UsersController < ApplicationController
-  include Users::ManagementActions
+  include Users::Shared::ManagementActions
   before_action :set_user,
                 :require_login,
                 only: [:show, :edit, :update, 
