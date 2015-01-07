@@ -8,17 +8,9 @@ class PostsController < ApplicationController
     authorize @campaign
 
     @post = @campaign.posts.build
-    @images = []
+    fetch_shareable_images!
 
-    @campaign.default_images.each do |image|
-      @images << image
-    end
-
-    if user_image = @campaign.user_images.where(user_id: current_user.id).first
-      @images << user_image
-    end
-
-    #uploade user image
+    #upload user image
     @user_image = @campaign.user_images.build
   end
 
@@ -61,6 +53,18 @@ class PostsController < ApplicationController
   end
 
   private
+
+  def fetch_shareable_images!
+    @images = []
+
+    @campaign.default_images.each do |image|
+      @images << image
+    end
+
+    if user_image = @campaign.user_images.where(user_id: current_user.id).first
+      @images << user_image
+    end 
+  end
 
   def set_campaign
     @campaign = Campaign.find(params[:campaign_id])
