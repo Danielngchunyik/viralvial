@@ -1,4 +1,6 @@
 class Posts::Facebook::Create
+  include Posts::Shared::SavePost
+
   attr_accessor :fb_token, :post_params, :fb_post, :campaign_id, :current_user, :post
 
   def initialize(fb_token, post_params, campaign_id, current_user)
@@ -10,11 +12,8 @@ class Posts::Facebook::Create
 
   def save
     create_fb_post!
-    @post = @current_user.posts.build(@post_params, 
-                                      external_post_id: @fb_post.raw_attributes['id'],
-                                      external_post_id_type: "facebook",
-                                      campaign_id: @campaign_id
-                                     )
+
+    save_post!(@fb_post.raw_attributes['id'], "facebook")
     @post.save
   end
 
@@ -22,7 +21,7 @@ class Posts::Facebook::Create
 
   def create_fb_post!
     
-    if @post_params[:image] == nil
+    if @post_params[:image] == "nothing"
       @fb_post = FbGraph::User.me(@fb_token).feed!(message: @post_params[:message])
     else
       @fb_post = FbGraph::User.me(@fb_token).photo!(

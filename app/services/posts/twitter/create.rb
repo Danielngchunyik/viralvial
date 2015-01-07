@@ -1,5 +1,6 @@
 class Posts::Twitter::Create
   include Twitter::Initializer
+  include Posts::Shared::SavePost
 
   attr_accessor :tw_token, :tw_secret, :post_params, :campaign_id, :current_user, :post
 
@@ -14,11 +15,7 @@ class Posts::Twitter::Create
   def save
     tweet!
 
-    @post = @current_user.posts.build(@post_params,
-                                      external_post_id: @tweet.id,
-                                      external_post_id_type: "twitter",
-                                      campaign_id: @campaign_id
-                                     )
+    save_post!(@tweet.id, "twitter")
     @post.save
   end
 
@@ -27,7 +24,7 @@ class Posts::Twitter::Create
   def tweet! 
     initialize_client(@token, @secret)
 
-    if @post_params[:image] == nil
+    if @post_params[:image] == "nothing"
       @tweet = @client.update(@post_params[:message])
     else
       @tweet = @client.update_with_media(@post_params[:message], open(@post_params[:image]), options = {})
