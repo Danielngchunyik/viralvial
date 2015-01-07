@@ -16,7 +16,6 @@ class Posts::Twitter::Create
     tweet!
 
     save_post!(@tweet.id, "twitter")
-    @post.save
   end
 
   private

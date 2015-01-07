@@ -50,7 +50,7 @@ ActiveRecord::Schema.define(version: 20150107034705) do
 
   create_table "default_images", force: :cascade do |t|
     t.string   "storage"
-    t.integer  "campaign_id"
+    t.integer  "topic_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -100,10 +100,10 @@ ActiveRecord::Schema.define(version: 20150107034705) do
 
   create_table "user_images", force: :cascade do |t|
     t.integer  "user_id"
-    t.integer  "campaign_id"
+    t.integer  "topic_id"
     t.string   "storage"
-    t.datetime "created_at",  null: false
-    t.datetime "updated_at",  null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "users", force: :cascade do |t|

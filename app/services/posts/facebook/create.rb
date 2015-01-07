@@ -14,7 +14,6 @@ class Posts::Facebook::Create
     create_fb_post!
 
     save_post!(@fb_post.raw_attributes['id'], "facebook")
-    @post.save
   end
 
   private

@@ -11,16 +11,6 @@
       = f.label "Title:"
       = f.text_field :title, placeholder: "Enter campaign title"
 
-    - if campaign.default_images.all.present? && value == "edit"
-      p = "Current #{'Image'.pluralize(campaign.images.count)}"
-      - campaign.default_images.each do |image|
-        .spacing
-        = image_tag(image.storage.thumb.url)
-        = link_to "Delete", image, method: :delete, remote: true, data: { confirm: "Delete image?" }
-
-    .spacing
-      = link_to_add_fields "Add Image", f, :default_images
-
     .spacing
       p = f.label "Description:"
       = f.text_area :description, cols: 100, rows: 10, placeholder: "Enter campaign description"

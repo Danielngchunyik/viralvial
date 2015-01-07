@@ -10,7 +10,7 @@ class PostsController < ApplicationController
     @post = @campaign.posts.build
     fetch_shareable_images!
 
-    #upload user image
+    #set user_image for uploading
     @user_image = @campaign.user_images.build
   end
 
