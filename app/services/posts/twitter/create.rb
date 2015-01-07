@@ -14,10 +14,11 @@ class Posts::Twitter::Create
   def save
     tweet!
 
-    @post = @current_user.posts.build(@post_params)
-    @post.external_post_id = @tweet.id
-    @post.external_post_id_type = "twitter"
-    @post.campaign_id = @campaign_id
+    @post = @current_user.posts.build(@post_params,
+                                      external_post_id: @tweet.id,
+                                      external_post_id_type: "twitter",
+                                      campaign_id: @campaign_id
+                                     )
     @post.save
   end
 

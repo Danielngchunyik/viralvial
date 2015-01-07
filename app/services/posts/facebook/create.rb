@@ -10,10 +10,11 @@ class Posts::Facebook::Create
 
   def save
     create_fb_post!
-    @post = @current_user.posts.build(@post_params)
-    @post.external_post_id = @fb_post.raw_attributes['id']
-    @post.external_post_id_type = "facebook"
-    @post.campaign_id = @campaign_id
+    @post = @current_user.posts.build(@post_params, 
+                                      external_post_id: @fb_post.raw_attributes['id'],
+                                      external_post_id_type: "facebook",
+                                      campaign_id: @campaign_id
+                                     )
     @post.save
   end
 
