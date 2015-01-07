@@ -1,5 +1,12 @@
 module Users::Shared::ManagementActions
-  
+    
+  def self.included(base)
+    base.before_action :set_user,
+                       :require_login,
+                       only: [:show, :edit, :update, 
+                              :change_password_and_email, :destroy]
+  end
+
   def new
     @user = User.new
   end

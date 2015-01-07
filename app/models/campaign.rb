@@ -17,4 +17,17 @@ class Campaign < ActiveRecord::Base
   enum language: [:unspecified, :chinese, :english, :malay]
 
   accepts_nested_attributes_for :topics
+
+  def save
+    saved = false
+    ActiveRecord::Base.transaction do
+      saved = super
+      if self.topics.size < 1
+        saved = false
+        errors[:base] << "You need to have at least one topic."
+        raise ActiveRecord::Rollback
+      end
+    end
+    saved
+  end
 end

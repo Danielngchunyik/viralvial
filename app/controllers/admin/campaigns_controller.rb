@@ -46,7 +46,7 @@ class Admin::CampaignsController < AdminController
   end
 
   private
-  
+
   def set_campaign
     @campaign = Campaign.find(params[:id])
   end

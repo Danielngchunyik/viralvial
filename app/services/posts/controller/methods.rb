@@ -1,6 +1,6 @@
 module Posts::Controller::Methods
 
-#methods for Posts Controller
+#methods for PostsController
 
   def post_type(provider)
     case provider
@@ -76,14 +76,12 @@ module Posts::Controller::Methods
     @facebook = @campaign.topics.find_by(@post.topic_id)
 
     begin
-      
       @facebook_service = Posts::Facebook::RetrievePostStats.new(@fb_token, current_user, @post)
       
       @stats = @facebook_service.display
       @fb_likes, @fb_comments = @stats[0], @stats[1]
 
     rescue => e
-
       logger.info "[ERROR]: #{e.inspect}"
       flash[:alert] = "Facebook post does not exist!"
       redirect_to root_path
@@ -96,14 +94,12 @@ module Posts::Controller::Methods
     @twitter = @campaign.topics.find_by(@post.topic_id)
 
     begin
-
       @twitter_service = Posts::Twitter::RetrieveTweetStats.new(@tw_token, @tw_secret, current_user, @post)
 
       @stats = @twitter_service.display
       @favourites, @retweets = @stats[0], @stats[1]
 
     rescue => e
-
       logger.info "[ERROR]: #{e.inspect}"
       flash[:alert] = "Twitter post does not exist!"
       redirect_to root_path
