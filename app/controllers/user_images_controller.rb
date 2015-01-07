@@ -2,10 +2,8 @@ class UserImagesController < ApplicationController
   before_action :set_campaign
 
   def create
-    if @current_image = @campaign.user_images.where(user_id: current_user.id).first
-      @current_image.delete
-    end
-    
+    delete_current_image!
+
     @user_image = @campaign.user_images.build(user_image_params)
     @user_image.user = current_user
 
@@ -17,6 +15,12 @@ class UserImagesController < ApplicationController
   end
 
   private
+
+  def delete_current_image!
+    if @current_image = @campaign.user_images.where(user_id: current_user.id).first
+      @current_image.delete
+    end
+  end
 
   def set_campaign
     @campaign = Campaign.find(params[:campaign_id])
