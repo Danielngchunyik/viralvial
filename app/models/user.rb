@@ -23,7 +23,8 @@ class User < ActiveRecord::Base
   acts_as_taggable_on :secondary_interests
 
   has_many :authentications, dependent: :destroy
-  has_many :posts
+  has_many :posts, dependent: :destroy
+  has_one :user_image, dependent: :destroy
   accepts_nested_attributes_for :authentications
 
   mount_uploader :image, ImageUploader

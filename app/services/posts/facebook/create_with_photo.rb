@@ -9,19 +9,21 @@ class Posts::Facebook::CreateWithPhoto
   end
 
   def save
-    @post = @current_user.posts.build(@post_params)
-    @post.save
     create_fb_post!
-    @post.update_attributes(external_post_id: @fb_post.raw_attributes['id'], external_post_id_type: "facebook", campaign_id: @campaign_id)
-    @post.remove_image!
+    
+    @post = @current_user.posts.build(@post_params)
+    @post.external_post_id = @fb_post.raw_attributes['id']
+    @post.external_post_id_type = "facebook"
+    @post.campaign_id = @campaign_id
+    @post.save
   end
 
   private
 
   def create_fb_post!
     @fb_post = FbGraph::User.me(@fb_token).photo!(
-      url: @post.image.url,
-      message: @post.message
+      url: @post_params[:image],
+      message: @post_params[:message]
     )
   end
 end

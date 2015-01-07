@@ -1,0 +1,10 @@
+.container
+  
+  = form_for [campaign, user_image] do |f|
+
+    .spacing#custom_image_upload
+      = f.label "Image: "
+      = f.file_field :storage
+      = f.hidden_field :storage_cache
+
+      p = f.submit "Save"

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141223090158) do
+ActiveRecord::Schema.define(version: 20150107034705) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -48,7 +48,7 @@ ActiveRecord::Schema.define(version: 20141223090158) do
     t.integer  "language"
   end
 
-  create_table "images", force: :cascade do |t|
+  create_table "default_images", force: :cascade do |t|
     t.string   "storage"
     t.integer  "campaign_id"
     t.datetime "created_at"
@@ -63,8 +63,8 @@ ActiveRecord::Schema.define(version: 20141223090158) do
     t.string   "external_post_id"
     t.string   "external_post_id_type"
     t.string   "message"
-    t.string   "image"
     t.integer  "topic_id"
+    t.string   "image"
   end
 
   create_table "taggings", force: :cascade do |t|
@@ -96,6 +96,14 @@ ActiveRecord::Schema.define(version: 20141223090158) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.text     "description"
+  end
+
+  create_table "user_images", force: :cascade do |t|
+    t.integer  "user_id"
+    t.integer  "campaign_id"
+    t.string   "storage"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
   end
 
   create_table "users", force: :cascade do |t|

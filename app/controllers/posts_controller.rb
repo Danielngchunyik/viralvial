@@ -8,6 +8,18 @@ class PostsController < ApplicationController
     authorize @campaign
 
     @post = @campaign.posts.build
+    @images = []
+
+    @campaign.default_images.each do |image|
+      @images << image
+    end
+
+    if user_image = @campaign.user_images.where(user_id: current_user.id).first
+      @images << user_image
+    end
+
+    #uploade user image
+    @user_image = @campaign.user_images.build
   end
 
   def create

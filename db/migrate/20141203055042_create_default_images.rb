@@ -1,6 +1,6 @@
-class CreateImages < ActiveRecord::Migration
+class CreateDefaultImages < ActiveRecord::Migration
   def change
-    create_table :images do |t|
+    create_table :default_images do |t|
       t.string :storage
       t.integer :campaign_id
 

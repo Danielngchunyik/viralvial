@@ -7,6 +7,7 @@ Rails.application.routes.draw do
   resources :campaigns do
     resources :posts
     resources :tasks
+    resources :user_images
   end
   
   #Users

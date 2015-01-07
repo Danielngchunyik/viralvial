@@ -2,11 +2,12 @@ h1 New Post
 
 .container
   = form_for [@campaign, @post] do |f|
-
-    .spacing#custom_image_upload
-      = f.label "Image: "
-      = f.file_field :image
-      = f.hidden_field :image_cache
+    .spacing
+      - if @images.present?
+      p Select image
+      - @images.each do |image|
+        = f.radio_button :image, image.storage.url, checked: true
+        = image_tag(image.storage.thumb.url)
 
     .spacing
       p Select topic
@@ -24,5 +25,7 @@ h1 New Post
     .spacing
       = f.submit "Post on Facebook", name: 'provider', value: "facebook"
       = f.submit "Post on Twitter", name: 'provider', value: "twitter"
+
+  = render partial: 'user_images/new_form', locals: { campaign: @campaign, user_image: @user_image}
 
 p = link_to 'Back', :back
