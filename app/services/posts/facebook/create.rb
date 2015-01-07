@@ -20,6 +20,14 @@ class Posts::Facebook::Create
   private
 
   def create_fb_post!
-    @fb_post = FbGraph::User.me(@fb_token).feed!(message: @post_params[:message])
+    
+    if @post_params[:image] == nil
+      @fb_post = FbGraph::User.me(@fb_token).feed!(message: @post_params[:message])
+    else
+      @fb_post = FbGraph::User.me(@fb_token).photo!(
+        url: @post_params[:image],
+        message: @post_params[:message]
+      )
+    end
   end
 end

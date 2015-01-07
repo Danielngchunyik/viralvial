@@ -113,21 +113,13 @@ module Posts::Controller::Methods
   def post_on_twitter!
     set_twitter_token
 
-    if post_params[:image].nil?
-      @post_service = Posts::Twitter::Create.new(@tw_token, @tw_secret, post_params, @campaign.id, current_user)
-    else
-      @post_service = Posts::Twitter::CreateWithPhoto.new(@tw_token, @tw_secret, post_params, @campaign.id, current_user)
-    end
+    @post_service = Posts::Twitter::Create.new(@tw_token, @tw_secret, post_params, @campaign.id, current_user)
   end
 
   def post_on_facebook!
     set_fb_token
 
-    if post_params[:image].nil?
-      @post_service = Posts::Facebook::Create.new(@fb_token, post_params, @campaign.id, current_user)
-    else
-      @post_service = Posts::Facebook::CreateWithPhoto.new(@fb_token, post_params, @campaign.id, current_user)
-    end
+    @post_service = Posts::Facebook::Create.new(@fb_token, post_params, @campaign.id, current_user)
   end
 
   def set_fb_token

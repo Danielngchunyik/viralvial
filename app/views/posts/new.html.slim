@@ -5,9 +5,14 @@ h1 New Post
     .spacing
       - if @images.present?
       p Select image
+
+      = f.radio_button :image, nil, checked: true
+      = f.label "NO IMAGE"
+      
       - @images.each do |image|
         = f.radio_button :image, image.storage.url, checked: true
         = image_tag(image.storage.thumb.url)
+
 
     .spacing
       p Select topic

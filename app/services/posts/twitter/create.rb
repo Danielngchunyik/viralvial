@@ -25,6 +25,11 @@ class Posts::Twitter::Create
 
   def tweet! 
     initialize_client(@token, @secret)
-    @tweet = @client.update(@post_params[:message])
+
+    if @post_params[:image] == nil
+      @tweet = @client.update(@post_params[:message])
+    else
+      @tweet = @client.update_with_media(@post_params[:message], open(@post_params[:image]), options = {})
+    end
   end
 end
