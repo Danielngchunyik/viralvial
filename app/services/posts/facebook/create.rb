@@ -1,12 +1,12 @@
 class Posts::Facebook::Create
   include Posts::Shared::SavePost
 
-  attr_accessor :fb_token, :post_params, :fb_post, :campaign_id, :current_user, :post
+  attr_accessor :fb_token, :post_params, :fb_post, :topic_id, :current_user, :post
 
-  def initialize(fb_token, post_params, campaign_id, current_user)
+  def initialize(fb_token, post_params, topic_id, current_user)
     @fb_token = fb_token
     @post_params = post_params
-    @campaign_id = campaign_id
+    @topic_id = topic_id
     @current_user = current_user
   end
 

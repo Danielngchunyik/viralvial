@@ -109,13 +109,13 @@ module Posts::Controller::Methods
   def post_on_twitter!
     set_twitter_token
 
-    @post_service = Posts::Twitter::Create.new(@tw_token, @tw_secret, post_params, @campaign.id, current_user)
+    @post_service = Posts::Twitter::Create.new(@tw_token, @tw_secret, post_params, @topic.id, current_user)
   end
 
   def post_on_facebook!
     set_fb_token
 
-    @post_service = Posts::Facebook::Create.new(@fb_token, post_params, @campaign.id, current_user)
+    @post_service = Posts::Facebook::Create.new(@fb_token, post_params, @topic.id, current_user)
   end
 
   def set_fb_token
