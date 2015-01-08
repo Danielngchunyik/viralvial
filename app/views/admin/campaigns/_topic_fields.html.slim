@@ -16,6 +16,7 @@
 
   .spacing
     = link_to_add_fields "Add Image", f, :default_images
-
-  p = link_to "Remove", '#', class: "remove_fields"
-  = f.hidden_field :_destroy
+  .spacing
+    = f.hidden_field :_destroy
+    = link_to "Remove", '#', class: "remove_fields"
+    

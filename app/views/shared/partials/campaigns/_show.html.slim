@@ -16,3 +16,5 @@ p = "Categories: #{campaign.category_list}"
   p = "Topic posts required: #{topic.num_of_posts}"
   p = "Topic likes required: #{topic.num_of_likes}"
   p = "Topic comments required: #{topic.num_of_comments}"
+  -if !admin?
+    p = link_to "Share this!", new_campaign_topic_post_path(@campaign, topic)

@@ -5,9 +5,10 @@ Rails.application.routes.draw do
 
   #Campaigns
   resources :campaigns do
-    resources :posts
-    resources :tasks
-    resources :user_images
+    resources :topics do
+      resources :posts
+      resources :user_images
+    end
   end
   
   #Users
@@ -31,7 +32,7 @@ Rails.application.routes.draw do
   namespace :admin do
     get 'dashboard' => 'dashboard#index', as: :dashboard
     resources :campaigns do
-      resources :tasks
+      resources :topics
     end
     resources :announcements
     resources :users

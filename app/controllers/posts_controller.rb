@@ -1,17 +1,17 @@
 class PostsController < ApplicationController
   include Posts::Controller::Methods
 
-  before_action :set_campaign
+  before_action :set_campaign_and_topic
   before_action :require_login
 
   def new
     authorize @campaign
 
-    @post = @campaign.posts.build
+    @post = @topic.posts.build
     fetch_shareable_images!
 
     #set user_image for uploading
-    @user_image = @campaign.user_images.build
+    @user_image = @topic.user_images.build
   end
 
   def create
@@ -57,22 +57,23 @@ class PostsController < ApplicationController
   def fetch_shareable_images!
     @images = []
 
-    @campaign.default_images.each do |image|
+    @topic.default_images.each do |image|
       @images << image
     end
 
-    if user_image = @campaign.user_images.where(user_id: current_user.id).first
+    if user_image = @topic.user_images.where(user_id: current_user.id).first
       @images << user_image
     end 
   end
 
-  def set_campaign
+  def set_campaign_and_topic
     @campaign = Campaign.find(params[:campaign_id])
+    @topic = @campaign.topics.find(params[:topic_id])
   end
 
   def set_post
     authorize @campaign
-    @post = @campaign.posts.find(params[:id])
+    @post = @topic.posts.find(params[:id])
     authorize @post
   end
 

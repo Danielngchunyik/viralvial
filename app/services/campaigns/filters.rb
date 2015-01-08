@@ -11,6 +11,7 @@ module Campaigns::Filters
   def conditions?(user)
     [
       check_privacy,
+      campaign_started?,
       campaign_active?,
       min_age?(user), 
       max_age?(user), 
@@ -29,6 +30,10 @@ module Campaigns::Filters
 
   def campaign_active?
     end_date >= Date.today
+  end
+
+  def campaign_started?
+    start_date <= Date.today
   end
 
   def min_age?(user)

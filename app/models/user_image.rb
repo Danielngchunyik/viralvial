@@ -3,4 +3,6 @@ class UserImage < ActiveRecord::Base
   belongs_to :user
 
   mount_uploader :storage, ImageUploader
+  validates :storage, presence: true
+  validates_integrity_of :storage
 end
