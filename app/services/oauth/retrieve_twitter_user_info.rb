@@ -1,6 +1,4 @@
 class Oauth::RetrieveTwitterUserInfo
-  include Twitter::Initializer
-
   attr_accessor :token, :secret, :user, :screen_name
 
   def initialize(token, secret, user, screen_name)
@@ -11,9 +9,9 @@ class Oauth::RetrieveTwitterUserInfo
   end
 
   def save
-    initialize_client(@token, @secret)
+    @twitter = TwitterService.new(@token, @secret)
 
-    twitter_user = @client.user(@screen_name)
+    twitter_user = @twitter.client.user(@screen_name)
     upload_profile_image(twitter_user)
 
     @user.update(location: twitter_user.location, name: twitter_user.name)

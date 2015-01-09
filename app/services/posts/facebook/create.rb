@@ -1,5 +1,5 @@
 class Posts::Facebook::Create
-  include Posts::Shared::SavePost
+  include Posts::SavePost
 
   attr_accessor :fb_token, :post_params, :fb_post, :topic_id, :current_user, :post
 
@@ -13,13 +13,12 @@ class Posts::Facebook::Create
   def save
     create_fb_post!
 
-    save_post!(@fb_post.raw_attributes['id'], "facebook")
+    save_post!(@fb_post.raw_attributes['id'], "facebook", @topic_id)
   end
 
   private
 
   def create_fb_post!
-    
     if @post_params[:image] == "nothing"
       @fb_post = FbGraph::User.me(@fb_token).feed!(message: @post_params[:message])
     else
