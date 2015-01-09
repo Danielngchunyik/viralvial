@@ -19,9 +19,9 @@ class UserImagesController < ApplicationController
   private
 
   def delete_current_image!
-    if @current_image = @topic.user_images.where(user_id: current_user.id).first
-      @current_image.remove_storage!
-      @current_image.delete
+    if current_image = @topic.user_images.where(user_id: current_user.id).first
+      current_image.remove_storage!
+      current_image.delete
     end
   end
 
