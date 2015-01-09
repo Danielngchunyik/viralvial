@@ -61,7 +61,6 @@ group :developement do
   gem 'better_errors'
   gem 'binding_of_caller'
   gem 'guard-rspec', require: false
-  gem 'pry-rails'
   gem 'quiet_assets'
   gem 'spring'
   gem 'spring-commands-rspec'
@@ -73,6 +72,7 @@ group :developement do
 end
 
 group :development, :test do
+  gem 'pry-rails'
   gem 'rspec-rails'
   gem 'factory_girl_rails'
   gem 'faker'
