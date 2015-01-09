@@ -1,10 +1,10 @@
-module Users::Shared::ManagementActions
-    
-  def self.included(base)
-    base.before_action :set_user,
-                       :require_login,
-                       only: [:show, :edit, :update, 
-                              :change_password_and_email, :destroy]
+module Users::ManagementActions
+  extend ActiveSupport::Concern
+
+  included do
+    before_action :set_user, :require_login,
+                  only: [:show, :edit, :update, :change_password_and_email,
+                         :destroy]
   end
 
   def new
@@ -64,21 +64,21 @@ module Users::Shared::ManagementActions
   private
 
   def update_user_email_and_password(account)
-    @user.update_password_and_email(account[:current_password], 
-                                         account[:email], 
-                                         account[:password], 
+    @user.update_password_and_email(account[:current_password],
+                                         account[:email],
+                                         account[:password],
                                          account[:password_confirmation])
   end
-  
-  def set_user  
+
+  def set_user
     @user = User.find(params[:id])
   end
 
   def user_params
-    params.require(:user).permit(:email, :password, :blog_url, 
-                                  :password_confirmation, :name, 
-                                  :birthday, :gender, :race, :religion, 
-                                  :contact_number, :nationality, :location, :country, 
+    params.require(:user).permit(:email, :password, :blog_url,
+                                  :password_confirmation, :name,
+                                  :birthday, :gender, :race, :religion,
+                                  :contact_number, :nationality, :location, :country,
                                   :marital_status, :role, :main_interest, :secondary_interest_list,
                                   authentication_attributes: [])
   end

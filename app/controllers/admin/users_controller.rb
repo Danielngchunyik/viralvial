@@ -1,5 +1,5 @@
 class Admin::UsersController < AdminController
-  include Users::Shared::ManagementActions
+  include Users::ManagementActions
 
   def index
     @users = User.order("#{column_name} #{direction}")
