@@ -11,28 +11,28 @@ module Campaigns::Filters
   def conditions?(user)
     [
       check_privacy,
-      campaign_started?,
-      campaign_active?,
-      min_age?(user), 
-      max_age?(user), 
-      min_socialite_score?(user), 
-      max_socialite_score?(user), 
-      religion?(user), 
-      country?(user), 
-      race?(user), 
+      started?,
+      active?,
+      min_age?(user),
+      max_age?(user),
+      min_socialite_score?(user),
+      max_socialite_score?(user),
+      religion?(user),
+      country?(user),
+      race?(user),
       categories?(user)
     ].all?
   end
 
   def check_privacy
-    private == false
+    self.private == false
   end
 
-  def campaign_active?
+  def active?
     end_date >= Date.today
   end
 
-  def campaign_started?
+  def started?
     start_date <= Date.today
   end
 
@@ -45,7 +45,7 @@ module Campaigns::Filters
   end
 
   def min_socialite_score?(user)
-    min_socialite_score.blank? || 
+    min_socialite_score.blank? ||
     (user.socialite_score.present? && user.socialite_score.to_i >= min_socialite_score.to_i)
   end
 
@@ -59,10 +59,9 @@ module Campaigns::Filters
   end
 
   def country?(user)
-
     list = []
     country_list.each do |country|
-      list.push IsoCountryCodes.search_by_name(country)[0].alpha2
+      list << IsoCountryCodes.search_by_name(country)[0].alpha2
     end
 
     country_list.blank? || (user.country.present? && list.include?(user.country))
@@ -77,9 +76,9 @@ module Campaigns::Filters
   end
 
   def categories?(user)
-    category_list.blank? || 
-      (user.main_interest.present? && category_list.include?(user.main_interest)) || 
-      (user.secondary_interest_list.present? && allow_interest? && 
+    category_list.blank? ||
+      (user.main_interest.present? && category_list.include?(user.main_interest)) ||
+      (user.secondary_interest_list.present? && allow_interest? &&
         user.secondary_interest_list.any? { |interest| category_list.include?(interest) })
   end
 end
