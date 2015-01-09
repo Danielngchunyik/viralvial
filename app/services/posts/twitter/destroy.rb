@@ -1,5 +1,4 @@
 class Posts::Twitter::Destroy
-  include Twitter::Initializer
 
   attr_accessor :tw_token, :tw_secret, :post
 
@@ -15,9 +14,9 @@ class Posts::Twitter::Destroy
   end
 
   private
-  
+
   def delete_tweet!
-    initialize_client(@token, @secret)
-    @client.destroy_status(@post.external_post_id)
+    @twitter = TwitterService.new(@token, @secret)
+    @twitter.client.destroy_status(@post.external_post_id)
   end
 end

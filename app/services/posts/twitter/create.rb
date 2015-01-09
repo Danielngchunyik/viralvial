@@ -1,8 +1,7 @@
 class Posts::Twitter::Create
-  include Twitter::Initializer
   include Posts::Shared::SavePost
 
-  attr_accessor :tw_token, :tw_secret, :post_params, :topic_id, :current_user, :post
+  attr_accessor :token, :secret, :post_params, :topic_id, :current_user, :post
 
   def initialize(tw_token, tw_secret, post_params, topic_id, current_user)
     @token = tw_token
@@ -15,18 +14,20 @@ class Posts::Twitter::Create
   def save
     tweet!
 
-    save_post!(@tweet.id, "twitter")
+    @post = save_post!(@tweet.id, "twitter", @topic_id)
   end
 
   private
 
-  def tweet! 
-    initialize_client(@token, @secret)
+  def tweet!
+    @twitter = TwitterService.new(@token, @secret)
 
     if @post_params[:image] == "nothing"
-      @tweet = @client.update(@post_params[:message])
+      @tweet = @twitter.client.update(@post_params[:message])
     else
-      @tweet = @client.update_with_media(@post_params[:message], open(@post_params[:image]), options = {})
+      @tweet = @twitter.client.update_with_media(
+                 @post_params[:message], open(@post_params[:image]), {}
+               )
     end
   end
 end
