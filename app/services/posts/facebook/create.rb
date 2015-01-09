@@ -1,5 +1,5 @@
 class Posts::Facebook::Create
-  include Posts::Shared::SavePost
+  include Posts::SavePost
 
   attr_accessor :fb_token, :post_params, :fb_post, :topic_id, :current_user, :post
 

@@ -1,5 +1,5 @@
 class Posts::Twitter::Create
-  include Posts::Shared::SavePost
+  include Posts::SavePost
 
   attr_accessor :token, :secret, :post_params, :topic_id, :current_user, :post
 
