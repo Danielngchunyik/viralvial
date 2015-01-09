@@ -5,28 +5,24 @@ class Campaign < ActiveRecord::Base
   extend Campaigns::Invitations::ClassMethods
 
   acts_as_taggable
-  acts_as_taggable_on :categories, :religions, :races, :countries, :marital_status
+  acts_as_taggable_on :categories, :religions, :races, :countries,
+                      :marital_status
   acts_as_taggable_on :invitations, :username
 
-  store_accessor :criteria, :min_age, :max_age, :min_socialite_score, :max_socialite_score, :language
+  store_accessor :criteria, :min_age, :max_age, :min_socialite_score,
+                 :max_socialite_score, :language
 
   has_many :topics
-  validates_presence_of :title
-  validates_presence_of :description
+  validates :title, :description, presence: true
+  validate :at_least_one_topic_required
   enum language: [:unspecified, :chinese, :english, :malay]
 
   accepts_nested_attributes_for :topics, allow_destroy: true
 
-  def save
-    saved = false
-    ActiveRecord::Base.transaction do
-      saved = super
-      if self.topics.size < 1
-        saved = false
-        errors[:base] << "You need to have at least one topic."
-        raise ActiveRecord::Rollback
-      end
-    end
-    saved
+  private
+
+  def at_least_one_topic_required
+    return if topics.exists?
+    errors.add(:topic, 'is missing. At least one topic is required.')
   end
 end
