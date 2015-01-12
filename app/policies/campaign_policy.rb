@@ -14,7 +14,7 @@ class CampaignPolicy < ApplicationPolicy
 
   def show?
     scope.where(id: record.id).exists?
-    campaign_criteria
+    destroy?
   end
 
   private

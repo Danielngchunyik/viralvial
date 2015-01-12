@@ -1,5 +1,5 @@
 class UserImagesController < ApplicationController
-  before_action :set_campaign_and_topic
+  before_action :set_campaign, :set_topic
 
   def create
     delete_current_image!
@@ -25,8 +25,11 @@ class UserImagesController < ApplicationController
     end
   end
 
-  def set_campaign_and_topic
+  def set_campaign
     @campaign = Campaign.find(params[:campaign_id])
+  end
+
+  def set_topic
     @topic = @campaign.topics.find(params[:topic_id])
   end
 

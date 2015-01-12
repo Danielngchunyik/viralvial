@@ -1,5 +1,5 @@
 class Provider::Base
-  attr_accessor :token, :user, :post, :post_params, :topic_id, :post_service
+  attr_accessor :user, :post, :post_params, :topic_id, :post_service
 
   def initialize(user, post, post_params, topic_id)
     @user = user

@@ -18,7 +18,7 @@ class PostsController < ApplicationController
     begin
       @provider.publish!
       flash[:notice] = "#{@provider.post_type} created"
-      redirect_to [@campaign, @post_service.post]
+      redirect_to [@campaign, @topic, @post_service.post]
     rescue => e
       logger.info "[ERROR]: #{e.inspect}"
       flash[:error] = "Error posting on #{@provider}. Please link your account first!"
@@ -37,7 +37,7 @@ class PostsController < ApplicationController
   rescue => e
     logger.info "[ERROR]: #{e.inspect}"
     flash[:error] = "Error deleting #{@provider.post_type}"
-    redirect_to [@campaign, @post]
+    redirect_to [@campaign, @topic, @post]
   end
 
   private

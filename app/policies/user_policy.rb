@@ -1,9 +1,5 @@
 class UserPolicy < ApplicationPolicy
 
-  def index?
-    user.present? && user.admin?
-  end
-
   def show?
     scope.where(id: record.id).exists?
     edit?
@@ -14,14 +10,10 @@ class UserPolicy < ApplicationPolicy
   end
 
   def change_password_and_email?
-    user.present? && user == record
+    user.present? && user.admin?
   end
 
   def update?
     user.present? && (user.admin? || user == record)
-  end
-
-  def destroy?
-    user.admin?
   end
 end

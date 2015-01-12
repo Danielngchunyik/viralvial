@@ -1,4 +1,6 @@
 class Provider::Facebook < Provider::Base
+  attr_accessor :fb_token
+
   def initialize; end
 
   def name
@@ -20,7 +22,6 @@ class Provider::Facebook < Provider::Base
 
   def remove_post!(fb_post = @post)
     @post_service = Posts::Facebook::Destroy.new(@fb_token, fb_post)
-    @post_service.destory
   end
 
   def publish!
@@ -31,6 +32,6 @@ class Provider::Facebook < Provider::Base
   private
 
   def set_token
-    @token = @user.authentications.find_by(provider: name).token
+    @fb_token = @user.authentications.find_by(provider: name).token
   end
 end
