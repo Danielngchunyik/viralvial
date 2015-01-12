@@ -41,26 +41,6 @@ module Users::ManagementActions
     end
   end
 
-  def change_password_and_email
-    authorize @user
-
-    account = params[:user]
-
-    if account[:password] == account[:password_confirmation]
-      if update_user_email_and_password(account)
-
-        flash[:notice] = "User details updated"
-        redirect_to successful_redirection_path
-      else
-        flash[:error] = "Wrong current password"
-        render action: 'edit'
-      end
-    else
-      flash[:error] = "Passwords do not match"
-      render action: 'edit'
-    end
-  end
-
   private
 
   def update_user_email_and_password(account)
