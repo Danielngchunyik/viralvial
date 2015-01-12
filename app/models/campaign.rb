@@ -22,7 +22,7 @@ class Campaign < ActiveRecord::Base
   private
 
   def at_least_one_topic_required
-    return if topics.exists?
+    return if topics.present?
     errors.add(:topic, 'is missing. At least one topic is required.')
   end
 end
