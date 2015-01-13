@@ -7,7 +7,7 @@ class PostsController < ApplicationController
   def new
     authorize @campaign
 
-    @post = @topic.posts.new
+    @post = @topic.posts.build
     fetch_shareable_images!
 
     @user_image = @topic.user_images.build # Set user_image for uploading
