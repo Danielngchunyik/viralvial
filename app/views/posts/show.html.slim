@@ -21,4 +21,4 @@ p = "Facebook post ID: #{@post.external_post_id}"
   p = "Favourites: #{@favourites}"
   p = "Retweets: #{@retweets}"
 
-= link_to "Delete", [@campaign, @post], method: :delete
+= link_to "Delete", [@campaign, @topic, @post], method: :delete

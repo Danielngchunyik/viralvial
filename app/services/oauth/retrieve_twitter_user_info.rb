@@ -9,7 +9,7 @@ class Oauth::RetrieveTwitterUserInfo
   end
 
   def save
-    @twitter = TwitterService.new(@token, @secret)
+    @twitter = Posts::InitializeTwitterClient.new(@token, @secret)
 
     twitter_user = @twitter.client.user(@screen_name)
     upload_profile_image(twitter_user)

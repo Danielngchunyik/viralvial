@@ -1,42 +1,43 @@
 class PostsController < ApplicationController
+
   before_action :require_login
   before_action :set_campaign, :set_topic
   before_action :set_post, only: [:show, :destroy]
-  before_action :set_provider, except: :new
 
   def new
     authorize @campaign
 
-    @post = @topic.posts.build
+    @post = @topic.posts.new
     fetch_shareable_images!
 
     @user_image = @topic.user_images.build # Set user_image for uploading
   end
 
   def create
+    start_new_post
     authorize @campaign
     begin
-      @provider.publish!
-      flash[:notice] = "#{@provider.post_type} created"
-      redirect_to [@campaign, @topic, @post_service.post]
-    rescue => e
+      @new_post.save
+      flash[:notice] = "#{@new_post.post_type} created"
+      redirect_to [@campaign, @topic, @new_post.post]
+    rescue PublishError => e
       logger.info "[ERROR]: #{e.inspect}"
-      flash[:error] = "Error posting on #{@provider}. Please link your account first!"
+      flash[:error] = "Error posting on #{params[:provider].capitalize}. Please link your account first!"
       render :new
     end
   end
 
-  def show
-    @provider.retrieve_post
+  def show 
+    get_post_stats
   end
 
   def destroy
-    @provider.remove_post!
-    flash[:notice] = "#{@provider.post_type} deleted"
+    delete_post
+    flash[:notice] = "#{@delete_post.post_type} deleted"
     redirect_to root_path
-  rescue => e
+  rescue PublishError => e
     logger.info "[ERROR]: #{e.inspect}"
-    flash[:error] = "Error deleting #{@provider.post_type}"
+    flash[:error] = "Error deleting #{@delete_post.post_type}"
     redirect_to [@campaign, @topic, @post]
   end
 
@@ -68,20 +69,37 @@ class PostsController < ApplicationController
     authorize @post
   end
 
-  def set_provider
+  def start_new_post
+    case params[:provider]
+    when 'facebook'
+      @new_post = Posts::Publish::Facebook.new(
+                    current_user, nil, post_params, @topic.id, params[:provider])
+    when 'twitter'
+      @new_post = Posts::Publish::Twitter.new(
+                    current_user, nil, post_params, @topic.id, params[:provider])
+    end
+  end
+
+  def get_post_stats
     case @post.external_post_id_type
     when 'facebook'
-      @provider = Provider::Facebook.new(
-                    current_user, @post, post_params, @topic.id)
+      @get_post = Posts::Retrieve::Facebook.new(current_user, @post)
     when 'twitter'
-      @provider = Provider::Twitter.new(
-                    current_user, @post, post_params, @topic.id)
+      @get_post = Posts::Retrieve::Twitter.new(current_user, @post)
+    end
+  end
+
+  def delete_post
+    case @post.external_post_id_type
+    when 'facebook'
+      @delete_post = Posts::Delete::Facebook.new(current_user, @post)
+    when 'twitter'
+      @delete_post = Posts::Delete::Twitter.new(current_user, @post)
     end
   end
 
   def post_params
     params.require(:post).permit(:message, :provider, :image, :external_post_id,
-                                 :external_post_id_type, :campaign_id, :task_id,
-                                 :user_id)
+                                 :external_post_id_type, :task_id, :user_id)
   end
 end
