@@ -36,18 +36,18 @@ describe Admin::AnnouncementsController, :type => :controller do
     end
 
     describe "DELETE #destroy" do
-      let(:another_announcement) { create(:announcement) }
+      let!(:another_announcement) { create(:announcement) }
 
       it "deletes the announcement from the database" do
             expect{
-              delete :destroy, id: announcement
+              delete :destroy, id: another_announcement.id
             }.to change(Announcement, :count).by(-1)
-      end
-
-      it "redirects to admin_announcement_path" do
-        delete :destroy, id: announcement
         expect(response).to redirect_to admin_announcements_path
       end
+
+      # it "redirects to admin_announcement_path" do
+      #   delete :destroy, id: announcement
+      # end
     end
 
 
