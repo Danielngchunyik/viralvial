@@ -7,5 +7,4 @@ RSpec.describe User, type: :model do
       expect(User.create(email: 'facebook@facebook.com').password).not_to be_nil
     end
   end
-
 end
