@@ -1,18 +1,20 @@
-.nav
-  = link_to 'Home', root_path
-  '
-  - if current_user
-    - if current_user.admin?
-      = link_to "Admin Dashboard", admin_dashboard_path
-    '
-    = link_to "View profile", user_path(current_user.id)
-    '
-    = link_to "Edit profile", edit_user_path(current_user.id)
-    '
-    = link_to "Logout", :logout, method: :post
-    '
-  - else
-    = link_to "Register", new_user_path
-    '
-    = link_to "Login", :login
+header
+  .wrap
+  / a.active.item
+  /   i.home.icon = link_to 'Home', root_path
+  /   '
+  /   - if current_user
+  /     - if current_user.admin?
+  /       = link_to "Admin Dashboard", admin_dashboard_path
+  /     '
+  /     = link_to "View profile", user_path(current_user.id)
+  /     '
+  /     = link_to "Edit profile", edit_user_path(current_user.id)
+  /     '
+  /     = link_to "Logout", :logout, method: :post
+  /     '
+  /   - else
+  /     = link_to "Register", new_user_path
+  /     '
+  /     = link_to "Login", :login
     
