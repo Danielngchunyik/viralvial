@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150107034705) do
+ActiveRecord::Schema.define(version: 20150114134709) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -64,6 +64,7 @@ ActiveRecord::Schema.define(version: 20150107034705) do
     t.string   "message"
     t.integer  "topic_id"
     t.string   "image"
+    t.string   "type",                  null: false
   end
 
   create_table "taggings", force: :cascade do |t|

@@ -1,7 +1,6 @@
 h1 Show
 
 p = "Post ID: #{@post.id}"
-p = "Campaign ID: #{@post.campaign_id}"
 p = "User ID: #{@post.user_id}"
 p = "Facebook post ID: #{@post.external_post_id}"
 
@@ -21,4 +20,4 @@ p = "Facebook post ID: #{@post.external_post_id}"
   p = "Favourites: #{@favourites}"
   p = "Retweets: #{@retweets}"
 
-= link_to "Delete", [@campaign, @topic, @post], method: :delete
+= link_to "Delete", campaign_topic_post_path(@campaign, @topic, @post), method: :delete
