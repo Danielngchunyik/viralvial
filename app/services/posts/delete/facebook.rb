@@ -1,11 +1,4 @@
-class Posts::Facebook::Destroy
-
-  attr_accessor :fb_token, :post
-
-  def initialize(fb_token, post)
-    @fb_token = fb_token
-    @post = post
-  end
+class Posts::Delete::Facebook < Posts::Base
 
   def destroy
     delete_facebook_post!

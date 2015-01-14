@@ -1,4 +1,4 @@
-class TwitterService
+class Posts::InitializeTwitterClient
   attr_accessor :client, :consumer_key, :consumer_secret, :access_token,
                 :access_token_secret
 

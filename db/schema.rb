@@ -56,7 +56,6 @@ ActiveRecord::Schema.define(version: 20150107034705) do
   end
 
   create_table "posts", force: :cascade do |t|
-    t.integer  "campaign_id"
     t.integer  "user_id"
     t.datetime "created_at"
     t.datetime "updated_at"

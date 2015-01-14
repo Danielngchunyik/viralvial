@@ -1,7 +1,6 @@
 class CreatePosts < ActiveRecord::Migration
   def change
     create_table :posts do |t|
-      t.integer :campaign_id
       t.integer :user_id
 
       t.timestamps

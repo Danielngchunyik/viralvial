@@ -6,7 +6,7 @@ Rails.application.routes.draw do
   #Campaigns
   resources :campaigns do
     resources :topics do
-      resources :posts
+      resources :posts, except: [:edit]
       resources :user_images
     end
   end

@@ -1,11 +1,4 @@
-class Posts::Facebook::RetrievePostStats
-  attr_accessor :fb_token, :current_user, :post
-
-  def initialize(fb_token, current_user, post)
-    @fb_token = fb_token
-    @current_user = current_user
-    @post = post
-  end
+class Posts::Retrieve::Facebook < Posts::Base
 
   def display
     retrieve_facebook_stats!
