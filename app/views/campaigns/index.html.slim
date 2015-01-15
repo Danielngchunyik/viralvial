@@ -1,3 +1,50 @@
+div.layout
+    div.toppadding.center
+          div.ui.grid
+            div.four.wide.column
+              div.bottom_underline
+                h2.ui.header.campaign_index browse campaigns
+              div.ui.vertical.menu
+                a.item All
+                a.item Announcements
+                a.item Fashion & Beauty
+                a.item Food
+                a.item Lifestyle
+                a.item Parenting / Home
+                a.item Gadget / IT
+                a.item More
+
+
+            div.twelve.wide.column
+              div.orange_messagebox.cookie.nag
+                i.close.icon
+                div.ui.grid
+                  div.twelve.wide.column
+                    span.line_height Update your interests so that we are able to give you the list of campaigns that suits you best!
+                  div.four.wide.column
+                    button.ui.button.yellow_button update account
+              div.ui.grid
+                - @campaigns.each do |campaign|
+                    div.five.wide.column
+                      div.pink_panel
+                        / = image_tag campaign.topics.first.default_images.first.storage.index.url
+                        = image_tag 'placeholder.jpg', class:'border_radius'
+                        div.body_section
+                          h3.ui.header.uppercase = campaign.title
+                          div = campaign.description
+                          div.ui.grid
+                            div.eight.wide.column
+                            div.right.aligned.eight.wide.column
+                              span.countdown = campaign.time_remaining
+              div.ui.grid
+                div.five.wide.column
+                div.five.wide.column
+                  button see more
+                div.five.wide.column
+
+
+
+
 h1 Campaign index
 
 .spacing
