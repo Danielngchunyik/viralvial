@@ -1,3 +1,26 @@
 .banner
-  h1 Changing the way we share, one influencer at a time.
-  button Join Us Now
+  .context
+    h1 Changing the way we share, 
+    h1 one influencer at a time.
+  
+    = link_to new_user_path do
+      = image_tag 'join_us.png'
+
+.about-us.ui.grid
+  .row
+    .four.wide.column
+    .context.wide.eight.column
+      h3 ABOUT US
+      h4.small-spacing ViralVial isn't just a platform to get your messages out there in the digital landscape It's more than that. Here's what
+      h4 it means for both our esteemed influencers (the Viralers!)and exciting brands (the Vials!)
+    .four.wide.column
+
+  .row
+    .five.wide.column
+    .three.wide.column
+      = link_to '#' do
+        = image_tag 'btn_vials.png'
+    .three.wide.column
+      = link_to '#' do
+        = image_tag 'btn_viraler.png'
+    .five.wide.column
