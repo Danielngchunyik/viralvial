@@ -1,0 +1,2 @@
+class TwitterPostPolicy < PostPolicy
+end

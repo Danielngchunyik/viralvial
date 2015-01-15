@@ -14,26 +14,25 @@ class PostsController < ApplicationController
   end
 
   def create
-    start_new_post
     authorize @campaign
     begin
-      @new_post.save
+      @new_post = Post.social_media_share(current_user, params[:provider], post_params, @topic)
       flash[:notice] = "#{@new_post.post_type} created"
-      redirect_to [@campaign, @topic, @new_post.post]
+      redirect_to campaign_topic_post_path(@campaign, @topic, @new_post.post)
     rescue PublishError => e
       logger.info "[ERROR]: #{e.inspect}"
       flash[:error] = "Error posting on #{params[:provider].capitalize}. Please link your account first!"
-      render :new
+      redirect_to :back
     end
   end
 
   def show 
-    get_post_stats
+    @post_stats = @post.get_social_media(current_user)
   end
 
   def destroy
-    delete_post
-    flash[:notice] = "#{@delete_post.post_type} deleted"
+    @delete_post = @post.destroy_with_social_media(current_user)
+    flash[:notice] = "Deleted!"
     redirect_to root_path
   rescue PublishError => e
     logger.info "[ERROR]: #{e.inspect}"
@@ -69,37 +68,8 @@ class PostsController < ApplicationController
     authorize @post
   end
 
-  def start_new_post
-    case params[:provider]
-    when 'facebook'
-      @new_post = Posts::Publish::Facebook.new(
-                    current_user, nil, post_params, @topic.id, params[:provider])
-    when 'twitter'
-      @new_post = Posts::Publish::Twitter.new(
-                    current_user, nil, post_params, @topic.id, params[:provider])
-    end
-  end
-
-  def get_post_stats
-    case @post.external_post_id_type
-    when 'facebook'
-      @get_post = Posts::Retrieve::Facebook.new(current_user, @post)
-    when 'twitter'
-      @get_post = Posts::Retrieve::Twitter.new(current_user, @post)
-    end
-  end
-
-  def delete_post
-    case @post.external_post_id_type
-    when 'facebook'
-      @delete_post = Posts::Delete::Facebook.new(current_user, @post)
-    when 'twitter'
-      @delete_post = Posts::Delete::Twitter.new(current_user, @post)
-    end
-  end
-
   def post_params
     params.require(:post).permit(:message, :provider, :image, :external_post_id,
-                                 :external_post_id_type, :task_id, :user_id)
+                                 :task_id, :user_id)
   end
 end

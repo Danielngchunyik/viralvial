@@ -1,13 +1,6 @@
-class Posts::Delete::Facebook < Posts::Base
+class Posts::Delete::Facebook < Posts::FacebookBase
 
   def destroy
-    delete_facebook_post!
-    @post.destroy
-  end
-
-  private
-
-  def delete_facebook_post!
-    FbGraph::Post.new(@post.external_post_id, access_token: @fb_token).destroy
+    FbGraph::Post.new(@post.external_post_id, access_token: @token).destroy
   end
 end

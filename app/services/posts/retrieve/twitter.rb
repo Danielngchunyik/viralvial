@@ -1,18 +1,8 @@
-class Posts::Retrieve::Twitter < Posts::Base
+class Posts::Retrieve::Twitter < Posts::TwitterBase
 
   def display
-    retrieve_twitter_stats!
+    @tweet = @twitter.status(@post.external_post_id)
 
-    favourites = @tweet.favorite_count
-    retweets = @tweet.retweet_count
-
-    [favourites, retweets]
-  end
-
-  private
-
-  def retrieve_twitter_stats!
-    @twitter = Posts::InitializeTwitterClient.new(@tw_token, @tw_secret)
-    @tweet = @twitter.client.status(@post.external_post_id)
+    [@tweet.favorite_count, @tweet.retweet_count]
   end
 end

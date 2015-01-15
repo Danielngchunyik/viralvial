@@ -1,9 +1,9 @@
-class Posts::Publish::Facebook < Posts::Base
+class Posts::Publish::Facebook < Posts::FacebookBase
 
   def save
     create_fb_post!
 
-    save_post!(@fb_post.raw_attributes['id'], "facebook", @topic_id)
+    @fb_post.raw_attributes['id']
   end
  
   private
@@ -17,11 +17,11 @@ class Posts::Publish::Facebook < Posts::Base
   end
 
   def post_without_img
-    @fb_post = FbGraph::User.me(@fb_token).feed!(message: @post_params[:message])
+    @fb_post = FbGraph::User.me(@token).feed!(message: @post_params[:message])
   end
 
   def post_with_img
-    @fb_post = FbGraph::User.me(@fb_token).photo!(
+    @fb_post = FbGraph::User.me(@token).photo!(
       url: @post_params[:image],
       message: @post_params[:message]
     )
