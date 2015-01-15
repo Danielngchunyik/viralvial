@@ -27,7 +27,7 @@ class PostsController < ApplicationController
   end
 
   def show 
-    @get_post = @post.get_social_media(current_user)
+    @post_stats = @post.get_social_media(current_user)
   end
 
   def destroy

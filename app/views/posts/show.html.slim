@@ -14,10 +14,10 @@ p = "#{social_media(@post)} post ID: #{@post.external_post_id}"
 .spacing
 - case social_media(@post) 
 - when "Facebook"
-  p = "Likes: #{@get_post[0]}"
-  p = "Comments: #{@get_post[1]}"
+  p = "Likes: #{@post_stats[0]}"
+  p = "Comments: #{@post_stats[1]}"
 - when "Twitter"
-  p = "Favourites: #{@get_post[0]}"
-  p = "Retweets: #{@get_post[1]}"
+  p = "Favourites: #{@post_stats[0]}"
+  p = "Retweets: #{@post_stats[1]}"
 
 = link_to "Delete", campaign_topic_post_path(@campaign, @topic, @post), method: :delete
