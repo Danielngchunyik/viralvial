@@ -17,9 +17,7 @@ class Post < ActiveRecord::Base
     
     social_media_post = post.publish_to_social_media_class.new(user, post, post_params, topic.id)
 
-    external_id = social_media_post.save
-    
-    post.update!(external_post_id: external_id)
+    post.update!(external_post_id: social_media_post.save)
     
     social_media_post
   end

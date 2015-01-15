@@ -22,7 +22,7 @@ class PostsController < ApplicationController
     rescue PublishError => e
       logger.info "[ERROR]: #{e.inspect}"
       flash[:error] = "Error posting on #{params[:provider].capitalize}. Please link your account first!"
-      render :new
+      redirect_to :back
     end
   end
 
@@ -43,8 +43,15 @@ class PostsController < ApplicationController
   private
 
   def fetch_shareable_images!
-    @images = @topic.default_images + @topic.user_images.find_by(user_id: current_user.id)
-    @images.compact
+    @images = []
+
+    @topic.default_images.each do |image|
+      @images << image
+    end
+
+    if user_image = @topic.user_images.find_by(user_id: current_user.id)
+      @images << user_image
+    end
   end
 
   def set_campaign
