@@ -13,15 +13,15 @@ class Post < ActiveRecord::Base
 
   def self.social_media_share(user, provider, post_params, topic)
 
-    @post = provider_to_class(provider).new(post_params.merge(topic_id: topic.id, user_id: user.id))
+    post = provider_to_class(provider).new(post_params.merge(topic_id: topic.id, user_id: user.id))
     
-    start_social_media_post(user, post_params, topic)
+    social_media_post = post.publish_to_social_media_class.new(user, post, post_params, topic.id)
 
-    external_id = @social_media_post.save
+    external_id = social_media_post.save
     
-    @post.update!(external_post_id: external_id)
+    post.update!(external_post_id: external_id)
     
-    @social_media_post
+    social_media_post
   end
 
   def self.provider_to_class(provider)
@@ -31,9 +31,5 @@ class Post < ActiveRecord::Base
     when 'twitter'
       TwitterPost
     end
-  end
-
-  def self.start_social_media_post(user, post_params, topic)
-    @social_media_post = @post.publish_to_social_media_class.new(user, @post, post_params, topic.id)
   end
 end

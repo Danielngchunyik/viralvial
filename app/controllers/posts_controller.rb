@@ -43,15 +43,8 @@ class PostsController < ApplicationController
   private
 
   def fetch_shareable_images!
-    @images = []
-
-    @topic.default_images.each do |image|
-      @images << image
-    end
-
-    if user_image = @topic.user_images.find_by(user_id: current_user.id)
-      @images << user_image
-    end
+    @images = @topic.default_images + @topic.user_images.find_by(user_id: current_user.id)
+    @images.compact
   end
 
   def set_campaign
