@@ -11,13 +11,4 @@ class Posts::Base
 
     set_token
   end
-
-  def post_type
-    case @provider || @post.external_post_id_type
-    when 'facebook'
-      "Post"
-    when 'twitter'
-      "Tweet"
-    end
-  end
 end
