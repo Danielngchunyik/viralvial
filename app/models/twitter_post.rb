@@ -10,8 +10,4 @@ class TwitterPost < Post
   def social_media_delete(user)
     Posts::Delete::Twitter.new(user, self).destroy
   end
-
-  def external_post_id_type
-    "twitter"
-  end
 end

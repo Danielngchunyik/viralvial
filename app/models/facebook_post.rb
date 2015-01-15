@@ -10,8 +10,4 @@ class FacebookPost < Post
   def social_media_delete(user)
     Posts::Delete::Facebook.new(user, self).destroy
   end
-
-  def external_post_id_type
-    "facebook"
-  end
 end
