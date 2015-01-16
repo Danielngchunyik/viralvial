@@ -18,26 +18,24 @@ class Campaign < ActiveRecord::Base
   enum language: [:unspecified, :chinese, :english, :malay]
 
   accepts_nested_attributes_for :topics, allow_destroy: true
-
-
   
   def time_remaining
     endTime = self.end_date.to_time
-    timeDifference = Time.now - endTime
-    if timeDifference > 3.weeks
-      time_remaining = time_ago_in_words(endTime)
-    elsif timeDifference > 1.weeks and timeDifference <= 3.weeks
-      time_remaining = time_ago_in_words(endTime)
-    elsif timeDifference <= 1.weeks and timeDifference > 24.hours
-      time_remaining = time_ago_in_words(endTime)
-    else timeDifference <= 24.hours
+    timeDifference = endTime - Time.now    
+    if timeDifference <= 24.hours
       time_remaining = time_diff
+    elsif timeDifference > 1.weeks
+      weekDiv = 3600*24*7
+      time_remaining = timeDifference.divmod(weekDiv).first
+      timeDifference > 3.weeks ? "#{time_remaining} weeks left" : "#{time_remaining} weeks left!"
+    elsif timeDifference > 1.day and timeDifference < 1.weeks
+      dayDiv = 3600*24
+      time_remaining = timeDifference.divmod(dayDiv).first
+      "#{time_remaining} days left!"
     end
-    time_remaining
   end
 
   private
-
   def time_diff
     startTime = Time.now
     endTime = self.end_date.to_time
