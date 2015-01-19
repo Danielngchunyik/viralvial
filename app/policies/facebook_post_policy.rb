@@ -1,0 +1,2 @@
+class FacebookPostPolicy < PostPolicy
+end

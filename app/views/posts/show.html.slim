@@ -1,9 +1,8 @@
 h1 Show
 
 p = "Post ID: #{@post.id}"
-p = "Campaign ID: #{@post.campaign_id}"
 p = "User ID: #{@post.user_id}"
-p = "Facebook post ID: #{@post.external_post_id}"
+p = "#{social_media(@post)} post ID: #{@post.external_post_id}"
 
 - if @facebook.present?
   .spacing
@@ -13,12 +12,12 @@ p = "Facebook post ID: #{@post.external_post_id}"
     p = "Required likes: #{@facebook.num_of_likes}"
 
 .spacing
-- case @post.external_post_id_type 
-- when "facebook"
-  p = "Likes: #{@fb_likes}"
-  p = "Comments: #{@fb_comments}"
-- when "twitter"
-  p = "Favourites: #{@favourites}"
-  p = "Retweets: #{@retweets}"
+- case social_media(@post) 
+- when "Facebook"
+  p = "Likes: #{@post_stats[0]}"
+  p = "Comments: #{@post_stats[1]}"
+- when "Twitter"
+  p = "Favourites: #{@post_stats[0]}"
+  p = "Retweets: #{@post_stats[1]}"
 
-= link_to "Delete", [@campaign, @topic, @post], method: :delete
+= link_to "Delete", campaign_topic_post_path(@campaign, @topic, @post), method: :delete
