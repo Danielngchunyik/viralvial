@@ -8,7 +8,7 @@ class PostsController < ApplicationController
     authorize @campaign
 
     @post = @topic.posts.build
-    fetch_shareable_images!
+    fetch_shareable_images
 
     @user_image = @topic.user_images.build # Set user_image for uploading
   end
@@ -42,7 +42,7 @@ class PostsController < ApplicationController
 
   private
 
-  def fetch_shareable_images!
+  def fetch_shareable_images
     @images = []
 
     @topic.default_images.each do |image|

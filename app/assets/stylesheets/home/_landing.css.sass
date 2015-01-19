@@ -1,0 +1,107 @@
+// Variables
+
+.h3-stats
+  font-family: Seravek
+  font-size: 22px
+  font-weight: 700
+  color: #E62E84
+
+// End
+
+body.home.index
+
+  .module.parallax
+    background-position: 0 0
+    background-repeat: no-repeat
+    -webkit-background-size: cover
+    -moz-background-size: cover
+    -o-background-size: cover
+    background-size: cover
+    height: 83.750em
+    text-align: center
+    background-image: asset-url("landing/banner.png")
+
+    .context
+      position: relative
+      top: 15%
+
+      h1
+        font-family: Rockwell
+        font-size: 3.625em
+        font-weight: bold
+        color: #ffffff
+        padding: 0.1em
+
+      .join-button
+        display: inline-block
+        width: 227px
+        height: 105px
+        margin-top: 2.188em
+        background-position-x: 0
+        background-image: asset-url("landing/join_us.png")
+
+        &:hover
+          background-position-x: 227px
+          transition: background-image 0.2s
+          
+
+    .about-us
+      position: relative
+      top: 25%
+      text-align: left
+      background-color: white
+
+      .align-center
+        text-align: center
+
+      .context
+        margin-left: 2.5em
+        margin-top: 3em
+
+        .top-padding
+          margin-top: 1.5em
+
+        h3
+          @extend .h3-stats
+
+        h4 
+          margin-top: 0.3em
+          font-family: Seravek
+          font-size: 1.188em
+          font-weight: 100
+          color: #333333
+
+      .info-button
+        opacity: 1
+        margin-bottom: 2em
+
+        &:hover
+          opacity: 0.5
+          transition: opacity 0.2s
+
+    .about-us-description
+      position: relative
+      top: 32.5%
+
+      #viralvial-description
+
+        .textbox
+
+          font-family: Seravek
+          font-size: 18px
+          font-weight: 700
+          color: #ffffff
+          margin-left: 2.5em
+          margin-top: 0.1em
+
+          .top-padding
+            margin-top: 1.5em
+
+          .text
+            margin-top: 0.2em
+
+  section.latest-campaigns
+    margin-top: 100px
+
+    h3
+      @extend .h3-stats
