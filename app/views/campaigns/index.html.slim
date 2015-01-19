@@ -1,27 +1,43 @@
-h1 Campaign index
+.ui.page.stackable.grid
+  .row
+    .four.wide.column
+      .bottom_underline
+        h2.ui.header.campaign_index browse campaigns
+      .ui.secondary.vertical.demo.menu
+        a.item.selected All
+        a.item Announcements
+        a.item Fashion & Beauty
+        a.item Food
+        a.item Lifestyle
+        a.item Parenting / Home
+        a.item Gadget / IT
+        a.item More
+    .twelve.wide.column
+      .orange_messagebox.cookie.nag
+          .ui.grid
+            .right.aligned.sixteen.wide.column
+              i.close.icon
+          .ui.stackable.two.column.grid.removetop
+              .column
+                span.line_height Update your interests so that we are able to give you the list of campaigns that suits you best!
+              .right.aligned.column
+                button.ui.button.yellow_button update account  
+      .ui.stackable.three.column.grid
+        - @campaigns.each do |campaign|
+          .column
+            .pink_panel
+              / = image_tag campaign.topics.first.default_images.first.storage.index.url
+              = image_tag 'placeholder.jpg', class:'border_radius'
+              .body_section
+                h3.ui.header.uppercase = campaign.title
+                p = campaign.description.split.slice(0, 6).join(" ") << "..."
+                .ui.grid
+                  .eight.wide.column
+                  .right.aligned.eight.wide.column
+                    span.countdown = campaign.time_remaining
+      .ui.three.column.grid
+        .column
+        .column
+          button.ui.button.yellow_button see more
+        .column
 
-.spacing
-  p
-    b Campaigns
-
-  - @campaigns.each do |campaign|
-
-    table
-      tr
-        td = link_to campaign.title, campaign
-        td = campaign.description
-        td = campaign.start_date
-        td = campaign.end_date
-
-.spacing
-  p
-    b Invited Campaigns
-
-  - @invited_campaigns.each do |invited_campaign|
-
-    table
-      tr
-        td = link_to invited_campaign.title, invited_campaign
-        td = invited_campaign.description
-        td = invited_campaign.start_date
-        td = invited_campaign.end_date

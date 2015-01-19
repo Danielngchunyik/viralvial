@@ -8,13 +8,28 @@
 
 require 'faker'
 
-5.times do
-  User.create!(
-    email: Faker::Internet.email,
-    followers: rand(50000),
-    klout: rand(100),
-    localization: 100,
-    karma: rand(10),
-    gender: rand(2)
-  )
+# 5.times do
+#   User.create!(
+#     email: Faker::Internet.email,
+#     followers: rand(50000),
+#     klout: rand(100),
+#     localization: 100,
+#     karma: rand(10),
+#     gender: rand(2)
+#   )
+# end
+
+params = { campaign:{
+		title: Faker::Name.title,
+  		description: Faker::Company.catch_phrase,
+  		start_date:Faker::Date.backward(25),
+  		end_date:Faker::Date.forward(25),
+  		topics_attributes:[{ description: Faker::Company.catch_phrase
+  							
+  			}]
+	}
+}
+
+10.times do |e|
+  e = Campaign.create!(params[:campaign])
 end
