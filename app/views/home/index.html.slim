@@ -1,15 +1,15 @@
-.module.parallax
+.module.parallax.one
   .context
-    h1 Changing the way we share, 
+    h1 Changing the way we engage, 
     h1 one influencer at a time.
 
     = link_to new_user_path do
       span.join-button
-   
-  section.about-us.ui.grid
+  
+  section#about-us.ui.grid
     .row
       .four.wide.column
-      .context.wide.eight.column
+      .context.eight.wide.column
         h3 ABOUT US
         h4.top-padding ViralVial isn't just a platform to get your messages out there in the digital landscape. It's more than that. 
         h4 Here's what it means for both our esteemed influencers (the Viralers!) and exciting brands (the Vials!)
@@ -17,10 +17,10 @@
 
     .row
       .five.wide.column
-      .three.wide.column.align-center
+      .three.wide.column.center
         = link_to '#' do
           = image_tag 'landing/btn_viraler.png', class: 'info-button viraler'
-      .three.wide.column.align-center
+      .three.wide.column.center
         = link_to '#' do
           = image_tag 'landing/btn_vials.png', class: 'info-button vials'
       .five.wide.column
@@ -32,62 +32,99 @@
         #viralvial-description
       .four.wide.column
 
-section.latest-campaigns.ui.grid
+section.about-us-continued.ui.grid
+
+  .row.viraler-title
+    .four.wide.column
+    .eight.wide.column
+      h3 HEY VIRALERS!
+      h4 Wondering what can you do on this site?
+    .four.wide.column
+
+  .row.viraler-description
+    .four.wide.column
+    .three.wide.column.center
+      = image_tag "landing/icon_compass.png", height: 150, weight: 150
+      p.title BROWSE CAMPAIGNS
+      p Pick a campaign that suits your taste, 
+      | matches your time and gets you all excited!
+    .two.wide.column.center
+      = image_tag "landing/icon_share.png", height: 150, weight: 150
+      p.title SHARE CONTENT
+      p Share the campaign with your favourite photo and write something sweet.
+    .three.wide.column.center
+      = image_tag "landing/icon_score.png", height: 150, weight: 150
+      p.title EARN REWARDS
+      p As the campaign comes to an end, 
+      | you'll get your rewards and up your levels!
+    .four.wide.column
+
   .row
     .four.wide.column
     .eight.wide.column
-      h3 LATEST CAMPAIGNS
+      .ui.horizontal.divider
+        p.hidden -
     .four.wide.column
 
+  .row
+    .four.wide.column
+    .eight.wide.column
+        h3 HEY VIALS!
+        h4 Wondering what can you do on this site?
+    .four.wide.column
 
-p "1"
-p "a"
-p "a"
-p "a"
-p "a"
-p "a"
-p "a"
-p "a"
-p "a"
-p "a"
-p "a"
-p "a"
-p "a"
-p "a"
-p "a"
-p "a"
-p "a"
-p "a"
-p "a"
-p "a"
-p "a"
-p "a"
-p "a"
-p "a"
-p "a"
-p "a"
-p "a"
-p "a"
-p "a"
-p "a"
-p "a"p "a"
-p "a"
-p "a"
-p "a"
-p "a"p "a"
-p "a"
-p "a"
-p "a"
-p "a"
-p "a"
-p "a"
-p "a"
-p "a"
-p "a"
-p "a"
-p "a"
-p "a"
-p "a"
-p "a"
-p "a"
+  .row.vial-description
+    .four.wide.column
+    .three.wide.column.center
+      = image_tag "landing/icon_create.png", height: 150, weight: 150
+      p.title CREATE CAMPAIGNS
+      p Create attractive campaigns!
+    .two.wide.column.center
+      = image_tag "landing/icon_tune.png", height: 150, weight: 150
+      p.title ENGAGE INFLUENCERS
+      p Get into the right tune with the right group of influencers to share your campaign
+    .three.wide.column.center
+      = image_tag "landing/icon_serving.png", height: 150, weight: 150
+      p.title BUILD YOUR BRAND
+      p Work together with your influencers to reach out to your audience!
+    .four.wide.column
 
+section.contact-us.zero-margin
+
+  .ui.grid.margin-zero
+    .row.context
+      .four.wide.column
+      .five.wide.column.contact-form
+        p.bold DROP US A NOTE
+        | If you need a service, please do not hesitate to contact us!
+
+        = form_for @contact, url: contact_path, method: :post, html: { class: 'ui form settings', id: 'contact_form' } do |f|
+          .field
+            p= f.label "NAME: "
+            p= f.text_field :name, class: 'settings'
+          .field
+            p= f.label "EMAIL: "
+            p= f.email_field :email, class: 'settings'
+          .field
+            p= f.label "MESSAGE: "
+            p= f.text_area :content, cols: 50, rows: 10, class: 'settings'
+
+          p.align-right= f.submit "SEND", class: "button-settings ui yellow button"
+
+      .four.wide.column.details
+        .phone
+          p.bold PHONE
+          | (+603) 7611 0415
+
+        .small-space
+          p.bold EMAIL
+          | enquiry@viralvial.com
+
+        .small-space
+          p Please fill out this short form and submit any comments
+          | or questions you may have. We will make every effort to respond
+          |  to your inquiries in a thorough and timely manner.
+      .three.wide.column
+
+
+.preloaded-images

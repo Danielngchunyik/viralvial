@@ -1,7 +1,7 @@
 // Semantic UI Override
 
-.ui.grid
-  margin: 0
+header.ui.grid
+  margin: -10px 0 0 0
 
 // End
 
@@ -9,33 +9,37 @@ header
   position: fixed
   z-index: 1
   opacity: 0.9
+  top: 0
 
   &.style
     width: 100%
     background: #333333
-
-  &.wrap
-    margin: 0 auto
-    padding: 0.25em 0.625em
-    height: 6em
+    margin: 0
+    padding: 4px 10px
+    height: 96px
 
   .content
 
     .icon
-      margin-top: 0.4em
-      margin-left: 5em
+      margin-left: 80px
+      margin-top: 12px
 
   h3
-    line-height: 3.125em
-    margin-right: 4.5em
-    font-family: Seravek
-    font-size: 1.3em
-    font-weight: 500
+    .header-link
+      margin-right: 72px
+      font-family: Seravek
+      font-size: 16px
+      font-weight: 500
 
     a
-      color: #F6C403
+      color: #F6C403 !important
       text-decoration: none
       text-align: center
+
+      &.login
+        color: #FFFFFF !important
+        text-decoration: none
+        text-align: center
 
       &:hover
         opacity: 0.5

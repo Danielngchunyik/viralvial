@@ -5,12 +5,12 @@ class UserPolicy < ApplicationPolicy
     edit?
   end
 
-  def edit?
+  def edit_interest?
     update?
   end
 
-  def change_password_and_email?
-    user.present? && user.admin?
+  def edit?
+    update?
   end
 
   def update?

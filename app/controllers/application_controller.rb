@@ -11,15 +11,21 @@ class ApplicationController < ActionController::Base
 
   private
 
-  def current_location
+  def current_country
     return unless set_location
-    @current_location ||= "#{@location.city_name}, #{@location.country_name}"
+    @current_country ||= "#{@location.country_name}"
   end
-  helper_method :current_location
+  helper_method :current_country
+
+  def current_city
+    return unless set_location
+    @current_city ||= "#{@location.city_name}"
+  end
+  helper_method :current_city
 
   def not_authenticated
     flash[:alert] = 'Please login first'
-    redirect_to login_path
+    redirect_to new_user_path
   end
 
   def set_location

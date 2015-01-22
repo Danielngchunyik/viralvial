@@ -5,6 +5,8 @@ module Users::ManagementActions
     before_action :set_user, :require_login,
                   only: [:show, :edit, :update, :change_password_and_email,
                          :destroy]
+    before_action :set_options, only: :edit
+    respond_to :html, :js
   end
 
   def new
@@ -33,11 +35,15 @@ module Users::ManagementActions
   def update
     authorize @user
     if @user.update(user_params)
+      flash.clear
       flash[:notice] = "User details updated"
-      redirect_to successful_redirection_path
     else
+      flash.clear
       flash[:error] = "error :#{@user.errors.full_messages}"
-      render action: 'edit'
+    end
+
+    respond_with(@user) do |f|
+      f.html { redirect_to @user }
     end
   end
 
@@ -48,6 +54,10 @@ module Users::ManagementActions
                                          account[:email],
                                          account[:password],
                                          account[:password_confirmation])
+  end
+
+  def set_options
+    @options = Option.first.interest_option_list
   end
 
   def set_user

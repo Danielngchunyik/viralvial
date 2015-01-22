@@ -1,0 +1,6 @@
+<% if @user.valid? %>
+  $('#interest-form').remove();
+  $('#interest-container').show();
+
+  $('#interest-link').replaceWith("<%= escape_javascript(render(partial: 'interest', locals: { user: @user })) %>");
+<% end %>

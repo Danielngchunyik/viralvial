@@ -10,17 +10,29 @@ h2.campaign_index
   margin-bottom: 48px
   padding-bottom: 16px
 
-div.center
-  width: 80%
-  display: block
-  margin-left: auto
-  margin-right: auto
+div
+  &.center
+    width: 80%
+    display: block
+    margin-left: auto
+    margin-right: auto
 
-div.orange_messagebox
-  border-radius: 5px
-  border: 1px solid #F6C403  
-  margin-bottom: 10px
-  padding: 0px 30px
+  &.orange_messagebox
+    border-radius: 5px
+    border: 1px solid #F6C403
+    margin-bottom: 10px
+    padding: 0px 30px
+
+  &.pink_panel
+    border-radius: 5px
+    border: 1px solid #E62E84
+    height: 377px
+
+  &.body_section
+    padding: 0px 10px 16px 10px
+
+  &.ui.vertical
+    box-shadow: 0px 0px 0px 0px rgba(0, 0, 0, 0)
 
 span.line_height
   line-height: 15px
@@ -33,13 +45,7 @@ button.ui.button.yellow_button
   min-width: 200px
   height: 40px
 
-div.pink_panel
-  border-radius: 5px
-  border: 1px solid #E62E84
-  height: 377px
 
-div.body_section
-  padding: 0px 10px 16px 10px
 
 img.border_radius
   border-top-left-radius: 5px
@@ -56,21 +62,18 @@ span.countdown
   padding-left: 7px
   padding-right: 7px
 
-a.item
-  font-size: 18px !important
+a
+  &.item
+    font-size: 18px !important
 
-a.item.selected
-  background-color: #F6C403
+  &.item.selected
+    background-color: #F6C403
 
-
-a.item:hover
-  color: #F6C403 !important
-  background-color: #ffffff
-  border: 1px solid #F6C403
-  padding: 0.83em 0.95em
-
-div.ui.vertical
-  box-shadow: 0px 0px 0px 0px rgba(0, 0, 0, 0)
+  &.item:hover
+    color: #F6C403 !important
+    background-color: #ffffff
+    border: 1px solid #F6C403
+    padding: 0.83em 0.95em
 
 i.close.icon
   cursor: pointer

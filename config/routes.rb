@@ -10,12 +10,16 @@ Rails.application.routes.draw do
       resources :user_images
     end
   end
+
+  #Contact
+  post 'contact', to: 'contacts#create'
   
   #Users
-  get 'login' => 'user_sessions#new', as: :login
-  post 'logout' => 'user_sessions#destroy', as: :logout
+  get 'login', to: 'user_sessions#new', as: :login
+  post 'logout', to: 'user_sessions#destroy', as: :logout
   resources :users do
     member do
+      get 'edit_interest'
       patch 'change_password_and_email'
     end
   end
@@ -23,14 +27,14 @@ Rails.application.routes.draw do
   resources :password_resets
 
   #Oauth
-  post "oauth/callback" => "oauths#callback"
-  get "oauth/callback" => "oauths#callback"
-  get "oauth/:provider" => "oauths#oauth", as: :auth_at_provider
-  delete "oauth/:provider" => "oauths#destroy", as: :delete_oauth
+  post "oauth/callback", to: "oauths#callback"
+  get "oauth/callback", to: "oauths#callback"
+  get "oauth/:provider", to: "oauths#oauth", as: :auth_at_provider
+  delete "oauth/:provider", to: "oauths#destroy", as: :delete_oauth
 
   #Admin Panel
   namespace :admin do
-    get 'dashboard' => 'dashboard#index', as: :dashboard
+    get 'dashboard', to: 'dashboard#index', as: :dashboard
     resources :campaigns do
       resources :topics
     end

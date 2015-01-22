@@ -1,0 +1,19 @@
+#interest-form
+  - if edit == "yes"
+    = form_for user, remote: true, html: { class: "ui form"} do |f|
+      .field
+        = f.label "Pick an interest: ", class: "interest-label"
+        = f.select :main_interest, options.map { |interest| [interest.titleize, interest] }, {}, { class: "ui search dropdown interest-field spacing-top" }
+      
+      p.center.top-spacing= f.submit "Done!", class: "button-settings ui yellow button"
+      - if edit == "yes"
+        p.center.top-spacing= link_to "Cancel", '#', class: "ui blue button", id: "cancel_edit", data: { disable_with: 'Reversing!..'}
+  - else
+    = form_for user, html: { class: "ui form"} do |f|
+      .field
+        = f.label "Pick an interest: ", class: "interest-label"
+        = f.select :main_interest, options.map { |interest| [interest.titleize, interest] }, {}, { class: "ui search dropdown interest-field spacing-top" }
+      
+      p.center.top-spacing= f.submit "Done!", class: "button-settings ui yellow button"
+      - if edit == "yes"
+        p.center.top-spacing= link_to "Cancel", '#', class: "ui blue button", id: "cancel_edit", data: { disable_with: 'Reversing!..'}

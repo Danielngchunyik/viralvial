@@ -1,17 +1,23 @@
-div.ui.grid
-	div.two.wide.column
+.connect-form.ui.grid
+  .row
+  	.two.wide.column
+  	.twelve.wide.column
+  	    .top-padding
+  	    	= image_tag 'login/connect.png', class: "login"
+    	    h2.ui.header.login-h2.top-padding
+    	    	= "Login to Viral Vial with your favorite social network to share campaigns and earn rewards"
+    	    .center.top-padding
+    	    	= link_to auth_at_provider_path(provider: :facebook), class: "ui facebook button capitalize social-buttons" do 
+    	    		i.facebook.icon
+    	    		= "Connect with Facebook"
+    	    .center.top-padding-quarter 
+    	    	= link_to auth_at_provider_path(provider: :twitter), class: "ui twitter button capitalize social-buttons"do
+    	    		i.twitter.icon
+    	    		= "Connect with Twitter"
 
-	div.twelve.wide.column
-	    div.toppadding
-	    	    = image_tag 'login/btn_connect.png', class: "login", width: 50, height: 50
-	    	    h2.ui.header.login_h2
-	    	    	pre Login to Viral Vial with your favorite social network 
-	    	    		to share campaigns and earn rewards
-	    	    div.center.toppadding_quarter = link_to "connect with facebook", auth_at_provider_path(provider: :facebook), class: "ui facebook button lowercase social_buttons"
-	    	    div.center.toppadding_quarter = link_to "connect with twitter", auth_at_provider_path(provider: :twitter), class: "ui twitter button lowercase social_buttons"
-	    	    div.center.toppadding_half.line_height
-	    		    p We promise we won't post anything to your account without your permission.
-	    		    span By connecting, you agree to our 
-	    		    a href="#"  Terms of Use and Privacy Policy
-	    		    span .
-	div.two.wide.column
+    	    .center.top-padding-half.line-height
+    		    p We promise we won't post anything to your account without your permission.
+    		    span By connecting, you agree to our 
+    		    = link_to "Terms of Use and Privacy Policy", '#'
+    		    span .
+  	.two.wide.column.margin-zero

@@ -15,14 +15,14 @@ gem 'jquery-rails'
 gem 'country_select', github: 'stefanpenner/country_select'
 gem 'iso_country_codes'
 
-# styling
-gem 'semantic-ui-sass'
-
 # database tagging
 gem 'acts-as-taggable-on'
 
 # S3 Amazon
 gem 'fog'
+
+# Responders
+gem 'responders'
 
 # image Uploaders
 gem 'carrierwave'

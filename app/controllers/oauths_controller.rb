@@ -12,7 +12,7 @@ class OauthsController < ApplicationController
 
       set_access_token(@user)
       flash[:notice] = "Logged in from #{provider.titleize}"
-      redirect_to root_path
+      redirect_to user_path(@user)
     else
       
       if logged_in?
@@ -86,7 +86,7 @@ class OauthsController < ApplicationController
     end
 
     set_access_token(current_user)
-    redirect_to edit_user_path(current_user)
+    redirect_to user_path(current_user)
   end
 
   def set_access_token(user)
