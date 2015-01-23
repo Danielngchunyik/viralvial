@@ -32,7 +32,7 @@
         #viralvial-description
       .four.wide.column
 
-section.about-us-continued.ui.grid
+section.about-us-continued.ui.page.stackable.grid
 
   .row.viraler-title
     .four.wide.column
@@ -43,20 +43,22 @@ section.about-us-continued.ui.grid
 
   .row.viraler-description
     .four.wide.column
-    .three.wide.column.center
-      = image_tag "landing/icon_compass.png", height: 150, weight: 150
-      p.title BROWSE CAMPAIGNS
-      p Pick a campaign that suits your taste, 
-      | matches your time and gets you all excited!
-    .two.wide.column.center
-      = image_tag "landing/icon_share.png", height: 150, weight: 150
-      p.title SHARE CONTENT
-      p Share the campaign with your favourite photo and write something sweet.
-    .three.wide.column.center
-      = image_tag "landing/icon_score.png", height: 150, weight: 150
-      p.title EARN REWARDS
-      p As the campaign comes to an end, 
-      | you'll get your rewards and up your levels!
+    .eight.wide.column
+      .ui.stackable.three.column.grid
+        .column.center
+          = image_tag "landing/icon_compass.png", height: 150, weight: 150
+          p.title BROWSE CAMPAIGNS
+          p Pick a campaign that suits your taste, 
+          | matches your time and gets you all excited!
+        .column.center
+          = image_tag "landing/icon_share.png", height: 150, weight: 150
+          p.title SHARE CONTENT
+          p Share the campaign with your favourite photo and write something sweet.
+        .column.center
+          = image_tag "landing/icon_score.png", height: 150, weight: 150
+          p.title EARN REWARDS
+          p As the campaign comes to an end, 
+          | you'll get your rewards and up your levels!
     .four.wide.column
 
   .row
@@ -75,26 +77,26 @@ section.about-us-continued.ui.grid
 
   .row.vial-description
     .four.wide.column
-    .three.wide.column.center
-      = image_tag "landing/icon_create.png", height: 150, weight: 150
-      p.title CREATE CAMPAIGNS
-      p Create attractive campaigns!
-    .two.wide.column.center
-      = image_tag "landing/icon_tune.png", height: 150, weight: 150
-      p.title ENGAGE INFLUENCERS
-      p Get into the right tune with the right group of influencers to share your campaign
-    .three.wide.column.center
-      = image_tag "landing/icon_serving.png", height: 150, weight: 150
-      p.title BUILD YOUR BRAND
-      p Work together with your influencers to reach out to your audience!
+    .eight.wide.column
+      .ui.stackable.three.column.grid
+        .column.center
+          = image_tag "landing/icon_create.png", height: 150, weight: 150
+          p.title CREATE CAMPAIGNS
+          p Create attractive campaigns!
+        .column.center
+          = image_tag "landing/icon_tune.png", height: 150, weight: 150
+          p.title ENGAGE INFLUENCERS
+          p Get into the right tune with the right group of influencers to share your campaign
+        .column.center
+          = image_tag "landing/icon_serving.png", height: 150, weight: 150
+          p.title BUILD YOUR BRAND
+          p Work together with your influencers to reach out to your audience!
     .four.wide.column
 
 #contact-us.zero-margin
-
-  .ui.grid.margin-zero
-    .row.context
-      .four.wide.column
-      .five.wide.column.contact-form
+  .ui.stackable.two.column.centered.grid
+    .four.column.centered.row
+      .column.contact-form
         p.bold DROP US A NOTE
         | If you need a service, please do not hesitate to contact us!
 
@@ -111,7 +113,7 @@ section.about-us-continued.ui.grid
 
           p.align-right= f.submit "SEND", class: "button-settings ui yellow button"
 
-      .four.wide.column.details
+      .column.details
         .phone
           p.bold PHONE
           | (+603) 7611 0415
@@ -124,7 +126,4 @@ section.about-us-continued.ui.grid
           p Please fill out this short form and submit any comments
           | or questions you may have. We will make every effort to respond
           |  to your inquiries in a thorough and timely manner.
-      .three.wide.column
-
-
 .preloaded-images
