@@ -73,7 +73,7 @@
                           .eight.wide.column.padding-zero
                             p= "#{@post_stats[2]}"
                           .eight.wide.column.padding-zero.align-right
-                            p= link_to "Delete", campaign_topic_post_path(post.campaign, post.topic, post), method: :delete, data: { cofirm: "Delete post?"}, remote: true
+                            p= link_to "Delete", campaign_topic_post_path(post.campaign, post.topic, post), method: :delete, data: { confirm: "Delete post?"}
                       - when "Twitter"
                         p= "Favourites: #{@post_stats[0]}"
                         p= "Retweets: #{@post_stats[1]}"
@@ -82,7 +82,7 @@
                           .eight.wide.column.padding-zero
                             p= "#{@post_stats[2]}"
                           .eight.wide.column.padding-zero.align-right
-                            p= link_to "Delete", campaign_topic_post_path(post.campaign, post.topic, post), method: :delete, data: { confirm: "Delete tweet?"}, remote: true
+                            p= link_to "Delete", campaign_topic_post_path(post.campaign, post.topic, post), method: :delete, data: { confirm: "Delete tweet?"}
       .three.wide.column
 
 

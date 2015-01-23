@@ -6,7 +6,7 @@ class PostsController < ApplicationController
   respond_to :html, :js
 
   def new
-    authorize @campaign
+    # authorize @campaign
 
     @post = @topic.posts.build
     fetch_shareable_images
@@ -15,7 +15,7 @@ class PostsController < ApplicationController
   end
 
   def create
-    authorize @campaign
+    # authorize @campaign
     return unless current_user.posts.where(topic_id: @topic.id).first == nil
     begin
       @new_post = Post.social_media_share(current_user, params[:provider], post_params, @topic, @campaign)
@@ -39,7 +39,7 @@ class PostsController < ApplicationController
   def destroy
     @delete_post = @post.destroy_with_social_media(current_user)
     flash[:notice] = "Deleted!"
-    redirect_to current_user
+    redirect_to @campaign
   rescue PublishError => e
     logger.info "[ERROR]: #{e.inspect}"
     flash[:error] = "Error deleting #{@delete_post.post_type}"
@@ -69,7 +69,7 @@ class PostsController < ApplicationController
   end
 
   def set_post
-    authorize @campaign
+    # authorize @campaign
     @post = @topic.posts.find(params[:id])
     authorize @post
   end
