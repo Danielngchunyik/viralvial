@@ -1,20 +1,21 @@
-p = "Title: #{campaign.title}"
+p= "Title: #{campaign.title}"
 
-p = "Description: #{campaign.description}"
+p= "Description: #{campaign.description}"
 
-p = "Starting date: #{campaign.start_date}"
+p= "Starting date: #{campaign.start_date}"
 
-p = "Ending date: #{campaign.end_date}"
+p= "Ending date: #{campaign.end_date}"
 
-p = "Categories: #{campaign.category_list}"
+p= "Categories: #{campaign.category_list}"
 
 - if campaign.topics.present?
  - campaign.topics.each do |topic|
   .spacing
-  p = "Topic media platform: #{topic.social_media_platform}"
-  p = "Topic description: #{topic.description}"
-  p = "Topic posts required: #{topic.num_of_posts}"
-  p = "Topic likes required: #{topic.num_of_likes}"
-  p = "Topic comments required: #{topic.num_of_comments}"
+  p= "Topic media platform: #{topic.social_media_platform}"
+  p=
+  p= "Topic description: #{topic.description}"
+  p= "Topic posts required: #{topic.num_of_posts}"
+  p= "Topic likes required: #{topic.num_of_likes}"
+  p= "Topic comments required: #{topic.num_of_comments}"
   -if !admin?
     p = link_to "Share this!", new_campaign_topic_post_path(@campaign, topic)

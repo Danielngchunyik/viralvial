@@ -1,8 +1,12 @@
 class Posts::Retrieve::Twitter < Posts::TwitterBase
 
   def display
-    @tweet = @twitter.status(@post.external_post_id)
+    begin
+      @tweet = @twitter.status(@post.external_post_id)
 
-    [@tweet.favorite_count, @tweet.retweet_count]
+      [@tweet.favorite_count, @tweet.retweet_count]
+    rescue
+      [0,0, "Warning: Tweet was deleted"]
+    end
   end
 end

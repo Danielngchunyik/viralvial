@@ -1,43 +1,24 @@
+.center.title
+  p Featured Campaigns
+
 .ui.page.stackable.grid
   .row
-    .four.wide.column
-      .bottom_underline
-        h2.ui.header.campaign_index browse campaigns
-      .ui.secondary.vertical.demo.menu
-        a.item.selected All
-        a.item Announcements
-        a.item Fashion & Beauty
-        a.item Food
-        a.item Lifestyle
-        a.item Parenting / Home
-        a.item Gadget / IT
-        a.item More
+    .two.wide.column
     .twelve.wide.column
-      .orange_messagebox.cookie.nag
-          .ui.grid
-            .right.aligned.sixteen.wide.column
-              i.close.icon
-          .ui.stackable.two.column.grid.removetop
-              .column
-                span.line_height Update your interests so that we are able to give you the list of campaigns that suits you best!
-              .right.aligned.column
-                button.ui.button.yellow_button update account  
       .ui.stackable.three.column.grid
         - @campaigns.each do |campaign|
-          .column
-            .pink_panel
-              / = image_tag campaign.topics.first.default_images.first.storage.index.url
-              = image_tag 'placeholder.jpg', class:'border_radius'
-              .body_section
-                h3.ui.header.uppercase = campaign.title
-                p = campaign.description.split.slice(0, 6).join(" ") << "..."
-                .ui.grid
-                  .eight.wide.column
-                  .right.aligned.eight.wide.column
-                    span.countdown = campaign.time_remaining
-      .ui.three.column.grid
-        .column
-        .column
-          button.ui.button.yellow_button see more
-        .column
+            .column.limit-max-height
+              = link_to campaign_path(campaign) do
+                .campaign-panel
+                  = image_tag campaign.image, class: 'border-radius'
+                  .body-section
+                    h3.ui.header.uppercase = campaign.title
+                    p.description = campaign.description.split.slice(0, 6).join(" ") << "..."
+                    .ui.grid
+                      .eight.wide.column
+                      .right.aligned.eight.wide.column.countdown-container
+                        span.countdown = campaign.time_remaining
+
+section.center.paginator
+  = will_paginate @campaigns
 

@@ -1,0 +1,10 @@
+$('#campaign-container').hide().after("<%= escape_javascript(render(partial: 'posts/new', locals: { campaign: @campaign, topic: @topic, post: @post })) %>");
+$('#campaign-nav-link').hide().after("<%= escape_javascript(render(partial: 'posts/back_link')) %>");
+
+$(".back-campaign-link").on('click', function(event) {
+  $('#campaign-container').show();
+  $('#new-post-form').remove();
+  $('#back-campaign-link').remove();
+  $('#campaign-nav-link').show();
+  event.preventDefault();
+});

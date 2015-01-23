@@ -9,14 +9,22 @@ header.style.wrap
         .ui.horizontal.list
           - if current_user
             .item
-              h3= link_to "MY PROFILE", user_path(current_user), class: 'header-link'
+              h3= link_to "BROWSE CAMPAIGNS", campaigns_path, class: 'header-link yellow'
+            .item
+              h3= link_to "MY PROFILE", user_path(current_user), class: 'header-link yellow'
             .item
               h3= link_to "LOGOUT", :logout, method: :post, class: 'header-link'
           - else
-            .item
-              h3= link_to "ABOUT", '#about-us', class: 'header-link'
-            .item
-              h3= link_to "CONTACT US", '#', class: 'header-link'
+            - if page == "home index"
+              .item
+                h3= link_to "ABOUT", '#about-us', class: 'header-link', "data-scroll": true
+              .item
+                h3= link_to "CONTACT US", '#contact-us', class: 'header-link', "data-scroll": true
+            -else
+              .item
+                h3= link_to "ABOUT", '#about-us', class: 'header-link'
+              .item
+                h3= link_to "CONTACT US", '#contact-us', class: 'header-link'           
             .item
               h3= link_to "SIGN IN", new_user_path, class: 'header-link login'
       .two.wide.column

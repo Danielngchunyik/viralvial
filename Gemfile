@@ -18,6 +18,12 @@ gem 'iso_country_codes'
 # database tagging
 gem 'acts-as-taggable-on'
 
+# Semantic UI
+gem 'semantic-ui-sass', github: 'doabit/semantic-ui-sass', branch: 'v1.0beta'
+
+# pagination
+gem 'will_paginate'
+
 # S3 Amazon
 gem 'fog'
 
