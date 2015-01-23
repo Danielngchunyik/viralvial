@@ -27,16 +27,23 @@
           - @campaign.topics.each do |topic|
             .sharebox
               .context
-                  - if current_user.posts.where(topic_id: topic.id).first != nil
-                    div class="ui #{topic.social_media_platform} icon button spacing-top"
-                      i class="#{topic.social_media_platform} icon"
-                    p.spacing-top= "#{topic.title}"
-                    p.spacing-bottom= "You've already shared this one"
+                  - if current_user.authentications.where(provider: "#{topic.social_media_platform}").present?
+                    - if current_user.posts.where(topic_id: topic.id).first != nil
+                      div class="ui #{topic.social_media_platform} icon button spacing-top"
+                        i class="#{topic.social_media_platform} icon"
+                      p.spacing-top= "#{topic.title}"
+                      p.spacing-bottom= "You've already shared this one"
+                    - else
+                      =link_to new_campaign_topic_post_path(topic.campaign, topic), remote: true, class: "ui #{topic.social_media_platform} icon button spacing-top" do
+                        i class= " #{topic.social_media_platform} icon"
+                      p.spacing-top= "#{topic.title}"
+                      p.spacing-bottom= link_to "Share This on #{topic.social_media_platform.titleize}!", new_campaign_topic_post_path(topic.campaign, topic), remote: true
                   - else
-                    =link_to new_campaign_topic_post_path(topic.campaign, topic), remote: true, class: "ui #{topic.social_media_platform} icon button spacing-top" do
-                      i class= " #{topic.social_media_platform} icon"
-                    p.spacing-top= "#{topic.title}"
-                    p.spacing-bottom= link_to "Share This on #{topic.social_media_platform.titleize}!", new_campaign_topic_post_path(topic.campaign, topic), remote: true
+                      div class="ui #{topic.social_media_platform} icon button spacing-top"
+                        i class="#{topic.social_media_platform} icon"
+                      p.spacing-top= "#{topic.title}"
+                      p.spacing-bottom= "Please link your account first!"
+
       .three.wide.column
     -if current_user.posts.where(campaign_id: @campaign.id).present?
       .row#shared-topics

@@ -12,7 +12,7 @@
         h1= @user.name
         h2.spacing-top My Personal Info
         p.spacing-top-small= "Birthday: #{l@user.birthday unless @user.birthday.nil?}"
-        p.spacing-top-smaller= "Location: test #{@current_city}"
+        p.spacing-top-smaller= "Location: #{current_city}"
       .two.wide.column.profile-interest.center
         h2.spacing-top My Interest
         #interest-container.spacing-top-small

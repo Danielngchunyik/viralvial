@@ -53,11 +53,10 @@ class OauthsController < ApplicationController
       case provider
       when "twitter"
         save_twitter_info
-
       when "facebook"
         save_facebook_info
-
       end
+
         auto_login(@user)
         flash[:notice] = "Logged in from #{provider.titleize}"
         redirect_to edit_user_path(current_user)
