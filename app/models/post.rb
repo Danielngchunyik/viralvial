@@ -1,7 +1,6 @@
 class Post < ActiveRecord::Base
   belongs_to :user
   belongs_to :topic
-  belongs_to :campaign
 
   def destroy_with_social_media(user)
     social_media_delete(user)
@@ -12,9 +11,9 @@ class Post < ActiveRecord::Base
     retrieve_social_media(user)
   end
 
-  def self.social_media_share(user, provider, post_params, topic, campaign)
+  def self.social_media_share(user, provider, post_params, topic)
 
-    post = provider_to_class(provider).new(post_params.merge(topic_id: topic.id, user_id: user.id, campaign_id: campaign.id))
+    post = provider_to_class(provider).new(post_params.merge(topic_id: topic.id, user_id: user.id))
     
     social_media_post = post.publish_to_social_media_class.new(user, post, post_params, topic.id)
 
@@ -24,10 +23,10 @@ class Post < ActiveRecord::Base
   end
 
   def self.provider_to_class(provider)
-    case provider.split(' ')[2]
-    when 'Facebook'
+    case provider
+    when 'facebook'
       FacebookPost
-    when 'Twitter'
+    when 'twitter'
       TwitterPost
     end
   end

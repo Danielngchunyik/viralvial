@@ -1,2 +1,4 @@
-module CampaignHelper	
+module CampaignHelper
+
+	
 end

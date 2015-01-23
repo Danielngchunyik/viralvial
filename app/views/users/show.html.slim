@@ -1,9 +1,5 @@
 .profile
   .ui.grid
-    .row
-      .three.wide.column
-      .three.wide.column.profile-title
-        p.title My Profile
     .row.profile-details
       .three.wide.column
       .three.wide.column.profile-image
@@ -37,28 +33,3 @@
                 = link_to auth_at_provider_path(provider: provider), class: "ui #{provider} blurred icon button" do
                   i(class="#{provider} icon")
                 = link_to "Link account", auth_at_provider_path(provider: provider), class: 'small-spacing-left blurred'
-
-    .row.campaigns-title
-      .three.wide.column
-      .ten.wide.column
-        p.title Participating Campaigns
-      .three.wide.column
-
-.participating-campaigns
-  .ui.page.stackable.grid
-    .row
-      .two.wide.column
-      .twelve.wide.column
-        .ui.stackable.three.column.grid
-          - @campaigns.each do |campaign|
-              .column.limit-max-height
-                = link_to campaign_path(campaign) do
-                  .campaign-panel
-                    = image_tag campaign.image, class: 'border-radius'
-                    .body-section
-                      h3.ui.header.uppercase = campaign.title
-                      p.description = campaign.description.split.slice(0, 6).join(" ") << "..."
-                      .ui.grid
-                        .eight.wide.column
-                        .right.aligned.eight.wide.column.countdown-container
-                          span.countdown = campaign.time_remaining

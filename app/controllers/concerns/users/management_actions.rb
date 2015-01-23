@@ -26,11 +26,6 @@ module Users::ManagementActions
 
   def show
     authorize @user
-    @campaigns = []
-
-    @user.posts.each do |post|
-      @campaigns << post.campaign
-    end
   end
 
   def edit

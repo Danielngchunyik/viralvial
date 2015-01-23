@@ -1,0 +1,26 @@
+h1 New Post
+
+.container
+  = form_for [@campaign, @topic, @post] do |f|
+    .spacing
+      - if @images.present?
+      p Select image
+
+      = f.radio_button :image, "nothing", checked: true
+      = f.label "NO IMAGE"
+      
+      - @images.each do |image|
+        = f.radio_button :image, image.storage.url, checked: true
+        = image_tag(image.storage.thumb.url)
+          
+    .spacing
+      p = f.label "Message: "
+      = f.text_area :message, cols: 100, rows: 10, placeholder: "Enter post message", id: 'share_textarea'
+
+    .spacing
+      = f.submit "Post on Facebook", name: 'provider', value: "facebook"
+      = f.submit "Post on Twitter", name: 'provider', value: "twitter"
+
+  = render partial: 'user_images/new_form', locals: { campaign: @campaign, topic: @topic, user_image: @user_image}
+
+p = link_to 'Back', :back

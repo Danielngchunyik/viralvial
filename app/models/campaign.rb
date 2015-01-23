@@ -13,13 +13,11 @@ class Campaign < ActiveRecord::Base
                  :max_socialite_score, :language
 
   has_many :topics
-  has_many :posts
   validates :title, :description, presence: true
   validate :at_least_one_topic_required
   enum language: [:unspecified, :chinese, :english, :malay]
 
   accepts_nested_attributes_for :topics, allow_destroy: true
-  mount_uploader :image, ImageUploader
   
   def time_remaining
     endTime = self.end_date.to_time
@@ -38,7 +36,6 @@ class Campaign < ActiveRecord::Base
   end
 
   private
-
   def time_diff
     startTime = Time.now
     endTime = self.end_date.to_time
