@@ -3,6 +3,7 @@ class PostsController < ApplicationController
   before_action :require_login
   before_action :set_campaign, :set_topic
   before_action :set_post, only: [:show, :destroy]
+  respond_to :html, :js
 
   def new
     authorize @campaign
@@ -15,10 +16,11 @@ class PostsController < ApplicationController
 
   def create
     authorize @campaign
+    return unless current_user.posts.where(topic_id: @topic.id).first == nil
     begin
-      @new_post = Post.social_media_share(current_user, params[:provider], post_params, @topic)
+      @new_post = Post.social_media_share(current_user, params[:provider], post_params, @topic, @campaign)
       flash[:notice] = "#{@new_post.post_type} created"
-      redirect_to campaign_topic_post_path(@campaign, @topic, @new_post.post)
+      redirect_to campaign_path(@campaign)
     rescue PublishError => e
       logger.info "[ERROR]: #{e.inspect}"
       flash[:error] = "Error posting on #{params[:provider].capitalize}. Please link your account first!"
@@ -27,13 +29,17 @@ class PostsController < ApplicationController
   end
 
   def show 
-    @post_stats = @post.get_social_media(current_user)
+    begin
+      @post_stats = @post.get_social_media(current_user)
+    rescue
+      redirect_to root_path, alert: "Post is deleted!"
+    end
   end
 
   def destroy
     @delete_post = @post.destroy_with_social_media(current_user)
     flash[:notice] = "Deleted!"
-    redirect_to root_path
+    redirect_to current_user
   rescue PublishError => e
     logger.info "[ERROR]: #{e.inspect}"
     flash[:error] = "Error deleting #{@delete_post.post_type}"
@@ -70,6 +76,6 @@ class PostsController < ApplicationController
 
   def post_params
     params.require(:post).permit(:message, :provider, :image, :external_post_id,
-                                 :task_id, :user_id)
+                                 :topic_id, :user_id, :campaign_id)
   end
 end

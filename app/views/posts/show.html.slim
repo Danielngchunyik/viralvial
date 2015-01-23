@@ -1,23 +1,29 @@
-h1 Show
+.ui.grid
+  .row
+    .four.wide.column
+    .eight.wide.column
+    .four.wide.column
+  
 
-p = "Post ID: #{@post.id}"
-p = "User ID: #{@post.user_id}"
-p = "#{social_media(@post)} post ID: #{@post.external_post_id}"
+/ p = "Post ID: #{@post.id}"
+/ p = "User ID: #{@post.user_id}"
+/ = "External Link: " 
+/ = link_to "Link", "http://www.facebook.com/#{@post.external_post_id}", target: "blank"
 
-- if @facebook.present?
-  .spacing
-    p Required comments and/or likes
-    p = "Required posts: #{@facebook.num_of_posts}"
-    p = "Required comments: #{@facebook.num_of_comments}"
-    p = "Required likes: #{@facebook.num_of_likes}"
+/ - if @facebook.present?
+/   .spacing
+/     p Required comments and/or likes
+/     p = "Required posts: #{@facebook.num_of_posts}"
+/     p = "Required comments: #{@facebook.num_of_comments}"
+/     p = "Required likes: #{@facebook.num_of_likes}"
 
-.spacing
-- case social_media(@post) 
-- when "Facebook"
-  p = "Likes: #{@post_stats[0]}"
-  p = "Comments: #{@post_stats[1]}"
-- when "Twitter"
-  p = "Favourites: #{@post_stats[0]}"
-  p = "Retweets: #{@post_stats[1]}"
+/ .spacing
+/ - case social_media(@post) 
+/ - when "Facebook"
+/   p = "Likes: #{@post_stats[0]}"
+/   p = "Comments: #{@post_stats[1]}"
+/ - when "Twitter"
+/   p = "Favourites: #{@post_stats[0]}"
+/   p = "Retweets: #{@post_stats[1]}"
 
-= link_to "Delete", campaign_topic_post_path(@campaign, @topic, @post), method: :delete
+/ = link_to "Delete", campaign_topic_post_path(@campaign, @topic, @post), method: :delete

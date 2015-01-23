@@ -11,6 +11,9 @@
   = f.label "Comments needed: "
   = f.number_field :num_of_comments
 
+  p = f.label "Title: "
+  p = f.text_field :title, placeholder: "Enter topic title here"
+
   p = f.label "Description: "
   p = f.text_area :description, cols: 100, rows: 10, placeholder: "Enter campaign objectives here"
 

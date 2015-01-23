@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150119053741) do
+ActiveRecord::Schema.define(version: 20150123031904) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -46,6 +46,8 @@ ActiveRecord::Schema.define(version: 20150119053741) do
     t.hstore   "criteria",       default: {}
     t.boolean  "allow_interest", default: false
     t.integer  "language"
+    t.string   "image"
+    t.string   "organizer"
   end
 
   create_table "default_images", force: :cascade do |t|
@@ -69,6 +71,7 @@ ActiveRecord::Schema.define(version: 20150119053741) do
     t.integer  "topic_id"
     t.string   "image"
     t.string   "type",             null: false
+    t.integer  "campaign_id"
   end
 
   create_table "taggings", force: :cascade do |t|
@@ -100,6 +103,7 @@ ActiveRecord::Schema.define(version: 20150119053741) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.text     "description"
+    t.string   "title"
   end
 
   create_table "user_images", force: :cascade do |t|

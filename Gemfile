@@ -18,6 +18,9 @@ gem 'iso_country_codes'
 # database tagging
 gem 'acts-as-taggable-on'
 
+# pagination
+gem 'will_paginate'
+
 # S3 Amazon
 gem 'fog'
 
