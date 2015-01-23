@@ -115,7 +115,8 @@ Rails.application.config.sorcery.configure do |config|
   config.facebook.user_info_mapping = {email: "email", name: "name", gender: "gender"}
   config.facebook.scope = "public_profile, user_hometown, user_location, user_relationships, user_religion_politics, user_birthday, email, offline_access, publish_actions, read_stream"
   # config.facebook.display = "popup"
-
+  # random comment
+  
   #
   # config.github.key = ""
   # config.github.secret = ""
