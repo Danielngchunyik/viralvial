@@ -8,12 +8,10 @@ class Oauth::RetrieveTwitterUserInfo
     @screen_name = screen_name
   end
 
-
-
   def save
     @twitter = initialize_twitter_client(@token, @secret)
 
-    twitter_user = @twitter.client.user(@screen_name)
+    twitter_user = @twitter.user(@screen_name)
     upload_profile_image(twitter_user)
 
     @user.update(location: twitter_user.location, name: twitter_user.name)
