@@ -9,9 +9,9 @@ header.style.wrap
         .ui.horizontal.list
           - if current_user
             .item
-              h3= link_to "BROWSE CAMPAIGNS", campaigns_path, class: 'header-link'
+              h3= link_to "BROWSE CAMPAIGNS", campaigns_path, class: 'header-link yellow'
             .item
-              h3= link_to "MY PROFILE", user_path(current_user), class: 'header-link'
+              h3= link_to "MY PROFILE", user_path(current_user), class: 'header-link yellow'
             .item
               h3= link_to "LOGOUT", :logout, method: :post, class: 'header-link'
           - else
