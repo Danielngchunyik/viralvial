@@ -11,7 +11,7 @@
   .row.post-details
     .four.wide.column
     .eight.wide.column.post-form
-      p.center.title.pink SHARE FACEBOOK POST
+      p.center.title.pink= "SHARE #{@topic.social_media_platform.upcase} POST"
       = form_for [@campaign, @topic, @post], html: { class: 'ui form form-text' } do |f|
         .images
           - if @images.present?
