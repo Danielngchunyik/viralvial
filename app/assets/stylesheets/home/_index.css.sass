@@ -23,7 +23,7 @@
 
 .contact-settings
   font-size: 14px
-  color: #ffffff
+  color: #000000
   font-family: Seravek
 
 // End
@@ -38,7 +38,7 @@
     @extend .parallax-stats
     height: 1500px
     text-align: center
-    background-image: asset-url("landing/banner.png")
+    background-image: asset-url("landing/top_banner.png")
 
     .context
       position: relative
@@ -65,7 +65,7 @@
     #about-us
       position: relative
       top: 25%
-      text-align: left
+      text-align: center
       background-color: white
       margin: 0 auto
 
@@ -88,6 +88,7 @@
       .info-button
         opacity: 1
         margin-bottom: 32px
+        padding: 0 50px 0 0
 
         &:hover
           opacity: 0.5
@@ -97,6 +98,7 @@
       position: relative
       top: 32.5%
       margin: 0 auto
+      text-align: center
 
       #viralvial-description
 
@@ -117,6 +119,7 @@
 
   .about-us-continued
     margin: 0 auto
+    text-align: center
 
     .viraler-title
       margin-top: 40px
@@ -147,67 +150,36 @@
     margin-top: 70px
     @extend .parallax-stats
     height: 700px
-    background-image: asset-url("landing/contact_us.png")
+    background-image: asset-url("landing/bottom_banner.png")
 
     .margin-zero
       margin: 0
-
-    .context
-
-      .contact-form
-        margin-top: 50px
-        @extend .contact-settings
-
-        form.settings
-          margin-top: 40px
-
-        input.settings
-          height: 40px
-          width: 500px
-
-        textarea.settings
-          height: 120px
-          width: 500px
-
-        .align-right
-          text-align: right
-          margin-right: 65px
-
-        .button-settings
-          color: #000000
-
-      .details
-        margin-top: 140px
-        @extend .contact-settings
-
-        .bold
-          font-weight: bold
-
-        .small-space
-          margin-top: 25px
           
-.contact-form
-  margin-top: 50px
-  @extend .contact-settings
+  .contact-form
+    @extend .contact-settings
 
-  form.settings
-    margin-top: 40px
+    form.settings
+      margin-top: 40px
 
-  input.settings
-    height: 40px
-    width: 500px
+    input.settings
+      height: 40px
+      width: 100%
 
-  textarea.settings
-    height: 120px
-    width: 500px
+    textarea.settings
+      height: 120px
+      width: 100%
 
-  .align-right
-    text-align: right
-    margin-right: 65px
+    .align-right
+      text-align: right
+      margin-right: 65px
 
-  .button-settings
-    color: #000000
+    .button-settings
+      color: #000000
 
-.details
-  margin-top: 140px
-  @extend .contact-settings
+  .phone
+
+  .bold
+    font-weight: bold
+
+  .small-space
+    padding-top: 10px

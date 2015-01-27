@@ -8,41 +8,31 @@
   
   section#about-us.ui.grid
     .row
-      .four.wide.column
       .context.eight.wide.column
         h3 ABOUT US
         h4.top-padding ViralVial isn't just a platform to get your messages out there in the digital landscape. It's more than that. 
         h4 Here's what it means for both our esteemed influencers (the Viralers!) and exciting brands (the Vials!)
-      .four.wide.column
 
     .row
-      .five.wide.column
-      .three.wide.column.center
+      .six.wide.column.center
         = link_to '#' do
           = image_tag 'landing/btn_viraler.png', class: 'info-button viraler'
-      .three.wide.column.center
         = link_to '#' do
           = image_tag 'landing/btn_vials.png', class: 'info-button vials'
-      .five.wide.column
 
   section.about-us-description.ui.grid
     .row
-      .four.wide.column
       .eight.wide.column
         #viralvial-description
-      .four.wide.column
 
 section.about-us-continued.ui.page.stackable.grid
 
   .row.viraler-title
-    .four.wide.column
     .eight.wide.column
       h3 HEY VIRALERS!
       h4 Wondering what can you do on this site?
-    .four.wide.column
 
   .row.viraler-description
-    .four.wide.column
     .eight.wide.column
       .ui.stackable.three.column.grid
         .column.center
@@ -59,24 +49,18 @@ section.about-us-continued.ui.page.stackable.grid
           p.title EARN REWARDS
           p As the campaign comes to an end, 
           | you'll get your rewards and up your levels!
-    .four.wide.column
 
   .row
-    .four.wide.column
     .eight.wide.column
       .ui.horizontal.divider
         p.hidden -
-    .four.wide.column
 
   .row
-    .four.wide.column
     .eight.wide.column
         h3 HEY VIALS!
         h4 Wondering what can you do on this site?
-    .four.wide.column
 
   .row.vial-description
-    .four.wide.column
     .eight.wide.column
       .ui.stackable.three.column.grid
         .column.center
@@ -91,9 +75,8 @@ section.about-us-continued.ui.page.stackable.grid
           = image_tag "landing/icon_serving.png", height: 150, weight: 150
           p.title BUILD YOUR BRAND
           p Work together with your influencers to reach out to your audience!
-    .four.wide.column
 
-#contact-us.zero-margin
+#contact-us.zero-margin.parallax
   .ui.stackable.two.column.centered.grid
     .four.column.centered.row
       .column.contact-form

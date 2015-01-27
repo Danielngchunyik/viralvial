@@ -1,3 +1,5 @@
 $(document).ready(function() {
-  smoothScroll.init();
+  smoothScroll.init({
+    offset: 100
+  });
 });
