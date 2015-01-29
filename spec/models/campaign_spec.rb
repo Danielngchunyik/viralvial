@@ -9,10 +9,6 @@ describe Campaign do
   end
 
   describe 'at_least_one_topic_required' do
-    before { campaign.valid? }
-    it do
-      expect(campaign.errors.full_messages).to include(
-        'Topic is missing. At least one topic is required.')
-    end
+    it { expect(FactoryGirl.build(:campaign, topics_attributes: [])).not_to be_valid }
   end
 end

@@ -13,12 +13,13 @@ class Post < ActiveRecord::Base
   end
 
   def self.social_media_share(user, provider, post_params, topic, campaign)
-
     post = provider_to_class(provider).new(post_params.merge(topic_id: topic.id, user_id: user.id, campaign_id: campaign.id))
     
     social_media_post = post.publish_to_social_media_class.new(user, post, post_params, topic.id)
 
-    post.update!(external_post_id: social_media_post.save)
+    social_media_post_id = social_media_post.save
+
+    post.update!(external_post_id: social_media_post_id)
     
     social_media_post
   end

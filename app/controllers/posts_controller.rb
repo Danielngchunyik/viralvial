@@ -6,8 +6,6 @@ class PostsController < ApplicationController
   respond_to :html, :js
 
   def new
-    # authorize @campaign
-
     @post = @topic.posts.build
     fetch_shareable_images
 
@@ -15,25 +13,22 @@ class PostsController < ApplicationController
   end
 
   def create
-    # authorize @campaign
     return unless current_user.posts.where(topic_id: @topic.id).first == nil
     begin
       @new_post = Post.social_media_share(current_user, params[:provider], post_params, @topic, @campaign)
       flash[:notice] = "#{@new_post.post_type} created"
-      redirect_to campaign_path(@campaign)
     rescue PublishError => e
       logger.info "[ERROR]: #{e.inspect}"
       flash[:error] = "Error posting on #{params[:provider].capitalize}. Please link your account first!"
-      redirect_to :back
     end
+    redirect_to campaign_path(@campaign)
   end
 
   def show 
-    begin
-      @post_stats = @post.get_social_media(current_user)
-    rescue
-      redirect_to root_path, alert: "Post is deleted!"
-    end
+   @post_stats = @post.get_social_media(current_user)
+  rescue PublishError => e
+    logger.info "[ERROR]: #{e.inspect}"
+    redirect_to root_path, alert: "Post is deleted!"
   end
 
   def destroy
@@ -62,6 +57,7 @@ class PostsController < ApplicationController
 
   def set_campaign
     @campaign = Campaign.find(params[:campaign_id])
+    authorize @campaign
   end
 
   def set_topic
@@ -69,7 +65,6 @@ class PostsController < ApplicationController
   end
 
   def set_post
-    # authorize @campaign
     @post = @topic.posts.find(params[:id])
     authorize @post
   end
