@@ -22,7 +22,7 @@
   background-size: cover
 
 .contact-settings
-  font-size: 14px
+  font-size: 16px
   color: #000000
   font-family: Seravek
 
@@ -164,7 +164,7 @@
   #contact-us
     margin-top: 70px
     @extend .parallax-stats
-    height: 100%
+    height: 800px
     background-image: asset-url("landing/bottom_banner.png")
 
     .space-bottom
@@ -201,9 +201,10 @@
       padding-top: 10px
 
     .contact-details
+      @extend .contact-settings
       margin-top: 3%
       height: 150px
-      
+
 @media all and (max-width: 767px)
 
   .home.index 

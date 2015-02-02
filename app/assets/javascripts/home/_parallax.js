@@ -6,7 +6,7 @@ $(document).ready(function() {
     [].slice.call(parallax).forEach(function(el,i){
 
       var windowYOffset = (window.pageYOffset - $(el).position().top),
-          elBackgrounPos = "50% " + (windowYOffset * speed) + "px";
+          elBackgrounPos = "50%" + (windowYOffset * speed) + "px";
       
       el.style.backgroundPosition = elBackgrounPos;
     });
