@@ -1,5 +1,5 @@
-.module.parallax
-  .context
+#hero-banner.module.parallax
+  .hero-context
     h1 Changing the way we engage, 
     h1 one influencer at a time.
 
@@ -8,22 +8,45 @@
   
   section#about-us.ui.grid
     .row
-      .context.eight.wide.column
-        h3 ABOUT US
-        h4.top-padding ViralVial isn't just a platform to get your messages out there in the digital landscape. It's more than that. 
-        h4 Here's what it means for both our esteemed influencers (the Viralers!) and exciting brands (the Vials!)
+      .about-us-context.eight.wide.column
+        .ui.grid
+          .row
+            .sixteen.wide.column
+              h3 ABOUT US
+              h4.top-padding ViralVial isn't just a platform to get your messages out there in the digital landscape. It's more than that. Here's what it means for both our esteemed influencers (the Viralers!) and exciting brands (the Vials!)
 
-    .row
-      .six.wide.column.center
+    #header-buttons-browser.row
+      .ten.wide.column.center
         = link_to '#' do
-          = image_tag 'landing/btn_viraler.png', class: 'info-button viraler'
+          = image_tag 'landing/btn_viraler.png', class: 'info-button viralers'
         = link_to '#' do
           = image_tag 'landing/btn_vials.png', class: 'info-button vials'
 
   section.about-us-description.ui.grid
     .row
-      .eight.wide.column
+      .eight.wide.column.padding-zero
         #viralvial-description
+          #vials-box.textbox
+            p Vials
+            .top-padding
+              .text You, exciting brands, are like the fresh air injected into social media. Thanks to you, we get to
+                run awesome campaigns for our Viralers to participate in, adding colours into our sometime
+                mundane timelines. You give great reasons to spark the next most talked about thing in town
+                with your unique products and useful services. More importantly, you get to work with us to
+                find your most influential and relevant fands for your brands, and keep them close to you!
+                Sounds like a deal? Contact us now!
+
+          #viralers-box.textbox
+            p Viralers
+            .top-padding
+              .text You, are the heart of what Viral Vial is all about. Without you, there is no one to create the
+                most imaginative stories. Without you, there will be no trending topics. Without you, life
+                would be too boring! So if you LOVE creating creative content, LOVE starting trends and LOVE
+                bringing excitement to the world, we want YOU to be a viraler! When you share our campaigns, you
+                not only inspire those around you to help themselves, you also get to work with you favourite
+                brands, gain exposure to be a key opinion leader and be rewarded for it. Like what you just read?
+                Join our growing community!
+
 
 section.about-us-continued.ui.page.stackable.grid
 
@@ -36,16 +59,16 @@ section.about-us-continued.ui.page.stackable.grid
     .eight.wide.column
       .ui.stackable.three.column.grid
         .column.center
-          = image_tag "landing/icon_compass.png", height: 150, weight: 150
+          = image_tag "landing/icon_compass.png", class: 'fixed'
           p.title BROWSE CAMPAIGNS
           p Pick a campaign that suits your taste, 
           | matches your time and gets you all excited!
         .column.center
-          = image_tag "landing/icon_share.png", height: 150, weight: 150
+          = image_tag "landing/icon_share.png", class: 'fixed'
           p.title SHARE CONTENT
           p Share the campaign with your favourite photo and write something sweet.
         .column.center
-          = image_tag "landing/icon_score.png", height: 150, weight: 150
+          = image_tag "landing/icon_score.png", class: 'fixed'
           p.title EARN REWARDS
           p As the campaign comes to an end, 
           | you'll get your rewards and up your levels!
@@ -64,20 +87,20 @@ section.about-us-continued.ui.page.stackable.grid
     .eight.wide.column
       .ui.stackable.three.column.grid
         .column.center
-          = image_tag "landing/icon_create.png", height: 150, weight: 150
+          = image_tag "landing/icon_create.png", class: 'fixed'
           p.title CREATE CAMPAIGNS
           p Create attractive campaigns!
         .column.center
-          = image_tag "landing/icon_tune.png", height: 150, weight: 150
+          = image_tag "landing/icon_tune.png", class: 'fixed'
           p.title ENGAGE INFLUENCERS
           p Get into the right tune with the right group of influencers to share your campaign
         .column.center
-          = image_tag "landing/icon_serving.png", height: 150, weight: 150
+          = image_tag "landing/icon_serving.png", class: 'fixed'
           p.title BUILD YOUR BRAND
           p Work together with your influencers to reach out to your audience!
 
 #contact-us.zero-margin.parallax
-  .ui.stackable.two.column.centered.grid
+  .ui.stackable.two.column.centered.grid.space-bottom
     .four.column.centered.row
       .column.contact-form
         p.bold DROP US A NOTE
@@ -96,7 +119,7 @@ section.about-us-continued.ui.page.stackable.grid
 
           p.align-right= f.submit "SEND", class: "button-settings ui yellow button"
 
-      .column.details
+      .column.contact-details
         .phone
           p.bold PHONE
           | (+603) 7611 0415

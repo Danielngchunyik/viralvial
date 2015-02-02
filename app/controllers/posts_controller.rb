@@ -14,6 +14,7 @@ class PostsController < ApplicationController
 
   def create
     return unless current_user.posts.where(topic_id: @topic.id).first == nil
+    
     begin
       @new_post = Post.social_media_share(current_user, params[:provider], post_params, @topic, @campaign)
       flash[:notice] = "#{@new_post.post_type} created"
