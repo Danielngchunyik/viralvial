@@ -2,58 +2,20 @@ header.style.wrap
   .content.ui.grid
     .row.center
       .four.wide.right.aligned.column
-        #header-icon
+        #header-icon.center
           = link_to root_path do 
             = image_tag 'header/logo.png', class: 'icon'
 
       
-      .eight.wide.right.aligned.column
+      .ten.wide.right.aligned.column
         #mobile-menu
           .ui.floating.dropdown.item
             .menu-title
               i.dropdown.icon.space-right
               span Menu
             .menu
-              - if current_user
-                .item
-                  h3= link_to "BROWSE CAMPAIGNS", campaigns_path, class: 'header-link yellow'
-                .item
-                  h3= link_to "MY PROFILE", user_path(current_user), class: 'header-link yellow'
-                .item
-                  h3= link_to "LOGOUT", :logout, method: :post, class: 'header-link'
-              - else
-                - if page == "home index"
-                  .item
-                    h3= link_to "ABOUT", '#about-us', class: 'header-link', "data-scroll": true
-                  .item
-                    h3= link_to "CONTACT US", '#contact-us', class: 'header-link', "data-scroll": true
-                -else
-                  .item
-                    h3= link_to "ABOUT", '#about-us', class: 'header-link'
-                  .item
-                    h3= link_to "CONTACT US", '#contact-us', class: 'header-link'           
-                .item
-                  h3= link_to "SIGN IN", new_user_path, class: 'header-link login'
+              = render partial: "layouts/header_menu", locals: { page: page }
 
         #menu-list
           .ui.horizontal.list
-            - if current_user
-              .item
-                h3= link_to "BROWSE CAMPAIGNS", campaigns_path, class: 'header-link yellow'
-              .item
-                h3= link_to "MY PROFILE", user_path(current_user), class: 'header-link yellow'
-              .item
-                h3= link_to "LOGOUT", :logout, method: :post, class: 'header-link'
-            - else
-              - if page == "home index"
-                .item
-                  h3= link_to "ABOUT", '#about-us', class: 'header-link', "data-scroll": true
-                .item
-                  h3= link_to "CONTACT US", '#contact-us', class: 'header-link', "data-scroll": true
-              -else
-                .item
-                  h3= link_to "ABOUT", '#about-us', class: 'header-link'
-                .item
-                  h3= link_to "CONTACT US", '#contact-us', class: 'header-link'           
-              .item
-                h3= link_to "SIGN IN", new_user_path, class: 'header-link login'
+            = render partial: "layouts/header_menu", locals: { page: page }
