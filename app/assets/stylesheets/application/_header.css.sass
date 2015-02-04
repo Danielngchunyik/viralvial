@@ -1,7 +1,7 @@
 // Semantic UI Override
 
 header.ui.grid
-  margin: -10px 0 0 0
+  margin: 0 auto
 
 // End
 
@@ -21,10 +21,18 @@ header
     padding: 4px 10px
     height: 96px
 
+  .center
+    text-align: center
+
   .content
 
+    #mobile-menu
+      display: none
+
+    #header-icon
+      margin-right: 10%
+
     .icon
-      margin-left: 80px
       margin-top: 12px
 
   h3
@@ -39,10 +47,37 @@ header
       text-align: center
 
       &.login
-        color: #FFFFFF !important
+        color: #FFFFFF
         text-decoration: none
         text-align: center
 
       &:hover
         opacity: 0.5
         transition: opacity 0.2s
+
+@media all and (max-width: 957px)
+
+  header 
+
+    h3 .login
+      color: #009fda !important
+    
+    .content
+
+      #header-icon 
+        margin-right: 60%
+
+      #mobile-menu 
+        display: block
+        margin-left: 40%
+        margin-top: 20px
+
+        .menu-title
+          font-size: 20px
+          color: #F6C403
+
+        .space-right 
+          margin-right: 5px
+
+      #menu-list
+        display: none
