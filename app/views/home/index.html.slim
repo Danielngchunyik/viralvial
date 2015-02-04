@@ -100,36 +100,38 @@ section.about-us-continued.ui.page.stackable.grid
           p Work together with your influencers to reach out to your audience!
 
 #contact-us.zero-margin.parallax
-  .ui.stackable.two.column.centered.grid.space-bottom
-    .four.column.centered.row
-      .column.contact-form
-        p.bold DROP US A NOTE
-        | If you need a service, please do not hesitate to contact us!
+  .ui.grid
+    .row.center
+      .ten.wide.column
+        .ui.stackable.two.column.centered.grid.space-bottom
+          .column.contact-form
+            p.bold DROP US A NOTE
+            | If you need a service, please do not hesitate to contact us!
 
-        = form_for @contact, url: contact_path, method: :post, html: { class: 'ui form settings', id: 'contact_form' } do |f|
-          .field
-            p= f.label "NAME: "
-            p= f.text_field :name, class: 'settings'
-          .field
-            p= f.label "EMAIL: "
-            p= f.email_field :email, class: 'settings'
-          .field
-            p= f.label "MESSAGE: "
-            p= f.text_area :content, cols: 50, rows: 10, class: 'settings'
+            = form_for @contact, url: contact_path, method: :post, html: { class: 'ui form settings', id: 'contact_form' } do |f|
+              .field
+                p= f.label "NAME: "
+                p= f.text_field :name, class: 'settings'
+              .field
+                p= f.label "EMAIL: "
+                p= f.email_field :email, class: 'settings'
+              .field
+                p= f.label "MESSAGE: "
+                p= f.text_area :content, cols: 50, rows: 10, class: 'settings'
 
-          p.align-right= f.submit "SEND", class: "button-settings ui yellow button"
+              p.align-right= f.submit "SEND", class: "button-settings ui yellow button"
 
-      .column.contact-details
-        .phone
-          p.bold PHONE
-          | (+603) 7611 0415
+          .column.contact-details
+            .phone
+              p.bold PHONE
+              | (+603) 7611 0415
 
-        .small-space
-          p.bold EMAIL
-          | enquiry@viralvial.com
+            .small-space
+              p.bold EMAIL
+              | enquiry@viralvial.com
 
-        .small-space
-          p Please fill out this short form and submit any comments
-          | or questions you may have. We will make every effort to respond
-          |  to your inquiries in a thorough and timely manner.
+            .small-space
+              p Please fill out this short form and submit any comments
+              | or questions you may have. We will make every effort to respond
+              |  to your inquiries in a thorough and timely manner.
 .preloaded-images
