@@ -21,12 +21,10 @@ require 'faker'
 
 params = { campaign:{
 		title: Faker::Name.title,
-  		description: Faker::Company.catch_phrase,
-  		start_date:Faker::Date.backward(25),
-  		end_date:Faker::Date.forward(25),
-  		topics_attributes:[{ description: Faker::Company.catch_phrase
-  							
-  			}]
+		description: Faker::Company.catch_phrase,
+		start_date:Faker::Date.backward(25),
+		end_date:Faker::Date.forward(25),
+		topics_attributes:[{ title: Faker::Name.title, description: Faker::Company.catch_phrase }]
 	}
 }
 

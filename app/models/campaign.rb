@@ -20,6 +20,7 @@ class Campaign < ActiveRecord::Base
 
   accepts_nested_attributes_for :topics, allow_destroy: true
   mount_uploader :image, ImageUploader
+  mount_uploader :banner, ImageUploader
   
   def time_remaining
     endTime = self.end_date.to_time

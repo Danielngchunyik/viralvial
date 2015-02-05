@@ -1,54 +1,81 @@
 .profile
   .ui.grid
+
     .row
-      .three.wide.column
-      .three.wide.column.profile-title
+
+      .eight.wide.column.profile-title
         p.title My Profile
-    .row.profile-details
-      .three.wide.column
-      .three.wide.column.profile-image
-        = image_tag @user.image.small.url
-      .two.wide.column
-        h1= @user.name
-        h2.spacing-top My Personal Info
-        p.spacing-top-small= "Birthday: #{l@user.birthday unless @user.birthday.nil?}"
-        p.spacing-top-smaller= "Location: #{current_city}"
-      .two.wide.column.profile-interest.center
-        h2.spacing-top My Interest
-        #interest-container.spacing-top-small
-          #interest-link= render partial: 'interest', locals: { user: @user }
-      .two.wide.column.account-links.center
-        h2.spacing-top My Linked Accounts
-        .spacing-top-small
-          - providers = ["facebook", "twitter"]
+    
+    .row.profile-overlay
 
-          - providers.each do |provider|
-            .provider.spacing-top-small
-              - if current_user.has_linked_provider?(provider)
-                - if current_user.authentications.count > 1
-                  = link_to delete_oauth_path(provider), class: "ui #{provider} icon button" do
-                    i(class="#{provider} icon")
-                  = link_to "Unlink account", delete_oauth_path(provider), method: :delete
-                - else
-                  div(class="ui #{provider} icon button")
-                    i(class="#{provider} icon")
-                  span.grayed.spacing-left-small= "Unlink account"
-              - else
-                = link_to auth_at_provider_path(provider: provider), class: "ui #{provider} blurred icon button" do
-                  i(class="#{provider} icon")
-                = link_to "Link account", auth_at_provider_path(provider: provider), class: 'small-spacing-left blurred'
+      .twelve.wide.column
+        .ui.stackable.two.column.grid
 
-    .row.campaigns-title
-      .three.wide.column
-      .ten.wide.column
-        p.title Participating Campaigns
-      .three.wide.column
+          .column
+          
+            .profile-image
+              = image_tag @user.image.small.url
 
+          .column
+            
+            .ui.grid
+              .row.pad-zero
+
+                .sixteen.wide.column
+                  h1= @user.name
+
+              .row.profile-details
+                .sixteen.wide.column
+                  .ui.stackable.three.column.grid
+
+                    .column
+                      h2.spacing-top My Personal Info
+                      -if !@user.birthday.nil?
+                      p.spacing-top-small 
+                        b Birthday: 
+                      p.spacing-top-smaller= "#{@user.birthday.day.ordinalize} of #{Date::MONTHNAMES[@user.birthday.month]}, #{@user.birthday.year}"
+                      p.spacing-top-small
+                        b Location: 
+                      p.spacing-top-smaller= "#{current_city}"
+                    
+                    .column.profile-interest
+                      h2.spacing-top My Interest
+                      #interest-container.spacing-top-small
+                        #interest-link= render partial: 'interest', locals: { user: @user }
+                    
+                    .column.account-links
+                      h2.spacing-top My Linked Accounts
+                      .spacing-top-small
+                        - providers = ["facebook", "twitter"]
+
+                        - providers.each do |provider|
+                          .provider.spacing-top-small
+                            - if current_user.has_linked_provider?(provider)
+                              - if current_user.authentications.count > 1
+                                = link_to delete_oauth_path(provider), class: "ui #{provider} icon button" do
+                                  i(class="#{provider} icon")
+                                = link_to "Unlink account", delete_oauth_path(provider), method: :delete
+                              - else
+                                div(class="ui #{provider} icon button")
+                                  i(class="#{provider} icon")
+                                span.grayed.spacing-left-small= "Unlink account"
+                            - else
+                              = link_to auth_at_provider_path(provider: provider), class: "ui #{provider} blurred icon button" do
+                                i(class="#{provider} icon")
+                              = link_to "Link account", auth_at_provider_path(provider: provider), class: 'small-spacing-left blurred'
+
+    .row
+      
+      .eight.wide.column.campaigns-title
+        - if current_user.posts.any?
+          p.title Participating Campaigns
+      
 .participating-campaigns
   .ui.page.stackable.grid
     .row
-      .two.wide.column
+      
       .twelve.wide.column
+        
         .ui.stackable.three.column.grid
           - @campaigns.each do |campaign|
               .column.limit-max-height

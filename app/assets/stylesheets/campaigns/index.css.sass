@@ -2,6 +2,9 @@
   padding-bottom: 100px
   padding-top: 200px
 
+  .mobile
+    display: none
+
   .center
     text-align: center
     
@@ -18,14 +21,13 @@
   & .paginator
     margin-top: 100px
 
-  .limit-max-height
-    max-height: 377px
+  .campaign-box
     margin-top: 30px
 
   .campaign-panel
     border-radius: 5px
     border: 1px solid #E62E84
-    height: 377px
+    height: 100%
 
     &:hover
       margin-top: -5px
@@ -54,3 +56,21 @@
     background-color: #E62E84
     padding-left: 7px
     padding-right: 7px
+
+@media all and (max-width: 767px)
+
+  .campaigns.index
+
+    .browser
+      display: none
+
+    .mobile
+      display: block
+
+    .campaign-panel
+
+      &:hover
+        margin-top: 0px
+        opacity: 0.5
+        transition: opacity 0.2s
+

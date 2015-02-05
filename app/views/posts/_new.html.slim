@@ -1,23 +1,13 @@
 #new-post-form.ui.grid
-  .row.campaign-details
-    .four.wide.column
-    .three.wide.column#campaign-image
-      = image_tag @campaign.image.show, class: 'border-radius'
-    .five.wide.column#campaign-description.textbox
-      .title.black= @campaign.title
-      p.space-top-10= @campaign.description
-    .four.wide.column
-
   .row.post-details
-    .four.wide.column
-    .eight.wide.column.post-form
+    .fourteen.wide.column.post-form
       p.center.title.pink= "SHARE #{@topic.social_media_platform.upcase} POST"
       = form_for [@campaign, @topic, @post], html: { class: 'ui form form-text' } do |f|
         .images
           - if @images.present?
-          p.sub-title Select Image (Click on the image to preview them)
+          p.sub-title.center Select Image (Click on the image to preview them)
 
-          .ui.stackable.four.column.grid
+          .ui.stackable.three.column.grid
             .column.image
               = image_tag "posts/no-image.jpg", class: 'border-radius'
               .center
@@ -32,11 +22,10 @@
 
         .message.space-top-50
           p.sub-title= f.label "MESSAGE: "
-          p= f.text_area :message, placeholder: "Enter post message", id: " text-share-#{@topic.social_media_platform}"
+          p.space-top-10= f.text_area :message, placeholder: "Enter post message", id: " text-share-#{@topic.social_media_platform}"
 
         .share-buttons.center.space-top-50
           -if @topic.social_media_platform == "facebook"
             = f.submit "Share on Facebook", name: 'provider', class: 'ui button facebook'
           -else
             p= f.submit "Share on Twitter", name: 'provider', class: 'ui button twitter'
-    .four.wide.column

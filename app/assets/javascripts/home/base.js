@@ -1,15 +1,15 @@
-var setHeight = function() {
-  newHeight = $('#viralers-box').height();
-  $('#viralvial-description').css("min-height", newHeight);
+var setViralBoxHeight = function() {
+  var newViraBoxHeight = $('#viralers-box').height();
+  $('#viralvial-description').css("min-height", newViraBoxHeight);
 }
 
 $(document).ready(function() {
-  setHeight();
+  setViralBoxHeight();
   smoothScroll.init({
     offset: 100
   });
 });
 
 $(window).resize(function() {
-  setHeight();
+  setViralBoxHeight();
 });

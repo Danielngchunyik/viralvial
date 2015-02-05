@@ -20,9 +20,14 @@
       = f.text_field :organizer, placeholder: "Enter the campaign organizer"
 
     .spacing
-      p= f.label "Default Image:"
+      p= f.label "Thumbnail Image:"
       = f.file_field :image
       = f.hidden_field :image_cache
+
+    .spacing
+      p= f.label "Banner Image:"
+      = f.file_field :banner
+      = f.hidden_field :banner_cache
 
     .spacing
       = f.label "Start date:"
