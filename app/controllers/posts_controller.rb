@@ -58,7 +58,7 @@ class PostsController < ApplicationController
 
   def set_campaign
     @campaign = Campaign.find(params[:campaign_id])
-    authorize @campaign
+    # authorize @campaign
   end
 
   def set_topic
