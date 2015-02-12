@@ -33,7 +33,7 @@
                       -if !@user.birthday.nil?
                       p.spacing-top-small 
                         b Birthday: 
-                      p.spacing-top-smaller= "#{@user.birthday.day.ordinalize} of #{Date::MONTHNAMES[@user.birthday.month]}, #{@user.birthday.year}"
+                      p.spacing-top-smaller= "#{@user.birthday.day.ordinalize} of #{Date::MONTHNAMES[@user.birthday.month]}, #{@user.birthday.year}" if @user.birthday
                       p.spacing-top-small
                         b Location: 
                       p.spacing-top-smaller= "#{current_city}"
