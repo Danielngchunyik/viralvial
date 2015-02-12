@@ -25,3 +25,10 @@ staging:
    RAILS_ENV: production
    RACK_ENV: production
    APP_NAME: viralvial-staging
+
+production:
+  stack: cedar
+  app: viralvial-production
+  config:
+    APP_NAME: viralvial-production
+    
