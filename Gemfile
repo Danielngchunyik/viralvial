@@ -70,6 +70,7 @@ group :developement do
   gem 'quiet_assets'
   gem 'spring'
   gem 'spring-commands-rspec'
+  gem 'heroku_san'
 
   gem 'rb-fchange', require: false
   gem 'rb-fsevent', require: false
