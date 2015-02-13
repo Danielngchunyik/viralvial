@@ -12,14 +12,14 @@ gem 'slim-rails'
 gem 'coffee-rails', '~> 4.0.0'
 gem 'sass-rails', '~> 4.0.3'
 gem 'jquery-rails'
-gem 'country_select', github: 'stefanpenner/country_select'
+gem 'country_select'
 gem 'iso_country_codes'
 
 # database tagging
 gem 'acts-as-taggable-on'
 
 # Semantic UI
-gem 'semantic-ui-sass', github: 'doabit/semantic-ui-sass', branch: 'v1.0beta'
+gem 'semantic-ui-sass'
 
 # pagination
 gem 'will_paginate'
