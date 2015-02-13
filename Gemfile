@@ -42,7 +42,7 @@ gem 'geoip'
 
 # authentication and authorization
 gem 'sorcery'
-gem 'pundit', github: 'elabs/pundit'
+gem 'pundit'
 
 # server and database stacks
 gem 'unicorn-rails'
@@ -70,7 +70,6 @@ group :developement do
   gem 'quiet_assets'
   gem 'spring'
   gem 'spring-commands-rspec'
-  gem 'heroku_san'
 
   gem 'rb-fchange', require: false
   gem 'rb-fsevent', require: false
@@ -83,6 +82,7 @@ group :development, :test do
   gem 'rspec-rails'
   gem 'factory_girl_rails'
   gem 'faker'
+  gem 'heroku_san'
 end
 
 group :test do

@@ -1,0 +1,17 @@
+/home/vagrant/.rvm/rubies/ruby-2.2.0/bin/ruby -r ./siteconf20150213-7246-16s0hpq.rb extconf.rb 
+checking for clock_gettime() in -lrt... yes
+creating Makefile
+
+make "DESTDIR=" clean
+
+make "DESTDIR="
+compiling hitimes.c
+compiling hitimes_instant_clock_gettime.c
+compiling hitimes_instant_osx.c
+compiling hitimes_instant_windows.c
+compiling hitimes_interval.c
+compiling hitimes_stats.c
+linking shared-object hitimes/2.2/hitimes.so
+
+make "DESTDIR=" install
+/usr/bin/install -c -m 0755 hitimes.so ./.gem.20150213-7246-15yhfz0/hitimes/2.2

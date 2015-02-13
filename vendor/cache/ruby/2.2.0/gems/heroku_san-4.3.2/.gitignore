@@ -1,0 +1,9 @@
+.bundle
+Gemfile.lock
+doc
+pkg
+Thumbs.db
+tmp
+.idea/**
+*.swp
+.rspec
