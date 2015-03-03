@@ -4,6 +4,8 @@ class Posts::Publish::Twitter < Posts::TwitterBase
     tweet!
 
     @tweet.id
+  rescue Twitter::Error => e
+    raise PublishError.new(e.message)
   end
 
   private
@@ -17,11 +19,11 @@ class Posts::Publish::Twitter < Posts::TwitterBase
   end
 
   def tweet_without_img
-    @tweet = @twitter.update(@post_params[:message])
+    @tweet = @twitter.client.update(@post_params[:message])
   end
 
   def tweet_with_img
-    @tweet = @twitter.update_with_media(
+    @tweet = @twitter.client.update_with_media(
              @post_params[:message], open(@post_params[:image]), {}
              )
   end

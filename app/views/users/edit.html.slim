@@ -1,21 +1,15 @@
-.select-interest.ui.grid.margin-zero
-  .row
-    .six.wide.column
+.select-interest.ui.page.stackable.grid.margin-zero
+  .row.center
     .four.wide.column
       .center
         = image_tag "login/ice_cream.png"
-    .six.wide.column
 
-  .row
-    .five.wide.column
-    .six.wide.column
+  .row.center
+    .eight.wide.column
       .context.center
         h2 Just one more step to complete your registration. 
         h2 Tell us what you love so we can give you only the best!
-    .five.wide.column
 
-  .row
-    .six.wide.column
-    .four.wide.column
+  .row.center
+    .four.wide.column.center
       = render partial: '/shared/partials/users/edit_interest_form', locals: { user: @user, options: @options, edit: 'no' }
-    .six.wide.column

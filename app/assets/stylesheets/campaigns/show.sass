@@ -1,0 +1,121 @@
+.campaigns.show
+  padding-top: 130px
+  padding-bottom: 100px
+
+  .campaign-profile
+
+    .pad-zero
+      padding: 0
+
+    .image-border
+      height: 100%
+      width: 100%
+      max-width: 400px
+      max-height: 400px
+
+    .center
+      text-align: center
+
+    .left
+      text-align: left
+      
+    .ui.grid
+      margin: 0
+
+    .black
+      color: black
+      font-weight: 100
+
+      &:hover
+        opacity: 0.5
+        transition: opacity 0.2
+
+    #campaign-container
+    
+    .campaign-title
+      font-size: 24px
+      font-family: Rockwell
+      font-weight: bold
+      text-transform: uppercase
+
+    .campaign-image
+      display: none
+
+    .campaign-subtext
+      margin-top: 10px
+      font-family: Seravek
+      font-weight: bold
+      color: #E62E84
+
+    .campaign-description
+      margin-top: 20px
+      font-family: Seravek
+      font-weight: 100
+
+    .campaign-start-date
+      @extend .campaign-description
+      opacity: 0.5
+        
+    .campaign-topic
+
+      .sharebox
+        border: 1px solid rgba(151, 151, 151, 0.15)
+        background-color: rgba(216, 216, 216, 0.15)
+        padding-top: 10px
+        margin-top: 10px
+
+        .context
+          text-align: center
+
+          .spacing-top
+            margin-top: 10px
+
+          .spacing-bottom
+            padding-bottom: 10px
+
+          .spacing-bottom
+            margin-bottom: 10px
+
+    #shared-topics
+      margin-top: 50px
+
+      .center
+        text-align: center
+
+      .pink
+        color: #E62E84
+
+      .margin-top-20 
+        margin-top: 20px
+
+      .padding-zero
+        padding: 0
+      
+      .align-right
+        text-align: right
+
+      .title
+        font-size: 18px
+        font-family: Rockwell
+
+      .shared-box
+        font-family: Seravek
+        border: 1px solid rgba(151, 151, 151, 0.15)
+        background-color: rgba(216, 216, 216, 0.15)
+        padding: 10px
+        margin-top: 10px
+
+@media all and (max-width: 906px)
+
+  .campaigns.show .campaign-profile
+
+    .campaign-image
+      display: block
+
+    .campaign-banner
+      display: none
+
+// @media all and (max-width: 767px)
+
+//   .campaigns.show .campaign-profile .campaign-topic .sharebox
+//     min-width: 200px

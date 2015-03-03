@@ -1,0 +1,122 @@
+// Variables
+
+.h3-stats
+  font-family: Seravek
+  font-size: 18px
+  font-weight: 700
+  color: #E62E84
+
+.h4-stats
+  margin-top: 4px
+  font-family: Seravek
+  font-size: 18px
+  font-weight: 100
+  color: #333333
+
+.parallax-stats
+  background-position: 0 0
+  background-repeat: no-repeat
+  -webkit-background-size: cover
+  -moz-background-size: cover
+  -o-background-size: cover
+  background-size: cover
+
+.contact-settings
+  font-size: 16px
+  color: #000000
+  font-family: Seravek
+
+// End
+
+.home.index
+
+  .ui.grid
+    margin: 0
+
+  #hero-banner.module.parallax
+    @extend .parallax-stats
+    height: 100%
+    text-align: center
+    background-image: asset-url("landing/top_banner.png")
+
+    .hero-context
+      padding-top: 20%
+      padding-bottom: 20%
+
+      h1
+        font-family: Rockwell
+        font-size: 58px
+        font-weight: bold
+        color: #ffffff
+        padding: 1px
+        margin: 0
+
+  .featured-campaigns
+    margin: 0 auto
+    text-align: center
+
+    .title
+      margin-top: 40px
+
+    h2
+      font-family: Seravek
+      font-size: 24px
+      font-weight: 700
+      color: #E62E84
+
+    .padding-zero
+      padding: 0
+
+
+  #contact-us
+    margin-top: 70px
+    @extend .parallax-stats
+    height: 800px
+    background-image: asset-url("landing/bottom_banner.png")
+
+    .space-bottom
+      padding-bottom: 5%
+
+    .margin-zero
+      margin: 0
+          
+    .contact-form
+      @extend .contact-settings
+      margin-top: 3%
+
+      form.settings
+        margin-top: 40px
+        padding: 0 10px 0 0
+
+      input.settings
+        height: 40px
+        width: 100%
+
+      textarea.settings
+        height: 120px
+        width: 100%
+
+      .align-right
+        text-align: right
+
+      .button-settings
+        color: #000000
+
+    .bold
+      font-weight: bold
+
+    .small-space
+      padding-top: 10px
+
+    .contact-details
+      @extend .contact-settings
+      margin-top: 3%
+      height: 150px
+
+@media all and (max-width: 767px)
+
+  .home.index 
+  
+    #hero-banner.module.parallax .hero-context
+      padding-top: 30%
+      padding-bottom: 5%

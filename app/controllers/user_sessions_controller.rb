@@ -21,7 +21,7 @@ class UserSessionsController < ApplicationController
 
   def destroy
     logout
-    flash[:notice] = 'Logged out!'
+    flash[:notice] = "You've successfully logged out!"
     redirect_to root_path
   end
 end

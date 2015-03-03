@@ -11,7 +11,7 @@ class OauthsController < ApplicationController
     if @user = login_from(provider)
 
       set_access_token(@user)
-      flash[:notice] = "Logged in from #{provider.titleize}"
+      flash[:success] = "You're logged in from #{provider.titleize}!"
       redirect_to user_path(@user)
     else
       
@@ -46,7 +46,7 @@ class OauthsController < ApplicationController
   end
 
   def register_new_user(provider)
-    begin
+    # begin
       @user = create_and_validate_from(provider)
       reset_session
 
@@ -58,13 +58,13 @@ class OauthsController < ApplicationController
       end
 
         auto_login(@user)
-        flash[:notice] = "Logged in from #{provider.titleize}"
+        flash[:notice] = "You've registered through #{provider.titleize}!"
         redirect_to edit_user_path(current_user)
-    rescue => e
-      logger.info "[ERROR]: #{e.inspect}"
-      flash[:alert] = "Failed to login from #{provider.titleize}"
-      redirect_to root_path
-    end
+    # rescue => e
+    #   logger.info "[ERROR]: #{e.inspect}"
+    #   flash[:alert] = "Failed to login from #{provider.titleize}"
+    #   redirect_to root_path
+    # end
   end
 
   def save_twitter_info

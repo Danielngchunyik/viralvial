@@ -1,89 +1,92 @@
 .campaign-profile
   .ui.grid
-    
-    .row
-      .three.wide.column
-      .thirteen.wide.column.link-back
+    .row.center
+      .eight.wide.column.link-back.pad-zero.left
         #campaign-nav-link
           = link_to campaigns_path, class: 'black' do
             i.caret.left.icon
             = "Back to Campaigns"
-    
-    .row#campaign-container
-      .three.wide.column
-      .three.wide.column
+    .row.center
+      .ten.wide.column
+        .campaign-banner
+          = image_tag @campaign.banner.display
+        .campaign-image
+          = image_tag @campaign.image.show, class: 'image-border'
+    .row.center
+      .six.wide.column.left
         .campaign-title
           p= "#{@campaign.title}"
         .campaign-subtext
           p= "by #{@campaign.organizer}" unless @campaign.organizer.nil?
-          p= "started #{@campaign.start_date.day.ordinalize} of #{Date::MONTHNAMES[@campaign.start_date.month]}, #{@campaign.start_date.year}"
         .campaign-description
           p= "#{@campaign.description}"
-      .four.wide.column
-        .campaign-image
-          = image_tag @campaign.image.show, class: 'border-radius'
-      .three.wide.column
-        .campaign-topic
-          - @campaign.topics.each do |topic|
-            .sharebox
-              .context
-                  - if current_user.authentications.where(provider: "#{topic.social_media_platform}").present?
-                    - if current_user.posts.where(topic_id: topic.id).first != nil
-                      div class="ui #{topic.social_media_platform} icon button spacing-top"
-                        i class="#{topic.social_media_platform} icon"
-                      p.spacing-top= "#{topic.title}"
-                      p.spacing-bottom= "You've already shared this one"
-                    - else
-                      =link_to new_campaign_topic_post_path(topic.campaign, topic), remote: true, class: "ui #{topic.social_media_platform} icon button spacing-top" do
-                        i class= " #{topic.social_media_platform} icon"
-                      p.spacing-top= "#{topic.title}"
-                      p.spacing-bottom= link_to "Share This on #{topic.social_media_platform.titleize}!", new_campaign_topic_post_path(topic.campaign, topic), remote: true
-                  - else
-                      div class="ui #{topic.social_media_platform} icon button spacing-top"
-                        i class="#{topic.social_media_platform} icon"
-                      p.spacing-top= "#{topic.title}"
-                      p.spacing-bottom= "Please link your account first!"
+        .campaign-start-date
+          p= "started #{@campaign.start_date.day.ordinalize} of #{Date::MONTHNAMES[@campaign.start_date.month]}, #{@campaign.start_date.year}"
 
-      .three.wide.column
-    -if current_user.posts.where(campaign_id: @campaign.id).present?
-      .row#shared-topics
-        .three.wide.column
-        .ten.wide.column
-          p.title YOUR SHARED TOPICS FOR THIS CAMPAIGN
-          .ui.stackable.two.column.grid
-              - current_user.posts.where(campaign_id: @campaign.id).try(:each) do |post|
-                .column.margin-top-20
-                  .shared-box
-                    .center
-                      .div class="ui #{post.topic.social_media_platform} icon button spacing-top"
-                        i class="#{post.topic.social_media_platform} icon"
-                    p.margin-top-20.center.pink= post.topic.title
-                    p.center= post.topic.description
-                    hr
-                    p Shared Message:
-                    p= post.message
-                    .stats.margin-top-20
-                      - @post_stats = post.get_social_media(current_user)
-                      - case social_media(post)
-                      - when "Facebook"
-                        p= "Likes: #{@post_stats[0]}"
-                        p= "Comments: #{@post_stats[1]}"
+    .row.center
+      .nine.wide.column.pad-zero
+        .ui.grid#campaign-container.center
+          .row
+            .nine.wide.column.pad-zero
+              .ui.stackable.two.column.grid.campaign-topic
+                - @campaign.topics.each do |topic|
+                  .column
+                    .sharebox
+                      .context
+                        - if current_user.authentications.where(provider: "#{topic.social_media_platform}").present?
+                          - if current_user.posts.where(topic_id: topic.id).first != nil
+                            div class="ui #{topic.social_media_platform} icon button spacing-top"
+                              i class="#{topic.social_media_platform} icon"
+                            p.spacing-top= "#{topic.title}"
+                            p.spacing-bottom= "You've already shared this one"
+                          - else
+                            =link_to new_campaign_topic_post_path(topic.campaign, topic), remote: true, class: "ui #{topic.social_media_platform} icon button spacing-top" do
+                              i class= " #{topic.social_media_platform} icon"
+                            p.spacing-top= "#{topic.title}"
+                            p.spacing-bottom= link_to "Share this on #{topic.social_media_platform.titleize}!", new_campaign_topic_post_path(topic.campaign, topic), remote: true
+                        - else
+                            div class="ui #{topic.social_media_platform} icon button spacing-top"
+                              i class="#{topic.social_media_platform} icon"
+                            p.spacing-top= "#{topic.title}"
+                            p.spacing-bottom= "Account not linked!"
+
+    .row.center
+      .eight.wide.column.pad-zero                          
+        -if current_user.posts.where(campaign_id: @campaign.id).present?
+          .row#shared-topics
+            .three.wide.column
+            .ten.wide.column
+              p.title YOUR SHARED TOPICS FOR THIS CAMPAIGN
+              .ui.stackable.two.column.grid
+                  - current_user.posts.where(campaign_id: @campaign.id).try(:each) do |post|
+                    .column.margin-top-20
+                      .shared-box
+                        .center
+                          .div class="ui #{post.topic.social_media_platform} icon button spacing-top"
+                            i class="#{post.topic.social_media_platform} icon"
+                        p.margin-top-20.center.pink= post.topic.title
+                        p.center= post.topic.description
                         hr
-                        .ui.grid
-                          .eight.wide.column.padding-zero
-                            p= "#{@post_stats[2]}"
-                          .eight.wide.column.padding-zero.align-right
-                            p= link_to "Delete", campaign_topic_post_path(post.campaign, post.topic, post), method: :delete, data: { confirm: "Delete post?"}
-                      - when "Twitter"
-                        p= "Favourites: #{@post_stats[0]}"
-                        p= "Retweets: #{@post_stats[1]}"
-                        hr
-                        .ui.grid
-                          .eight.wide.column.padding-zero
-                            p= "#{@post_stats[2]}"
-                          .eight.wide.column.padding-zero.align-right
-                            p= link_to "Delete", campaign_topic_post_path(post.campaign, post.topic, post), method: :delete, data: { confirm: "Delete tweet?"}
-      .three.wide.column
-
-
-section.share-form
+                        p Shared Message:
+                        p= post.message
+                        .stats.margin-top-20
+                          - @post_stats = post.get_social_media(current_user)
+                          - case social_media(post)
+                          - when "Facebook"
+                            p= "Likes: #{@post_stats[0]}"
+                            p= "Comments: #{@post_stats[1]}"
+                            hr
+                            .ui.grid
+                              .eight.wide.column.padding-zero
+                                p= "#{@post_stats[2]}"
+                              .eight.wide.column.padding-zero.align-right
+                                p= link_to "Delete", campaign_topic_post_path(post.campaign, post.topic, post), method: :delete, data: { confirm: "Delete post?"}
+                          - when "Twitter"
+                            p= "Favourites: #{@post_stats[0]}"
+                            p= "Retweets: #{@post_stats[1]}"
+                            hr
+                            .ui.grid
+                              .eight.wide.column.padding-zero
+                                p= "#{@post_stats[2]}"
+                              .eight.wide.column.padding-zero.align-right
+                                p= link_to "Delete", campaign_topic_post_path(post.campaign, post.topic, post), method: :delete, data: { confirm: "Delete tweet?"}

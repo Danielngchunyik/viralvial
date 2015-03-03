@@ -1,7 +1,10 @@
 h1 Editing user
 
-= render partial: '/shared/partials/users/edit_profile_form', locals: { title: "Edit user", user: [:admin, @user] }
+.ui.grid
+  .row
+    .sixteen.wide.column
+      = render partial: '/shared/partials/users/edit_profile_form', locals: { title: "Edit user", user: [:admin, @user] }
 
-= link_to 'Show', @user
-'
-= link_to 'Back', admin_users_path
+      = link_to 'Show', @user
+      '
+      = link_to 'Back', admin_users_path
