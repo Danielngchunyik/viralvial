@@ -19,6 +19,7 @@
 .powenv
 config/database.yml
 .env
+environment.sample
 # Ignore application configuration
 /config/application.yml
 

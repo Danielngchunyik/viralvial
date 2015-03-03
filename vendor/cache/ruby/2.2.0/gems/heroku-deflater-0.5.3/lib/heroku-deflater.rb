@@ -1,1 +1,0 @@
-require 'heroku-deflater/railtie'
