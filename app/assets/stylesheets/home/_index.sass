@@ -33,10 +33,6 @@
   .ui.grid
     margin: 0
 
-  .preloaded-images
-    background-image: asset-url("landing/join_us_hover.png")
-    display: hidden
-
   #hero-banner.module.parallax
     @extend .parallax-stats
     height: 100%
@@ -55,111 +51,19 @@
         padding: 1px
         margin: 0
 
-      .join-button
-        display: inline-block
-        width: 227px
-        height: 105px
-        margin-top: 35px
-        background-image: asset-url("landing/join_us_button.png")
-
-        &:hover
-          background-image: asset-url("landing/join_us_hover.png")
-
-    #about-us
-      text-align: center
-      background-color: white
-      margin: 0 auto
-
-      .center
-        text-align: center
-
-      .about-us-context
-        margin: 2% 5% 1% 5%
-        padding: 0
-
-        .top-padding
-          margin-top: 24px
-
-        h3
-          @extend .h3-stats
-
-        h4 
-          @extend .h4-stats
-
-      .info-button
-        opacity: 1
-        margin-bottom: 32px
-        margin: 0 5% 0 5%
-
-        &:hover
-          opacity: 0.5
-          transition: opacity 0.2s
-
-    .about-us-description
-      margin: 5%
-      text-align: center
-
-      .padding-zero
-        padding: 0
-
-      #viralvial-description
-        text-align: left
-        min-height: 150px
-
-        #vials-box
-          display: none
-          opacity: 1
-
-        #viralers-box
-          display: none
-          opacity: 1
-
-        .textbox
-
-          font-family: Seravek
-          font-size: 18px
-          font-weight: 700
-          color: #ffffff
-          margin-top: 1px
-
-          .top-padding
-            margin-top: 24px
-
-          .text
-            margin-top: 3px
-
-  .about-us-continued
+  .featured-campaigns
     margin: 0 auto
     text-align: center
-
-    .fixed
-      height: 100%
-      width: 100%
 
     .viraler-title
       margin-top: 40px
 
-    .viraler-description
-      margin-top: 30px
+    h2
+      font-family: Seravek
+      font-size: 24px
+      font-weight: 700
+      color: #E62E84
 
-      .center
-        text-align: center
-
-    .vial-description
-      margin-top: 30px
-
-      .center
-        text-align: center
-    p
-      &.title
-        margin-top: 10px
-        font-weight: bold
-
-    h3
-      @extend .h3-stats
-
-    h4
-      @extend .h4-stats
 
   #contact-us
     margin-top: 70px
@@ -179,6 +83,7 @@
 
       form.settings
         margin-top: 40px
+        padding: 0 10px 0 0
 
       input.settings
         height: 40px

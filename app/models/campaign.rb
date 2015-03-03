@@ -14,6 +14,7 @@ class Campaign < ActiveRecord::Base
 
   has_many :topics
   has_many :posts
+  belongs_to :featured
   validates :title, :description, presence: true
   validate :at_least_one_topic_required
   enum language: [:unspecified, :chinese, :english, :malay]

@@ -13,13 +13,13 @@ String.prototype.rightChars = function(n){
 (function($) {
   var
     options = {
-      highlightSpeed    : 20,
+      highlightSpeed    : 30,
       typeSpeed         : 100,
       clearDelay        : 500,
       typeDelay         : 200,
       clearOnHighlight  : true,
       typerDataAttr     : 'data-typer-targets',
-      typerInterval     : 2000
+      typerInterval     : 6500
     },
     highlight,
     clearText,
@@ -42,7 +42,7 @@ String.prototype.rightChars = function(n){
 
     return $('<span></span>')
       .css('color', color)
-      .css('background-color', backgroundColor);
+      .css('background-color', 'rgba(0,0,0,0)');
   };
 
   isNumber = function (n) {
@@ -200,12 +200,10 @@ String.prototype.rightChars = function(n){
       j = 0;
 
     if (currentText === newString) {
-      console.log("Our strings our equal, nothing to type");
       return $e;
     }
 
     if (currentText !== $e.html()) {
-      console.error("Typer does not work on elements with child elements.");
       return $e;
     }
 
