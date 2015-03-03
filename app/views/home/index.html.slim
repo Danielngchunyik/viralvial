@@ -4,11 +4,14 @@
       | Viral Vial is about 
       span data-typer-targets="socializing, engagement, sharing" socializing
 
-section.featured-campaigns.ui.page.stackable.grid
+section.featured-campaigns
 
-  .row.viraler-title
+  .row.title
     .eight.wide.column
       h2 Our Featured Campaigns
+  .row
+    .sixteen.wide.column
+      = render partial: 'shared/partials/campaigns/index'
 
 
 #contact-us.zero-margin.parallax

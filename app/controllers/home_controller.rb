@@ -2,7 +2,7 @@ class HomeController < ApplicationController
 
   def index
     @contact = Contact.new
-    featured_campaigns = Campaign.where(featured: true)
+    @campaigns = Campaign.where(featured: true).paginate(page: params[:page], per_page: 6)
 
 
     #redirects if user is logged in
