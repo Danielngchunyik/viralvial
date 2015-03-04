@@ -59,7 +59,41 @@
     opacity: 1
     transform: none
 
+/* Fade in Down */
+
++keyframes(fadeInDown)
+  0%
+    opacity: 0
+    transform: translate3d(0, -100%, 0)
+
+  100% 
+    opacity: 1
+    transform: none
+
+/* Fade in Up */
+
++keyframes(fadeInUp)
+  0%
+    opacity: 0
+    transform: translate3d(0, 100%, 0)
+
+  100%
+    opacity: 1
+    transform: none
+
 /* End */
+
+.fadeInUp
+  -moz-animation-name: fadeInUp
+  -o-animation-name: fadeInUp
+  -webkit-animation-name: fadeInUp
+  animation-name: fadeInUp
+
+.fadeInDown
+  -moz-animation-name: fadeInDown
+  -o-animation-name: fadeInDown
+  -webkit-animation-name: fadeInDown
+  animation-name: fadeInDown
 
 .fadeInLeft
   -moz-animation-name: fadeInLeft

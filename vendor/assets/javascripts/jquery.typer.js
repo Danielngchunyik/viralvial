@@ -36,13 +36,13 @@ String.prototype.rightChars = function(n){
     typerInterval;
 
   spanWithColor = function(color, backgroundColor) {
-    if (color === 'rgba(0, 0, 0, 0)') {
+    if (color === '') {
       color = 'rgb(255, 255, 255)';
     }
 
     return $('<span></span>')
-      .css('color', color)
-      .css('background-color', 'rgba(0,0,0,0)');
+      .css('color', 'rgba(230,46,132,1)')
+      .css('background-color', 'rgba(255,255,255,0)');
   };
 
   isNumber = function (n) {

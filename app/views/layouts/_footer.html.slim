@@ -1,12 +1,8 @@
 footer.style
-  .ui.grid
-    .row
-      .four.wide.column
-      .seven.wide.column
-        p.copyright © 2015 Viral Vial
-      / .five.wide.column
-      /   = link_to '#', class: 'ui facebook icon button' do
-      /     i.facebook.icon
-      /   = ' '
-      /   = link_to '#', class: 'ui twitter icon button' do
-      /     i.twitter.icon
+  .ui.menu.black
+    .item.left-padding
+      p.copyright © 2015 Viral Vial
+
+    .right.menu
+      .item.right-padding
+        p= link_to "CONNECT NOW", new_user_path, class: 'connect white'

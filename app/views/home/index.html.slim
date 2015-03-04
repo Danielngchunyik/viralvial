@@ -1,51 +1,40 @@
 #hero-banner.module.parallax
   .hero-context
-    h1 
+    .right.hide
+      = link_to "CONNECT NOW!", new_user_path, class: "ui black basic button connect-button"
+    h1.banner-title.hide
       | Viral Vial is about 
-      span data-typer-targets="socializing, engagement, sharing" socializing
+      span.purple data-typer-targets="reaching out, socializing, engagement, sharing, empowering" socializing
+      p.mobile.purple data-typer-targets="reaching out, socializing, engagement, sharing, empowering" socializing
+    .arrow-down
+      = image_tag "landing/triangle.png"
 
 section.featured-campaigns
 
-  .row.title
-    .eight.wide.column
-      h2 Our Featured Campaigns
   .row
-    .sixteen.wide.column
-      = render partial: 'shared/partials/campaigns/index'
+    .twelve.wide.column.spacing-placeholder
+      = "Placeholder Campaigns"
 
 
-#contact-us.zero-margin.parallax
-  .ui.stackable.grid
-    .row.center
-      .ten.wide.column
-        .ui.stackable.two.column.centered.grid.space-bottom
-          .column.contact-form
-            p.bold DROP US A NOTE
-            | If you need a service, please do not hesitate to contact us!
-
-            = form_for @contact, url: contact_path, method: :post, html: { class: 'ui form settings', id: 'contact_form' } do |f|
+#contact-us.zero.parallax
+  .ui.grid
+    .row
+      .eight.wide.column#contact-us-title.hide
+        p.left DROP US A NOTE!
+    .row.no-top-padding
+      .eight.wide.column
+        = form_for @contact, url: contact_path, method: :post, html: { class: 'ui form settings', id: 'contact_form' } do |f|
+          .ui.stackable.two.column.centered.grid.space-bottom
+            .column.zero#contact-left.hide
               .field
-                p= f.label "NAME: "
+                p.white YOUR NAME
                 p= f.text_field :name, class: 'settings'
               .field
-                p= f.label "EMAIL: "
+                p.white EMAIL
                 p= f.email_field :email, class: 'settings'
+            .column.zero#contact-right.hide
               .field
-                p= f.label "MESSAGE: "
+                p.white MESSAGE
                 p= f.text_area :content, cols: 50, rows: 10, class: 'settings'
 
-              p.align-right= f.submit "SEND", class: "button-settings ui yellow button"
-
-          .column.contact-details
-            .phone
-              p.bold PHONE
-              | (+603) 7611 0415
-
-            .small-space
-              p.bold EMAIL
-              | enquiry@viralvial.com
-
-            .small-space
-              p Please fill out this short form and submit any comments
-              | or questions you may have. We will make every effort to respond
-              |  to your inquiries in a thorough and timely manner.
+                p.align-right= f.submit "SEND", class: "button-settings ui button", id: "contact-submit"

@@ -14,7 +14,6 @@
   color: #333333
 
 .parallax-stats
-  background-position: 0 0
   background-repeat: no-repeat
   -webkit-background-size: cover
   -moz-background-size: cover
@@ -30,26 +29,58 @@
 
 .home.index
 
+  p.mobile
+    display: none
+
+  .spacing-placeholder
+    margin-top: 50%
+    margin-bottom: 50%
+
   .ui.grid
     margin: 0
 
   #hero-banner.module.parallax
+    background-position: 0 0
     @extend .parallax-stats
     height: 100%
     text-align: center
-    background-image: asset-url("landing/top_banner.png")
+    background-image: asset-url("landing/landing-hero-1.png")
 
     .hero-context
-      padding-top: 20%
-      padding-bottom: 20%
 
-      h1
+      a.connect-button
+        border: 1px solid black
+        padding: 20px
+        color: black !important
+        box-shadow: none !important
+        font-weight: bold
+
+        &:hover
+          color: #E62E84 !important
+          border-color: #E62E84
+
+      .right
+        padding-right: 3%
+        padding-top: 3%
+        text-align: right
+
+      h1    
         font-family: Rockwell
         font-size: 58px
         font-weight: bold
-        color: #ffffff
+        color: #222219
         padding: 1px
         margin: 0
+
+      .banner-title
+        padding-top: 12%
+        padding-bottom: 12%
+
+      .arrow-down
+        padding-bottom: 3%
+
+      span.purple
+        color: #E62E84
 
   .featured-campaigns
     margin: 0 auto
@@ -69,54 +100,76 @@
 
 
   #contact-us
-    margin-top: 70px
+    margin-top: 75px
+    background-position: 0 0
     @extend .parallax-stats
-    height: 800px
-    background-image: asset-url("landing/bottom_banner.png")
+    height: 496px
+    background-image: asset-url("landing/landing-hero-2.png")
+
+    .left
+      text-align: left
+      padding-left: 1em
+      padding-top: 8%
+      color: white
+
+    .ui.grid
+      text-align: center
 
     .space-bottom
       padding-bottom: 5%
 
-    .margin-zero
+    .no-top-padding
+      padding-top: 0
+
+    .zero
       margin: 0
-          
-    .contact-form
-      @extend .contact-settings
-      margin-top: 3%
 
-      form.settings
-        margin-top: 40px
-        padding: 0 10px 0 0
+    input.settings
+      height: 40px
+      width: 100%
+      background-color: black
+      color: white
 
-      input.settings
-        height: 40px
-        width: 100%
+    textarea.settings
+      height: 120px
+      width: 100%
+      background-color: black
+      color: white
 
-      textarea.settings
-        height: 120px
-        width: 100%
+    .align-right
+      text-align: right
+      margin-top: 5px
 
-      .align-right
-        text-align: right
+    .button-settings
+      color: white
+      background-color: #E62E84
 
-      .button-settings
-        color: #000000
+      &:hover
+        color: #E62E84
+        background-color: white
 
-    .bold
-      font-weight: bold
-
-    .small-space
-      padding-top: 10px
-
-    .contact-details
-      @extend .contact-settings
-      margin-top: 3%
-      height: 150px
+    p.white
+      color: white
+      opacity: 0.9
 
 @media all and (max-width: 767px)
 
-  .home.index 
-  
-    #hero-banner.module.parallax .hero-context
-      padding-top: 30%
-      padding-bottom: 5%
+  .home.index
+    
+
+    #hero-banner.module.parallax .hero-context 
+
+      a.connect-button
+        border: 1px solid black
+        padding: 10px
+
+      .right
+        padding-top: 8%
+
+      span.purple
+        display: none
+    
+    p.mobile
+      display: block
+      min-height: 58px
+      color: #E62E84

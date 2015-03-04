@@ -1,7 +1,11 @@
 .campaigns-list
   .ui.stackable.grid
     .row.center.browser
-      .fourteen.wide.column
+      .twelve.wide.column
+        h2 Featured Campaigns
+  .ui.stackable.grid
+    .row.center.browser
+      .twelve.wide.column
         .ui.stackable.four.column.grid
           - @campaigns.each do |campaign|
               .column.campaign-box
