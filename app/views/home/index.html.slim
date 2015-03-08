@@ -84,19 +84,3 @@ section.featured-campaigns
             label.white MESSAGE
             = f.text_area :content, cols: 50, rows: 10
             = f.submit "SEND", class: "button-settings ui button", id: "contact-submit", placeholder: 'Hey there!'                                   
-                 
-
-            
-          / .ui.stackable.two.column.centered.grid.space-bottom
-          /   .column.zero#contact-left.hide
-          /     .two.fields
-          /       .field
-          /       .field
-
-          /     .field
-          /         = f.select :type, options_for_select([["Advertiser", "Advertiser"], 
-          /                                               ["User", "User"]], "User"), {}, { class: 'ui dropdown' }
-                
-          /   .column.zero#contact-right.hide
-          /     .field
-
