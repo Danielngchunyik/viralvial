@@ -3,31 +3,27 @@ $(document).ready(function() {
   // Check Animation Trigger
   var triggered = false;
   
-  // Get Parallax Elements
-  var parallax = document.querySelectorAll(".parallax"), speed = 0.65;
-
   // Initiate Smoothscroll
   smoothScroll.init({
     offset: 100
   });
 
-  // Run Landing Page Animations
-  $('#hero-banner').addClass("animated fadeInDown");
-  
+  // Run Landing Page Animations  
   setTimeout( function() {
-    $('.hero-context .right').removeClass("hide").addClass("animated fadeInDown");
-  }, 1200);
+    $('#navbar-left').removeClass("hide").addClass("animated fadeInDown")
+    $('#navbar-right').removeClass("hide").addClass("animated fadeInDown");
+  }, 800);
 
   setTimeout( function() {
-    $('.hero-context .banner-title').removeClass("hide").addClass("animated fadeInDown");
-  }, 1400);
+    $('.hero-content .banner-title').removeClass("hide").addClass("animated fadeInDown");
+  }, 1200);
 
   // Remove Animations Upon Conclusion
   setTimeout( function() {
-    $('#hero-banner').removeClass("animated fadeInDown");
-    $('.hero-context .right').removeClass("animated fadeInDown");
-    $('.hero-context .banner-title').removeClass("animated fadeInDown");
-  }, 2400);
+    $('#navbar-left').removeClass("animated fadeInDown")
+    $('#navbar-right').removeClass("animated fadeInDown");
+    $('.hero-content .banner-title').removeClass("animated fadeInDown");
+  }, 2200);
 
   // Set Typer Timeout
   setTimeout( function() {
@@ -36,21 +32,6 @@ $(document).ready(function() {
 
 
   window.onscroll = function() {
-
-    // Trigger Parallax
-    [].slice.call(parallax).forEach(function(el,i){
-
-      var windowYOffset = (window.pageYOffset - $(el).position().top);
-   
-      if (el.id == 'contact-us') {
-        windowYOffset += 380;
-      }
-
-      var elBackgrounPos = "50%" + (windowYOffset * speed) + "px";
-    
-      el.style.backgroundPosition = elBackgrounPos;
-    });
-
     if (isScrolledIntoView('#contact-us') && triggered == false) {
 
       // Animate Contact Us Form    

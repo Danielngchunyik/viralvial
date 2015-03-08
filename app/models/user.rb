@@ -20,6 +20,7 @@ class User < ActiveRecord::Base
   validates :password_confirmation, presence: true, if: :password
   validates :email, uniqueness: true, format: { with: /\A([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})\z/i, on: :create }
 
+  acts_as_taggable_on :primary_interests
   acts_as_taggable_on :secondary_interests
 
   has_many :authentications, dependent: :destroy

@@ -1,7 +1,19 @@
 #hero-banner.module.parallax
-  .hero-context
-    .right.hide
-      = link_to "CONNECT NOW!", new_user_path, class: "ui black basic button connect-button"
+  .hero-content
+    .nav-bar
+      .ui.grid
+        .eight.wide.column#navbar-left.left.hide
+          = link_to root_path do
+            = image_tag "header/logo.png"
+        .eight.wide.column#navbar-right.hide
+          .right.floated.column
+            .ui.horizontal.list
+              .item
+                p.navlink ABOUT
+              .item
+                p.navlink BLOG
+              .item  
+                = link_to "CONNECT NOW!", new_user_path, class: "ui black basic button connect-button"
     h1.banner-title.hide
       | Viral Vial is about 
       span.purple data-typer-targets="reaching out, socializing, engagement, sharing, empowering" socializing
@@ -9,32 +21,82 @@
     .arrow-down
       = image_tag "landing/triangle.png"
 
-section.featured-campaigns
+section#info-banner
+  .content
+    .ui.grid.center.aligned
+      .twelve.wide.column
+        .ui.stackable.three.column.grid
+          .column.center
+            .ui.two.column.grid
+              .equal.height.row
+                .column.image-alignment
+                  = image_tag "landing/browse.png", class: 'image-settings'
+                .column.v-padding
+                  p.subtext Browse Campaigns..
+          .column.center
+            .ui.two.column.grid
+              .equal.height.row
+                .column.image-alignment
+                  = image_tag "landing/share.png", class: 'image-settings'
+                .column.v-padding 
+                  p.subtext Talk about it?
+          .column.center
+            .ui.two.column.grid
+              .equal.height.row
+                .column.image-alignment
+                  = image_tag "landing/reward.png", class: 'image-settings'
+                .column.v-padding
+                  p.subtext Get Rewarded!
 
-  .row
-    .twelve.wide.column.spacing-placeholder
-      = "Placeholder Campaigns"
+
+
+section.featured-campaigns
+  
+  .ui.grid.center
+    .twelve.wide.column
+      h2.left OUR FEATURED CAMPAIGNS
+      h2.left.subtitle Take a peek at our current trending campaigns!
+      = render partial: 'shared/partials/campaigns/index', locals: { campaigns: @campaigns }
 
 
 #contact-us.zero.parallax
-  .ui.grid
-    .row
-      .eight.wide.column#contact-us-title.hide
-        p.left DROP US A NOTE!
-    .row.no-top-padding
-      .eight.wide.column
-        = form_for @contact, url: contact_path, method: :post, html: { class: 'ui form settings', id: 'contact_form' } do |f|
-          .ui.stackable.two.column.centered.grid.space-bottom
-            .column.zero#contact-left.hide
+  .ui.page.stackable.grid
+    .column
+      = form_for @contact, url: contact_path, method: :post, html: { class: 'ui small fluid form spacing-bottom', id: 'contact_form' } do |f|
+        #contact-us-title.hide
+          p.left DROP US A NOTE!
+        .two.fields.small-spacing-top
+          #contact-left.field.hide
+            .two.fields
               .field
-                p.white YOUR NAME
-                p= f.text_field :name, class: 'settings'
+                label.white MY NAME IS
+                = f.text_field :name, placeholder: 'Name'
               .field
-                p.white EMAIL
-                p= f.email_field :email, class: 'settings'
-            .column.zero#contact-right.hide
-              .field
-                p.white MESSAGE
-                p= f.text_area :content, cols: 50, rows: 10, class: 'settings'
+                label I AM A/AN
+                = f.select :type, options_for_select([["Advertiser", "Advertiser"], 
+                                                      ["User", "User"]], "User"), {}, { class: 'ui selection dropdown' }
+            .field
+              label.white MY EMAIL IS
+              = f.email_field :email, placeholder: 'Email address'
 
-                p.align-right= f.submit "SEND", class: "button-settings ui button", id: "contact-submit"
+
+          #contact-right.field.hide
+            label.white MESSAGE
+            = f.text_area :content, cols: 50, rows: 10
+            = f.submit "SEND", class: "button-settings ui button", id: "contact-submit", placeholder: 'Hey there!'                                   
+                 
+
+            
+          / .ui.stackable.two.column.centered.grid.space-bottom
+          /   .column.zero#contact-left.hide
+          /     .two.fields
+          /       .field
+          /       .field
+
+          /     .field
+          /         = f.select :type, options_for_select([["Advertiser", "Advertiser"], 
+          /                                               ["User", "User"]], "User"), {}, { class: 'ui dropdown' }
+                
+          /   .column.zero#contact-right.hide
+          /     .field
+

@@ -1,29 +1,11 @@
 // Variables
 
-.h3-stats
-  font-family: Seravek
-  font-size: 18px
-  font-weight: 700
-  color: #E62E84
-
-.h4-stats
-  margin-top: 4px
-  font-family: Seravek
-  font-size: 18px
-  font-weight: 100
-  color: #333333
-
 .parallax-stats
   background-repeat: no-repeat
   -webkit-background-size: cover
   -moz-background-size: cover
   -o-background-size: cover
   background-size: cover
-
-.contact-settings
-  font-size: 16px
-  color: #000000
-  font-family: Seravek
 
 // End
 
@@ -32,24 +14,20 @@
   p.mobile
     display: none
 
-  .spacing-placeholder
-    margin-top: 50%
-    margin-bottom: 50%
-
   .ui.grid
     margin: 0
 
   #hero-banner.module.parallax
-    background-position: 0 0
+    background-position: 50% 0
     @extend .parallax-stats
     height: 100%
     text-align: center
     background-image: asset-url("landing/landing-hero-1.png")
 
-    .hero-context
+    .hero-content
 
       a.connect-button
-        border: 1px solid black
+        border: 2px solid black
         padding: 20px
         color: black !important
         box-shadow: none !important
@@ -59,15 +37,22 @@
           color: #E62E84 !important
           border-color: #E62E84
 
+      .navlink
+        padding: 0 20px 0 20px
+        font-size: 20px
+        font-family: Seravek
+        color: black
+
+      .left
+        padding-left: 3%
+
       .right
         padding-right: 3%
-        padding-top: 3%
         text-align: right
 
       h1    
-        font-family: Rockwell
+        font-family: Seravek
         font-size: 58px
-        font-weight: bold
         color: #222219
         padding: 1px
         margin: 0
@@ -82,12 +67,43 @@
       span.purple
         color: #E62E84
 
+  #info-banner
+    background-position: 50% 0
+    background-color: #FF4099
+
+    .content
+      padding-top: 2%
+      padding-bottom: 2%
+
+    .v-padding
+      position: relative
+
+    .subtext
+      position: absolute
+      top: 50%
+      transform: translateY(-50%)
+      font-weight: 100
+      font-family: Seravek
+      color: white
+      font-size: 22px
+
+    .center
+      text-align: center
+
+    .image-alignment
+      text-align: right
+
   .featured-campaigns
     margin: 0 auto
     text-align: center
+    padding-top: 10%
 
-    .title
-      margin-top: 40px
+    .left
+      text-align: left
+      padding-left: 1.25%
+
+    .center
+      text-align: center
 
     h2
       font-family: Seravek
@@ -95,28 +111,35 @@
       font-weight: 700
       color: #E62E84
 
+      &.subtitle
+        color: #333333
+        opacity: 0.9
+        font-weight: 100
+        padding-top: 2%
+
     .padding-zero
       padding: 0
 
-
   #contact-us
     margin-top: 75px
-    background-position: 0 0
+    background-position: 50% 0
     @extend .parallax-stats
-    height: 496px
     background-image: asset-url("landing/landing-hero-2.png")
 
     .left
       text-align: left
-      padding-left: 1em
-      padding-top: 8%
+      padding-top: 15%
       color: white
+      font-size: 18px
 
     .ui.grid
       text-align: center
 
-    .space-bottom
-      padding-bottom: 5%
+    .small-spacing-top
+      margin-top: 30px
+
+    .spacing-bottom
+      padding-bottom: 15%
 
     .no-top-padding
       padding-top: 0
@@ -125,14 +148,10 @@
       margin: 0
 
     input.settings
-      height: 40px
-      width: 100%
       background-color: black
       color: white
 
     textarea.settings
-      height: 120px
-      width: 100%
       background-color: black
       color: white
 
@@ -148,7 +167,7 @@
         color: #E62E84
         background-color: white
 
-    p.white
+    .white
       color: white
       opacity: 0.9
 
@@ -156,19 +175,26 @@
 
   .home.index
     
-
-    #hero-banner.module.parallax .hero-context 
+    #hero-banner.module.parallax .hero-content 
 
       a.connect-button
         border: 1px solid black
         padding: 10px
+
+      .navlink
+        padding: 0
 
       .right
         padding-top: 8%
 
       span.purple
         display: none
-    
+
+    #info-banner
+
+      .image-alignment
+        text-align: center
+
     p.mobile
       display: block
       min-height: 58px

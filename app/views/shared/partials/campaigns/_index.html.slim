@@ -1,44 +1,20 @@
 .campaigns-list
-  .ui.stackable.grid
-    .row.center.browser
-      .twelve.wide.column
-        h2 Featured Campaigns
-  .ui.stackable.grid
-    .row.center.browser
-      .twelve.wide.column
-        .ui.stackable.four.column.grid
-          - @campaigns.each do |campaign|
-              .column.campaign-box
-                = link_to campaign_path(campaign) do
-                  .campaign-panel
-                    = image_tag campaign.image, class: 'border-radius'
-                    .body-section
-                      h3.ui.header.uppercase = campaign.title
-                      p.description = campaign.description.split.slice(0, 6).join(" ") << "..."
-                      .ui.grid
-                        .row
-                          .eight.wide.column
-                        .row
-                          .right.floated.right.aligned.twelve.wide.column.countdown-container
-                            span.countdown = campaign.time_remaining
-
-  .ui.grid.mobile
-    - @campaigns.each do |campaign|
-      .row.center
-        .ten.wide.column
-          = link_to campaign_path(campaign) do
-            .campaign-panel
-              = image_tag "http://placehold.it/300", class: 'border-radius'
-              .body-section
-                h3.ui.header.uppercase = campaign.title
-                p.description = campaign.description.split.slice(0, 6).join(" ") << "..."
-                .ui.grid
-                  .row
-                    .eight.wide.column
-                  .row
-                    .right.floated.right.aligned.twelve.wide.column.countdown-container
-                      span.countdown = campaign.time_remaining
-
-
-  section.center.paginator
-    = will_paginate @campaigns
+  .ui.stackable.four.column.grid
+    - campaigns.each do |campaign|
+      .column
+        - campaign = present(campaign)
+        = link_to campaign_path(campaign.id) do
+          .campaign-card 
+            .ui.segment.zero-padding
+              .image-panel
+                = image_tag "http://placehold.it/720x720", class: 'ui fluid image'
+              .ui.vertical.segment.content-panel
+                p.campaign-title= campaign.title
+                p.campaign-description= truncate(campaign.description, length: 100)
+                .ui.two.column.grid.spacing-top
+                  .column.zero-padding
+                    .rewards
+                      span Earn 
+                      span.bold 50 - 100 MYR
+                  .column.zero-padding.timer
+                    p= campaign.time_remaining

@@ -1,76 +1,44 @@
-.campaigns.index
-  padding-bottom: 100px
-  padding-top: 200px
+.campaigns-list
+  padding-bottom: 15%
+  padding-top: 5%
 
-  .mobile
-    display: none
-
-  .center
-    text-align: center
-    
-  .description
-    color: #000000
-
-  & .title
-    font-size: 60px
-    font-family: Seravek
-    font-weight: bold
-    padding-bottom: 40px
-    color: #E62E84
-
-  & .paginator
-    margin-top: 100px
-
-  .campaign-box
-    margin-top: 30px
-
-  .campaign-panel
-    border-radius: 5px
-    border: 1px solid #E62E84
-    height: 100%
+  .campaign-card
+    border: 2px solid transparent
+    transition: 0.2s border
 
     &:hover
-      margin-top: -5px
-      transition: margin-bottom 0.2s
+      border: 2px solid #E62E84
 
-  .border-radius
-    border-top-left-radius: 5px
-    border-top-right-radius: 5px
-    height: 236px
-    width: 100%
+  .content-panel
+    padding: 1em
 
-  .body-section
-    padding: 0px 10px 16px 10px
+  .campaign-title
+    font-size: 20px
+    font-weight: 100
+    opacity: 0.8
+    font-family: Seravek
+    word-wrap: break-word
 
-  .border-radius
-    border-top-left-radius: 5px
-    border-top-right-radius: 5px
-    height: 236px
-    width: 100%
-  
-  .countdown-container
-    margin-top: 37px
+  .campaign-description
+    margin-top: 10px
+    font-weight: 100
+    font-family: Seravek
+    font-size: 16px
+    opacity: 0.8
+    word-wrap: break-word
 
-  .countdown
-    color: #ffffff
-    background-color: #E62E84
-    padding-left: 7px
-    padding-right: 7px
+  .spacing-top
+    margin-top: 20px !important
 
-@media all and (max-width: 767px)
+  .zero-padding
+    padding: 0 !important
 
-  .campaigns.index
+  .rewards
+    font-size: 14px
 
-    .browser
-      display: none
+  .timer
+    font-size: 14px
+    color: #E62E84
 
-    .mobile
-      display: block
-
-    .campaign-panel
-
-      &:hover
-        margin-top: 0px
-        opacity: 0.5
-        transition: opacity 0.2s
-
+  .bold
+    font-weight: bold

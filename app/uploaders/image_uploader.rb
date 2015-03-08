@@ -32,18 +32,23 @@ class ImageUploader < CarrierWave::Uploader::Base
   # end
 
   # Create different versions of your uploaded files:
+
+  # Profile image thumbnail
   version :thumb do
     process :resize_to_fit => [150, 150]
   end
 
+  # Post image selection
   version :small do
     process :resize_to_fit => [250, 250]
   end
 
+  # Campaign image views
   version :show do
     process :resize_to_fill => [400,400]
   end
 
+  # Campaign banner views
   version :display do
     process :resize_to_fill => [680, 260]
   end

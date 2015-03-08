@@ -17,6 +17,6 @@ params = { campaign:{
 	}
 }
 
-10.times do |e|
+6.times do |e|
   e = Campaign.create!(params[:campaign])
 end

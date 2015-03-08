@@ -1,50 +1,35 @@
 class CampaignPresenter < BasePresenter
-  presents :campaign
-
+   
   def time_remaining
-
-    difference_in_seconds = ((@campaign.end_date - @campaign.start_date).abs).round
-    components = []
-
-    %w(year month week day).each do |interval|
-      # For each interval type, if the amount of time remaining is greater than
-      # one unit, calculate how many units fit into the remaining time.
-      if difference_in_seconds >= 1.send(interval)
-        delta = (difference_in_seconds / 1.send(interval)).floor
-        difference_in_seconds -= delta.send(interval)
-        components << pluralize(delta, interval)
-      end
-    end
-
-    components.join(", ")
+    distance_of_time_in_words(object.start_date, object.end_date)
   end
 
   def title
-    @campaign.title || "No Title"
+    object.title || "No Title"
   end
 
   def description
-    @campaign.description || "No Description"
+    object.description || "No Description"
   end
 
   def organizer
-    @campaign.organizer || "No Organizer"
+    object.organizer || "No Organizer"
   end
 
   def start_date
-    convert_date(@campaign.start_date)
+    convert_date(object.start_date)
   end
 
   def end_date
-    convert_date(@campaign.end_date)
+    convert_date(object.end_date)
   end
 
   def banner
-    @campaign.banner.display
+    object.banner.display
   end
 
   def image
-    @campaign.image.show
+    object.image.show
   end
 
   private
