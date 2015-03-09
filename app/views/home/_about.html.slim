@@ -25,10 +25,20 @@
         p.title Spend It
         p.subtitle Just by sharing stories that are close to your heart, you get to earn some extra moolah! How about that?
 
-  .ui.one.column.grid.padding-top-5.padding-bottom-5
+  .ui.one.column.grid.padding-top-5.padding-bottom-5.desktop
     .column.center
-      span= link_to "BROWSE!", '#staging-container',"data-scroll": true, id: 'about-browser', class: "ui black basic button campaign-button"
+      span= link_to "BROWSE!", '#staging-container',"data-scroll": true, class: "about-browser ui black basic button campaign-button"
       span.space-em-up OR
+      span= link_to "CONNECT NOW!", '#', class: "ui black basic button connect-button trigger-connect"
+      br
+      br
+      span.small-padding-top Got a question? 
+      = link_to "Talk to us!", '#contact-us', "data-scroll": true
+
+  .ui.one.column.grid.padding-top-5.padding-bottom-5.mobile
+    .column.center
+      p= link_to "BROWSE!", '#staging-container',"data-scroll": true, class: "about-browser ui black basic button campaign-button"
+      p OR
       span= link_to "CONNECT NOW!", '#', class: "ui black basic button connect-button trigger-connect"
       br
       br

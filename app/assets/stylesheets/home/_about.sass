@@ -2,6 +2,9 @@
   padding-bottom: 15%
   padding-top: 5%
 
+  .mobile
+    display: none
+
   .center
     text-align: center
 
@@ -53,3 +56,13 @@
   
   .campaign-button
     @extend .connect-button
+
+@media all and (max-width: 588px)
+
+  #about-us
+
+    .mobile
+      display: block
+
+    .desktop
+      display: none

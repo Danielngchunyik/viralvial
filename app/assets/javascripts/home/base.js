@@ -39,7 +39,7 @@ $(document).ready(function() {
   $('#connect-modal').modal('attach events', '.trigger-connect', 'show');
 
   // User clicks browse on about-us
-  $('#about-browser').on('click', function() {
+  $('.about-browser').on('click', function() {
     $('#about-us').addClass('none');
     $('#campaigns-list').removeClass('none').addClass('animated fadeInDown');
   })

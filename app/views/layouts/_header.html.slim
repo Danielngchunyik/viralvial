@@ -21,8 +21,9 @@ header
                 i.chevron.down.icon
               .menu
                 .item
-                  p.navlink= link_to "ABOUT", '#staging-container', "data-scroll": true, class: "about-us navlink"
+                  = link_to '#staging-container', "data-scroll": true do
+                    p.navlink.about-us ABOUT
                 .item
                   p.navlink BLOG
                 .item
-                  = link_to "CONNECT NOW!", '#', class: 'navlink trigger-connect'
+                  p.navlink.trigger-connect CONNECT NOW!
