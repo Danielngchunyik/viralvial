@@ -5,7 +5,8 @@ $(document).ready(function() {
   
   // Initiate Smoothscroll
   smoothScroll.init({
-    offset: 100
+    speed: 1000,
+    offset: 50
   });
 
   // Run Landing Page Animations  
@@ -30,6 +31,18 @@ $(document).ready(function() {
     $('[data-typer-targets]').typer();
   }, 6400);
 
+  // Trigger connect Modal
+  $('.trigger-connect').on('click', function(e) {
+    e.preventDefault();
+  });
+
+  $('#connect-modal').modal('attach events', '.trigger-connect', 'show');
+
+  // User clicks browse on about-us
+  $('#about-browser').on('click', function() {
+    $('#about-us').addClass('none');
+    $('#campaigns-list').removeClass('none').addClass('animated fadeInDown');
+  })
 
   window.onscroll = function() {
     if (isScrolledIntoView('#contact-us') && triggered == false) {

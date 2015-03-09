@@ -1,8 +1,47 @@
 footer.style
-  .ui.menu.black
-    .item.left-padding
-      p.copyright © 2015 Viral Vial
+  #desktop
+    .ui.grid
+      .four.wide.column
+        .left-padding
+          p.copyright © 2015 Viral Vial
+      .three.wide.column.right
+        span.white PHONE 
+        span.white.slight-left= "(+603) 7611 0415"
+      .three.wide.column
+        span.white EMAIL enquiry@viralvial.com
+      .one.wide.column.center
+        span.white.slight-left= link_to '#' do
+          i.facebook.white.icon
+      .one.wide.column.center
+        span.white.slight-left= link_to '#' do
+          i.twitter.white.icon
+      .four.wide.column.right
+        .right-padding
+          p= link_to "GET CONNECTED", '#', class: 'connect white connect-button trigger-connect'
 
-    .right.menu
-      .item.right-padding
-        p= link_to "Get Connected", new_user_path, class: 'connect white'
+  #mobile
+    .ui.grid
+      .six.wide.column
+        .left-padding
+          .ui.upward.dropdown.item
+            i.chevron.up.icon.white
+            .menu
+              .item
+                p= link_to "GET CONNECTED", '#', class: 'connect black trigger-connect'
+              .item
+                span= link_to '#' do
+                  i.facebook.icon 
+                  span.slight-left Facebook
+              .item
+                span= link_to '#' do
+                  i.twitter.icon 
+                  span.slight-left Twitter
+              .item
+                span Phone:
+                span.slight-left= "(+603) 7611 0415"
+              .item
+                span Email:
+                span.slight-left enquiry@viralvial.com
+      .ten.wide.column.right
+        .right-padding
+          p.copyright © 2015 Viral Vial

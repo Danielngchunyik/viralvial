@@ -1,0 +1,16 @@
+#connect-modal.ui.modal
+  i.close.icon
+  .header.center
+    p.super-title CONNECT
+  .modal-content
+    .content
+      .description
+        p.title.padding-bottom-4 You’re just a click away to view our top influencers! Join us and you can be an influencer too!
+        .center
+          p.padding-bottom-2 = link_to auth_at_provider_path(provider: :facebook), class: "ui facebook button capitalize social-buttons" do 
+              i.facebook.icon
+              = "Connect with Facebook"
+          p.padding-bottom-4 = link_to auth_at_provider_path(provider: :twitter), class: "ui twitter button capitalize social-buttons"do
+              i.twitter.icon
+              = "Connect with Twitter"
+        p.subtitle.padding-bottom-4 We promise we will not post anything to your account without your permission. By connecting, you agree to our Terms of Use and Privacy Policy.

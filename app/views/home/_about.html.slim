@@ -1,0 +1,67 @@
+#about-us.none
+  h2.center AN INFLUENCER AT HEART?
+  h2.subtitle This is what it takes to be an influencer
+
+  .ui.stackable.three.column.grid
+    
+    .column.center
+      .image-panel
+        = image_tag "landing/flaunt.png", class: 'ui centered fluid medium image'
+      .content-panel
+        p.title Flaunt It
+        p.subtitle Our influencers have their own niche - just like you! If you're looking for influencers who are the perfect fit, they're all here.
+    
+    .column.center
+      .image-panel
+        = image_tag "landing/tell.png", class: 'ui centered fluid medium image'
+      .content-panel
+        p.title Tell It
+        p.subtitle With great power, comes great responsibility. Now that you have the followers, we need your help to share these stories to your followers. Are you up for it?
+    
+    .column.center
+      .image-panel
+        = image_tag "landing/spend.png", class: 'ui centered fluid medium image'
+      .content-panel
+        p.title Spend It
+        p.subtitle Just by sharing stories that are close to your heart, you get to earn some extra moolah! How about that?
+
+  .ui.one.column.grid.padding-top-5.padding-bottom-5
+    .column.center
+      span= link_to "BROWSE!", '#staging-container',"data-scroll": true, id: 'about-browser', class: "ui black basic button campaign-button"
+      span.space-em-up OR
+      span= link_to "CONNECT NOW!", '#', class: "ui black basic button connect-button trigger-connect"
+      br
+      br
+      span.small-padding-top Got a question? 
+      = link_to "Talk to us!", '#contact-us', "data-scroll": true
+
+  .ui.stackable.three.column.grid
+    
+    .column.center
+      .image-panel
+        = image_tag "landing/find.png", class: 'ui centered fluid medium image'
+      .content-panel
+        p.title Find Them
+        p.subtitle Our influencers have their own niche - just like you! If you're looking for influencers who are the perfect fit, they're all here.
+    
+    .column.center
+      .image-panel
+        = image_tag "landing/use.png", class: 'ui centered fluid medium image'
+      .content-panel
+        p.title Use Them
+        p.subtitle Create stories on the webapp and our influencers will help you share the stories to their friends and followers.
+    
+    .column.center
+      .image-panel
+        = image_tag "landing/assess.png", class: 'ui centered fluid medium image'
+      .content-panel
+        p.title Assess Them
+        p.subtitle You'll get real-time reporting on your stories as our influencers share them. See how they're engaging with their fans, and getting their fans to check out your story!
+
+  .ui.one.column.grid.padding-top-5
+    .column.center
+      p= link_to "I'M INTERESTED!", '#', class: "ui black basic button connect-button"
+      br
+      span.small-padding-top Got a question? 
+      = link_to "Talk to us!", '#contact-us', "data-scroll": true
+      

@@ -11,7 +11,8 @@ html
   body
 
     #wrapper
-      / = render partial: "layouts/header", locals: { page: "#{controller.controller_name} #{controller.action_name}" }
+      = render partial: "layouts/header"
+      /  locals: { page: "#{controller.controller_name} #{controller.action_name}" }
       = render partial: "layouts/flash"
       div class="#{controller.controller_name} #{controller.action_name} #{'admin' if admin?}"
         = yield

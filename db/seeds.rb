@@ -13,10 +13,11 @@ params = { campaign:{
 		description: Faker::Company.catch_phrase,
 		start_date:Faker::Date.backward(25),
 		end_date:Faker::Date.forward(25),
-		topics_attributes:[{ title: Faker::Name.title, description: Faker::Company.catch_phrase }]
+		topics_attributes:[{ title: Faker::Name.title, description: Faker::Company.catch_phrase }],
+    featured: true
 	}
 }
 
-6.times do |e|
+12.times do |e|
   e = Campaign.create!(params[:campaign])
 end

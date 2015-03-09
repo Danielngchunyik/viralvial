@@ -1,25 +1,12 @@
 #hero-banner.module.parallax
   .hero-content
-    .nav-bar
-      .ui.grid
-        .eight.wide.column#navbar-left.left.hide
-          = link_to root_path do
-            = image_tag "header/logo.png"
-        .eight.wide.column#navbar-right.hide
-          .right.floated.column
-            .ui.horizontal.list
-              .item
-                p.navlink ABOUT
-              .item
-                p.navlink BLOG
-              .item  
-                = link_to "CONNECT NOW!", new_user_path, class: "ui black basic button connect-button"
     h1.banner-title.hide
       | Viral Vial is about 
       span.purple data-typer-targets="reaching out, socializing, engagement, sharing, empowering" socializing
       p.mobile.purple data-typer-targets="reaching out, socializing, engagement, sharing, empowering" socializing
     .arrow-down
-      = image_tag "landing/triangle.png"
+      = link_to "#featured-campaigns-waypoint", "data-scroll": true do
+        = image_tag "landing/triangle.png"
 
 section#info-banner
   .content
@@ -50,13 +37,13 @@ section#info-banner
 
 
 
-section.featured-campaigns
+section.staging-grounds
   
   .ui.grid.center
     .twelve.wide.column
-      h2.left OUR FEATURED CAMPAIGNS
-      h2.left.subtitle Take a peek at our current trending campaigns!
-      = render partial: 'shared/partials/campaigns/index', locals: { campaigns: @campaigns }
+      #staging-container
+        = render partial: 'shared/partials/campaigns/index', locals: { campaigns: @campaigns }
+        = render partial: 'about'
 
 
 #contact-us.zero.parallax
@@ -72,7 +59,7 @@ section.featured-campaigns
                 label.white MY NAME IS
                 = f.text_field :name, placeholder: 'Name'
               .field
-                label I AM A/AN
+                label.white#options-user-type I AM A / AN
                 = f.select :type, options_for_select([["Advertiser", "Advertiser"], 
                                                       ["User", "User"]], "User"), {}, { class: 'ui selection dropdown' }
             .field
@@ -83,4 +70,5 @@ section.featured-campaigns
           #contact-right.field.hide
             label.white MESSAGE
             = f.text_area :content, cols: 50, rows: 10
-            = f.submit "SEND", class: "button-settings ui button", id: "contact-submit", placeholder: 'Hey there!'                                   
+            = f.submit "SEND", class: "button-settings ui button", id: "contact-submit", placeholder: 'Hey there!'                                
+= render partial: 'connect'
