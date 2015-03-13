@@ -1,1 +1,1 @@
-= link_to user.main_interest, edit_interest_user_path(user), method: :get, remote: :true, data: { disable_with: user.main_interest }, id: 'interest-link'
+= link_to user.primary_interest_list, edit_interest_user_path(user), method: :get, remote: :true, data: { disable_with: user.primary_interest_list[0] }, id: 'interest-link'

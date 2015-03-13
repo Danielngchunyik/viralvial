@@ -34,7 +34,7 @@ class Admin::AnnouncementsController < AdminController
 
   def destroy
     if @announcement.destroy
-      flash[:alert] = 'deleted'
+      flash[:error] = 'deleted'
       redirect_to admin_announcements_path
     else
       flash[:error] = 'error'

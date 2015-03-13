@@ -7,7 +7,6 @@ class OauthsController < ApplicationController
 
   def callback
     provider = auth_params[:provider]
-
     if @user = login_from(provider)
 
       set_access_token(@user)
@@ -33,7 +32,7 @@ class OauthsController < ApplicationController
       authentication.destroy
       flash[:notice] = "You have successfully unlinked your #{provider.titleize} account."
     else
-      flash[:alert] = "You do not currently have a linked #{provider.titleize} account."
+      flash[:error] = "You do not currently have a linked #{provider.titleize} account."
     end
 
     redirect_to user_path(current_user)
@@ -46,25 +45,19 @@ class OauthsController < ApplicationController
   end
 
   def register_new_user(provider)
-    # begin
-      @user = create_and_validate_from(provider)
-      reset_session
+    @user = create_and_validate_from(provider)
+    reset_session
 
-      case provider
-      when "twitter"
-        save_twitter_info
-      when "facebook"
-        save_facebook_info
-      end
+    case provider
+    when "twitter"
+      save_twitter_info
+    when "facebook"
+      save_facebook_info
+    end
 
-        auto_login(@user)
-        flash[:notice] = "You've registered through #{provider.titleize}!"
-        redirect_to edit_user_path(current_user)
-    # rescue => e
-    #   logger.info "[ERROR]: #{e.inspect}"
-    #   flash[:alert] = "Failed to login from #{provider.titleize}"
-    #   redirect_to root_path
-    # end
+      auto_login(@user)
+      flash[:notice] = "You've registered through #{provider.titleize}!"
+      redirect_to current_user
   end
 
   def save_twitter_info
@@ -81,7 +74,7 @@ class OauthsController < ApplicationController
     if current_user.authentications.find_by(provider: provider).blank? && @user = add_provider_to_user(provider)
       flash[:notice] = "You have successfully linked your #{provider.titleize} account."
     else
-      flash[:alert] = "There was a problem linking your #{provider.titleize} account."
+      flash[:error] = "There was a problem linking your #{provider.titleize} account."
     end
 
     set_access_token(current_user)

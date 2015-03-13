@@ -7,7 +7,7 @@ class ContactsController < ApplicationController
       ContactMailer.new_contact(@contact).deliver_now
       flash[:notice] = "Your message has been delivered"
     else
-      flash[:alert] = "An error occured while delivering the message"  
+      flash[:error] = "An error occured while delivering the message"  
     end
 
     redirect_to root_path

@@ -1,7 +1,5 @@
 - flash.each do |key, value|
-  section#flash-messages.ui.grid
-    .row
-      .eight.wide.column
-          div class="#{flash_class(key)} closeable"
-            i.close.icon
-            = value
+  section#flash-messages
+    div class="#{flash_class(key)} closeable"
+      i.close.icon
+      = value

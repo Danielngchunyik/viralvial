@@ -1,0 +1,29 @@
+header.landing
+  #navbar
+    .ui.grid
+      .eight.wide.column#navbar-left.left.hide
+        = link_to root_path do
+          = image_tag "header/logo.png"
+      .eight.wide.column#navbar-right.hide
+        #desktop
+          .right.floated.column
+            .ui.horizontal.list
+              .item
+                p= link_to "ABOUT", '#staging-container', "data-scroll": true, class: "about-us navlink"
+              .item
+                p.navlink BLOG
+              .item  
+                = link_to "CONNECT NOW!", '#', class: "ui black basic button connect-button trigger-connect"
+        #mobile
+          .right.floated.column
+            .ui.right.pointing.dropdown.item
+              .menu-title
+                i.chevron.down.icon
+              .menu
+                .item
+                  = link_to '#staging-container', "data-scroll": true do
+                    p.navlink.about-us ABOUT
+                .item
+                  p.navlink BLOG
+                .item
+                  p.navlink.trigger-connect CONNECT NOW!

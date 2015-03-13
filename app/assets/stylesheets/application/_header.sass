@@ -1,11 +1,13 @@
 header
-  position: absolute
   width: 100%
 
+  &.landing
+    position: absolute
+    
   .ui.grid
     margin: 0
 
-  #navbar-right #mobile
+  #mobile
     display: none
 
   #navbar
@@ -44,11 +46,13 @@ header
 @media all and (max-width: 767px)
 
   header
-    #navbar-right #desktop
+    #desktop
       display: none
 
-    #navbar-right #mobile
+    #mobile
       display: block
+
+    #navbar-righ
 
     #navbar
 

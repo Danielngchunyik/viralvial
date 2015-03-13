@@ -38,7 +38,7 @@ class Admin::CampaignsController < AdminController
 
   def destroy
     if @campaign.destroy
-      flash[:alert] = 'deleted'
+      flash[:error] = 'deleted'
       redirect_to admin_campaigns_path
     else
       flash[:error] = 'error'

@@ -17,7 +17,8 @@ footer.style
           i.twitter.white.icon
       .four.wide.column.right
         .right-padding
-          p= link_to "GET CONNECTED", '#', class: 'connect white connect-button trigger-connect'
+          - if !current_user
+            p= link_to "GET CONNECTED", '#', class: 'connect white connect-button trigger-connect'
 
   #mobile
     .ui.grid
@@ -26,8 +27,9 @@ footer.style
           .ui.upward.dropdown.item
             i.chevron.up.icon.white
             .menu
-              .item
-                p= link_to "GET CONNECTED", '#', class: 'connect black trigger-connect'
+              - if !current_user
+                .item
+                  p= link_to "GET CONNECTED", '#', class: 'connect black trigger-connect'
               .item
                 span= link_to '#' do
                   i.facebook.icon 

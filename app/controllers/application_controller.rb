@@ -24,8 +24,8 @@ class ApplicationController < ActionController::Base
   helper_method :current_city
 
   def not_authenticated
-    flash[:alert] = 'Please login first'
-    redirect_to new_user_path
+    flash[:error] = 'Please login first'
+    redirect_to root_path
   end
 
   def set_location

@@ -1,4 +1,4 @@
-$('#interest-container').hide().after("<%=j render partial: 'shared/partials/users/edit_interest_form', locals: { user: @user, options: @options, edit: 'yes' } %>");
+$('#interest-container').hide().after("<%=j render partial: 'shared/partials/users/edit_interest_form', locals: { user: @user, options: @options, edit: true, title: 'Change your primary interest' } %>");
 
 $('#cancel_edit').on('click', function(event) {
   $('#interest-container').show();

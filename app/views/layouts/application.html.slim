@@ -8,12 +8,11 @@ html
   = csrf_meta_tags
   meta content="width=device-width, initial-scale=1.0" name="viewport"
 
-  body
+  body class="#{controller.controller_name} #{controller.action_name} #{'admin' if admin?}"
 
     #wrapper
-      = render partial: "layouts/header"
-      /  locals: { page: "#{controller.controller_name} #{controller.action_name}" }
       = render partial: "layouts/flash"
-      div class="#{controller.controller_name} #{controller.action_name} #{'admin' if admin?}"
-        = yield
+      = render partial: "layouts/header"
+      = yield
+
       = render "layouts/footer"
