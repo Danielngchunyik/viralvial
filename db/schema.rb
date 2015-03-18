@@ -117,15 +117,15 @@ ActiveRecord::Schema.define(version: 20150307163135) do
   end
 
   create_table "users", force: :cascade do |t|
-    t.string   "email",                                        null: false
-    t.string   "crypted_password",                             null: false
-    t.string   "salt",                                         null: false
+    t.string   "email",                                                  null: false
+    t.string   "crypted_password",                                       null: false
+    t.string   "salt",                                                   null: false
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "name",                            default: ""
-    t.date     "birthday"
+    t.date     "birthday",                        default: '1970-01-01'
     t.integer  "gender"
-    t.string   "race"
+    t.integer  "race"
     t.string   "religion"
     t.string   "contact_number"
     t.string   "location"

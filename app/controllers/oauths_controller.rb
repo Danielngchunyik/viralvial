@@ -7,6 +7,7 @@ class OauthsController < ApplicationController
 
   def callback
     provider = auth_params[:provider]
+
     if @user = login_from(provider)
 
       set_access_token(@user)
@@ -55,9 +56,9 @@ class OauthsController < ApplicationController
       save_facebook_info
     end
 
-      auto_login(@user)
-      flash[:notice] = "You've registered through #{provider.titleize}!"
-      redirect_to current_user
+    auto_login(@user)
+    flash[:notice] = "You've registered through #{provider.titleize}!"
+    redirect_to current_user
   end
 
   def save_twitter_info

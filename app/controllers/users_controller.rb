@@ -4,7 +4,6 @@ class UsersController < ApplicationController
   respond_to :html, :js, :json
 
   def show
-    authorize @user
     @campaigns = []
 
     @user.posts.each do |post|
@@ -13,11 +12,9 @@ class UsersController < ApplicationController
   end
 
   def edit
-    authorize @user
   end
 
   def update
-    authorize @user
     @user.update(user_params)
     respond_with(@user)
   end
@@ -41,14 +38,16 @@ class UsersController < ApplicationController
   end
 
   def set_user
-    @user = User.find(params[:id])
+    user = User.find(params[:id])
+    authorize user
+    @user = UserDecorator.new(user)
   end
 
   def user_params
-    params.require(:user).permit(:email, :password, :blog_url,
+    params.require(:user).permit(:email, :password, :blog_url, :image,
                                  :password_confirmation, :name,
-                                 :birthday, :gender, :race, :religion,
-                                 :contact_number, :nationality, :location, :country,
+                                 :birthday, :birthday_day, :birthday_month, :birthday_year, 
+                                 :gender, :race, :religion, :contact_number, :nationality, :location, :country,
                                  :marital_status, :role, :main_interest, :secondary_interest_list,
                                  authentication_attributes: [])
   end

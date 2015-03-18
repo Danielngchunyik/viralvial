@@ -1,52 +1,21 @@
-section#dashboard
-  .ui.grid.center
-    .eleven.wide.column.left
-      h1.title.padding-left-15 Dashboard
-    .row
-      .three.wide.column.left#sidebar
-        = render partial: 'shared/partials/sidebar/menu'
-      .nine.wide.column#main-container
-        section.ui.stackable.two.column.grid
-          .column.center
-            .ui.segment.fluid.card
-              p.card-title Current Earnings
-              h1.title.spaced 200 MYR
-              p.card-subtext 100 MYR to go till cashout
-              p.card-subtext-2 Total Earnings: 200MYR
-          .column.center
-            .ui.segment.fluid.card
-              p.card-title Viral Vial Score
-              h1.title.spaced 58
-              p.card-subtext Last Updated:
-              p.card-subtext-2 9 February 2015
-        .ui.divider
-        section
-          .ui.stackable.grid
-            .row
-              .column
-                .ui.stackable.grid
-                  .row
-                    .four.wide.column
-                      = image_tag @user.image.url, class: 'ui centered small image curved'
-                    .eight.wide.column
-                      p.name= @user.name
-                      p.interest= @user.primary_interest_list.first
-                      p.profile-image-label= "Change profile picture"
-                  .row
-                    .ui.stackable.two.column.grid
-                      .column
-                        p.profile-padding.profile-label NAME
-                        .highlighter
-                          = best_in_place @user, :name, as: :input, class: 'ui massive label padding-temp'
+#overview-dashboard.ui.grid.hide
 
-                        p.profile-padding.profile-label EMAIL
-                        = best_in_place @user, :email, as: :input, class: 'ui massive label'
+// User Profile
+#user-dashboard.ui.grid
+  sixteen.wide.column
+    .pusher
+      section#profile-header
+        .ui.grid.center.aligned
+          .twelve.wide.column
+            = image_tag @user.image.url, class: 'ui centered medium image curved'
+            p.name#profile_user_name_display= @user.name
+            p.interest= @user.primary_interest_list.first
+            p.profile-image-label= link_to "Change profile picture", '#', class: 'trigger-profile-image-change'
+      section#profile-view-container
+        .ui.grid.center.aligned
+          .twelve.wide.column
+            .ui.stackable.two.column.grid.center
+              = render partial: "profile_details", locals: { user: @user }
 
-                        p.profile-padding.profile-label LOCATION
-                        p.ui.massive.label= "#{@user.location}, #{@user.country}"
-
-                        p.profile-padding.profile-label BIRTHDAY
-                        = best_in_place @user, :birthday, as: :date
-
-
-
+// Profile Image Uploade Modal
+= render partial: "shared/partials/users/profile_image_form", locals: { user: @user }

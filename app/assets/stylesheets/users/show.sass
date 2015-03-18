@@ -1,93 +1,150 @@
 .users.show
 
-  .header-space
-    height: 105px
-
-  #sidebar-mobile
+  .hide
     display: none
-
-  .active-button
-    border-radius: 65px
-
-  .card
-    border: 1px solid black
-    min-height: 300px
-    margin: 0
-
-  .ui.grid
-    margin: 0
-
-  .center
+  
+  .pusher
     text-align: center
 
-  .left
-    text-align: left
+  #overview-dashboard
+    padding-bottom: 5%
 
-  .right
-    text-align: right
+  #user-dashboard
+    padding-bottom: 5%
 
-  .padding-left-15
-    padding-left: 15px
+    .header-space
+      height: 105px
 
-  .profile-padding
-    padding-top: 30px
-    padding-bottom: 15px
+    #sidebar-mobile
+      display: none
 
-  .account-settings
-    margin-top: 5%
+    .active-button
+      border-radius: 65px
 
-  .gold
-    color: #F6C403
-    border: 1px solid #F6C403
-    border-radius: 50%
-    height: 25%
+    .card
+      border: 1px solid black
+      min-height: 300px
+      margin: 0
 
-  .circle-border
-    border: 1px solid #F6C403
+    .ui.grid
+      margin: 0
 
-  h1.title
-    font-size: 32px
-    font-weight: bold
+    .center
+      text-align: center
 
-    &.spaced
-      margin-top: 35px
+    .left
+      text-align: left
 
-  img.curved
-    border-radius: 15px
+    .right
+      text-align: right
 
-  p
-    &.subtext
-      font-size: 30px
+    .padding-left-15
+      padding-left: 15px
 
-    &.card-title
-      margin-top: 35px
+    .profile-padding
+      padding-top: 30px
+      padding-bottom: 15px
 
-    &.card-subtext
-      margin-top: 35px
+    .account-settings
+      margin-top: 5%
 
-    &.card-subtext-2
-      margin-top: 10px
+    .gold
+      color: #F6C403
+      border: 1px solid #F6C403
+      border-radius: 50%
+      height: 25%
 
-    &.name
-      font-size: 24px
+    .circle-border
+      border: 1px solid #F6C403
+
+    h1.title
+      font-size: 32px
       font-weight: bold
 
-    &.interest
-      font-size: 24px
-      margin-top: 10px
-      opacity: 0.8
-      font-weight: 100
+      &.spaced
+        margin-top: 35px
 
-    &.profile-image-label
-      margin-top: 20px
-      font-size: 14px
-      color: #F595C1
-      font-weight: bold
+    img.curved
+      border-radius: 15px
 
-    &.profile-label
-      color: #F595C1
-      font-size: 18px
-      font-weight: 100
+    p
+      &.subtext
+        font-size: 30px
 
-  .ui.label
-    width: 100%
+      &.card-title
+        margin-top: 35px
+
+      &.card-subtext
+        margin-top: 35px
+
+      &.card-subtext-2
+        margin-top: 10px
+
+      &.name
+        font-size: 24px
+        font-weight: bold
+        padding-top: 10px
+
+      &.interest
+        font-size: 24px
+        margin-top: 10px
+        opacity: 0.8
+        font-weight: 100
+
+      &.profile-image-label
+        margin-top: 20px
+        font-size: 14px
+        color: #F595C1
+        font-weight: bold
+
+      &.profile-label
+        color: #F595C1
+        font-size: 18px
+        font-weight: 100
+
+    #profile_user_email
+      word-wrap: break-word
+
+    .ui.label
+      width: 100%
+
+      &.facebook
+        background-color: #3b5998
+        color: white
+        margin-bottom: 5px
+
+        &.connect
+          background-color: #E8E8E8
+          color: #ABAAAB
+
+          &:hover
+            opacity: 0.9
+
+        &.disconnect:hover
+          opacity: 0.9
+
+      &.twitter
+        background-color: #00aced
+        color: white
+
+        &.connect
+          background-color: #E8E8E8
+          color: #ABAAAB
+
+          &:hover
+            opacity: 0.9
+
+        &.disconnect:hover
+          opacity: 0.9
+
+      &.date-select
+        float: left
+        
+        &.day
+          max-width: 30%
+        
+        &.month
+          max-width: 30%
+        
+        &.year
+          max-width: 30%

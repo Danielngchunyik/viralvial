@@ -10,6 +10,7 @@ class User < ActiveRecord::Base
 
   enum role: [:user, :admin, :banned]
   enum gender: [:unspecified, :female, :male]
+  enum race: [:chinese, :indian, :malay, :others]
 
   authenticates_with_sorcery! do |config|
     config.authentications_class = Authentication
@@ -18,7 +19,8 @@ class User < ActiveRecord::Base
   validates :password, length: { minimum: 8 }, if: :password
   validates :password, confirmation: true, if: :password
   validates :password_confirmation, presence: true, if: :password
-  validates :email, uniqueness: true, format: { with: /\A([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})\z/i, on: :create }
+  validates :email, uniqueness: true, format: { with: /\A([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})\z/i }
+  validate :correct_user_birthday
 
   acts_as_taggable_on :primary_interests
   acts_as_taggable_on :secondary_interests
@@ -39,22 +41,29 @@ class User < ActiveRecord::Base
     authentications.where(provider: provider).present?
   end
 
-  def age
-    birthday && ((Date.today - birthday) / 365.25)
+  def birthday_day=(value)
+    self.birthday = birthday.change(day: value.to_i)
   end
 
-  def update_password_and_email(current_password, new_email, new_password, new_password_confirmation)
-    if User.authenticate(self.email, current_password).present?
-      self.password_confirmation = new_password_confirmation
-      self.update(email: new_email)
-      self.change_password!(new_password)
-    end
+  def birthday_month=(value)
+    self.birthday = birthday.change(month: value.to_i)
+  end
+
+  def birthday_year=(value)
+    self.birthday = birthday.change(year: value.to_i)
   end
 
   private
 
   def update_social_scores
     ScoresWorker.perform_async
+  end
+
+  def correct_user_birthday
+    return if DateTime.parse(birthday.to_s) && birthday <= Date.today
+    errors.add(:birthday, 'is invalid')
+  rescue
+    errors.add(:birthday, 'is invalid')
   end
 
   def set_default_email

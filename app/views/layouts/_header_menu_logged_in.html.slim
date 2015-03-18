@@ -10,8 +10,20 @@ header.logged-in
             .ui.horizontal.list
               .item
                 p.navlink BLOG
-              .item  
-                = link_to "CAMPAIGNS", '#', class: "ui black basic button connect-button"
+              .item
+                .ui.dropdown
+                  .menu-title
+                    .ui.black.basic.button.connect-button
+                      span= "Hi, #{current_user.name}"
+                      i.margin-left-10.chevron.down.icon
+                  .menu
+                    .item
+                      p.navlink OVERVIEW
+                    .item
+                      p.navlink CAMPAIGNS
+                    .item
+                      = link_to "MY PROFILE", user_path(current_user), class: 'navlink'
+
         #mobile
           .right.floated.column
             .ui.right.pointing.dropdown.item
@@ -19,6 +31,10 @@ header.logged-in
                 i.chevron.down.icon
               .menu
                 .item
-                  p.navlink BLOG
+                  p.navlink OVERVIEW
                 .item
                   p.navlink CAMPAIGNS
+                .item
+                  p.navlink MY PROFILE
+                .item
+                  p.navlink BLOG

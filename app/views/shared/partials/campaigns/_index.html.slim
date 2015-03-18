@@ -5,7 +5,6 @@
   .ui.stackable.four.column.grid
     - campaigns.each do |campaign|
       .column
-        - campaign = present(campaign)
         = link_to campaign_path(campaign.id) do
           .campaign-card 
             .ui.segment.zero-padding

@@ -10,7 +10,10 @@ html
 
   body class="#{controller.controller_name} #{controller.action_name} #{'admin' if admin?}"
 
-    #wrapper
+    -if current_user
+      = render partial: 'shared/partials/sidebar/menu'
+    
+    #wrapper.pusher
       = render partial: "layouts/flash"
       = render partial: "layouts/header"
       = yield

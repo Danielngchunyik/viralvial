@@ -1,11 +1,17 @@
-.ui.one.column.grid
-  .column.sidebar-button
-    p Overview
-  .column.sidebar-button
-    p Campaigns
-  .column.sidebar-button
-    p Active
-  .column.sidebar-button
-    p Completed
-  .column.sidebar-button  
-    p Overdue
+.ui.black.launch.right.attached.fixed.button#menu-button
+  i.content.icon.animated.fadeInDown
+  span.text Menu
+
+#dashboard-sidebar.ui.left.vertical.inverted.labeled.icon.sidebar.menu
+  = link_to '#', class: 'item margin-top-100' do
+    i.desktop.icon
+    span Overview
+  
+  = link_to '#', class: 'item' do
+    i.browser.icon
+    span Campaigns
+
+  = link_to user_path(current_user), class: 'item' do
+    i.user.icon 
+    span Profile
+    

@@ -1,0 +1,32 @@
+#dashboard-sidebar
+  background-color: black
+
+  .margin-top-100
+    margin-top: 100px
+
+  a.item:hover
+    color: #E62E84 !important
+
+    .icon
+      color: #E62E84 !important
+
+#menu-button
+  margin-top: 100px
+  width: 50px
+  -webkit-transition: width 0.3s ease, 0.5s transform ease
+  transition: width 0.3s ease, 0.5s transform ease
+
+  .text
+    white-space: nowrap
+    position: absolute
+    opacity: 0
+    transition: opacity 0.3s ease, 0.3s transform ease
+    -webkit-transition: opacity 0.3s ease, 0.3s transform ease
+    left: 45px
+    top: 12px
+  
+  &:hover
+    width: 100px
+
+    .text
+      opacity: 1

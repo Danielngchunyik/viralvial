@@ -47,26 +47,6 @@ section.staging-grounds
 #contact-us.zero.parallax
   .ui.page.stackable.grid
     .column
-      = form_for @contact, url: contact_path, method: :post, html: { class: 'ui small fluid form spacing-bottom', id: 'contact_form' } do |f|
-        #contact-us-title.hide
-          p.left DROP US A NOTE!
-        .two.fields.small-spacing-top
-          #contact-left.field.hide
-            .two.fields
-              .field
-                label.white MY NAME IS
-                = f.text_field :name, placeholder: 'Name'
-              .field
-                label.white#options-user-type I AM A / AN
-                = f.select :type, options_for_select([["Advertiser", "Advertiser"], 
-                                                      ["User", "User"]], "User"), {}, { class: 'ui selection dropdown' }
-            .field
-              label.white MY EMAIL IS
-              = f.email_field :email, placeholder: 'Email address'
-
-
-          #contact-right.field.hide
-            label.white MESSAGE
-            = f.text_area :content, cols: 50, rows: 10
-            = f.submit "SEND", class: "button-settings ui button", id: "contact-submit", placeholder: 'Hey there!'                                
+      = render partial: "contact_form", locals: { contact: @contact }
+                                
 = render partial: 'connect'
