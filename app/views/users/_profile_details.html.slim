@@ -1,29 +1,31 @@
+// Refer to Best in Place Gem
+
 .column
   p.profile-padding.profile-label NAME
-  = best_in_place user, :name, as: :input, class: 'ui fluid input massive label', id: 'profile_user_name'
+  = best_in_place user, :name, as: :input, class: 'ui fluid input massive label editable', id: 'profile_user_name'
 
   p.profile-padding.profile-label EMAIL
-  = best_in_place user, :email, as: :input, class: 'ui fluid input massive label', id: 'profile_user_email'
+  = best_in_place user, :email, as: :input, class: 'ui fluid input massive label editable', id: 'profile_user_email'
 
   p.profile-padding.profile-label LOCATION
   p.ui.massive.label= "#{user.location}, #{user.country}"
 
   p.profile-padding.profile-label BIRTHDAY
-  = best_in_place user, :birthday_day, as: :select, collection: (1..31).map{ |i| [i, i.to_s] }, class: 'ui fluid massive label date-select day', id: 'user-birthday-day', activator: '#user-birthday-day'
+  = best_in_place user, :birthday_day, as: :select, collection: (1..31).map{ |i| [i, i.to_s] }, class: 'ui fluid massive label date-select day editable', id: 'user-birthday-day', activator: '#user-birthday-day'
   
-  = best_in_place user, :birthday_month, as: :select, collection: (1..12).map{ |i| [i, i] }, class: 'ui fluid massive label date-select month', id: 'user-birthday-month'
+  = best_in_place user, :birthday_month, as: :select, collection: (1..12).map{ |i| [i, i] }, class: 'ui fluid massive label date-select month editable', id: 'user-birthday-month'
   
-  = best_in_place user, :birthday_year, as: :select, collection: ( (Time.now.year - 100)..(Time.now.year)).map { |i| [i, i.to_s]}, class: 'ui fluid massive label date-select year', id: 'user-birthday-year'
+  = best_in_place user, :birthday_year, as: :select, collection: ( (Time.now.year - 100)..(Time.now.year)).map { |i| [i, i.to_s]}, class: 'ui fluid massive label date-select year editable', id: 'user-birthday-year'
 
 .column
   p.profile-padding.profile-label RACE
-  = best_in_place user, :race, as: :select, collection: [[:chinese, 'Chinese'], [:indian, 'Indian'], [:malay, 'Malay'], [:others, 'Others']], class: 'ui fluid massive label'
+  = best_in_place user, :race, as: :select, collection: [[:chinese, 'Chinese'], [:indian, 'Indian'], [:malay, 'Malay'], [:others, 'Others']], class: 'ui fluid massive label editable'
 
   p.profile-padding.profile-label RELIGION
-  = best_in_place user, :religion, as: :select, collection: [["Muslim", "Muslim"], ["Non-Muslim", "Non-Muslim"]], class: 'ui fluid massive label'
+  = best_in_place user, :religion, as: :select, collection: [["Muslim", "Muslim"], ["Non-Muslim", "Non-Muslim"]], class: 'ui fluid massive label editable'
 
   p.profile-padding.profile-label MARITAL STATUS
-  = best_in_place user, :marital_status, as: :select, collection: [["Single", "Single"], ["In a Relationship", "In a Relationship"], ["Married", "Married"]], class: 'ui fluid massive label'
+  = best_in_place user, :marital_status, as: :select, collection: [["Single", "Single"], ["In a Relationship", "In a Relationship"], ["Married", "Married"]], class: 'ui fluid massive label editable'
 
   p.profile-padding.profile-label MY SOCIAL NETWORKS
-  = render partial: 'social_media_connect'
+  = render partial: 'users/social_media_connect'

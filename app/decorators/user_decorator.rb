@@ -1,22 +1,30 @@
 class UserDecorator < BaseDecorator
 
   def birthday_day
-    birthday.try(:day)
+    model.birthday.try(:day)
   end
 
   def birthday_month
-    birthday.try(:month)
+    model.birthday.try(:month)
   end
 
   def birthday_year
-    birthday.try(:year)
+    model.birthday.try(:year)
   end
 
   def race
-    try(:race)
+    model.try(:race)
   end
 
+  def main_interest
+    model.primary_interest_list.first
+  end
+
+  def interest_not_selected?
+    model.primary_interest_list.empty?
+  end        
+
   def age
-    birthday && ((Date.today - birthday) / 365.25)
+    model.birthday && ((Date.today - model.birthday) / 365.25)
   end
 end

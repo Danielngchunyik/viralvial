@@ -31,6 +31,7 @@ class User < ActiveRecord::Base
   accepts_nested_attributes_for :authentications
 
   mount_uploader :image, ImageUploader
+
    
   def set_access_token(token, secret, provider)
     auth = self.authentications.find_by(provider: provider)
@@ -39,6 +40,10 @@ class User < ActiveRecord::Base
 
   def has_linked_provider?(provider)
     authentications.where(provider: provider).present?
+  end
+  
+  def main_interest=(value)
+    self.primary_interest_list = value
   end
 
   def birthday_day=(value)

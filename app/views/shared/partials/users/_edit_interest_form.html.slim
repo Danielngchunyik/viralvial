@@ -1,9 +1,18 @@
-#interest-form
-  = form_for user, remote: true, html: { class: "ui form"} do |f|
-    .field
-      = f.label title, class: "interest-label"
-      = f.select :primary_interest_list, options.map { |interest| [interest.titleize, interest] }, {}, { class: "ui search dropdown interest-field spacing-top" }
-    
-    p.center.top-spacing= f.submit "Done!", class: "button-settings ui yellow button"
-    - if edit
-      p.center.top-spacing= link_to "Cancel", '#', class: "ui blue button", id: "cancel_edit", data: { disable_with: 'Reversing!..'}
+#interest-form-modal.ui.large.modal
+  .modal-content
+    .description
+      = form_for user, remote: true do |f|
+        .ui.grid.center
+          .row
+            .ten.wide.column
+              = image_tag "user/ice_cream.png"
+          .row
+            .ten.wide.column
+              = f.label description, class: "form-description"
+          .row
+            .six.wide.column
+              = f.label "INTEREST", class: "interest-label"
+              = f.select :main_interest, options.map { |interest| [interest.titleize, interest] }, {}, { class: "ui fluid search dropdown interest-field spacing-top" }
+          .row
+            .ten.wide.column
+              p.top-spacing= f.submit "DONE!", class: "button-settings ui large button"

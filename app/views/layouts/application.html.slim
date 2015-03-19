@@ -10,7 +10,7 @@ html
 
   body class="#{controller.controller_name} #{controller.action_name} #{'admin' if admin?}"
 
-    -if current_user
+    -if current_user && !admin?
       = render partial: 'shared/partials/sidebar/menu'
     
     #wrapper.pusher

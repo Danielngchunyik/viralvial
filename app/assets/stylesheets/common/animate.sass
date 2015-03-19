@@ -37,6 +37,16 @@
   @keyframes #{$name}
     @content
 
+/* Fade In */
+
++keyframes(fadeIn)
+  
+  0% 
+    opacity: 0
+  
+  100%
+    opacity: 1
+
 /* Fade in Left */
 
 +keyframes(fadeInLeft)
@@ -92,6 +102,12 @@
     -webkit-transform: none
     
 /* End */
+
+.fadeIn
+  -moz-animation-name: fadeIn
+  -o-animation-name: fadeIn
+  -webkit-animation-name: fadeIn
+  animation-name: fadeIn
 
 .fadeInUp
   -moz-animation-name: fadeInUp

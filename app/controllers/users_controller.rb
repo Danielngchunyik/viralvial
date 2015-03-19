@@ -1,14 +1,10 @@
 class UsersController < ApplicationController
   before_action :set_user, :require_login
-  before_action :set_options, only: :edit
+  before_action :set_options, only: [:edit]
   respond_to :html, :js, :json
 
   def show
-    @campaigns = []
-
-    @user.posts.each do |post|
-      @campaigns << post.campaign
-    end
+    respond_with(@user)
   end
 
   def edit

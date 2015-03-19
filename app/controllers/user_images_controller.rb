@@ -1,5 +1,5 @@
 class UserImagesController < ApplicationController
-  before_action :set_campaign, :set_topic
+  before_action :set_campaign, :set_topic, :require_login
 
   def create
     delete_current_image!

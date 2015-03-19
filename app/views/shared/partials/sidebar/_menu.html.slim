@@ -1,17 +1,17 @@
 .ui.black.launch.right.attached.fixed.button#menu-button
   i.content.icon.animated.fadeInDown
-  span.text Menu
+  span.text Start Here
 
 #dashboard-sidebar.ui.left.vertical.inverted.labeled.icon.sidebar.menu
-  = link_to '#', class: 'item margin-top-100' do
+  = link_to participated_path, class: 'item margin-top-100 overview-link', remote: true do
     i.desktop.icon
     span Overview
   
-  = link_to '#', class: 'item' do
+  = link_to '#', class: 'item campaigns-link' do
     i.browser.icon
     span Campaigns
 
-  = link_to user_path(current_user), class: 'item' do
+  = link_to user_path(current_user), class: 'item profile-link', remote: true do
     i.user.icon 
     span Profile
     

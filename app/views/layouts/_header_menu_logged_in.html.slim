@@ -17,12 +17,7 @@ header.logged-in
                       span= "Hi, #{current_user.name}"
                       i.margin-left-10.chevron.down.icon
                   .menu
-                    .item
-                      p.navlink OVERVIEW
-                    .item
-                      p.navlink CAMPAIGNS
-                    .item
-                      = link_to "MY PROFILE", user_path(current_user), class: 'navlink'
+                    = render partial: 'layouts/menu_items'
 
         #mobile
           .right.floated.column
@@ -30,11 +25,6 @@ header.logged-in
               .menu-title
                 i.chevron.down.icon
               .menu
-                .item
-                  p.navlink OVERVIEW
-                .item
-                  p.navlink CAMPAIGNS
-                .item
-                  p.navlink MY PROFILE
+                = render partial: 'layouts/menu_items'
                 .item
                   p.navlink BLOG

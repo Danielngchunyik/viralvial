@@ -17,6 +17,8 @@
   .ui.grid
     margin: 0
 
+  // Landing Page Hero Banner
+
   #hero-banner.module.parallax
     background-position: 50% 0
     @extend .parallax-stats
@@ -45,6 +47,8 @@
       span.purple
         color: #E62E84
 
+  // The Info Banner
+
   #info-banner
     background-position: 50% 0
     background-color: #FF4099
@@ -66,13 +70,33 @@
     .image-alignment
       text-align: right
 
+  // Campaign and About Us Staging Grounds 
+
   .staging-grounds
     margin: 0 auto
     text-align: center
     padding-top: 10%
 
+    .left
+      text-align: left
+      padding-left: 1.25% 
+
+    h2
+      font-size: 24px
+      font-weight: 700
+      color: #E62E84
+
+      &.subtitle
+        color: #333333
+        opacity: 0.9
+        font-weight: 100
+        padding-top: 2%
+        padding-bottom: 2%
+
     .center
       text-align: center
+
+  // Contact Us Form
 
   #contact-us
     margin-top: 75px
@@ -124,6 +148,9 @@
     .white
       color: white
       opacity: 0.9
+
+
+// Mobile Settings
 
 @media all and (max-width: 767px)
 

@@ -1,0 +1,7 @@
+$('#dashboard-container').html("<%= escape_javascript(render(partial: 'show', locals: { user: @user })) %>")
+
+$('#user-profile').addClass("animated fadeIn");
+
+setTimeout(function() {
+  $('#user-profile').removeClass('animated fadeIn');
+}, 1000);
