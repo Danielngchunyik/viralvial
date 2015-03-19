@@ -4,14 +4,14 @@
 
 #dashboard-sidebar.ui.left.vertical.inverted.labeled.icon.sidebar.menu
   = link_to participated_path, class: 'item margin-top-100 overview-link', remote: true do
-    i.desktop.icon
+    = semantic_icon(:desktop)
     span Overview
   
   = link_to campaigns_path, class: 'item campaigns-link', remote: true do
-    i.browser.icon
+    = semantic_icon(:browser)
     span Campaigns
 
   = link_to user_path(current_user), class: 'item profile-link', remote: true do
-    i.user.icon 
+    = semantic_icon(:user)
     span Profile
     

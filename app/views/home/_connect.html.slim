@@ -7,10 +7,10 @@
       .description
         p.title.padding-bottom-4 You’re just a click away to view our top influencers! Join us and you can be an influencer too!
         .center
-          p.padding-bottom-2 = link_to auth_at_provider_path(provider: :facebook), class: "ui facebook button capitalize social-buttons" do 
-              i.facebook.icon
+          p = link_to auth_at_provider_path(provider: :facebook), class: "ui facebook button capitalize social-buttons" do 
+              = semantic_icon(:facebook)
               = "Connect with Facebook"
           p.padding-bottom-4 = link_to auth_at_provider_path(provider: :twitter), class: "ui twitter button capitalize social-buttons"do
-              i.twitter.icon
+              = semantic_icon(:twitter)
               = "Connect with Twitter"
         p.subtitle.padding-bottom-4 We promise we will not post anything to your account without your permission. By connecting, you agree to our Terms of Use and Privacy Policy.
