@@ -9,11 +9,11 @@
 require 'faker'
 
 params = { campaign:{
-		title: Faker::Name.title,
-		description: Faker::Company.catch_phrase,
-		start_date:Faker::Date.backward(25),
-		end_date:Faker::Date.forward(25),
-		topics_attributes:[{ title: Faker::Name.title, description: Faker::Company.catch_phrase }],
+		title: "Lorem Title",
+		description: "Lorem Ipsum Desc",
+		start_date: Date.today,
+		end_date: Date.today + 30.days,
+		topics_attributes:[{ title: "Lorem Topic Title", description: "Lorem Ipsum Desc" }],
     featured: true
 	}
 }
