@@ -6,8 +6,6 @@
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 
-require 'faker'
-
 params = { campaign:{
 		title: "Lorem Title",
 		description: "Lorem Ipsum Desc",
