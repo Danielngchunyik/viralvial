@@ -11,7 +11,6 @@ class User < ActiveRecord::Base
   enum role: [:user, :admin, :banned]
   enum gender: [:unspecified, :female, :male]
   enum race: [:chinese, :indian, :malay, :others]
-  enum religion: [:muslim, :non_muslim]
 
   authenticates_with_sorcery! do |config|
     config.authentications_class = Authentication

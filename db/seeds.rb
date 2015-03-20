@@ -22,7 +22,7 @@ params = { campaign:{
   e = Campaign.create!(params[:campaign])
 end
 
-1.time do |o|
+1.times do |o|
   o = Option.create!
   o.interest_option_list = "Games, Sports, Food"
   o.save
