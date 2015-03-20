@@ -1,8 +1,5 @@
-= render partial: 'users/show', locals: { user: @user }
-
-
-// Profile Image Uploade Modal
-= render partial: "shared/partials/image/form", locals: { user: @user, title: "Edit your new profile image!" }
+#dashboard-container
+  = render partial: 'users/show', locals: { user: @user }
 
 // Render Interest Select Modal
 - if @user.interest_not_selected?

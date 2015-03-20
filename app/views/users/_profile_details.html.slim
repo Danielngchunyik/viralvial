@@ -22,7 +22,7 @@
   = best_in_place user, :race, as: :select, collection: [[:chinese, 'Chinese'], [:indian, 'Indian'], [:malay, 'Malay'], [:others, 'Others']], class: 'ui fluid massive label editable'
 
   p.profile-padding.profile-label RELIGION
-  = best_in_place user, :religion, as: :select, collection: [["Muslim", "Muslim"], ["Non-Muslim", "Non-Muslim"]], class: 'ui fluid massive label editable'
+  = best_in_place user, :religion, as: :select, collection: [[:muslim, "Muslim"], [:non_muslim, "Non-Muslim"]], class: 'ui fluid massive label editable'
 
   p.profile-padding.profile-label MARITAL STATUS
   = best_in_place user, :marital_status, as: :select, collection: [["Single", "Single"], ["In a Relationship", "In a Relationship"], ["Married", "Married"]], class: 'ui fluid massive label editable'

@@ -11,9 +11,9 @@
                 p.campaign-title= campaign.title
                 p.campaign-description= truncate(campaign.description, length: 100)
                 .ui.two.column.grid.spacing-top
-                  .column.zero-padding
+                  .column
                     .rewards
                       span Earn 
                       span.bold 50 - 100 MYR
-                  .column.zero-padding.timer
+                  .column.timer
                     p= campaign.time_remaining

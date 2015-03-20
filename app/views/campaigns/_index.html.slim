@@ -1,9 +1,4 @@
-.ui.grid#campaigns-index
+#campaigns-index.ui.grid
   .sixteen.wide.column
-    section
-      p Campaigns
-
-      = render partial: 'shared/partials/campaigns/index', locals: { campaigns: @campaigns }
-
-    section
-      = will_paginate @campaigns
+    section#campaigns-container
+      = render partial: 'campaigns/container', locals: { campaigns: @campaigns }

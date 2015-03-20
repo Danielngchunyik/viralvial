@@ -1,18 +1,21 @@
 // User Profile
-#dashboard-container
-  #user-profile.ui.grid
-    sixteen.wide.column
-      section#profile-header
-        .ui.grid.center.aligned
-          .twelve.wide.column
-            #user-profile-image
-              = render partial: "users/profile_image", locals: { user: user }
-            p.name#profile_user_name_display= user.name
-            #user-interest
-              = render partial: "users/interest", locals: { user: user }
-            p.profile-image-label= link_to "Change profile picture", '#', class: 'trigger-profile-image-change'
-      section#profile-view-container
-        .ui.grid.center.aligned
-          .twelve.wide.column
-            .ui.stackable.two.column.grid.center
-              = render partial: "users/profile_details", locals: { user: user }
+#user-profile.ui.grid
+  .sixteen.wide.column
+    section#profile-header
+      .ui.grid.center.aligned
+        .twelve.wide.column
+          #user-profile-image
+            = render partial: "users/profile_image", locals: { user: user }
+          p.name#profile_user_name_display= user.name
+          #user-interest
+            = render partial: "users/interest", locals: { user: user }
+          p.profile-image-label= link_to "Change profile picture", '#', class: 'trigger-profile-image-change'
+    section#profile-view-container
+      .ui.grid.center.aligned
+        .twelve.wide.column
+          .ui.stackable.two.column.grid.center
+            = render partial: "users/profile_details", locals: { user: user }
+
+
+// Profile Image Uploade Modal
+= render partial: "shared/partials/image/form", locals: { user: @user, title: "Edit your new profile image!" }

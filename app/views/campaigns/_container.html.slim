@@ -1,0 +1,11 @@
+.ui.grid.center
+  .row
+    .twelve.wide.column
+      p.title Campaigns
+  .row
+    .twelve.wide.column
+      = render partial: 'shared/partials/campaigns/index', locals: { campaigns: campaigns }
+  .row
+    .twelve.wide.column.
+      .flickr_pagination
+        = will_paginate @campaigns
