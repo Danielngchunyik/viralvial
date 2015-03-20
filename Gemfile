@@ -16,6 +16,7 @@ gem 'country_select'
 gem 'iso_country_codes'
 gem 'best_in_place', '~> 3.0.1'
 gem 'jquery-ui-rails'
+gem 'remotipart', '~> 1.2'
 
 # database tagging
 gem 'acts-as-taggable-on'

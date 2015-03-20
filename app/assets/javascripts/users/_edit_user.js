@@ -1,4 +1,4 @@
-$(document).ready(function() {
+var initBIP = function() {
   
   // Successful update
   $(".best_in_place").best_in_place().bind('ajax:success', function() {
@@ -10,4 +10,6 @@ $(document).ready(function() {
   $(".best_in_place").best_in_place().bind('ajax:error', function() {
     $(this).transition({ animation: 'shake', duration: '0.5s' })
   })
-});
+}
+
+$(document).ready(initBIP);

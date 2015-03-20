@@ -1,6 +1,6 @@
 <% if @user.valid? %>
   $('#interest-form-modal').modal('hide');
-  // $('#profile-image-modal').modal('hide');
+  $('#profile-image-modal').modal('hide');
   $('#user-interest').html("<%= escape_javascript(render(partial: 'interest', locals: { user: @user })) %>")
-  // $('#user-profile-image').html("<%= escape_javascript(render(partial: 'profile_image', locals: { user: @user })) %>")
+  $('#user-profile-image').html("<%= escape_javascript(render(partial: 'profile_image', locals: { user: @user })) %>")
 <% end %>

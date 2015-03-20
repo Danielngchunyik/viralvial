@@ -4,7 +4,7 @@
     p.title= title
   .modal-content
     .description.center.small-padding-top
-      = form_for user do |f|
+      = form_for user, url: user_path(user, format: :js), remote: true, authenticity_token: true do |f|
         .ui.grid.center
           .row
             .sixteen.wide.column

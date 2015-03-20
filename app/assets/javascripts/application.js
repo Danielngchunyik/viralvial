@@ -12,10 +12,9 @@
 //
 //= require jquery
 //= require jquery_ujs
-//= require jquery-ui
+//= require jquery.remotipart
 //= require semantic-ui
 //= require smoothscroll
 //= require jquery.typer
 //= require best_in_place
-//= require best_in_place.jquery-ui
 //= require_tree .

@@ -2,7 +2,7 @@ var runHoverTriggers = function(el, message) {
   $(el).html(message)
 }
 
-$(document).ready(function() {
+var initProfile = function() {
   if ($("body").hasClass("user_dashboard index")) {
 
     // Trigger Interest Form Modal
@@ -40,4 +40,6 @@ $(document).ready(function() {
 
     // End
   }
-});
+}
+
+$(document).ready(initProfile);
