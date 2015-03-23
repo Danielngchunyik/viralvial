@@ -1,20 +1,20 @@
 // User Profile
-#user-profile.ui.grid
+#user-profile.ui.grid.animated.fadeIn
   .sixteen.wide.column
     section#profile-header
       .ui.grid.center.aligned
         .twelve.wide.column
           #user-profile-image
-            = render partial: "users/profile_image", locals: { user: user }
-          p.name#profile_user_name_display= user.name
+            = render partial: "users/profile_image", locals: { user: @user }
+          p.name#profile_user_name_display= @user.name
           #user-interest
-            = render partial: "users/interest", locals: { user: user }
-          p.profile-image-label= link_to "Change profile picture", '#', class: 'trigger-profile-image-change'
+            = render partial: "users/interest", locals: { user: @user }
+          p.profile-image-label= link_to "Change profile picture", '#', class: 'trigger-profile-image-change', 'data-skip-pjax': true
     section#profile-view-container
       .ui.grid.center.aligned
         .twelve.wide.column
           .ui.stackable.two.column.grid.center
-            = render partial: "users/profile_details", locals: { user: user }
+            = render partial: "users/profile_details", locals: { user: @user }
 
 
 // Profile Image Uploade Modal

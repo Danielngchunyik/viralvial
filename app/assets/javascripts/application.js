@@ -17,4 +17,5 @@
 //= require smoothscroll
 //= require jquery.typer
 //= require best_in_place
+//= require jquery.pjax
 //= require_tree .

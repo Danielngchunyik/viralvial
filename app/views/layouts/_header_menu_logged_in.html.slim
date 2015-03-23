@@ -14,7 +14,8 @@ header.logged-in
                 .ui.dropdown
                   .menu-title
                     .ui.black.basic.button.connect-button
-                      span= "Hi, #{current_user.name}"
+                      span Hi, 
+                      span#header-user-name= "#{current_user.name}"
                       i.margin-left-10.chevron.down.icon
                   .menu
                     = render partial: 'layouts/menu_items'

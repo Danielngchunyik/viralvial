@@ -1,6 +1,6 @@
 class UsersController < ApplicationController
   before_action :set_user, :require_login
-  before_action :set_options, only: [:edit]
+  before_action :set_options, only: [:edit, :show]
   respond_to :html, :js, :json
 
   def show

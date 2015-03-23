@@ -1,5 +1,5 @@
 // Overview
-#overview-dashboard.ui.grid
+#overview-dashboard.ui.grid.animated.fadeIn
   .sixteen.wide.column
     section#overview-header
       .ui.grid.center
@@ -21,4 +21,4 @@
             h1.title My Campaigns
         .row
           .twelve.wide.column
-            = render partial: 'shared/partials/campaigns/index', locals: { campaigns: campaigns }
+            = render partial: 'shared/partials/campaigns/index', locals: { campaigns: @campaigns }

@@ -1,7 +1,0 @@
-$('#dashboard-container').html("<%= escape_javascript(render(partial: 'index', locals: { campaigns: @campaigns })) %>")
-
-$('#overview-dashboard').addClass("animated fadeIn");
-
-setTimeout(function() {
-  $('#overview-dashboard').removeClass('animated fadeIn');
-}, 1000);

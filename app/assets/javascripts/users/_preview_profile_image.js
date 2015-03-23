@@ -1,5 +1,5 @@
-$(document).ready(function() {
-  
+var initPreviewImage = function() {
+
   var preview = $('.upload-previewer')
 
   $(".uploader").change(function(event) {
@@ -15,5 +15,8 @@ $(document).ready(function() {
     };
 
     reader.readAsDataURL(file);
-  })
-});
+  });
+}
+
+$(document).ready(initPreviewImage);
+$(document).ajaxComplete(initPreviewImage);

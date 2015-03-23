@@ -15,4 +15,4 @@
               = f.select :main_interest, options.map { |interest| [interest.titleize, interest] }, {}, { class: "ui fluid search dropdown interest-field spacing-top" }
           .row
             .ten.wide.column
-              p.top-spacing= f.submit "DONE!", class: "button-settings ui large button"
+              p.top-spacing= f.submit "DONE!", class: "button-settings ui large button", id: 'interest-submit'

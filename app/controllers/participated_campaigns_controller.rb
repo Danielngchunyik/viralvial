@@ -1,6 +1,5 @@
 class ParticipatedCampaignsController < ApplicationController
   before_action :require_login
-  respond_to :html, :js
 
   def index
     campaigns = []
@@ -10,7 +9,5 @@ class ParticipatedCampaignsController < ApplicationController
     end
 
     @campaigns = CampaignDecorator.wrap(campaigns)
-
-    respond_with(@campaigns)
   end
 end
