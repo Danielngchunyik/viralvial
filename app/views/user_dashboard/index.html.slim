@@ -1,6 +1,0 @@
-#dashboard-container
-  = render partial: 'users/show', locals: { user: @user }
-
-// Render Interest Select Modal
-- if @user.interest_not_selected?
-  = render partial: "/shared/partials/users/edit_interest_form", locals: { user: @user, options: @options, title: "Pick an interest!", description: "Tell us what you love so that we are able to give you only the best!" }

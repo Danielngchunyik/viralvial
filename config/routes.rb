@@ -29,9 +29,6 @@ Rails.application.routes.draw do
   #Participated Campaigns
   get 'participated', to: 'participated_campaigns#index', as: :participated
 
-  #User Dashboard
-  get 'dashboard', to: 'user_dashboard#index', as: :dashboard
-
   #Oauth
   post "oauth/callback", to: "oauths#callback"
   get "oauth/callback", to: "oauths#callback"

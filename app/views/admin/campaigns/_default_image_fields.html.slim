@@ -3,4 +3,4 @@ p.nested_form_field
   = f.file_field :storage
   = f.hidden_field :storage_cache
   = f.hidden_field :_destroy
-  = link_to "Remove", '#', class: "remove_fields", id: "#image"
+  = link_to "Remove", '#', class: "remove_fields", id: "#image", "data-skip-pjax": true

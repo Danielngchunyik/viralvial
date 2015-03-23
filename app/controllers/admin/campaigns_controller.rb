@@ -1,5 +1,6 @@
 class Admin::CampaignsController < AdminController
   before_action :set_campaign, only: [:show, :edit, :update, :destroy]
+  before_action :set_platform_options, only: [:new, :edit]
 
   def index
     @campaigns = Campaign.order("created_at DESC")
@@ -47,6 +48,10 @@ class Admin::CampaignsController < AdminController
 
   private
 
+  def set_platform_options
+    @options = Option.first.social_media_platform_option_list
+  end
+
   def set_campaign
     @campaign = Campaign.find(params[:id])
   end
@@ -56,8 +61,8 @@ class Admin::CampaignsController < AdminController
                                      :description, :min_age, :max_age, :min_socialite_score, :organizer, 
                                      :max_socialite_score, :marital_status_list, :category_list, 
                                      :race_list, :religion_list, :country_list, :language, :private, 
-                                     topics_attributes: [:id, :num_of_posts, :num_of_comments, :_destroy, :title,
-                                                         :num_of_likes, :description, :social_media_platform,
+                                     topics_attributes: [:id, :_destroy, :title, :num_of_shares, 
+                                                         :social_media_platform_list, :description, 
                                                          default_images_attributes: [:topic_id, :storage, :id, :_destroy]])
   end
 end

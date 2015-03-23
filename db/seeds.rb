@@ -23,5 +23,6 @@ end
 1.times do |o|
   o = Option.create!
   o.interest_option_list = "Games, Sports, Food"
+  o.social_media_platform_option_list = "Facebook, Twitter"
   o.save
 end

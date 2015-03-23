@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150319163007) do
+ActiveRecord::Schema.define(version: 20150323093508) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -97,15 +97,12 @@ ActiveRecord::Schema.define(version: 20150319163007) do
   add_index "tags", ["name"], name: "index_tags_on_name", unique: true, using: :btree
 
   create_table "topics", force: :cascade do |t|
-    t.integer  "num_of_posts"
-    t.integer  "num_of_likes"
-    t.integer  "num_of_comments"
     t.integer  "campaign_id"
-    t.integer  "social_media_platform"
     t.datetime "created_at"
     t.datetime "updated_at"
     t.text     "description"
     t.string   "title"
+    t.integer  "num_of_shares"
   end
 
   create_table "user_images", force: :cascade do |t|

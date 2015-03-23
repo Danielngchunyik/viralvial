@@ -12,7 +12,7 @@ class OauthsController < ApplicationController
 
       set_access_token(@user)
       flash[:success] = "You're logged in from #{provider.titleize}!"
-      redirect_to dashboard_path
+      redirect_to user_path(current_user)
     else
       
       if logged_in?
@@ -36,7 +36,7 @@ class OauthsController < ApplicationController
       flash[:error] = "You do not currently have a linked #{provider.titleize} account."
     end
 
-    redirect_to dashboard_path
+    redirect_to user_path(current_user)
   end
 
   private
@@ -58,7 +58,7 @@ class OauthsController < ApplicationController
 
     auto_login(@user)
     flash[:notice] = "You've registered through #{provider.titleize}!"
-    redirect_to dashboard_path
+    redirect_to user_path(current_user)
   end
 
   def save_twitter_info
@@ -79,7 +79,7 @@ class OauthsController < ApplicationController
     end
 
     set_access_token(current_user)
-    redirect_to dashboard_path
+    redirect_to user_path(current_user)
   end
 
   def set_access_token(user)
