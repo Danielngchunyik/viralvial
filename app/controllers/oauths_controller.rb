@@ -11,6 +11,7 @@ class OauthsController < ApplicationController
     if @user = login_from(provider)
 
       set_access_token(@user)
+      binding.pry
       flash[:success] = "You're logged in from #{provider.titleize}!"
       redirect_to user_path(current_user)
     else

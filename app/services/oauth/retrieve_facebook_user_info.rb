@@ -15,5 +15,6 @@ class Oauth::RetrieveFacebookUserInfo
     @user.update(birthday: fb_user.birthday,
                  location: user_location[0],
                  country: IsoCountryCodes.search_by_name(user_location[1])[0].alpha2)
+    @user.followers.create(social_platform: "Facebook", amount: fb_user.friends.total_count)
   end
 end
