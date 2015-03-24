@@ -62,7 +62,7 @@ class Admin::CampaignsController < AdminController
                                      :description, :min_age, :max_age, :min_socialite_score, :organizer, 
                                      :max_socialite_score, :marital_status_list, :category_list, 
                                      :race_list, :religion_list, :country_list, :language, :private, 
-                                     topics_attributes: [:id, :_destroy, :title, :num_of_shares, social_media_platform_list: [], :random_test,
+                                     topics_attributes: [:id, :_destroy, :title, :num_of_shares, { social_media_platform_list: [] }, :random_test,
                                                          :description, default_images_attributes: [:topic_id, :storage, :id, :_destroy]])
   end
 end
