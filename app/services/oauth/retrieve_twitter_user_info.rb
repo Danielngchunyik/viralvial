@@ -30,6 +30,6 @@ class Oauth::RetrieveTwitterUserInfo
   end
 
   def create_new_authentication
-    @user.authentications.build(provider: 'twitter', uid: @twitter_user.id, token: token, secret: secret)
+    @user.authentications.build(provider: 'twitter', uid: @twitter_user.id, token: token, secret: secret).save
   end
 end

@@ -24,6 +24,6 @@ class Oauth::RetrieveFacebookUserInfo
   private
 
   def create_new_authentication
-    @user.authentications.build(provider: 'facebook', uid: @fb_user.identifier, token: access_token.token)
+    @user.authentications.build(provider: 'facebook', uid: @fb_user.identifier, token: access_token.token).save
   end
 end
