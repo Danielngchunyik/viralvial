@@ -1,5 +1,6 @@
 class OauthsController < ApplicationController
   before_action :require_login, only: [:destroy]
+  before_action :get_user_location, only: [:callback]
 
   def oauth
     login_at(auth_params[:provider])
@@ -11,7 +12,6 @@ class OauthsController < ApplicationController
     if @user = login_from(provider)
 
       set_access_token(@user)
-      binding.pry
       flash[:success] = "You're logged in from #{provider.titleize}!"
       redirect_to user_path(current_user)
     else
@@ -47,29 +47,18 @@ class OauthsController < ApplicationController
   end
 
   def register_new_user(provider)
-    @user = create_and_validate_from(provider)
-    reset_session
+    allowed_platforms = ["facebook", "twitter"]
 
-    case provider
-    when "twitter"
-      save_twitter_info
-    when "facebook"
-      save_facebook_info
-    end
+    return redirect_to root_path unless allowed_platforms.include?(provider)
+    klass = "Oauth::Retrieve#{provider.capitalize}UserInfo".constantize
+
+    @user = klass.new(@access_token, @country).save
+
+    reset_session
 
     auto_login(@user)
     flash[:notice] = "You've registered through #{provider.titleize}!"
     redirect_to user_path(current_user)
-  end
-
-  def save_twitter_info
-    set_access_token(@user)
-    Oauth::RetrieveTwitterUserInfo.new(@access_token.token, @access_token.secret, @user, @access_token.params[:screen_name]).save
-  end
-
-  def save_facebook_info
-    set_access_token(@user)
-    Oauth::RetrieveFacebookUserInfo.new(@access_token.token, @user).save
   end
 
   def link_account(provider)
@@ -86,9 +75,13 @@ class OauthsController < ApplicationController
   def set_access_token(user)
     case params[:provider]
     when "facebook"
-      user.set_access_token(@access_token.token, nil, params[:provider])
+      user.set_access_token(@access_token.token, params[:provider])
     when "twitter"
-      user.set_access_token(@access_token.params[:oauth_token], @access_token.params[:oauth_token_secret], params[:provider])
+      user.set_access_token(@access_token.params[:oauth_token], params[:provider], @access_token.params[:oauth_token_secret])
     end
+  end
+
+  def get_user_location
+    @country = GeoIP.new('db/geoip/GeoIP-city.dat').country(request.remote_ip).try(:country_name) || "Malaysia"
   end
 end

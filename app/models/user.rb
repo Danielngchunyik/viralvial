@@ -1,7 +1,6 @@
 class User < ActiveRecord::Base
 
-  store_accessor :scores, :followers, :klout, :localization, :reach_score,
-                 :sx_index, :influence_score, :socialite_score, :karma
+  store_accessor :viral_vial_score, :total_followers
 
   authenticates_with_sorcery!
   after_initialize :set_default_password, if: :new_record?
@@ -34,7 +33,7 @@ class User < ActiveRecord::Base
   mount_uploader :image, ImageUploader
 
    
-  def set_access_token(token, secret, provider)
+  def set_access_token(token, provider, secret=nil)
     auth = self.authentications.find_by(provider: provider)
     auth.update(token: token, secret: secret)
   end

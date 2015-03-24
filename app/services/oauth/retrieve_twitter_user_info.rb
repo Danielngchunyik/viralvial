@@ -1,26 +1,35 @@
 class Oauth::RetrieveTwitterUserInfo
-  attr_accessor :token, :secret, :user, :screen_name
+  attr_accessor :token, :secret, :user, :screen_name, :country
 
-  def initialize(token, secret, user, screen_name)
-    @token = token
-    @secret = secret
-    @user = user
-    @screen_name = screen_name
+  def initialize(access_token, country)
+    @token = access_token.token
+    @secret = access_token.secret
+    @screen_name = access_token.params[:screen_name]
+    @country = country
   end
 
   def save
-    @twitter = Initializer::TwitterClient.new(@token, @secret)
+    @twitter = Initializer::TwitterClient.new(token, secret)
+    @twitter_user = @twitter.client.user(screen_name)
 
-    twitter_user = @twitter.client.user(@screen_name)
-    upload_profile_image(twitter_user)
+    get_user_location_and_image
 
-    @user.update(location: twitter_user.location, name: twitter_user.name)
+    @user = User.create(location: @user_location[0], name: @twitter_user.name, 
+                        country: IsoCountryCodes.search_by_name(country)[0].alpha2, remote_image_url: @user_image)
+
+    create_new_authentication
+
+    return @user
   end
 
   private
 
-  def upload_profile_image(user)
-    image_extract = user.profile_image_url_https.to_str.gsub!("normal", "400x400")
-    @user.remote_image_url = image_extract
+  def get_user_location_and_image
+    @user_location = @twitter_user.location.present? ? @twitter_user.location.split(', ') : ["None"]
+    @user_image = @twitter_user.profile_image_url_https.to_str.gsub!("normal", "400x400")
+  end
+
+  def create_new_authentication
+    @user.authentications.build(provider: 'twitter', uid: @twitter_user.id, token: token, secret: secret)
   end
 end
