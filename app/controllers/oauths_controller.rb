@@ -11,7 +11,7 @@ class OauthsController < ApplicationController
 
     if @user = login_from(provider)
 
-      set_access_token(@user)
+      @user.set_access_token(@access_token, params[:provider])
       flash[:success] = "You're logged in from #{provider.titleize}!"
       redirect_to user_path(current_user)
     else
@@ -47,12 +47,11 @@ class OauthsController < ApplicationController
   end
 
   def register_new_user(provider)
-    allowed_platforms = ["facebook", "twitter"]
 
-    return redirect_to root_path unless allowed_platforms.include?(provider)
-    klass = "Oauth::Retrieve#{provider.capitalize}UserInfo".constantize
+    check_provider(provider, root_path)
 
-    @user = klass.new(@access_token, @country).save
+    @user = @klass.new(@access_token, @country).save
+    @user.set_access_token(@access_token, params[:provider])
 
     reset_session
 
@@ -62,23 +61,25 @@ class OauthsController < ApplicationController
   end
 
   def link_account(provider)
-    if current_user.authentications.find_by(provider: provider).blank? && @user = add_provider_to_user(provider)
-      flash[:notice] = "You have successfully linked your #{provider.titleize} account."
-    else
-      flash[:error] = "There was a problem linking your #{provider.titleize} account."
-    end
+    
+    check_provider(provider, user_path(current_user))
 
-    set_access_token(current_user)
-    redirect_to user_path(current_user)
+    if current_user.authentications.find_by(provider: provider).blank? && add_provider_to_user(provider)
+      @klass.new(@access_token, nil, current_user).update_followers
+      binding.pry
+
+      current_user.set_access_token(@access_token, params[:provider])    
+      flash[:notice] = "You have successfully linked your #{provider.titleize} account."
+      redirect_to user_path(current_user)
+    end
   end
 
-  def set_access_token(user)
-    case params[:provider]
-    when "facebook"
-      user.set_access_token(@access_token.token, params[:provider])
-    when "twitter"
-      user.set_access_token(@access_token.params[:oauth_token], params[:provider], @access_token.params[:oauth_token_secret])
-    end
+  def check_provider(provider, path)
+    allowed_platforms = ["facebook", "twitter"]
+
+    return redirect_to path unless allowed_platforms.include?(provider)
+
+    @klass = "Oauth::Retrieve#{provider.capitalize}UserInfo".constantize
   end
 
   def get_user_location

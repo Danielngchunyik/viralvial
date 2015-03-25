@@ -1,6 +1,6 @@
 class User < ActiveRecord::Base
 
-  store_accessor :viral_vial_score, :total_followers
+  store_accessor :scores, :facebook_followers, :twitter_followers, :total_followers
 
   authenticates_with_sorcery!
   after_initialize :set_default_password, if: :new_record?
@@ -27,15 +27,14 @@ class User < ActiveRecord::Base
   has_many :authentications, dependent: :destroy
   has_many :posts, dependent: :destroy
   has_one :user_image, dependent: :destroy
-  has_many :followers, dependent: :destroy
   accepts_nested_attributes_for :authentications
 
   mount_uploader :image, ImageUploader
 
    
-  def set_access_token(token, provider, secret=nil)
+  def set_access_token(access_token, provider)
     auth = self.authentications.find_by(provider: provider)
-    auth.update(token: token, secret: secret)
+    auth.update(token: access_token.try(:token), secret: access_token.try(:secret))
   end
 
   def has_linked_provider?(provider)
@@ -58,7 +57,16 @@ class User < ActiveRecord::Base
     self.birthday = birthday.change(year: value.to_i)
   end
 
+  def update_followers
+  end
+
   private
+
+  def update_facebook_followers
+  end
+
+  def update_twitter_followers
+  end
 
   def update_social_scores
     ScoresWorker.perform_async
