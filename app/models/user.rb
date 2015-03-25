@@ -62,9 +62,10 @@ class User < ActiveRecord::Base
   private
 
   def correct_user_birthday
-    return if DateTime.parse(birthday.to_s) && birthday <= Date.today
-    errors.add(:birthday, 'is invalid')
-  rescue
+    begin
+      return if DateTime.parse(birthday.to_s) && birthday <= Date.today
+    rescue
+    end
     errors.add(:birthday, 'is invalid')
   end
 

@@ -28,7 +28,6 @@ class Admin::CampaignsController < AdminController
   end
 
   def update
-    binding.pry
     if @campaign.update(campaign_params)
       flash[:notice] = "campaign updated"
       redirect_to [:admin, @campaign]
