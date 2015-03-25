@@ -6,7 +6,7 @@
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 
-params = { campaign:{
+campaign_params = { campaign:{
 		title: "Lorem Title",
 		description: "Lorem Ipsum Desc",
 		start_date: Date.today,
@@ -17,7 +17,17 @@ params = { campaign:{
 }
 
 12.times do |e|
-  e = Campaign.create!(params[:campaign])
+  e = Campaign.create(campaign_params[:campaign])
+end
+
+20.times do |u|
+  
+  fb = rand(100)
+  tw = rand(100)
+  total = fb + tw
+
+  u = User.create
+  u.build_social_score(facebook_followers: fb, twitter_followers: tw, total_followers: total).save
 end
 
 1.times do |o|

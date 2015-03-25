@@ -1,6 +1,7 @@
 class SocialScore < ActiveRecord::Base
   belongs_to :user
   after_save :tally_total_followers, if: :followers_changed?
+  after_save :update_social_scores, if: :followers_changed?
   
   def update_followers
     ["facebook", "twitter"].each do |provider|  
