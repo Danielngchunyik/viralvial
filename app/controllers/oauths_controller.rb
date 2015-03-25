@@ -13,7 +13,7 @@ class OauthsController < ApplicationController
 
       # Run updates on user's followers and access tokens
       @user.set_access_token(@access_token, params[:provider])
-      @user.update_followers
+      @user.social_score.update_followers
 
       flash[:success] = "You're logged in from #{provider.titleize}!"
       redirect_to user_path(current_user)

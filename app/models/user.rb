@@ -1,15 +1,9 @@
 class User < ActiveRecord::Base
 
-  store_accessor :scores, :viral_vial_score
-  store_accessor :followers, :facebook_followers, :twitter_followers, :total_followers
-
   authenticates_with_sorcery!
 
   after_initialize :set_default_password, if: :new_record?
-  after_initialize :set_default_follower_count, if: :new_record?
   before_validation :set_default_email, if: :new_record?
-  after_commit :update_social_scores, on: :create
-  after_save :tally_total_followers, if: :followers_changed?
 
   enum role: [:user, :admin, :banned]
   enum gender: [:unspecified, :female, :male]
@@ -31,6 +25,7 @@ class User < ActiveRecord::Base
   has_many :authentications, dependent: :destroy
   has_many :posts, dependent: :destroy
   has_one :user_image, dependent: :destroy
+  has_one :social_score, dependent: :destroy
   accepts_nested_attributes_for :authentications
 
   mount_uploader :image, ImageUploader
@@ -64,42 +59,8 @@ class User < ActiveRecord::Base
     self.birthday = birthday.change(year: value.to_i)
   end
 
-  def update_followers
-    ["facebook", "twitter"].each do |provider|  
-      fetch_and_save_new_follower_count(provider)
-    end
-  end
-
   private
 
-  def tally_total_followers
-    self.update(total_followers: self.facebook_followers.to_i + self.twitter_followers.to_i)
-  end
-
-  def followers_changed?
-    new_total_count = self.facebook_followers.to_i + self.twitter_followers.to_i
-    
-    new_total_count != self.total_followers.to_i
-  end
-
-  def fetch_and_save_new_follower_count(provider)
-    return unless auth = authentications.find_by(provider: provider)
-    access_token = AccessToken.new(auth.try(:token), auth.try(:secret))
-
-    klass = "Oauth::Retrieve#{provider.capitalize}UserInfo".constantize
-    klass.new(access_token, nil, self).update_followers
-  end
-
-  def update_social_scores
-    ScoresWorker.perform_async
-  end
-
-  def set_default_follower_count
-    self.facebook_followers = 0 if self.facebook_followers.nil?
-    self.twitter_followers = 0 if self.twitter_followers.nil?
-    self.total_followers = 0 if self.total_followers.nil?
-  end
-  
   def correct_user_birthday
     return if DateTime.parse(birthday.to_s) && birthday <= Date.today
     errors.add(:birthday, 'is invalid')

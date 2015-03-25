@@ -14,20 +14,20 @@ class Oauth::RetrieveFacebookUserInfo
     set_user_location
 
     @new_user = User.create(name: @fb_user.name, email: @fb_user.email,
-                        facebook_followers: @fb_user.friends.total_count,
                         birthday: @fb_user.birthday, location: @user_location[0],
                         country: IsoCountryCodes.search_by_name(country)[0].alpha2,
                         remote_image_url: "#{@fb_user.picture}?redirect=1&height=300&type=normal&width=300")
 
-    create_auth
+    create_auth_and_followers
     
-    return @new_user
+    @new_user
   end
 
   def update_followers
     set_user_params
 
-    user.update(facebook_followers: @fb_user.friends.total_count)
+    return if user.social_score.facebook_followers == @fb_user.friends.total_count
+    user.social_score.update(facebook_followers: @fb_user.friends.total_count)
   end
 
   private
@@ -40,7 +40,8 @@ class Oauth::RetrieveFacebookUserInfo
     @user_location = @fb_user.location.present? ? @fb_user.location.name.split(', ') : ["None"]
   end
 
-  def create_auth
+  def create_auth_and_followers
+    @new_user.build_social_score(facebook_followers: @fb_user.friends.total_count).save
     @new_user.authentications.build(provider: 'facebook', uid: @fb_user.identifier, token: access_token.token).save
   end
 end

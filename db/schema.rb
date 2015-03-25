@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150325032325) do
+ActiveRecord::Schema.define(version: 20150325083034) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -59,14 +59,6 @@ ActiveRecord::Schema.define(version: 20150325032325) do
     t.datetime "updated_at"
   end
 
-  create_table "followers", force: :cascade do |t|
-    t.string   "social_platform"
-    t.integer  "amount"
-    t.datetime "created_at",      null: false
-    t.datetime "updated_at",      null: false
-    t.integer  "user_id"
-  end
-
   create_table "options", force: :cascade do |t|
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -82,6 +74,16 @@ ActiveRecord::Schema.define(version: 20150325032325) do
     t.string   "image"
     t.string   "type",             null: false
     t.integer  "campaign_id"
+  end
+
+  create_table "social_scores", force: :cascade do |t|
+    t.integer  "facebook_followers", default: 0
+    t.integer  "twitter_followers",  default: 0
+    t.integer  "total_followers",    default: 0
+    t.integer  "user_id"
+    t.integer  "viral_score",        default: 0
+    t.datetime "created_at",                     null: false
+    t.datetime "updated_at",                     null: false
   end
 
   create_table "taggings", force: :cascade do |t|
@@ -140,13 +142,11 @@ ActiveRecord::Schema.define(version: 20150325032325) do
     t.datetime "reset_password_token_expires_at"
     t.datetime "reset_password_email_sent_at"
     t.integer  "role",                            default: 0
-    t.hstore   "scores",                          default: {}
     t.string   "image"
     t.integer  "failed_logins_count",             default: 0
     t.datetime "lock_expires_at"
     t.string   "unlock_token"
     t.string   "blog_url"
-    t.hstore   "followers",                       default: {}
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
