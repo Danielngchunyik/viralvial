@@ -4,9 +4,12 @@ class User < ActiveRecord::Base
   store_accessor :followers, :facebook_followers, :twitter_followers, :total_followers
 
   authenticates_with_sorcery!
+
   after_initialize :set_default_password, if: :new_record?
+  after_initialize :set_default_follower_count, if: :new_record?
   before_validation :set_default_email, if: :new_record?
   after_commit :update_social_scores, on: :create
+  after_save :tally_total_followers, if: :followers_changed?
 
   enum role: [:user, :admin, :banned]
   enum gender: [:unspecified, :female, :male]
@@ -31,7 +34,6 @@ class User < ActiveRecord::Base
   accepts_nested_attributes_for :authentications
 
   mount_uploader :image, ImageUploader
-
 
   def interest_not_selected?
     primary_interest_list.empty?
@@ -70,6 +72,16 @@ class User < ActiveRecord::Base
 
   private
 
+  def tally_total_followers
+    self.update(total_followers: self.facebook_followers.to_i + self.twitter_followers.to_i)
+  end
+
+  def followers_changed?
+    new_total_count = self.facebook_followers.to_i + self.twitter_followers.to_i
+    
+    new_total_count != self.total_followers.to_i
+  end
+
   def fetch_and_save_new_follower_count(provider)
     return unless auth = authentications.find_by(provider: provider)
     access_token = AccessToken.new(auth.try(:token), auth.try(:secret))
@@ -82,6 +94,12 @@ class User < ActiveRecord::Base
     ScoresWorker.perform_async
   end
 
+  def set_default_follower_count
+    self.facebook_followers = 0 if self.facebook_followers.nil?
+    self.twitter_followers = 0 if self.twitter_followers.nil?
+    self.total_followers = 0 if self.total_followers.nil?
+  end
+  
   def correct_user_birthday
     return if DateTime.parse(birthday.to_s) && birthday <= Date.today
     errors.add(:birthday, 'is invalid')
