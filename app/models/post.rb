@@ -4,7 +4,7 @@ class Post < ActiveRecord::Base
   belongs_to :campaign
 
 
-  # Refer to TwitterPost and FacebookPost models
+  # Refer to TwitterPost and FacebookPost Classes
 
   def destroy_with_social_media(user)
     social_media_delete(user)
@@ -34,8 +34,5 @@ class Post < ActiveRecord::Base
     when 'Twitter'
       TwitterPost
     end
-  end
-
-  # end
-  
+  end  
 end
