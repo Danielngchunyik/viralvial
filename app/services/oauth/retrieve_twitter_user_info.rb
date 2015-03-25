@@ -4,7 +4,7 @@ class Oauth::RetrieveTwitterUserInfo
   def initialize(access_token, country=nil, user = nil)
     @token = access_token.token
     @secret = access_token.secret
-    @screen_name = access_token.params[:screen_name]
+    @screen_name = access_token.try(:params).try(:[], :screen_name)
     @country = country
     @user = user
   end

@@ -32,6 +32,10 @@ class User < ActiveRecord::Base
 
   mount_uploader :image, ImageUploader
 
+
+  def interest_not_selected?
+    primary_interest_list.empty?
+  end
    
   def set_access_token(access_token, provider)
     auth = self.authentications.find_by(provider: provider)
@@ -59,14 +63,19 @@ class User < ActiveRecord::Base
   end
 
   def update_followers
+    ["facebook", "twitter"].each do |provider|  
+      fetch_and_save_new_follower_count(provider)
+    end
   end
 
   private
 
-  def update_facebook_followers
-  end
+  def fetch_and_save_new_follower_count(provider)
+    return unless auth = authentications.find_by(provider: provider)
+    access_token = AccessToken.new(auth.try(:token), auth.try(:secret))
 
-  def update_twitter_followers
+    klass = "Oauth::Retrieve#{provider.capitalize}UserInfo".constantize
+    klass.new(access_token, nil, self).update_followers
   end
 
   def update_social_scores

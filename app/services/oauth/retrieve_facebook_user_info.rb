@@ -1,7 +1,7 @@
 class Oauth::RetrieveFacebookUserInfo
   attr_accessor :access_token, :user, :country, :new_user
   
-  def initialize(access_token, country=nil, user = nil)
+  def initialize(access_token, country = nil, user = nil)
     @access_token = access_token
     @country = country
     @user = user

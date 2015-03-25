@@ -21,3 +21,7 @@ html
         = yield
 
       = render "layouts/footer"
+
+      // Render User Interest Modal
+      - if current_user && current_user.try(:interest_not_selected?)
+        = render partial: "/shared/partials/users/edit_interest_form", locals: { user: @user, options: @options, title: "Pick an interest!", description: "Tell us what you love so that we are able to give you only the best!" }

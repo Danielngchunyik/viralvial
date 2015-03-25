@@ -2,10 +2,13 @@ var runHoverTriggers = function(el, message) {
   $(el).html(message)
 }
 
-var initProfile = function() {
+var initInterestModal = function() { 
 
   // Trigger Interest Form Modal
   $('#interest-form-modal').modal('setting', 'closable', false).modal('show');
+}
+
+var initProfile = function() {
 
   //Social Media Connect Hover Button Functions
 
@@ -34,5 +37,9 @@ var initProfile = function() {
   $('#profile-image-modal').modal('attach events', '.trigger-profile-image-change', 'show');
 }
 
-$(document).ready(initProfile);
+$(document).ready(function() {
+  initProfile();
+  initInterestModal();
+});
+
 $(document).ajaxComplete(initProfile);

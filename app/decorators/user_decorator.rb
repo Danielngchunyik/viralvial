@@ -20,10 +20,6 @@ class UserDecorator < BaseDecorator
     model.primary_interest_list.first
   end
 
-  def interest_not_selected?
-    model.primary_interest_list.empty?
-  end        
-
   def age
     model.birthday && ((Date.today - model.birthday) / 365.25)
   end
