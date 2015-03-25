@@ -66,12 +66,12 @@ class OauthsController < ApplicationController
 
     if current_user.authentications.find_by(provider: provider).blank? && add_provider_to_user(provider)
       @klass.new(@access_token, nil, current_user).update_followers
-      binding.pry
 
       current_user.set_access_token(@access_token, params[:provider])    
       flash[:notice] = "You have successfully linked your #{provider.titleize} account."
-      redirect_to user_path(current_user)
     end
+
+    redirect_to user_path(current_user)
   end
 
   def check_provider(provider, path)

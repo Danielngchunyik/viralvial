@@ -1,6 +1,7 @@
 class User < ActiveRecord::Base
 
-  store_accessor :scores, :facebook_followers, :twitter_followers, :total_followers
+  store_accessor :scores, :viral_vial_score
+  store_accessor :followers, :facebook_followers, :twitter_followers, :total_followers
 
   authenticates_with_sorcery!
   after_initialize :set_default_password, if: :new_record?
