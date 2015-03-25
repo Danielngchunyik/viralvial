@@ -56,6 +56,7 @@ class OauthsController < ApplicationController
     reset_session
 
     auto_login(@user)
+    
     flash[:notice] = "You've registered through #{provider.titleize}!"
     redirect_to user_path(current_user)
   end
@@ -64,13 +65,12 @@ class OauthsController < ApplicationController
     
     check_provider(provider, user_path(current_user))
 
-    if current_user.authentications.find_by(provider: provider).blank? && add_provider_to_user(provider)
-      @klass.new(@access_token, nil, current_user).update_followers
+    add_provider_to_user(provider)
 
-      current_user.set_access_token(@access_token, params[:provider])    
-      flash[:notice] = "You have successfully linked your #{provider.titleize} account."
-    end
-
+    @klass.new(@access_token, nil, current_user).update_followers
+    current_user.set_access_token(@access_token, params[:provider])    
+    
+    flash[:notice] = "You have successfully linked your #{provider.titleize} account."
     redirect_to user_path(current_user)
   end
 
