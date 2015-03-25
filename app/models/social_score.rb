@@ -12,6 +12,7 @@ class SocialScore < ActiveRecord::Base
   private
 
   def update_social_scores
+    # Perform viral scores updates
     ScoresWorker.perform_async
   end
 
