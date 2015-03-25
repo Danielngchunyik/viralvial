@@ -31,5 +31,4 @@ class SocialScore < ActiveRecord::Base
 
     new_total_count != self.total_followers
   end
-
 end
