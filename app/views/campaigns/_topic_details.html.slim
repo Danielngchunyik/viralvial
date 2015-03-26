@@ -3,4 +3,4 @@
   p.font-18= topic.description
 
   - if current_user
-    = link_to "Share This!", new_campaign_topic_post_path(topic.campaign, topic), class: 'ui blue button margin-bottom-20'
+    = link_to "Share This!", new_campaign_topic_post_path(topic.campaign, topic), remote: true, class: 'ui blue button margin-bottom-20', 'data-skip-pjax': true

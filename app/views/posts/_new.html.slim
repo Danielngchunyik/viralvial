@@ -1,7 +1,7 @@
 #new-post-form.ui.grid
   .row.post-details
     .fourteen.wide.column.post-form
-      p.center.title.pink= "SHARE #{@topic.social_media_platform.upcase} POST"
+      p.center.title.pink= "SHARE POST"
       .images
         - if @images.present?
           p.sub-title.center Select Image (Click on the image to preview them)
@@ -28,10 +28,8 @@
 
         .message.space-top-50
           p.sub-title= f.label "MESSAGE: "
-          p.space-top-10= f.text_area :message, placeholder: "Enter post message", id: " text-share-#{@topic.social_media_platform}"
+          p.space-top-10= f.text_area :message, placeholder: "Enter post message", id: " text-share}"
 
         .share-buttons.center.space-top-50
-          -if @topic.social_media_platform == "facebook"
-            = f.submit "Share on Facebook", name: 'provider', class: 'ui button facebook'
-          -else
+            p= f.submit "Share on Facebook", name: 'provider', class: 'ui button facebook'
             p= f.submit "Share on Twitter", name: 'provider', class: 'ui button twitter'

@@ -3,26 +3,31 @@
     .sixteen.wide.column    
      .ui.stackable.grid.center
         .eight.wide.column.center
-          .ui.one.column.grid
+          #campaign-post-container.ui.grid
             .row
-              .column
+              .sixteen.wide.column
                 .campaign-banner
                   = image_tag "http://placehold.it/680x260", class: 'ui fluid image'
                   / = image_tag @campaign.banner.display, class: 'ui fluid image'
+            .row#mobile
+              .fourteen.wide.column
+                .campaign-stats-box
+                  = render partial: 'campaign_stats', locals: { campaign: @campaign }
             .row
-              .column
+              .sixteen.wide.column
                 .campaign-details
                   = render partial: 'campaign_details', locals: { campaign: @campaign }
             .row
-              .column
+              .sixteen.wide.column
                 .ui.grid.center
                   .ten.wide.column
                     - @campaign.topics.each do |topic|
                       = render partial: 'topic_details', locals: { topic: topic }
 
-        .four.wide.column.center
+        .four.wide.column.center#desktop
           .campaign-stats-box
-            = render partial: 'campaign_stats', locals: { campaign: @campaign } 
+            = render partial: 'campaign_stats', locals: { campaign: @campaign }
+          
 
 
 /     .row.center

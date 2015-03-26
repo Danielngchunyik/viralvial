@@ -10,6 +10,7 @@ class PostsController < ApplicationController
     fetch_shareable_images
 
     @user_image = @topic.user_images.build # Set user_image for uploading
+    @new_user_image = UserImage.new
   end
 
   def create    
