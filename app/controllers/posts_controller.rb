@@ -45,11 +45,7 @@ class PostsController < ApplicationController
   private
 
   def fetch_shareable_images
-    @images = []
-
-    @topic.default_images.each do |image|
-      @images << image
-    end
+    @images = @topic.default_images
 
     if user_image = @topic.user_images.find_by(user_id: current_user.id)
       @images << user_image

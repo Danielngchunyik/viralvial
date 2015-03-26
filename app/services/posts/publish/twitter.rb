@@ -4,8 +4,6 @@ class Posts::Publish::Twitter < Posts::TwitterBase
     tweet!
 
     @tweet.id
-  rescue Twitter::Error => e
-    raise PublishError.new(e.message)
   end
 
   private

@@ -33,5 +33,5 @@ class Post < ActiveRecord::Base
     when 'Twitter'
       TwitterPost
     end
-  end  
+  end
 end

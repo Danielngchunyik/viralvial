@@ -8,16 +8,22 @@ class ScoresWorker
       if social_score.total_followers.present?
         less_followers, same_followers = split_followers(follower_list, social_score)
         
-        calculate_viral_score(social_score, less_followers, same_followers, follower_list)
-        social_score.save
+        percentile_score = calculate_percentile_score(social_score, less_followers, same_followers, follower_list)
+        
+        performance_score = calculate_performance_score
+
+        social_score.update(viral_score: percentile_score + performance_score)
       end
     end
   end
 
   private
 
-  def calculate_viral_score(social_score, less_followers, same_followers, total_followers)
-    social_score.viral_score = ((less_followers.length + (0.5 * same_followers.length))/total_followers.length * 45).round(2)
+  def calculate_performance_score
+  end
+
+  def calculate_percentile_score(social_score, less_followers, same_followers, total_followers)
+    ((less_followers.length + (0.5 * same_followers.length))/total_followers.length * 50).round(2)
   end
 
   def split_followers(followers, social_score)
