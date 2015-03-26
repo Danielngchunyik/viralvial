@@ -14,8 +14,8 @@ class Post < ActiveRecord::Base
     retrieve_social_media(user)
   end
 
-  def self.social_media_share(user, provider, post_params, topic, campaign)
-    post = provider_to_class(provider).new(post_params.merge(topic_id: topic.id, user_id: user.id, campaign_id: campaign.id))
+  def self.social_media_share(user, post_params, topic)
+    post = Post.new(post_params.merge(topic_id: topic.id, user_id: user.id, campaign_id: topic.campaign.id))
     
     social_media_post = post.publish_to_social_media_class.new(user, post, post_params, topic.id)
 
@@ -35,3 +35,31 @@ class Post < ActiveRecord::Base
     end
   end
 end
+
+# class FacebookPost < Post
+#   def publish_to_social_media_class
+#     Posts::Publish::Facebook
+#   end
+
+#   def retrieve_social_media(user)
+#     Posts::Retrieve::Facebook.new(user, self).display
+#   end
+
+#   def social_media_delete(user)
+#     Posts::Delete::Facebook.new(user, self).destroy
+#   end
+# end
+
+# class TwitterPost < Post
+#   def publish_to_social_media_class
+#     Posts::Publish::Twitter
+#   end
+
+#   def retrieve_social_media(user)
+#     Posts::Retrieve::Twitter.new(user, self).display
+#   end
+
+#   def social_media_delete(user)
+#     Posts::Delete::Twitter.new(user, self).destroy
+#   end
+# end

@@ -16,7 +16,8 @@ class PostsController < ApplicationController
     return unless current_user.posts.where(topic_id: @topic.id).first == nil
     
     begin
-      @new_post = Post.social_media_share(current_user, params[:provider], post_params, @topic, @campaign)
+      binding.pry
+      @new_post = Post.social_media_share(current_user, post_params, @topic)
       flash[:notice] = "#{@new_post.post_type} created"
     rescue PublishError => e
       logger.info "[ERROR]: #{e.inspect}"

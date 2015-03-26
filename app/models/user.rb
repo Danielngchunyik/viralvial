@@ -19,8 +19,7 @@ class User < ActiveRecord::Base
   validates :email, uniqueness: true, format: { with: /\A([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})\z/i }
   validate :correct_user_birthday
 
-  acts_as_taggable_on :primary_interests
-  acts_as_taggable_on :secondary_interests
+  acts_as_taggable_on :primary_interests, :secondary_interests
 
   has_many :authentications, dependent: :destroy
   has_many :posts, dependent: :destroy

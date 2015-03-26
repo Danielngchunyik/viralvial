@@ -4,13 +4,8 @@ class Campaign < ActiveRecord::Base
   extend Campaigns::Filters::ClassMethods
   extend Campaigns::Invitations::ClassMethods
 
-  acts_as_taggable
-  acts_as_taggable_on :categories, :religions, :races, :countries,
-                      :marital_status
-  acts_as_taggable_on :invitations, :username
-
-  store_accessor :criteria, :min_age, :max_age, :min_socialite_score,
-                 :max_socialite_score, :language
+  acts_as_taggable_on :categories
+  store_accessor :criteria
 
   has_many :topics
   has_many :posts
