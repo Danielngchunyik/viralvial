@@ -23,6 +23,7 @@ class User < ActiveRecord::Base
 
   has_many :authentications, dependent: :destroy
   has_many :posts, dependent: :destroy
+  has_many :reward_transactions
   has_one :user_image, dependent: :destroy
   has_one :social_score, dependent: :destroy
   accepts_nested_attributes_for :authentications

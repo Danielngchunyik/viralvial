@@ -1,35 +1,89 @@
-#new-post-form.ui.grid
-  .row.post-details
-    .fourteen.wide.column.post-form
-      p.center.title.pink= "SHARE POST"
-      .images
-        - if @images.present?
-          p.sub-title.center Select Image (Click on the image to preview them)
+// CSS is nested with campaigns view
 
-          .ui.stackable.three.column.grid
-            .column.image
-              = image_tag "posts/no-image.jpg", class: 'border-radius selectable-image', id: "default-image-no-image"
+#new-post-form.ui.grid
+  .row
+    .sixteen.wide.column
+      .ui.stackable.grid
+        .six.wide.column.no-padding-top
+          .campaign-details
+            = render partial: 'campaigns/campaign_details', locals: { campaign: @campaign }
+        .ten.wide.column.no-padding-top
+          = image_tag "http://placehold.it/400x400", class: 'ui fluid image'
+          = image_tag @campaign.image
+  .row
+    .right.floated.ten.wide.column
+      .form-part-one
+        p ONE
+        p CHOOSE YOUR FAVOURITE PICTURE
+
+        .ui.stackable.four.column.grid
+          .column.image
+            = image_tag "posts/no-image.jpg", class: 'selectable-image ui fluid image', id: "default-image-nothing"
 
             - @images.each_with_index do |image, i|
               .column.image
                 = link_to image.storage.url, target: "blank" do
-                  = image_tag image.storage.small.url, class: 'border-radius selectable-image', id: "default-image-#{@post.id}-#{i}"
-            = form_for [@campaign, @topic, UserImage.new] do |f|
-              p= f.label "Upload your own image"
-              p= f.file_field :storage
-              p= f.submit "Upload"
+                  = image_tag image.storage.small.url, class: 'border-radius selectable-image'
 
-      = form_for [@campaign, @topic, @post], html: { class: 'ui form form-text' } do |f|
-        .center
-          = f.radio_button :image, "nothing", checked: true, id: "default-image-no-image-radio", class: 'default-image-radio'
-        - @images.each_with_index do |image, i|
-          .center
-            = f.radio_button :image, image.storage.url, id: "default-image-#{@post.id}-#{i}-radio", class: 'default-image-radio'
+      .form-part-two
+        p TWO
+        p WRITE SOMETHING ABOUT THE CAMPAIGN
+        / Actual form is rendered here
+    
+        = form_for [@campaign, @topic, @post], html: { class: 'ui form' } do |f|
 
-        .message.space-top-50
-          p.sub-title= f.label "MESSAGE: "
-          p.space-top-10= f.text_area :message, placeholder: "Enter post message", id: " text-share}"
+          .selectable-images.hide
+            = f.radio_button :image, "nothing", selected: true, id: "default-image-nothing-radio", class: 'default-image-radio'
+            - @images.each_with_index do |image, i|
+              = f.radio_button :image, image.storage.url, id: "default-image-#{@post.id}-#{i}-radio", class: 'default-image-radio'
 
-        .share-buttons.center.space-top-50
-            p= f.submit "Share on Facebook", name: 'provider', class: 'ui button facebook'
-            p= f.submit "Share on Twitter", name: 'provider', class: 'ui button twitter'
+          .message
+            = f.text_area :message, placeholder: "Enter your message here", id: 'text-share'
+
+          .share-buttons
+            p SHARE THIS ON...
+            .ui.stackable.two.column.grid
+              .column.center
+                p= f.submit "Facebook", name: 'provider', class: 'ui button facebook'
+              .column.center
+                p= f.submit "Twitter", name: 'provider', class: 'ui button twitter'
+
+
+
+
+
+/ #new-post-form.ui.grid
+/   .row.post-details
+/     .fourteen.wide.column.post-form
+/       p.center.title.pink= "SHARE POST"
+/       .images
+/         - if @images.present?
+/           p.sub-title.center Select Image (Click on the image to preview them)
+
+/           .ui.stackable.three.column.grid
+/             .column.image
+/               = image_tag "posts/no-image.jpg", class: 'border-radius selectable-image', id: "default-image-no-image"
+
+/             - @images.each_with_index do |image, i|
+/               .column.image
+/                 = link_to image.storage.url, target: "blank" do
+/                   = image_tag image.storage.small.url, class: 'border-radius selectable-image', id: "default-image-#{@post.id}-#{i}"
+/             = form_for [@campaign, @topic, UserImage.new] do |f|
+/               p= f.label "Upload your own image"
+/               p= f.file_field :storage
+/               p= f.submit "Upload"
+
+/       = form_for [@campaign, @topic, @post], html: { class: 'ui form form-text' } do |f|
+/         .center
+/           = f.radio_button :image, "nothing", checked: true, id: "default-image-no-image-radio", class: 'default-image-radio'
+/         - @images.each_with_index do |image, i|
+/           .center
+/             = f.radio_button :image, image.storage.url, id: "default-image-#{@post.id}-#{i}-radio", class: 'default-image-radio'
+
+/         .message.space-top-50
+/           p.sub-title= f.label "MESSAGE: "
+/           p.space-top-10= f.text_area :message, placeholder: "Enter post message", id: " text-share}"
+
+/         .share-buttons.center.space-top-50
+/             p= f.submit "Share on Facebook", name: 'provider', class: 'ui button facebook'
+/             p= f.submit "Share on Twitter", name: 'provider', class: 'ui button twitter'

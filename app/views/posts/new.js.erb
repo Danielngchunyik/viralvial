@@ -1,7 +1,7 @@
-$('#campaigns-show').hide().after("<%= escape_javascript(render(partial: 'posts/new', locals: { campaign: @campaign, topic: @topic, post: @post })) %>");
+$('#campaign-post-container').hide().after("<%= escape_javascript(render(partial: 'posts/new', locals: { campaign: @campaign, topic: @topic, post: @post })) %>");
 
 $(".back-campaign-link").on('click', function(event) {
-  $('#campaign-show').show();
+  $('#campaign-post-container').show();
   $('#new-post-form').remove();
   $('#back-campaign-link').remove();
   $('#campaign-nav-link').show();

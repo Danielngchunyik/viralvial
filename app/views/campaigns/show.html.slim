@@ -9,7 +9,7 @@
                 .campaign-banner
                   = image_tag "http://placehold.it/680x260", class: 'ui fluid image'
                   / = image_tag @campaign.banner.display, class: 'ui fluid image'
-            .row#mobile
+            .row.center#mobile
               .fourteen.wide.column
                 .campaign-stats-box
                   = render partial: 'campaign_stats', locals: { campaign: @campaign }
