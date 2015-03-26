@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150325162417) do
+ActiveRecord::Schema.define(version: 20150326043825) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -50,6 +50,7 @@ ActiveRecord::Schema.define(version: 20150325162417) do
     t.string   "organizer"
     t.string   "banner"
     t.boolean  "featured"
+    t.integer  "reward",         default: 0
   end
 
   create_table "default_images", force: :cascade do |t|

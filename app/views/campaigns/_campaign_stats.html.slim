@@ -1,0 +1,24 @@
+.ui.grid
+  .row
+    .sixteen.wide.column
+      .ui.stackable.two.column.grid
+        .column.center
+          p.font-18.title EARN
+          p.font-20.pink= "#{campaign.reward}MYR"
+        .column.center
+          p.title ENDS IN
+          p.font-20= "#{campaign.time_remaining}"
+
+  .row
+    .sixteen.wide.column
+      .ui.divider
+
+  .row
+    .sixteen.wide.column.center
+      .container
+        p.font-18 YOUR GOALS
+        - campaign.topics.each do |topic|
+          p.font-20.pink= "Share this campaign #{pluralize(topic.num_of_shares, 'time')}"
+          p.font-18 SOCIAL SITES
+          - topic.social_media_platform_list.each do |platform|
+            i class= "#{platform.downcase} icon font-40"

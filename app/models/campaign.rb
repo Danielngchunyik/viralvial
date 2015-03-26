@@ -4,7 +4,7 @@ class Campaign < ActiveRecord::Base
   extend Campaigns::Filters::ClassMethods
   extend Campaigns::Invitations::ClassMethods
 
-  acts_as_taggable_on :categories
+  acts_as_taggable_on :categories, :invitations
   store_accessor :criteria
 
   has_many :topics

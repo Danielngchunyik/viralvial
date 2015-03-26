@@ -1,0 +1,6 @@
+.topic-share-box.center
+  p.title.font-18= topic.title
+  p.font-18= topic.description
+
+  - if current_user
+    = link_to "Share This!", new_campaign_topic_post_path(topic.campaign, topic), class: 'ui blue button margin-bottom-20'

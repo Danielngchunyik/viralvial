@@ -12,9 +12,7 @@ class PostsController < ApplicationController
     @user_image = @topic.user_images.build # Set user_image for uploading
   end
 
-  def create
-    return unless current_user.posts.where(topic_id: @topic.id).first == nil
-    
+  def create    
     begin
       binding.pry
       @new_post = Post.social_media_share(current_user, post_params, @topic)

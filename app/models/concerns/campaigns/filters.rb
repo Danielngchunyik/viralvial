@@ -10,10 +10,15 @@ module Campaigns::Filters
 
   def conditions?(user)
     [
+      private?,
       started?,
       active?,
       matching_interests?(user)
     ].all?
+  end
+
+  def private?
+    self.private == false
   end
 
   def active?

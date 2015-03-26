@@ -1,7 +1,7 @@
 class CampaignDecorator < BaseDecorator
   
   def time_remaining
-    distance_of_time_in_words(model.start_date, model.end_date)
+    distance_of_time_in_words(Date.today, model.end_date).titleize
   end
 
   def title
@@ -30,6 +30,10 @@ class CampaignDecorator < BaseDecorator
 
   def image
     model.image.show
+  end
+
+  def topics
+    model.topics
   end
 
   private

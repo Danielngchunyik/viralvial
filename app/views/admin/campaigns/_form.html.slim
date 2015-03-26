@@ -12,6 +12,10 @@
       = f.text_field :title, placeholder: "Enter campaign title"
 
     .spacing
+      = f.label "Reward"
+      = f.number_field :reward, placeholder: "Enter reward here"
+      
+    .spacing
       p= f.label "Description:"
       = f.text_area :description, cols: 100, rows: 10, placeholder: "Enter campaign description"
 
@@ -63,42 +67,6 @@
     .spacing#campaign_invite_list
       = f.label :invitation_list, "Invite users (separated by commas) "
       = f.text_field :invitation_list, size: 50, id: "campaign_invitation_text_field"
-
-    .spacing
-      = f.label "Minimum age: "
-      = f.number_field :min_age
-
-    .spacing
-      = f.label "Maximum age: "
-      = f.number_field :max_age
-
-    .spacing
-      = f.label "Religion: "
-      = f.text_field :religion_list
-
-    .spacing
-      = f.label "Race: "
-      = f.text_field :race_list
-
-    .spacing
-      = f.label "Country: "
-      = f.text_field :country_list
-
-    .spacing
-      = f.label "Marital status: "
-      = f.text_field :marital_status_list
-
-    .spacing
-      = f.label "Minimum socialite score: "
-      = f.number_field :min_socialite_score, in: 0..100
-
-    .spacing
-      = f.label "Maximum socialite score: "
-      = f.number_field :max_socialite_score, in: 0..100
-
-    .spacing
-      = f.label "Language: "
-      = f.select :language, Campaign.languages.keys.map { |language| [language.titleize, language]}
 
     .spacing
       = f.submit "Submit"

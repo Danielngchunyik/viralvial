@@ -1,30 +1,29 @@
 #campaigns-show.ui.grid.animated.fadeIn
-  .sixteen.wide.column
-    
-/ .campaign-profile
-/   .ui.grid
-/     .row.center
-/       .eight.wide.column.link-back.pad-zero.left
-/         #campaign-nav-link
-/           = link_to campaigns_path, class: 'black' do
-/             i.caret.left.icon
-/             = "Back to Campaigns"
-/     .row.center
-/       .ten.wide.column
-/         .campaign-banner
-/           = image_tag @campaign.banner.display
-/         .campaign-image
-/           = image_tag @campaign.image.show, class: 'image-border'
-/     .row.center
-/       .six.wide.column.left
-/         .campaign-title
-/           p= "#{@campaign.title}"
-/         .campaign-subtext
-/           p= "by #{@campaign.organizer}" unless @campaign.organizer.nil?
-/         .campaign-description
-/           p= "#{@campaign.description}"
-/         .campaign-start-date
-/           p= "started #{@campaign.start_date.day.ordinalize} of #{Date::MONTHNAMES[@campaign.start_date.month]}, #{@campaign.start_date.year}"
+  .row
+    .sixteen.wide.column    
+     .ui.stackable.grid.center
+        .eight.wide.column.center
+          .ui.one.column.grid
+            .row
+              .column
+                .campaign-banner
+                  = image_tag "http://placehold.it/680x260", class: 'ui fluid image'
+                  / = image_tag @campaign.banner.display, class: 'ui fluid image'
+            .row
+              .column
+                .campaign-details
+                  = render partial: 'campaign_details', locals: { campaign: @campaign }
+            .row
+              .column
+                .ui.grid.center
+                  .ten.wide.column
+                    - @campaign.topics.each do |topic|
+                      = render partial: 'topic_details', locals: { topic: topic }
+
+        .four.wide.column.center
+          .campaign-stats-box
+            = render partial: 'campaign_stats', locals: { campaign: @campaign } 
+
 
 /     .row.center
 /       .nine.wide.column.pad-zero

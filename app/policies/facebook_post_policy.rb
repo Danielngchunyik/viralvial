@@ -1,2 +1,0 @@
-class FacebookPostPolicy < PostPolicy
-end
