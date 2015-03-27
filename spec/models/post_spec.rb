@@ -6,12 +6,13 @@ RSpec.describe Post, :type => :model do
     let!(:authentication) { Authentication.create!(user: user, provider: 'twitter', token: 'badtoken', secret: 'badsecret', uid: 'foo') }
     let(:campaign) { create(:campaign) }
     let(:topic) { campaign.topics.first }
+    let(:post) { topic.posts.build(message: "foo", image: "nothing", provider: 'Twitter', user_id: user.id, campaign_id: campaign.id) }
 
     it "Twitter: should raise exception when token is wrong" do
       WebMock.allow_net_connect!
       expect {
-        Post.social_media_share(user, "Share on Twitter", {message: "foo", image: "nothing"}, topic, campaign)
-      }.to raise_error(PublishError)
+        post.social_media_share
+      }.to raise_error()
     end
 
     it "Facebook: should raise exception when token is wrong" do

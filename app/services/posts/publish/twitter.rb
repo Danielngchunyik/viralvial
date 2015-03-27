@@ -9,7 +9,7 @@ class Posts::Publish::Twitter < Posts::TwitterBase
   private
 
   def tweet!
-    if @post_params[:image] == "nothing"
+    if post.image == "nothing"
       tweet_without_img
     else
       tweet_with_img
@@ -17,12 +17,12 @@ class Posts::Publish::Twitter < Posts::TwitterBase
   end
 
   def tweet_without_img
-    @tweet = @twitter.client.update(@post_params[:message])
+    @tweet = @twitter.client.update(post.message)
   end
 
   def tweet_with_img
     @tweet = @twitter.client.update_with_media(
-             @post_params[:message], open(@post_params[:image]), {}
+             post.message, open(post.image), {}
              )
   end
 end
