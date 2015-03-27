@@ -37,12 +37,30 @@ $(document).ready(function() {
     $('.about-browser').on('click', function() {
       $('#about-us').addClass('none');
       $('#campaigns-list').removeClass('none').addClass('animated fadeInDown');
-    })
+    });
+
+    // Smoothen out scrolling for Chrome Browsers
+    if (window.addEventListener) {window.addEventListener('DOMMouseScroll', function(){});}
+    window.onmousewheel = document.onmousewheel = function(){};
+
+    // Initialize Parallax
+    var parallax = document.querySelectorAll(".parallax"),
+        speed = 0.65;
 
     window.onscroll = function() {
+
+      // Run Parallax
+      [].slice.call(parallax).forEach(function(el,i){
+
+        var windowYOffset = (window.pageYOffset - $(el).position().top),
+            elBackgrounPos = "50% " + (windowYOffset * speed) + "px";
+          
+        el.style.backgroundPosition = elBackgrounPos;
+      });
+
+      //Contact Form Animations when scrolled into view
       if (isScrolledIntoView('#contact-us') && triggered == false) {
 
-        // Animate Contact Us Form    
         setTimeout( function() {
           $('#contact-us-title').removeClass("hide").addClass("animated fadeInLeft");
         }, 600);
