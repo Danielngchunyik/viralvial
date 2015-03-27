@@ -1,0 +1,2 @@
+class PublishError < StandardError
+end
