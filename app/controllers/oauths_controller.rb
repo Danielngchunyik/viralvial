@@ -45,7 +45,7 @@ class OauthsController < ApplicationController
 
   def register_new_user(provider)
 
-    check_provider(provider, root_path)
+    sanitize_klass(provider)
 
     @user = @klass.new(@access_token, @country).save
     @user.set_access_token(@access_token, params[:provider])
@@ -59,9 +59,8 @@ class OauthsController < ApplicationController
   end
 
   def link_account(provider)
-    
-    check_provider(provider, user_path(current_user))
 
+    sanitize_klass(provider)
     add_provider_to_user(provider)
 
     @klass.new(@access_token, nil, current_user).update_followers
@@ -71,12 +70,11 @@ class OauthsController < ApplicationController
     redirect_to user_path(current_user)
   end
 
-  def check_provider(provider, path)
-    allowed_platforms = ["facebook", "twitter"]
+  def sanitize_klass(provider)
+    allowed_klasses = [Oauth::RetrieveFacebookUserInfo, Oauth::RetrieveTwitterUserInfo]
 
-    return redirect_to path unless allowed_platforms.include?(provider)
-
-    @klass = "Oauth::Retrieve#{provider.capitalize}UserInfo".constantize
+    klass = "Oauth::Retrieve#{provider.capitalize}UserInfo"
+    @klass = klass.sanitize_constant(allowed_klasses)
   end
 
   def get_user_location

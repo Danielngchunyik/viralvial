@@ -3,7 +3,6 @@
   p.font-18= topic.description
 
   - if current_user
-    - if current_user.posts.where(topic_id: topic.id).count < topic.num_of_shares
-      = link_to "Share This!", new_campaign_topic_post_path(topic.campaign, topic), remote: true, class: 'ui blue button margin-bottom-20'
-    - else
-      p Well done! You've completed the required number of shares for this campaign!
+    = link_to "Share This!", new_campaign_topic_post_path(topic.campaign, topic), remote: true, class: 'ui blue button margin-bottom-20'
+    / - else
+    /   p Well done! You've completed the required number of shares for this campaign!

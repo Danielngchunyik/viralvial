@@ -3,6 +3,7 @@ class PostsController < ApplicationController
   before_action :require_login
   before_action :set_campaign, :set_topic
   before_action :set_post, only: [:show, :destroy]
+  before_action :initialize_post, only: [:create]
   respond_to :html, :js
 
   def new
@@ -15,7 +16,7 @@ class PostsController < ApplicationController
 
   def create
     begin
-      @post = Post.social_media_share(current_user, post_params, @topic)
+      @post.social_media_share
       flash[:notice] = "You've shared on #{@post.provider}!"
     rescue PublishError => e
       logger.info "[ERROR]: #{e.inspect}"
@@ -51,6 +52,10 @@ class PostsController < ApplicationController
     end
   end
 
+  def initialize_post
+    @post = @topic.posts.build(post_params.merge(user_id: current_user.id, campaign_id: @campaign.id))
+  end
+
   def set_campaign
     @campaign = Campaign.find(params[:campaign_id])
     # authorize @campaign
@@ -58,7 +63,7 @@ class PostsController < ApplicationController
 
   def set_topic
     @topic = @campaign.topics.find(params[:topic_id])
-    authorize @topic
+    # authorize @topic
   end
 
   def set_post

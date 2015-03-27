@@ -5,7 +5,7 @@ class Posts::TwitterBase < Posts::Base
   end
 
   def set_token
-    auth = @user.authentications.find_by(provider: 'twitter')
+    auth = post.user.authentications.find_by(provider: 'twitter')
     @token = auth.token
     @secret = auth.secret
 

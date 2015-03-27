@@ -15,24 +15,18 @@ class Post < ActiveRecord::Base
     retrieve_social_media(user)
   end
 
-  def self.social_media_share(user, post_params, topic)
-    sanitize_provider(post_params[:provider])
-    post = Post.new(post_params.merge(topic_id: topic.id, user_id: user.id, campaign_id: topic.campaign.id))
-    
-    klass = "Posts::Publish::#{post.provider}".constantize
-    external_post_id = klass.new(user,post).save
+  def social_media_share
+    klass = sanitize_klass(provider)
+    external_post_id = klass.new(self).save
 
-    post.update!(external_post_id: external_post_id)
-
-    # Returns post
-    post
+    update(external_post_id: external_post_id)
   end
 
-  def self.sanitize_provider(provider)
-    allowed_providers = ['Facebook', 'Twitter']
+  def sanitize_klass(provider)
+    allowed_klasses = [Posts::Publish::Facebook, Posts::Publish::Twitter]
     
-    return if allowed_providers.include?(provider)
-    errors.add('Unallowed Provider!')
+    klass = "Posts::Publish::#{provider}"
+    klass.sanitize_constant(allowed_klasses) 
   end
 end
 

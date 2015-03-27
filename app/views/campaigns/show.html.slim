@@ -34,11 +34,11 @@
           .campaign-stats-box
             = render partial: 'campaign_stats', locals: { campaign: @campaign }
 
-            - if current_user
-              .shared-posts-stats-box
-                - if current_user.posts.where(campaign_id: @campaign.id).count == 0
-                  p You've not shared anything yet!
-                - else
+            / - if current_user
+            /   .shared-posts-stats-box
+            /     - if current_user.posts.where(campaign_id: @campaign.id).count == 0
+            /       p You've not shared anything yet!
+            /     - else
 
     / .row.center
     /   .eight.wide.column.pad-zero                          

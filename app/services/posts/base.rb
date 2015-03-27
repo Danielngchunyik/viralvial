@@ -1,10 +1,8 @@
 class Posts::Base
 
-  attr_accessor :user, :post, :topic, :provider, :token, :secret
+  attr_accessor :post, :token, :secret
 
-  def initialize(user, post = nil)
-
-    @user = user
+  def initialize(post = nil)
     @post = post 
 
     set_token

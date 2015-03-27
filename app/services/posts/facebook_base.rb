@@ -5,7 +5,7 @@ class Posts::FacebookBase < Posts::Base
   end
 
   def set_token
-    @token = @user.authentications.find_by(provider: 'facebook').token
+    @token = post.user.authentications.find_by(provider: 'facebook').token
     @secret = nil
   end
 end
