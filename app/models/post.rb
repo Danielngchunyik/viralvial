@@ -3,8 +3,6 @@ class Post < ActiveRecord::Base
   belongs_to :topic
   belongs_to :campaign
 
-  # Refer to TwitterPost and FacebookPost Classes
-
   def destroy_with_social_media
     allowed_klasses = [Posts::Delete::Facebook, Posts::Delete::Twitter]
 

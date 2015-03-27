@@ -5,7 +5,7 @@ class User < ActiveRecord::Base
   after_initialize :set_default_password, if: :new_record?
   before_validation :set_default_email, if: :new_record?
 
-  enum role: [:user, :admin, :banned]
+  enum role: [:user, :superadmin, :admin, :banned]
   enum gender: [:unspecified, :female, :male]
   enum race: [:chinese, :indian, :malay, :others]
 

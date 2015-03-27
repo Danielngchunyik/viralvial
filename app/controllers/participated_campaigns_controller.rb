@@ -4,10 +4,7 @@ class ParticipatedCampaignsController < ApplicationController
   def index
     campaigns = []
 
-    current_user.posts.each do |post|
-      campaigns << post.campaign
-    end
-
-    @campaigns = CampaignDecorator.wrap(campaigns)
+    current_user.posts.each { |p| campaigns << p.campaign }
+    @campaigns = CampaignDecorator.wrap(campaigns.uniq)
   end
 end
