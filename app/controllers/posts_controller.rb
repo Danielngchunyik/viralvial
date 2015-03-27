@@ -13,14 +13,13 @@ class PostsController < ApplicationController
     @new_user_image = UserImage.new
   end
 
-  def create    
+  def create
     begin
-      binding.pry
-      @new_post = Post.social_media_share(current_user, post_params, @topic)
-      flash[:notice] = "#{@new_post.post_type} created"
+      @post = Post.social_media_share(current_user, post_params, @topic)
+      flash[:notice] = "You've shared on #{@post.provider}!"
     rescue PublishError => e
       logger.info "[ERROR]: #{e.inspect}"
-      flash[:error] = "Error posting on #{params[:provider].capitalize}. Please link your account first!"
+      flash[:error] = "Error posting on #{post_params[:provider]}. Please link your account first!"
     end
     redirect_to campaign_path(@campaign)
   end
@@ -59,6 +58,7 @@ class PostsController < ApplicationController
 
   def set_topic
     @topic = @campaign.topics.find(params[:topic_id])
+    authorize @topic
   end
 
   def set_post

@@ -2,15 +2,9 @@ $(document).ready( function() {
 
   // Trigger header animations
   setTimeout( function() {
-      $('#navbar-left').removeClass("hide").addClass("animated fadeInDown")
-      $('#navbar-right').removeClass("hide").addClass("animated fadeInDown");
+      runAnimations('#navbar-left', 'hide', 'fadeInDown');
+      runAnimations('#navbar-right', 'hide', 'fadeInDown');
   }, 800);
-
-  // Remove animation classes
-  setTimeout( function() {
-      $('#navbar-left').removeClass("animated fadeInDown");
-      $('#navbar-right').removeClass("animated fadeInDown");
-  }, 1800);
 
   // Trigger about us view
   $('.about-us').on ('click', function() {

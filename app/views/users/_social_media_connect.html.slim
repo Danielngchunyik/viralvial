@@ -3,9 +3,9 @@
     .provider.spacing-top-small
       - if current_user.has_linked_provider?(provider)
         - if current_user.authentications.count > 1
-          = link_to "#{provider}", delete_oauth_path(provider), method: :delete, class: "ui massive label disconnect #{provider}", id: "#{provider}-disconnect", 'data-skip-pjax': true
+          = link_to "#{provider}", delete_oauth_path(provider), method: :delete, class: "ui massive label disconnect #{provider}", id: "#{provider}-disconnect"
         - else
           div class="ui massive label #{provider}"
             p= provider
       - else
-        = link_to "connect to #{provider}", auth_at_provider_path(provider: provider), class: "ui massive label connect #{provider}", id: "#{provider}-connect", 'data-skip-pjax': true
+        = link_to "connect to #{provider}", auth_at_provider_path(provider: provider), class: "ui massive label connect #{provider}", id: "#{provider}-connect"

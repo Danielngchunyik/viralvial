@@ -1,13 +1,21 @@
+//
+var runAnimation = function(e, time) {}
+
+// Render Form
 $('#campaign-post-container').hide().after("<%= escape_javascript(render(partial: 'posts/new', locals: { campaign: @campaign, topic: @topic, post: @post })) %>");
 
-$(".back-campaign-link").on('click', function(event) {
+$(".back-campaign-link").on('click', function(e) {
   $('#campaign-post-container').show();
   $('#new-post-form').remove();
   $('#back-campaign-link').remove();
-  $('#campaign-nav-link').show();
-  event.preventDefault();
+  runAnimations('#campaign-post-container', '', 'fadeInUp');
+  e.preventDefault();
 });
 
+// Run New Post Form Animation
+runAnimations('#new-post-form', 'fadeInLeft');
+
+// Form Image Selection
 $('.selectable-image').click(function (e) {
     e.preventDefault();
     var image = $(this);
@@ -20,5 +28,3 @@ $('.selectable-image').click(function (e) {
     $('.default-image-radio').prop('checked', false);
     radio.prop('checked', true);
 });
-
-$("#user_image_storage")

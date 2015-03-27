@@ -3,13 +3,14 @@
     .sixteen.wide.column    
      .ui.stackable.grid.center
         .eight.wide.column.center
+          // Main Page
           #campaign-post-container.ui.grid
             .row
               .sixteen.wide.column
                 .campaign-banner
                   = image_tag "http://placehold.it/680x260", class: 'ui fluid image'
                   / = image_tag @campaign.banner.display, class: 'ui fluid image'
-            .row.center#mobile
+            .row.center.mobile
               .fourteen.wide.column
                 .campaign-stats-box
                   = render partial: 'campaign_stats', locals: { campaign: @campaign }
@@ -24,76 +25,58 @@
                     - @campaign.topics.each do |topic|
                       = render partial: 'topic_details', locals: { topic: topic }
 
-        .four.wide.column.center#desktop
+            .row.mobile
+              .sixteen.wide.column
+
+
+        // Desktop Sidebar
+        .four.wide.column.center.desktop
           .campaign-stats-box
             = render partial: 'campaign_stats', locals: { campaign: @campaign }
-          
 
+            - if current_user
+              .shared-posts-stats-box
+                - if current_user.posts.where(campaign_id: @campaign.id).count == 0
+                  p You've not shared anything yet!
+                - else
 
-/     .row.center
-/       .nine.wide.column.pad-zero
-/         .ui.grid#campaign-container.center
-/           .row
-/             .nine.wide.column.pad-zero
-/               .ui.stackable.two.column.grid.campaign-topic
-/                 - @campaign.topics.each do |topic|
-/                   .column
-/                     .sharebox
-/                       .context
-/                         - if current_user
-/                           - if current_user.posts.where(topic_id: topic.id).first != nil
-/                             div class="ui #{topic.social_media_platform} icon button spacing-top"
-/                               i class="#{topic.social_media_platform} icon"
-/                             p.spacing-top= "#{topic.title}"
-/                             p.spacing-bottom= "You've already shared this one"
-/                           - else
-/                             =link_to new_campaign_topic_post_path(topic.campaign, topic), remote: true, class: "ui #{topic.social_media_platform} icon button spacing-top" do
-/                               i class= " #{topic.social_media_platform} icon"
-/                             p.spacing-top= "#{topic.title}"
-/                             p.spacing-bottom= link_to "Share this on #{topic.social_media_platform.titleize}!", new_campaign_topic_post_path(topic.campaign, topic), remote: true
-/                         - else
-/                             div class="ui #{topic.social_media_platform} icon button spacing-top"
-/                               i class="#{topic.social_media_platform} icon"
-/                             p.spacing-top= "#{topic.title}"
-/                             p.spacing-bottom= "Account not linked!"
-
-/     .row.center
-/       .eight.wide.column.pad-zero                          
-/         -if current_user.posts.where(campaign_id: @campaign.id).present?
-/           .row#shared-topics
-/             .three.wide.column
-/             .ten.wide.column
-/               p.title YOUR SHARED TOPICS FOR THIS CAMPAIGN
-/               .ui.stackable.two.column.grid
-/                   - current_user.posts.where(campaign_id: @campaign.id).try(:each) do |post|
-/                     .column.margin-top-20
-/                       .shared-box
-/                         .center
-/                           .div class="ui #{post.topic.social_media_platform} icon button spacing-top"
-/                             i class="#{post.topic.social_media_platform} icon"
-/                         p.margin-top-20.center.pink= post.topic.title
-/                         p.center= post.topic.description
-/                         hr
-/                         p Shared Message:
-/                         p= post.message
-/                         .stats.margin-top-20
-/                           - @post_stats = post.get_social_media(current_user)
-/                           - case social_media(post)
-/                           - when "Facebook"
-/                             p= "Likes: #{@post_stats[0]}"
-/                             p= "Comments: #{@post_stats[1]}"
-/                             hr
-/                             .ui.grid
-/                               .eight.wide.column.padding-zero
-/                                 p= "#{@post_stats[2]}"
-/                               .eight.wide.column.padding-zero.align-right
-/                                 p= link_to "Delete", campaign_topic_post_path(post.campaign, post.topic, post), method: :delete, data: { confirm: "Delete post?"}
-/                           - when "Twitter"
-/                             p= "Favourites: #{@post_stats[0]}"
-/                             p= "Retweets: #{@post_stats[1]}"
-/                             hr
-/                             .ui.grid
-/                               .eight.wide.column.padding-zero
-/                                 p= "#{@post_stats[2]}"
-/                               .eight.wide.column.padding-zero.align-right
-/                                 p= link_to "Delete", campaign_topic_post_path(post.campaign, post.topic, post), method: :delete, data: { confirm: "Delete tweet?"}
+    / .row.center
+    /   .eight.wide.column.pad-zero                          
+    /     -if current_user.posts.where(campaign_id: @campaign.id).present?
+    /       .row#shared-topics
+    /         .three.wide.column
+    /         .ten.wide.column
+    /           p.title YOUR SHARED TOPICS FOR THIS CAMPAIGN
+    /           .ui.stackable.two.column.grid
+    /               - current_user.posts.where(campaign_id: @campaign.id).try(:each) do |post|
+    /                 .column.margin-top-20
+    /                   .shared-box
+    /                     .center
+    /                       .div class="ui #{post.topic.social_media_platform} icon button spacing-top"
+    /                         i class="#{post.topic.social_media_platform} icon"
+    /                     p.margin-top-20.center.pink= post.topic.title
+    /                     p.center= post.topic.description
+    /                     hr
+    /                     p Shared Message:
+    /                     p= post.message
+    /                     .stats.margin-top-20
+    /                       - @post_stats = post.get_social_media(current_user)
+    /                       - case social_media(post)
+    /                       - when "Facebook"
+    /                         p= "Likes: #{@post_stats[0]}"
+    /                         p= "Comments: #{@post_stats[1]}"
+    /                         hr
+    /                         .ui.grid
+    /                           .eight.wide.column.padding-zero
+    /                             p= "#{@post_stats[2]}"
+    /                           .eight.wide.column.padding-zero.align-right
+    /                             p= link_to "Delete", campaign_topic_post_path(post.campaign, post.topic, post), method: :delete, data: { confirm: "Delete post?"}
+    /                       - when "Twitter"
+    /                         p= "Favourites: #{@post_stats[0]}"
+    /                         p= "Retweets: #{@post_stats[1]}"
+    /                         hr
+    /                         .ui.grid
+    /                           .eight.wide.column.padding-zero
+    /                             p= "#{@post_stats[2]}"
+    /                           .eight.wide.column.padding-zero.align-right
+    /                             p= link_to "Delete", campaign_topic_post_path(post.campaign, post.topic, post), method: :delete, data: { confirm: "Delete tweet?"}

@@ -18,7 +18,7 @@
       .container
         p.font-18 YOUR GOALS
         - campaign.topics.each do |topic|
-          p.font-20.pink= "Share this campaign #{pluralize(topic.num_of_shares, 'time')}"
+          p.font-20.pink= "Share this campaign #{pluralize(topic.num_of_shares - current_user.posts.where(topic_id: topic.id).count, 'more time')}"
           p.font-18 SOCIAL SITES
           - topic.social_media_platform_list.each do |platform|
             i class= "#{platform.downcase} icon font-40"

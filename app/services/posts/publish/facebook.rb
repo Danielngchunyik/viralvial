@@ -9,7 +9,7 @@ class Posts::Publish::Facebook < Posts::FacebookBase
   private
 
   def create_fb_post!
-    if @post_params[:image] == "nothing"
+    if post.image == "nothing"
       post_without_img
     else
       post_with_img
@@ -17,13 +17,13 @@ class Posts::Publish::Facebook < Posts::FacebookBase
   end
 
   def post_without_img
-    @fb_post = FbGraph::User.me(@token).feed!(message: @post_params[:message])
+    @fb_post = FbGraph::User.me(@token).feed!(message: post.message)
   end
 
   def post_with_img
     @fb_post = FbGraph::User.me(@token).photo!(
-      url: @post_params[:image],
-      message: @post_params[:message]
+      url: post.image,
+      message: post.message
     )
   end
 end

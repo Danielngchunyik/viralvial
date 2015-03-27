@@ -11,15 +11,10 @@ $(document).ready(function() {
       offset: 50
     });
 
-    // Run Landing Page Animations  
+    // Run Landing Page Animations
     setTimeout( function() {
-      $('.hero-content .banner-title').removeClass("hide").addClass("animated fadeInDown");
+      runAnimations('.hero-content .banner-title', 'hide', 'fadeInDown');
     }, 1200);
-
-    // Remove Animations Upon Conclusion
-    setTimeout( function() {
-      $('.hero-content .banner-title').removeClass("animated fadeInDown");
-    }, 2200);
 
     // Set Typer Timeout
     setTimeout( function() {
@@ -39,17 +34,17 @@ $(document).ready(function() {
       $('#campaigns-list').removeClass('none').addClass('animated fadeInDown');
     });
 
-    // Smoothen out scrolling for Chrome Browsers
+    // Smoothen out parallax scrolling for Chrome Browsers
     if (window.addEventListener) {window.addEventListener('DOMMouseScroll', function(){});}
     window.onmousewheel = document.onmousewheel = function(){};
 
-    // Initialize Parallax
+    // Initialize Parallax Values
     var parallax = document.querySelectorAll(".parallax"),
         speed = 0.65;
 
     window.onscroll = function() {
 
-      // Run Parallax
+      // Run Parallax Scrolling
       [].slice.call(parallax).forEach(function(el,i){
 
         var windowYOffset = (window.pageYOffset - $(el).position().top)
@@ -63,20 +58,13 @@ $(document).ready(function() {
       if (isScrolledIntoView('#contact-us') && triggered == false) {
 
         setTimeout( function() {
-          $('#contact-us-title').removeClass("hide").addClass("animated fadeInLeft");
+          runAnimations('#contact-us-title', 'hide', 'fadeInLeft');
         }, 600);
 
         setTimeout( function() {
-          $('#contact-left').removeClass("hide").addClass("animated fadeInLeft");
-          $('#contact-right').removeClass("hide").addClass("animated fadeInRight");
+          runAnimations('#contact-left', 'hide', 'fadeInLeft');
+          runAnimations('#contact-right', 'hide', 'fadeInRight');
         }, 1000);
-
-        // Remove Animations
-        setTimeout( function() {
-          $('#contact-us-title').removeClass("animated fadeInLeft");
-          $('#contact-left').removeClass("animated fadeInLeft");
-          $('#contact-right').removeClass("animated fadeInRight");
-        }, 2500);
 
         triggered = true;
       }

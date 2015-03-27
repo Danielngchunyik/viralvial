@@ -2,7 +2,7 @@
   .ui.stackable.four.column.grid
     - campaigns.each do |campaign|
       .column
-        = link_to campaign_path(campaign.id) do
+        = link_to campaign_path(campaign.id), "data-run-pjax": true do
           .campaign-card 
             .ui.segment.zero-padding
               .image-panel

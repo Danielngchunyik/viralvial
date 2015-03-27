@@ -10,31 +10,39 @@ var initInterestModal = function() {
 
 var initProfile = function() {
 
-  //Social Media Connect Hover Button Functions
+  // Check if user profile page
+  if ($('#user-profile').length > 0) {
 
-  $('#facebook-disconnect').mouseenter(function() {
-    runHoverTriggers('#facebook-disconnect', 'disconnect from facebook');
-  })
+    //Social Media Connect Hover Button Functions
 
-  $('#facebook-disconnect').mouseleave(function() {
-    runHoverTriggers('#facebook-disconnect', 'facebook');
-  });
+    // Mouse Enter Triggers
+    $('#facebook-disconnect').mouseenter(function() {
+      runHoverTriggers('#facebook-disconnect', 'disconnect from facebook');
+    });
 
-  $('#twitter-disconnect').mouseenter(function() {
-    runHoverTriggers('#twitter-disconnect', 'disconnect from twitter');
-  });
+    $('#twitter-disconnect').mouseenter(function() {
+      runHoverTriggers('#twitter-disconnect', 'disconnect from twitter');
+    });
+    // End
 
-  $('#twitter-disconnect').mouseleave(function() {
-    runHoverTriggers('#twitter-disconnect', 'twitter');
-  })
+    // Mouse Leave Triggers
+    $('#facebook-disconnect').mouseleave(function() {
+      runHoverTriggers('#facebook-disconnect', 'facebook');
+    });
 
-  // Trigger Profile Image Modal Form
+    $('#twitter-disconnect').mouseleave(function() {
+      runHoverTriggers('#twitter-disconnect', 'twitter');
+    })
+    // End
 
-  $('.trigger-profile-image-change').on('click', function(e) {
-    e.preventDefault();
-  });
 
-  $('#profile-image-modal').modal('attach events', '.trigger-profile-image-change', 'show');
+    // Trigger Profile Image Modal Form
+    $('.trigger-profile-image-change').on('click', function(e) {
+      e.preventDefault();
+    });
+
+    $('#profile-image-modal').modal('attach events', '.trigger-profile-image-change', 'show');
+  }
 }
 
 $(document).ready(function() {

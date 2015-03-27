@@ -6,6 +6,7 @@ class Post < ActiveRecord::Base
   # Refer to TwitterPost and FacebookPost Classes
 
   def destroy_with_social_media(user)
+    Posts::Delete::Facebook.new(user, self).destroy
     social_media_delete(user)
     destroy
   end
@@ -15,24 +16,23 @@ class Post < ActiveRecord::Base
   end
 
   def self.social_media_share(user, post_params, topic)
+    sanitize_provider(post_params[:provider])
     post = Post.new(post_params.merge(topic_id: topic.id, user_id: user.id, campaign_id: topic.campaign.id))
     
-    social_media_post = post.publish_to_social_media_class.new(user, post, post_params, topic.id)
+    klass = "Posts::Publish::#{post.provider}".constantize
+    external_post_id = klass.new(user,post).save
 
-    social_media_post_id = social_media_post.save
+    post.update!(external_post_id: external_post_id)
 
-    post.update!(external_post_id: social_media_post_id)
-    
-    social_media_post
+    # Returns post
+    post
   end
 
-  def self.provider_to_class(provider)
-    case provider.split(' ')[2]
-    when 'Facebook'
-      FacebookPost
-    when 'Twitter'
-      TwitterPost
-    end
+  def self.sanitize_provider(provider)
+    allowed_providers = ['Facebook', 'Twitter']
+    
+    return if allowed_providers.include?(provider)
+    errors.add('Unallowed Provider!')
   end
 end
 

@@ -5,6 +5,10 @@
     .sixteen.wide.column
       .ui.stackable.grid
         .six.wide.column.no-padding-top
+          #back-campaign-link
+            = link_to '#', class: 'black back-campaign-link'
+              i.ui.caret.left.icon
+              = "CANCEL"
           .campaign-details
             = render partial: 'campaigns/campaign_details', locals: { campaign: @campaign }
         .ten.wide.column.no-padding-top
@@ -33,7 +37,7 @@
         = form_for [@campaign, @topic, @post], html: { class: 'ui form' } do |f|
 
           .selectable-images.hide
-            = f.radio_button :image, "nothing", selected: true, id: "default-image-nothing-radio", class: 'default-image-radio'
+            = f.radio_button :image, "nothing", checked: true, id: "default-image-nothing-radio", class: 'default-image-radio'
             - @images.each_with_index do |image, i|
               = f.radio_button :image, image.storage.url, id: "default-image-#{@post.id}-#{i}-radio", class: 'default-image-radio'
 
@@ -44,13 +48,9 @@
             p SHARE THIS ON...
             .ui.stackable.two.column.grid
               .column.center
-                p= f.submit "Facebook", name: 'provider', class: 'ui button facebook'
+                p= f.submit "Facebook", name: 'post[provider]', class: 'ui button facebook'
               .column.center
-                p= f.submit "Twitter", name: 'provider', class: 'ui button twitter'
-
-
-
-
+                p= f.submit "Twitter", name: 'post[provider]', class: 'ui button twitter'
 
 / #new-post-form.ui.grid
 /   .row.post-details

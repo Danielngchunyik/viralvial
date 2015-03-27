@@ -9,7 +9,7 @@
           p.name#profile_user_name_display= @user.name
           #user-interest
             = render partial: "users/interest", locals: { user: @user }
-          p.profile-image-label= link_to "Change profile picture", '#', class: 'trigger-profile-image-change', 'data-skip-pjax': true
+          p.profile-image-label= link_to "Change profile picture", '#', class: 'trigger-profile-image-change'
     section#profile-view-container
       .ui.grid.center.aligned
         .twelve.wide.column
@@ -17,5 +17,5 @@
             = render partial: "users/profile_details", locals: { user: @user }
 
 
-// Profile Image Uploade Modal
-= render partial: "shared/partials/image/form", locals: { user: @user, title: "Edit your new profile image!" }
+  // Profile Image Uploade Modal
+  = render partial: "shared/partials/image/form", locals: { user: @user, title: "Edit your new profile image!" }

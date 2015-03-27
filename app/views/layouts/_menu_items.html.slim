@@ -1,6 +1,6 @@
 .item 
-  = link_to "OVERVIEW", participated_path, class: 'navlink overview-link'
+  = link_to "OVERVIEW", participated_path, class: 'navlink overview-link', "data-run-pjax": true
 .item
-  = link_to "CAMPAIGNS", campaigns_path, class: 'navlink campaigns-link'
+  = link_to "CAMPAIGNS", campaigns_path, class: 'navlink campaigns-link', "data-run-pjax": true
 .item
-  = link_to "MY PROFILE", user_path(current_user), class: 'navlink profile-link'
+  = link_to "MY PROFILE", user_path(current_user), class: 'navlink profile-link', "data-run-pjax": true

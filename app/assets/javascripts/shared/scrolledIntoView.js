@@ -1,3 +1,4 @@
+// Check if DOM has scrolled into view
 var isScrolledIntoView = function(elem) {
   var w = $(window);
   var e = $(elem);
