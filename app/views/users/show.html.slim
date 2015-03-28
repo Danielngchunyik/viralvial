@@ -14,7 +14,7 @@
       .ui.grid.center.aligned
         .twelve.wide.column
           .ui.stackable.two.column.grid.center
-            = render partial: "users/profile_details", locals: { user: @user }
+            = render partial: "users/profile_details", locals: { user: @user, providers: @providers }
 
 
   // Profile Image Uploade Modal

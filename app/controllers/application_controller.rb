@@ -1,5 +1,5 @@
 class ApplicationController < ActionController::Base
-  before_action :check_and_set_user_interest_form
+  before_action :check_and_set_user_interest_form, if: :logged_in?
 
   include Pundit
 
@@ -15,8 +15,8 @@ class ApplicationController < ActionController::Base
 
   # If user has not updated his main interest, set attributes for interest form to render
   def check_and_set_user_interest_form
-    if current_user && current_user.try(:interest_not_selected?)
-      @interest_form_user = UserDecorator.new(current_user)
+    if current_user.try(:interest_not_selected?)
+      @interest_user = UserDecorator.new(current_user)
       @options = Option.first.interest_option_list
     end
   end

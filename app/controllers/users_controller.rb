@@ -3,6 +3,7 @@ class UsersController < ApplicationController
   respond_to :html, :js, :json
 
   def show
+    @providers = ['facebook', 'twitter']
     respond_with(@user)
   end
 

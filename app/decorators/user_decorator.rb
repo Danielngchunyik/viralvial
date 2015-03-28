@@ -23,4 +23,8 @@ class UserDecorator < BaseDecorator
   def age
     model.birthday && ((Date.today - model.birthday) / 365.25)
   end
+
+  def has_linked_provider?(provider)
+    model.authentications.where(provider: provider).present?
+  end
 end

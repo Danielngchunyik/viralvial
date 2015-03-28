@@ -38,10 +38,6 @@ class User < ActiveRecord::Base
     auth = self.authentications.find_by(provider: provider)
     auth.update(token: access_token.try(:token), secret: access_token.try(:secret))
   end
-
-  def has_linked_provider?(provider)
-    authentications.where(provider: provider).present?
-  end
   
   def main_interest=(value)
     self.primary_interest_list = value

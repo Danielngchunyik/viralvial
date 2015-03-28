@@ -1,8 +1,7 @@
-- providers = ["facebook", "twitter"]
 - providers.each do |provider|
     .provider.spacing-top-small
-      - if current_user.has_linked_provider?(provider)
-        - if current_user.authentications.count > 1
+      - if user.has_linked_provider?(provider)
+        - if user.authentications.count > 1
           = link_to "#{provider}", delete_oauth_path(provider), method: :delete, class: "ui massive label disconnect #{provider}", id: "#{provider}-disconnect"
         - else
           div class="ui massive label #{provider}"

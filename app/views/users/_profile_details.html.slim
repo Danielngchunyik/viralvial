@@ -28,4 +28,4 @@
   = best_in_place user, :marital_status, as: :select, collection: [["Single", "Single"], ["In a Relationship", "In a Relationship"], ["Married", "Married"]], class: 'ui fluid massive label editable'
 
   p.profile-padding.profile-label MY SOCIAL NETWORKS
-  = render partial: 'users/social_media_connect'
+  = render partial: 'users/social_media_connect', locals: { user: user, providers: providers }
