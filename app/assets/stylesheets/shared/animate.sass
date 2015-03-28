@@ -1,4 +1,4 @@
-/* Copyright (c) 2015 Daniel Eden */
+/* Copyright (c) 2015 Daniel Eden. Check Animate CSS */
 
 @charset "UTF-8"
 
@@ -36,6 +36,38 @@
     @content
   @keyframes #{$name}
     @content
+
+/* Shake */
+
++keyframes(shake) 
+
+  0%, 100% 
+    transform: translate3d(0, 0, 0)
+    -webkit-transform: translate3d(0, 0, 0)
+  
+  10%, 30%, 50%, 70%, 90%
+    transform: translate3d(-10px, 0, 0)
+    -webkit-transform: translate3d(-10px, 0, 0)
+  
+  20%, 40%, 60%, 80% 
+    transform: translate3d(10px, 0, 0)
+    -webkit-transform: translate3d(10px, 0, 0)
+
+/* Pulse */
+
++keyframes(pulse)
+  
+  0%
+    transform: scale3d(1, 1, 1)
+    -webkit-transform: scale3d(1, 1, 1)
+
+  50%
+    transform: scale3d(1.05, 1.05, 1.05)
+    -webkit-transform: scale3d(1.05, 1.05, 1.05)
+
+  100% 
+    transform: scale3d(1, 1, 1)
+    -webkit-transform: scale3d(1, 1, 1)
 
 /* Fade In */
 
@@ -102,6 +134,21 @@
     -webkit-transform: none
     
 /* End */
+
+
+/* Animation Classes */
+
+.shake 
+  -moz-animation-name: shake
+  -o-animation-name: shake
+  -webkit-animation-name: shake
+  animation-name: shake
+
+.pulse
+  -moz-animation-name: pulse
+  -o-animation-name: pulse
+  -webkit-animation-name: pulse
+  animation-name: pulse
 
 .fadeIn
   -moz-animation-name: fadeIn
