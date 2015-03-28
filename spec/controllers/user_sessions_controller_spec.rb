@@ -28,6 +28,7 @@ RSpec.describe UserSessionsController, type: :controller do
   end
 
   describe 'GET destroy' do
+    before { user.update(primary_interest_list: "Sports") }
     before { login_user user }
     it do
       delete :destroy
