@@ -17,20 +17,20 @@ class SocialScore < ActiveRecord::Base
   end
 
   def tally_total_followers
-    self.update(total_followers: self.facebook_followers + self.twitter_followers)
+    update(total_followers: facebook_followers + twitter_followers)
   end
 
   def fetch_and_save_new_follower_count(provider)
-    return unless auth = self.user.authentications.find_by(provider: provider)
+    return unless auth = user.authentications.find_by(provider: provider)
     access_token = AccessToken.new(auth.try(:token), auth.try(:secret))
 
     klass = "Oauth::Retrieve#{provider.capitalize}UserInfo".constantize
-    klass.new(access_token, nil, self.user).update_followers
+    klass.new(access_token, nil, user).update_followers
   end
 
   def followers_changed?
-    new_total_count = self.facebook_followers + self.twitter_followers
+    new_total_count = facebook_followers + twitter_followers
 
-    new_total_count != self.total_followers
+    new_total_count != total_followers
   end
 end

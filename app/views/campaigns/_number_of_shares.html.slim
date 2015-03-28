@@ -1,0 +1,4 @@
+- if current_user
+  p.font-20.pink= "Share this campaign #{pluralize(topic.num_of_shares - current_user.posts.where(topic_id: topic.id).count, 'more time')}"
+- else
+  p.font-20.pink= "Share this campaign #{pluralize(topic.num_of_shares, 'more time')}"

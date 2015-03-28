@@ -1,8 +1,7 @@
-.topic-share-box.center
-  p.title.font-18= topic.title
-  p.font-18= topic.description
+p.title.font-18= topic.title
+p.font-18= topic.description
 
-  - if current_user
-    = link_to "Share This!", new_campaign_topic_post_path(topic.campaign, topic), remote: true, class: 'ui blue button margin-bottom-20'
+- if current_user
+  = link_to "Share This!", new_campaign_topic_post_path(topic.campaign, topic), remote: true, class: 'ui blue button margin-bottom-20'
     / - else
     /   p Well done! You've completed the required number of shares for this campaign!

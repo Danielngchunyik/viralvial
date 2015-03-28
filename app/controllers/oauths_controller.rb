@@ -22,16 +22,7 @@ class OauthsController < ApplicationController
   def destroy
     provider = params[:provider]
 
-    authentication = current_user.authentications.find_by(provider: provider)
-
-    if authentication.present?
-      authentication.destroy
-      flash[:notice] = "You have successfully unlinked your #{provider.titleize} account."
-    else
-      flash[:error] = "You do not currently have a linked #{provider.titleize} account."
-    end
-
-    redirect_to user_path(current_user)
+    unlink_account(provider)
   end
 
   private

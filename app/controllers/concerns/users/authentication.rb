@@ -36,6 +36,20 @@ module Users::Authentication
     redirect_to user_path(current_user)
   end
 
+  def unlink_account(provider)
+
+    authentication = current_user.authentications.find_by(provider: provider)
+
+    if authentication.present?
+      authentication.destroy
+      flash[:notice] = "You have successfully unlinked your #{provider.titleize} account."
+    else
+      flash[:error] = "You do not currently have a linked #{provider.titleize} account."
+    end
+
+    redirect_to user_path(current_user)
+  end
+
   def sanitize_klass(provider)
     allowed_klasses = [Oauth::RetrieveFacebookUserInfo, Oauth::RetrieveTwitterUserInfo]
 

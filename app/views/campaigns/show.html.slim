@@ -22,8 +22,7 @@
               .sixteen.wide.column
                 .ui.grid.center
                   .ten.wide.column
-                    - @campaign.topics.each do |topic|
-                      = render partial: 'topic_details', locals: { topic: topic }
+
 
             .row.mobile
               .sixteen.wide.column
@@ -33,6 +32,10 @@
         .four.wide.column.center.desktop
           .campaign-stats-box
             = render partial: 'campaign_stats', locals: { campaign: @campaign }
+
+          .campaign-share-box.center
+            - @campaign.topics.each do |topic|
+              = render partial: 'topic_details', locals: { topic: topic }
 
             / - if current_user
             /   .shared-posts-stats-box
