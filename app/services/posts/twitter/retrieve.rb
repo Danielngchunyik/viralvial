@@ -1,4 +1,4 @@
-class Posts::Retrieve::Twitter < Posts::TwitterBase
+class Posts::Twitter::Retrieve < Posts::TwitterBase
 
   def display
     begin

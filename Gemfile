@@ -68,7 +68,6 @@ end
 
 group :developement do
   gem 'guard-rspec', require: false
-  gem 'quiet_assets'
   gem 'spring'
   gem 'spring-commands-rspec'
 
@@ -79,6 +78,8 @@ group :developement do
 end
 
 group :development, :test do
+  
+  gem 'quiet_assets'
   gem 'better_errors'
   gem 'binding_of_caller'
   gem 'pry-rails'

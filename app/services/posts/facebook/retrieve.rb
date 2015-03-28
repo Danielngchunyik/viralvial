@@ -1,4 +1,4 @@
-class Posts::Retrieve::Facebook < Posts::FacebookBase
+class Posts::Facebook::Retrieve < Posts::FacebookBase
 
   def display
     begin

@@ -1,4 +1,4 @@
-class Posts::Publish::Twitter < Posts::TwitterBase
+class Posts::Twitter::Publish < Posts::TwitterBase
 
   def save
     tweet!

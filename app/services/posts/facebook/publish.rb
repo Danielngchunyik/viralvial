@@ -1,4 +1,4 @@
-class Posts::Publish::Facebook < Posts::FacebookBase
+class Posts::Facebook::Publish < Posts::FacebookBase
 
   def save
     create_fb_post!
