@@ -15,7 +15,11 @@ gem 'jquery-rails'
 gem 'country_select'
 gem 'iso_country_codes'
 gem 'best_in_place', '~> 3.0.1'
+
+# Allows AJAX image uploads
 gem 'remotipart', '~> 1.2'
+
+# AJAX Links
 gem 'pjax_rails'
 
 # database tagging

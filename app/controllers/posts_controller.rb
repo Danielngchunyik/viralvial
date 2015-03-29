@@ -23,6 +23,7 @@ class PostsController < ApplicationController
       logger.info "[ERROR]: #{e.inspect}"
       flash[:error] = "Error posting on #{post_params[:provider]}. Please link your account first!"
     end
+
     redirect_to campaign_path(@campaign)
   end
 
@@ -30,16 +31,20 @@ class PostsController < ApplicationController
    @post_stats = @post.get_social_media
   rescue PublishError => e
     logger.info "[ERROR]: #{e.inspect}"
+
     redirect_to root_path, alert: "Post is deleted!"
   end
 
   def destroy
     @delete_post = @post.destroy_with_social_media
     flash[:notice] = "Deleted!"
+
     redirect_to @campaign
+
   rescue PublishError => e
     logger.info "[ERROR]: #{e.inspect}"
     flash[:error] = "Error deleting #{@delete_post.post_type}"
+    
     redirect_to [@campaign, @topic, @post]
   end
 

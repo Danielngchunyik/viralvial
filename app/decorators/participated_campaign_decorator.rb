@@ -1,2 +1,0 @@
-class ParticipatedCampaignDecorator < CampaignDecorator
-end
