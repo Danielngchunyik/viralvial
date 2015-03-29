@@ -1,9 +1,15 @@
 class TopicPolicy < ApplicationPolicy
   def new?
-    user.posts.where(topic_id: record.id).count < record.num_of_shares
+    user.admin? ||
+    (user.posts.where(topic_id: record.id).count < record.num_of_shares &&
+      record.campaign.targeted_at(user))
   end
 
   def create?
     new?
+  end
+
+  def destroy?
+    true
   end
 end

@@ -2,6 +2,7 @@ class Post < ActiveRecord::Base
   belongs_to :user
   belongs_to :topic
   belongs_to :campaign
+  enum status: [:active, :deleted]
 
   def destroy_with_social_media
     allowed_klasses = [Posts::Facebook::Delete, Posts::Twitter::Delete]

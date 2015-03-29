@@ -21,4 +21,8 @@ module UserHelper
   def user_linked_provider?(provider)
     true if current_user.authentications.find_by(provider: provider)
   end
+
+  def user_has_not_posted?(campaign)
+    current_user.posts.where(campaign_id: campaign.id).count == 0
+  end
 end

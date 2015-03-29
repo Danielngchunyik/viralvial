@@ -26,15 +26,7 @@ class PostsController < ApplicationController
 
     redirect_to campaign_path(@campaign)
   end
-
-  def show 
-   @post_stats = @post.get_social_media
-  rescue PublishError => e
-    logger.info "[ERROR]: #{e.inspect}"
-
-    redirect_to root_path, alert: "Post is deleted!"
-  end
-
+  
   def destroy
     @delete_post = @post.destroy_with_social_media
     flash[:notice] = "Deleted!"
@@ -56,7 +48,6 @@ class PostsController < ApplicationController
 
   def set_campaign
     @campaign = Campaign.find(params[:campaign_id])
-    # authorize @campaign
   end
 
   def set_topic

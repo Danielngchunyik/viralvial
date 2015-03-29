@@ -8,6 +8,10 @@ module Campaigns::Filters
     end
   end
 
+  def targeted_at(user)
+    conditions?(user)
+  end
+
   def conditions?(user)
     [
       private?,

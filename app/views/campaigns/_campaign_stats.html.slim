@@ -4,7 +4,7 @@
       .ui.stackable.two.column.grid
         .column.center
           p.font-18.title EARN
-          p.font-20.pink= "#{campaign.reward}MYR"
+          p.font-20.pink= "#{campaign_reward(campaign)}MYR"
         .column.center
           p.title ENDS IN
           p.font-20= "#{campaign.time_remaining}"
