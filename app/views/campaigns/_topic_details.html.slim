@@ -3,6 +3,10 @@ p.font-18= topic.description
 
 .share-button-container
   - if current_user
-    = link_to "Share This!", new_campaign_topic_post_path(topic.campaign, topic), remote: true, class: 'ui button share margin-bottom-20'
-    / - else
-    /   p Well done! You've completed the required number of shares for this campaign!
+    - if number_of_shares(topic) != 0
+      = link_to "Share This!", new_campaign_topic_post_path(topic.campaign, topic), remote: true, class: 'ui button share margin-bottom-20'
+    - else
+      p Well done! You've completed the required number of shares for this campaign!
+
+  - else
+    = link_to "Register!!", '#', class: 'ui button share margin-bottom-20 trigger-connect'

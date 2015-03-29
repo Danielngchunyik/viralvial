@@ -11,7 +11,7 @@ campaign_params = { campaign:{
 		description: "Lorem Ipsum Desc",
 		start_date: Date.today,
 		end_date: Date.today + 30.days,
-		topics_attributes:[{ title: "Lorem Topic Title", description: "Lorem Ipsum Desc" }],
+		topics_attributes:[{ title: "Lorem Topic Title", description: "Lorem Ipsum Desc", num_of_shares: 2 }],
     featured: true
 	}
 }

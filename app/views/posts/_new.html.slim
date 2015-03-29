@@ -36,24 +36,8 @@
       .form-part-two
         p.title TWO
         p.subtitle WRITE SOMETHING ABOUT THE CAMPAIGN
-    
-        = form_for [@campaign, @topic, @post], html: { class: 'ui form' } do |f|
 
-          .selectable-images.hide
-            = f.radio_button :image, "nothing", checked: true, id: "default-image-nothing-radio", class: 'default-image-radio'
-            - @images.each_with_index do |image, i|
-              = f.radio_button :image, image.storage.url, id: "default-image-#{@topic.id}-#{i}-radio", class: 'default-image-radio'
+        = render partial: "posts/form", locals: { campaign: @campaign, topic: @topic, post: @post, images: @images }
 
-          .message
-            = f.text_area :message, placeholder: "Enter your message here", id: 'text-share'
-
-          .share-buttons
-            p.subtitle SHARE THIS ON...
-            .ui.stackable.two.column.grid
-              - @topic.social_media_platform_list.each do |platform|
-                .column
-                  - if user_linked_provider?(platform.downcase)
-                    p= f.submit "#{platform}", name: 'post[provider]', class: "fluid ui button #{platform.downcase}"
-
-// Profile Image Uploade Modal
+// User Image Uploade Modal
 = render partial: "shared/partials/image/user_share_image_form", locals: { image: @user_image, topic: @topic, campaign: @campaign, title: "Use your own image!" }
