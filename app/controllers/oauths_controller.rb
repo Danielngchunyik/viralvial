@@ -15,6 +15,7 @@ class OauthsController < ApplicationController
     if @user = login_from(provider)
       update_logged_in_user(provider)
     else
+      # logged_in? is a sorcery gem method
       logged_in? ? link_account(provider) : register_new_user(provider)
     end
   end

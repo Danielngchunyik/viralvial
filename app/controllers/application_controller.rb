@@ -1,4 +1,5 @@
 class ApplicationController < ActionController::Base
+  # logged_in? is a sorcery gem method
   before_action :check_and_set_user_interest_form, if: :logged_in?
 
   include Pundit

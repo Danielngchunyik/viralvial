@@ -5,10 +5,7 @@
     .sixteen.wide.column
       .ui.stackable.grid
         .six.wide.column.no-padding-top
-          #back-campaign-link
-            = link_to '#', class: 'black back-campaign-link'
-              i.ui.caret.left.icon
-              = "CANCEL"
+          = render partial: 'back_link'
           .campaign-details
             = render partial: 'campaigns/campaign_details', locals: { campaign: @campaign }
         .ten.wide.column.no-padding-top

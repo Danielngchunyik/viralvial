@@ -3,7 +3,7 @@ var runAnimation = function(e, time) {}
 
 // Render Form
 $('#campaign-post-container').hide().after("<%= escape_javascript(render(partial: 'posts/new', locals: { campaign: @campaign, topic: @topic, post: @post })) %>");
-
+$('#campaign')
 $(".back-campaign-link").on('click', function(e) {
   $('#campaign-post-container').show();
   $('#new-post-form').remove();

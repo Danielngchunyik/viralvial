@@ -6,6 +6,7 @@ class Topic < ActiveRecord::Base
 
   validates_presence_of :description
   validates_presence_of :title
+  validates_presence_of :num_of_shares
 
   acts_as_taggable_on :social_media_platforms
   accepts_nested_attributes_for :default_images, reject_if: proc { |a| a['storage'].blank? }, allow_destroy: true

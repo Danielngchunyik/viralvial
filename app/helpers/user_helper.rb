@@ -9,4 +9,12 @@ module UserHelper
       'asc'
     end
   end
+
+  def user_has_updated_interest?
+    current_user && current_user.try(:interest_not_selected?)
+  end
+
+  def non_admin_user_logged_in?
+    current_user && !admin?
+  end
 end

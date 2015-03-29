@@ -10,7 +10,7 @@ html
 
   body class="#{controller.controller_name} #{controller.action_name} #{'admin' if admin?}"
 
-    -if current_user && !admin?
+    -if non_admin_user_logged_in?
       = render partial: 'shared/partials/sidebar/menu'
     
     #wrapper.pusher
@@ -23,5 +23,5 @@ html
       = render "layouts/footer"
 
       // Render User Interest Modal
-      - if current_user && current_user.try(:interest_not_selected?)
+      - if user_has_updated_interest?
         = render partial: "/shared/partials/users/edit_interest_form", locals: { user: @interest_user, options: @options, title: "Pick an interest!", description: "Tell us what you love so that we are able to give you only the best!" }
