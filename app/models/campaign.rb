@@ -12,6 +12,9 @@ class Campaign < ActiveRecord::Base
   has_many :reward_transactions
   validates :title, :description, presence: true
   validate :at_least_one_topic_required
+  validates_size_of :image, maximum: 5.megabytes, messaage: 'should be less than 5MB'
+  validates_size_of :banner, maximum: 5.megabytes, messaage: 'should be less than 5MB'
+
   enum language: [:unspecified, :chinese, :english, :malay]
 
   accepts_nested_attributes_for :topics, allow_destroy: true

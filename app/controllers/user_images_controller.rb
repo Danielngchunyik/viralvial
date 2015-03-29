@@ -1,5 +1,7 @@
 class UserImagesController < ApplicationController
+  include ShareableImages
   before_action :set_campaign, :set_topic, :require_login
+  respond_to :html, :js
 
   def create
     delete_current_image!
@@ -8,11 +10,8 @@ class UserImagesController < ApplicationController
     @user_image.user = current_user
 
     if @user_image.save
-      redirect_to root_path
-      flash[:notice] = "Success"
-    else
-      redirect_to root_path
-      flash[:error] = "Fail"
+      fetch_shareable_images
+      respond_with(@images)
     end
   end
 

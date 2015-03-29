@@ -75,16 +75,45 @@
     .margin-bottom-20
       margin-bottom: 20px
 
+    .share
+      background-color: #E62E84
+      color: white
+
+      &:hover
+        opacity: 0.7
+
   // Post Form
 
   #new-post-form
     margin-top: 0
 
-    #back-campaign-link
+    .back-campaign-container
       margin-bottom: 40px
 
     .no-padding-top
       padding-top: 0
+
+    .ui.button
+      font-size: 16px
+
+    .custom-image-upload-form
+      margin-top: 50px
+
+    .form-part-two
+      @extend .custom-image-upload-form
+
+    .share-buttons
+      @extend .custom-image-upload-form
+
+    p
+      &.title
+        font-size: 24px
+        color: #E62E84
+
+      &.subtitle
+        font-size: 18px
+
+
 
 @media all and (max-width: 767px)
 
@@ -98,3 +127,12 @@
 
     .campaign-details
       text-align: center
+
+  #new-post-form
+
+    #form-container
+      text-align: center
+      float: none !important
+
+  #mobile-center
+    text-align: center

@@ -1,0 +1,7 @@
+.column.image
+  = image_tag "posts/no-image.jpg", class: 'selectable-image ui fluid image', id: "default-image-nothing"
+
+- @images.each_with_index do |image, i|
+  .column.image
+    = link_to image.storage.url, target: "blank", class: 'ui fluid image'
+      = image_tag image.storage.small.url, class: 'border-radius selectable-image', id: "default-image-#{@topic.id}-#{i}"

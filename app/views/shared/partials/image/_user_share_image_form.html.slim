@@ -1,0 +1,18 @@
+#user-share-image-modal.ui.small.modal.modal-styling
+  i.close.icon
+  .header.center
+    p.title= title
+  .modal-content
+    .description.center.small-padding-top
+      = form_for image, url: campaign_topic_user_images_path(campaign, topic, image, format: :js), remote: true, authenticity_token: true do |f|
+        .ui.grid.center
+          .row
+            .sixteen.wide.column
+              = image_tag "shared/default.png", class: 'ui medium centered image fluid upload-previewer'
+
+          .row
+            .sixteen.wide.column
+              p = f.file_field :storage, class: 'uploader'
+              p = f.hidden_field :storage_cache
+              .small-padding-top.margin-bottom-10
+                p = f.submit "Upload", class: 'ui submit button green'

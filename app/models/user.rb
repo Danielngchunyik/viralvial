@@ -18,6 +18,7 @@ class User < ActiveRecord::Base
   validates :password_confirmation, presence: true, if: :password
   validates :email, uniqueness: true, format: { with: /\A([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})\z/i }
   validate :correct_user_birthday
+  validates_size_of :image, maximum: 5.megabytes, messaage: 'should be less than 5MB'
 
   acts_as_taggable_on :primary_interests, :secondary_interests
 

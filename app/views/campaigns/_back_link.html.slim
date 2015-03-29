@@ -1,4 +1,2 @@
-#back-campaign-link
-  = link_to '#', class: 'black back-campaign-link'
-    i.ui.caret.left.icon
-    = "CANCEL"
+.back-campaign-container
+  = link_to "CANCEL", '#', class: 'ui button red margin-bottom-20 back-campaign-link', data: { disable_with: 'Cancelling..' }

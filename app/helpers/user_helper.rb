@@ -17,4 +17,8 @@ module UserHelper
   def non_admin_user_logged_in?
     current_user && !admin?
   end
+
+  def user_linked_provider?(provider)
+    true if current_user.authentications.find_by(provider: provider)
+  end
 end

@@ -1,0 +1,5 @@
+$('#user-share-image-modal').modal('hide');
+$('#image-selection-container').html("<%= escape_javascript( render(partial: 'campaigns/selectable_images', locals: { images: @images })) %>")
+
+// Form Image Selection
+initImageSelection();

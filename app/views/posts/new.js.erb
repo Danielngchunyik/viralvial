@@ -1,22 +1,29 @@
-//
-var runAnimation = function(e, time) {}
-
 // Render Form
 $('#campaign-post-container').hide().after("<%= escape_javascript(render(partial: 'posts/new', locals: { campaign: @campaign, topic: @topic, post: @post })) %>");
-$('#campaign')
+$('.share-button-container').hide().after("<%= escape_javascript(render(partial: 'campaigns/back_link')) %>");
+
 $(".back-campaign-link").on('click', function(e) {
+
+  // Remove form and show campaign
   $('#campaign-post-container').show();
   $('#new-post-form').remove();
-  $('#back-campaign-link').remove();
+
+  // Remove back link and show share button
+  $('.back-campaign-container').remove();
+  $('.share-button-container').show();
+
+  // Run animations and prevent default button
   runAnimations('#campaign-post-container', '', 'fadeInUp');
   e.preventDefault();
+
 });
 
 // Run New Post Form Animation
-runAnimations('#new-post-form', 'fadeInLeft');
+runAnimations('#new-post-form', '', 'fadeInLeft');
 
-// Form Image Selection
-$('.selectable-image').click(function (e) {
+var initImageSelection = function() {
+  // Form Image Selection
+  $('.selectable-image').click(function (e) {
     e.preventDefault();
     var image = $(this);
     var radioId = image.attr('id') + '-radio';
@@ -27,4 +34,15 @@ $('.selectable-image').click(function (e) {
 
     $('.default-image-radio').prop('checked', false);
     radio.prop('checked', true);
+  }); 
+}
+
+// Form Image Selection
+initImageSelection();
+
+// Trigger Profile Image Modal Form
+$('.trigger-user-image-upload').on('click', function(e) {
+  e.preventDefault();
 });
+
+$('#user-share-image-modal').modal('attach events', '.trigger-user-image-upload', 'show');

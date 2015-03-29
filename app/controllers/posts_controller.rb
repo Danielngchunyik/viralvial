@@ -1,4 +1,5 @@
 class PostsController < ApplicationController
+  include ShareableImages
 
   before_action :require_login
   before_action :set_campaign, :set_topic
@@ -10,8 +11,8 @@ class PostsController < ApplicationController
     @post = @topic.posts.build
     fetch_shareable_images
 
-    @user_image = @topic.user_images.build # Set user_image for uploading
-    @new_user_image = UserImage.new
+    # Set user_image for uploading
+    @user_image = @topic.user_images.build 
   end
 
   def create
@@ -43,14 +44,6 @@ class PostsController < ApplicationController
   end
 
   private
-
-  def fetch_shareable_images
-    @images = @topic.default_images
-
-    if user_image = @topic.user_images.find_by(user_id: current_user.id)
-      @images << user_image
-    end
-  end
 
   def initialize_post
     @post = @topic.posts.build(post_params.merge(user_id: current_user.id, campaign_id: @campaign.id))
