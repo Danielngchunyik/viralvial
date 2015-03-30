@@ -6,5 +6,6 @@ class ParticipatedCampaignsController < ApplicationController
 
     current_user.posts.each { |p| campaigns << p.campaign }
     @campaigns = CampaignDecorator.wrap(campaigns.uniq)
+    @user = UserDecorator.new(current_user)
   end
 end

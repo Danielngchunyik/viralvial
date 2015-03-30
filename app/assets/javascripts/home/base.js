@@ -1,4 +1,14 @@
-$(document).ready(function() {
+// Remove or add absolute positioning from header
+var editHeaderPositionValue = function () {
+  if ($('#campaigns-show').size() > 0) {
+    $('header').removeClass('landing');
+  }
+  else if ($('#hero-banner').size() > 0) {
+    $('header').addClass('landing');
+  }
+}
+
+var runLandingPageScript = function() {
 
   if ($("body").hasClass("home index")) {
 
@@ -10,6 +20,9 @@ $(document).ready(function() {
       speed: 1000,
       offset: 50
     });
+
+    // Remove or add absolute positioning from header
+    editHeaderPositionValue();
 
     // Run Landing Page Animations
     setTimeout( function() {
@@ -37,6 +50,7 @@ $(document).ready(function() {
     // Smoothen out parallax scrolling for Chrome Browsers
     if (window.addEventListener) {window.addEventListener('DOMMouseScroll', function(){});}
     window.onmousewheel = document.onmousewheel = function(){};
+
 
     // Initialize Parallax Values
     var parallax = document.querySelectorAll(".parallax"),
@@ -70,4 +84,7 @@ $(document).ready(function() {
       }
     }
   }
-});
+}
+
+$(document).ready(runLandingPageScript);
+$(document).ajaxComplete(editHeaderPositionValue);

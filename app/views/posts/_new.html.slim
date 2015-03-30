@@ -14,8 +14,8 @@
           .campaign-details
             = render partial: 'campaigns/campaign_details', locals: { campaign: @campaign }
         .ten.wide.column.no-padding-top
-          = image_tag "http://placehold.it/400x400", class: 'ui fluid image'
-          = image_tag @campaign.image
+          // Image Size 400 x 400
+          = image_tag @campaign.image, class: 'ui fluid image'
 
   // Form template is rendered here
   .row#mobile-center

@@ -1,7 +1,7 @@
 class CampaignsController < ApplicationController
   require 'will_paginate/array'
   
-  before_action :require_login
+  before_action :require_login, only: :index
 
   def index
     campaigns = CampaignDecorator.wrap(Campaign.order("created_at DESC").targeted_at(current_user))
@@ -10,6 +10,8 @@ class CampaignsController < ApplicationController
 
   def show
     campaign = Campaign.find(params[:id])
+
+    authorize campaign
     @campaign = CampaignDecorator.new(campaign)
   end
 end

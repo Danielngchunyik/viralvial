@@ -4,8 +4,11 @@ module CampaignHelper
   end
 
   def campaign_reward(campaign)
-    score = current_user.social_score.viral_score
-
-    campaign.reward * Tier::RewardMultiplier.new.get(score)
+    if current_user
+      score = current_user.social_score.viral_score
+      campaign.reward * Tier::RewardMultiplier.new.get(score)
+    else
+      "Up to #{campaign.reward}"
+    end
   end
 end

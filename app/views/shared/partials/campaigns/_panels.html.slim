@@ -2,11 +2,12 @@
   .ui.stackable.four.column.grid
     - campaigns.each do |campaign|
       .column
-        = link_to campaign_path(campaign.id), "data-run-pjax": true do
+        = link_to campaign_path(campaign.id), "data-run-pjax": true
           .campaign-card 
             .ui.segment.zero-padding
               .image-panel
-                = image_tag "http://placehold.it/720x720", class: 'ui fluid image'
+              // Image Size 400 x 400
+              = image_tag campaign.image, class: 'ui fluid image'
               .ui.vertical.segment.content-panel
                 p.campaign-title= campaign.title
                 p.campaign-description= truncate(campaign.description, length: 100)

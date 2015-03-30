@@ -1,6 +1,6 @@
 = form_for [campaign, topic, post], html: { class: 'ui form' } do |f|
 
-  .selectable-images
+  .selectable-images.hide
     = f.radio_button :image, "nothing", checked: true, id: "default-image-nothing-radio", class: 'default-image-radio'
     - images.each_with_index do |image, i|
       = f.radio_button :image, image.storage.url, id: "default-image-#{@topic.id}-#{i}-radio", class: 'default-image-radio'
@@ -15,3 +15,4 @@
         .column
           - if user_linked_provider?(platform.downcase)
             p= f.submit "#{platform}", name: 'post[provider]', class: "fluid ui button #{platform.downcase}"
+            

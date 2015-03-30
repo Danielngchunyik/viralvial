@@ -1,0 +1,26 @@
+.shared-posts
+  - if user_has_not_posted?(campaign)
+    p.title= "You've not shared anything yet! :("
+  - else
+    p.title Your Shared Posts!
+    .ui.stackable.two.column.grid
+      - current_user.posts.where(campaign_id: campaign.id).each do |post|
+        .column.shared-post-box.center
+          .ui.segment
+            p.right= link_to campaign_topic_post_path(post.campaign, post.topic, post), method: :delete, data: { confirm: "Delete post?"}
+              i.icon.remove
+            i class="icon #{post.provider.downcase} font-30"
+
+            // Model method, fetches social media stats
+            - stats = post.get_social_media(current_user)
+
+            // Likes or Favourites
+            p= stats[:one]
+            // Comments or Retweets
+            p= stats[:two]
+            p.red= stats[:warning]
+
+
+            .ui.divider
+            
+            p.message= post.message

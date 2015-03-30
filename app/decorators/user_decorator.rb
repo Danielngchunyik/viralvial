@@ -27,4 +27,8 @@ class UserDecorator < BaseDecorator
   def has_linked_provider?(provider)
     model.authentications.where(provider: provider).present?
   end
+
+  def score
+    model.social_score.viral_score
+  end
 end
