@@ -1,10 +1,10 @@
 // Remove or add absolute positioning from header
 var editHeaderPositionValue = function () {
   if ($('#campaigns-show').size() > 0) {
-    $('header').removeClass('landing');
+    $('header.landing').css('position', 'static');
   }
   else if ($('#hero-banner').size() > 0) {
-    $('header').addClass('landing');
+    $('header.landing').css('position', 'absolute');
   }
 }
 
