@@ -20,9 +20,6 @@ class Users::Authentication
     new_user = @klass.new(access_token, country).save
   end
 
-  def unlink_account
-  end
-
   def sanitize_klass(provider)
     allowed_klasses = [Oauth::RetrieveFacebookUserInfo, Oauth::RetrieveTwitterUserInfo]
 

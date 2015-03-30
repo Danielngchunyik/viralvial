@@ -18,6 +18,7 @@ class Oauth::RetrieveTwitterUserInfo
     @new_user = User.create(location: @user_location[0], name: @twitter_user.name, 
                             country: IsoCountryCodes.search_by_name(country)[0].alpha2, remote_image_url: @user_image)
 
+    # Build user associations
     create_auth_and_followers
     
     @new_user
