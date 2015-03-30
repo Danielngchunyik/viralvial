@@ -21,11 +21,19 @@ class SocialScore < ActiveRecord::Base
   end
 
   def fetch_and_save_new_follower_count(provider)
-    return unless auth = user.authentications.find_by(provider: provider)
-    access_token = AccessToken.new(auth.try(:token), auth.try(:secret))
+    auth = user.authentications.find_by(provider: provider)
+    
+    if auth
+      access_token = AccessToken.new(auth.try(:token), auth.try(:secret))
 
-    klass = "Oauth::Retrieve#{provider.capitalize}UserInfo".constantize
-    klass.new(access_token, nil, user).update_followers
+      klass = "Oauth::Retrieve#{provider.capitalize}UserInfo".constantize
+      klass.new(access_token, nil, user).update_followers
+    else
+
+      # if authentications is not there, reset to 0
+      attr = "#{provider}_followers".to_sym
+      update(attr => 0)
+    end
   end
 
   def followers_changed?

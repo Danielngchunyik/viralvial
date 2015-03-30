@@ -46,40 +46,7 @@ p
 
 p
   strong Marital Status:
-  = @user.marital_status.capitalize unless @user.marital_status.nil?
-
-p
-  strong Followers:
-  = @user.followers
-
-p
-  strong Klout Score:
-  = @user.klout
-
-p
-  strong Localization:
-  = @user.localization
-
-p
-  strong Reach:
-  = @user.reach_score
-
-p
-  strong SX Index:
-  = @user.sx_index
-
-p
-  strong Influence Score:
-  = @user.influence_score
-
-p
-  strong Karma:
-  = @user.karma
-
-p
-  strong Socialite Score:
-  = @user.socialite_score
-
+  = @user.marital_status.capitalize unless @user.marital_status.nil
 p
   strong Linked Accounts:
   - @user.authentications.each do |auth|

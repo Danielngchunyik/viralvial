@@ -28,7 +28,7 @@ class Tier::RewardMultiplier
 
     # Tier 6 - 0.83%
     when 0..25 
-      0.0083 
+      0.01
     end
   end
 end

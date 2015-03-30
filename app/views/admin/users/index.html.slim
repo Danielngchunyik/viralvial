@@ -3,7 +3,7 @@ h1 Listing users
 table
   thead
     tr
-      th = link_to 'Email', url_for(sort: 'email')
+      th = link_to 'Email', url_for(sort: 'email', direction: render_direction)
       th = link_to 'Followers', url_for(sort: 'followers', direction: render_direction)
       th = link_to 'Klout score', url_for(sort: 'klout', direction: render_direction)
       th = link_to 'Localization', url_for(sort: 'localization', direction: render_direction)
@@ -17,14 +17,6 @@ table
     - @users.each do |user|
       tr
         td = user.email
-        td = user.followers
-        td = user.klout
-        td = user.localization
-        td = user.reach_score
-        td = user.sx_index
-        td = user.influence_score
-        td = user.karma
-        td = user.socialite_score
         td = link_to 'Show', [:admin, user]
         td = link_to 'Edit', edit_admin_user_path(user)
         td = link_to 'Destroy', [:admin, user], data: {:confirm => 'Are you sure?'}, :method => :delete

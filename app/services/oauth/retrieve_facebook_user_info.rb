@@ -18,6 +18,7 @@ class Oauth::RetrieveFacebookUserInfo
                         country: IsoCountryCodes.search_by_name(country)[0].alpha2,
                         remote_image_url: "#{@fb_user.picture}?redirect=1&height=300&type=normal&width=300")
 
+    # Build user associations
     create_auth_and_followers
     
     @new_user

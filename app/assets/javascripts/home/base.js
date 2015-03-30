@@ -1,4 +1,4 @@
-// Remove or add absolute positioning from header
+// Remove or add absolute positioning from header (* Use addClass instead)
 var editHeaderPositionValue = function () {
   if ($('#campaigns-show').size() > 0) {
     $('header.landing').css('position', 'static');

@@ -1,5 +1,4 @@
 class OauthsController < ApplicationController
-  include Users::Authentication
 
   before_action :require_login, only: [:destroy]
   before_action :get_user_location, only: [:callback]
@@ -10,20 +9,42 @@ class OauthsController < ApplicationController
 
   def callback
     provider = auth_params[:provider]
+    @user = login_from(provider) || current_user
+    auth = Users::Authentication.new(provider, @access_token, @user, @country)
 
-    # Refer to Authentications module
-    if @user = login_from(provider)
-      update_logged_in_user(provider)
+    # Link or Log In User Social Network Accounts
+    if logged_in?
+      add_provider_to_user(provider)
+      auth.update_logged_in_user
+
+      flash[:notice] = "You have successfully logged in with your #{provider.titleize} account."
+
+    # Register New User
     else
-      # logged_in? is a sorcery gem method
-      logged_in? ? link_account(provider) : register_new_user(provider)
+      new_user = auth.register_new_user
+
+      reset_session
+      auto_login(new_user)
+
+      flash[:notice] = "You've registered through #{provider.titleize}!"
     end
+
+    redirect_to user_path(current_user)
   end
 
   def destroy
     provider = params[:provider]
+    authentication = current_user.authentications.find_by(provider: provider)
 
-    unlink_account(provider)
+    if authentication.present?
+      authentication.destroy
+      current_user.social_score.update_followers
+      flash[:notice] = "You have successfully unlinked your #{provider.titleize} account."
+    else
+      flash[:error] = "You do not currently have a linked #{provider.titleize} account."
+    end
+
+    redirect_to user_path(current_user)
   end
 
   private
