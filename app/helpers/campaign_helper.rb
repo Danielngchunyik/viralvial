@@ -11,4 +11,11 @@ module CampaignHelper
       "Up to #{campaign.reward}"
     end
   end
+
+  def reward_range(campaign)
+    lowest = campaign.reward * Tier::RewardMultiplier.new.get(1)
+    highest = campaign.reward * Tier::RewardMultiplier.new.get(100)
+
+    { lowest: lowest, highest: highest}
+  end
 end

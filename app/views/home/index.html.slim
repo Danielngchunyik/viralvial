@@ -40,9 +40,11 @@ section.staging-grounds
   .ui.grid.center
     .twelve.wide.column
       #staging-container
-        h2.left#featured-campaigns-waypoint OUR FEATURED CAMPAIGNS
-        h2.left.subtitle Take a peek at our current trending campaigns!
-        = render partial: 'shared/partials/campaigns/panels', locals: { campaigns: @campaigns }
+        #campaign-partial-container.none
+        #campaigns-list-container
+          h2.left#featured-campaigns-waypoint OUR FEATURED CAMPAIGNS
+          h2.left.subtitle Take a peek at our current trending campaigns!
+          = render partial: 'shared/partials/campaigns/panels', locals: { campaigns: @campaigns }
         = render partial: 'about'
 
 

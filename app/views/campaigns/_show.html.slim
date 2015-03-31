@@ -1,0 +1,50 @@
+#campaigns-show.ui.grid.animated.fadeIn
+  .row
+    .sixteen.wide.column    
+     .ui.stackable.grid.center
+        .eight.wide.column.center
+          .left
+            = link_to '#', data: { disable_with: 'Loading...' }, id: 'landing-campaign-back'
+              i.ui.caret.left.icon
+              = "BACK TO CAMPAIGNS"
+          // Main Page
+          #campaign-post-container.ui.grid
+            .row
+              .sixteen.wide.column
+                .campaign-banner
+                  // Banner Size 680 x 260
+                  = image_tag campaign.banner.display, class: 'ui fluid image' 
+
+            // Mobile view
+            .row.center.mobile
+              .fourteen.wide.column
+                .campaign-stats-box
+                  = render partial: 'campaign_stats', locals: { campaign: campaign }
+
+            .row
+              .sixteen.wide.column
+                .campaign-details
+                  = render partial: 'campaign_details', locals: { campaign: campaign }
+
+            // Display shared posts
+            - if current_user
+              .row.center
+                .sixteen.wide.column
+                  = render partial: 'shared_posts', locals: { campaign: campaign }
+
+            // Mobile view
+            .row.mobile
+              .sixteen.wide.column
+                .campaign-share-box.center
+                  - campaign.topics.each do |topic|
+                    = render partial: 'topic_details', locals: { topic: topic }
+
+
+        // Desktop Sidebar
+        .four.wide.column.center.desktop
+          .campaign-stats-box
+            = render partial: 'campaign_stats', locals: { campaign: campaign }
+
+          .campaign-share-box.center
+            - campaign.topics.each do |topic|
+              = render partial: 'topic_details', locals: { topic: topic }

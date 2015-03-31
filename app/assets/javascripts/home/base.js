@@ -1,13 +1,3 @@
-// Remove or add absolute positioning from header (* Use addClass instead)
-var editHeaderPositionValue = function () {
-  if ($('#campaigns-show').size() > 0) {
-    $('header.landing').css('position', 'static');
-  }
-  else if ($('#hero-banner').size() > 0) {
-    $('header.landing').css('position', 'absolute');
-  }
-}
-
 var runLandingPageScript = function() {
 
   if ($("body").hasClass("home index")) {
@@ -20,9 +10,6 @@ var runLandingPageScript = function() {
       speed: 1000,
       offset: 50
     });
-
-    // Remove or add absolute positioning from header
-    editHeaderPositionValue();
 
     // Run Landing Page Animations
     setTimeout( function() {
@@ -44,7 +31,8 @@ var runLandingPageScript = function() {
     // User clicks browse on about-us
     $('.about-browser').on('click', function() {
       $('#about-us').addClass('none');
-      $('#campaigns-list').removeClass('none').addClass('animated fadeInDown');
+      $('#campaigns-list-container').removeClass('none').addClass('animated fadeInDown');
+      $('#campaign-partial-container').addClass('none');
     });
 
     // Smoothen out parallax scrolling for Chrome Browsers
@@ -87,4 +75,3 @@ var runLandingPageScript = function() {
 }
 
 $(document).ready(runLandingPageScript);
-$(document).ajaxComplete(editHeaderPositionValue);

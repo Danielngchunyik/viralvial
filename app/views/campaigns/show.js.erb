@@ -1,0 +1,10 @@
+$('#campaign-partial-container').removeClass('none').html("<%= escape_javascript(render(partial: 'campaigns/show', locals: { campaign: @campaign } )) %> ");
+$('#campaigns-list-container').addClass('none');
+$('#about-us').addClass('none');
+
+$('#landing-campaign-back').on('click', function(e){
+  e.preventDefault();
+  $('#about-us').addClass('none');
+  $('#campaigns-list-container').removeClass('none').addClass('animated fadeInDown');
+  $('#campaign-partial-container').addClass('none');
+})
