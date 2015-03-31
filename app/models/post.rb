@@ -17,7 +17,11 @@ class Post < ActiveRecord::Base
     allowed_klasses = [Posts::Facebook::Retrieve, Posts::Twitter::Retrieve]
 
     klass = sanitize_klass("Retrieve", provider, allowed_klasses)
-    klass.new(self).display
+    post_stats = klass.new(self).display
+
+    SocialScore::PostPerformance.new(self).calculate
+
+    post_stats
   end
 
   def social_media_share

@@ -4,6 +4,9 @@ class Posts::Twitter::Retrieve < Posts::TwitterBase
   def display
     begin
       @tweet = @twitter.client.status(post.external_post_id)
+      score = (@tweet.favorite_count * 2) + (@tweet.retweet_count * 10)
+
+      post.update(score: score)
 
       { one: pluralize(@tweet.favorite_count, 'favourite'), two: pluralize(@tweet.retweet_count, 'retweet') }
     rescue

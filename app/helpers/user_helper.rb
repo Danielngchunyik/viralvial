@@ -25,4 +25,10 @@ module UserHelper
   def user_has_not_posted?(campaign)
     current_user.posts.where(campaign_id: campaign.id).count == 0
   end
+
+  def total_reward_amount
+    amount = current_user.reward_transactions.pluck(:amount)
+
+    amount.inject{ |sum, el| sum + el }
+  end
 end

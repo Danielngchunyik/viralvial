@@ -3,7 +3,7 @@ class CreateRewardTransactions < ActiveRecord::Migration
     create_table :reward_transactions do |t|
       t.integer :user_id
       t.integer :campaign_id
-      t.integer :amount, default: 0
+      t.float :amount, default: 0
       t.boolean :paid, default: false
 
       t.timestamps null: false

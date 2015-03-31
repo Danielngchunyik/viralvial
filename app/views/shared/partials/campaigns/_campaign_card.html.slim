@@ -1,0 +1,16 @@
+.campaign-card 
+  .ui.segment.zero-padding
+    .image-panel
+    // Image Size 400 x 400
+    = image_tag campaign.image, class: 'ui fluid image'
+    .ui.vertical.segment.content-panel
+      p.campaign-title= campaign.title.upcase
+      p.campaign-description= truncate(campaign.description, length: 100)
+      .ui.two.column.grid.spacing-top
+        .column
+          .rewards
+            - reward = reward_range(campaign)
+            span Earn 
+            span.bold= "#{reward[:lowest]} - #{reward[:highest]}MYR"
+        .column.timer
+          p= campaign.time_remaining 
