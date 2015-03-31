@@ -35,6 +35,6 @@ class UserDecorator < BaseDecorator
   def reward
     amount = model.reward_transactions.pluck(:amount)
 
-    amount.inject{ |sum, el| sum + el }
+    amount.inject{ |sum, el| sum + el } || 0
   end
 end

@@ -29,6 +29,6 @@ module UserHelper
   def total_reward_amount
     amount = current_user.reward_transactions.pluck(:amount)
 
-    amount.inject{ |sum, el| sum + el }
+    amount.inject{ |sum, el| sum + el } || 0
   end
 end
