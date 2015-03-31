@@ -1,10 +1,17 @@
+// Render partial and hide sections
 $('#campaign-partial-container').removeClass('none').html("<%= escape_javascript(render(partial: 'campaigns/show', locals: { campaign: @campaign } )) %> ");
 $('#campaigns-list-container').addClass('none');
 $('#about-us').addClass('none');
 
+// Scroll to campaign
+var options = { speed: 1000 }
+smoothScroll.animateScroll(null, '#campaign-partial-container', options);
+
+// Initiate back button function
 $('#landing-campaign-back').on('click', function(e){
   e.preventDefault();
   $('#about-us').addClass('none');
   $('#campaigns-list-container').removeClass('none').addClass('animated fadeInDown');
   $('#campaign-partial-container').addClass('none');
-})
+  smoothScroll.animateScroll(null, '#campaigns-list-container', options);
+});

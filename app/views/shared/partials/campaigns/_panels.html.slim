@@ -2,7 +2,7 @@
   .ui.stackable.four.column.grid
     - campaigns.each do |campaign|
       .column
-        = link_to campaign_path(campaign.id), remote: true
+        = link_to campaign_path(campaign.id), remote: true, id: 'scroll-to-campaign'
           .campaign-card 
             .ui.segment.zero-padding
               .image-panel
