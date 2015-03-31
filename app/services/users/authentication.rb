@@ -15,15 +15,17 @@ class Users::Authentication
 
   def register_new_user
 
-    sanitize_klass(provider)
+    sanitize_klass
 
     new_user = @klass.new(access_token, country).save
   end
 
-  def sanitize_klass(provider)
-    allowed_klasses = [Oauth::RetrieveFacebookUserInfo, Oauth::RetrieveTwitterUserInfo]
+  private
 
-    klass = "Oauth::Retrieve#{provider.capitalize}UserInfo"
+  def sanitize_klass
+    allowed_klasses = [Oauth::FacebookUser, Oauth::TwitterUser]
+
+    klass = "Oauth::#{provider.capitalize}User"
     @klass = klass.sanitize_constant(allowed_klasses)
   end
 end

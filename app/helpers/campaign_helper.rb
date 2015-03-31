@@ -1,6 +1,6 @@
 module CampaignHelper
   def number_of_shares(topic)
-    topic.num_of_shares - current_user.posts.where(topic_id: topic.id).count
+    topic.num_of_shares - current_user.posts.where(topic_id: topic.id, status: "active").count
   end
 
   def campaign_reward(campaign)

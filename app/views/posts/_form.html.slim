@@ -12,7 +12,7 @@
     p.subtitle SHARE THIS ON...
     .ui.stackable.two.column.grid
       - @topic.social_media_platform_list.each do |platform|
-        .column
-          - if user_linked_provider?(platform.downcase)
+        - if user_linked_provider?(platform.downcase)
+          .column
             p= f.submit "#{platform}", name: 'post[provider]', class: "fluid ui button #{platform.downcase}"
             

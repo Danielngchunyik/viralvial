@@ -4,7 +4,7 @@ class PostsController < ApplicationController
   before_action :require_login
   before_action :set_campaign, :set_topic
   before_action :set_post, only: [:show, :destroy]
-  before_action :initialize_post, only: [:create]
+  before_action :initialize_post, only: :create
   respond_to :html, :js
 
   def new
@@ -28,16 +28,15 @@ class PostsController < ApplicationController
   end
   
   def destroy
-    @delete_post = @post.destroy_with_social_media
-    flash[:notice] = "Deleted!"
-
-    redirect_to @campaign
-
-  rescue PublishError => e
-    logger.info "[ERROR]: #{e.inspect}"
-    flash[:error] = "Error deleting #{@delete_post.post_type}"
+    begin
+      @delete_post = @post.destroy_with_social_media
+      flash[:notice] = "#{@delete_post.post_type} Deleted!"
+    rescue PublishError => e
+      logger.info "[ERROR]: #{e.inspect}"
+      flash[:error] = "Error deleting #{@delete_post.post_type}"
+    end
     
-    redirect_to [@campaign, @topic, @post]
+    redirect_to campaign_path(@campaign)
   end
 
   private

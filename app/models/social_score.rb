@@ -26,7 +26,7 @@ class SocialScore < ActiveRecord::Base
     if auth
       access_token = AccessToken.new(auth.try(:token), auth.try(:secret))
 
-      klass = "Oauth::Retrieve#{provider.capitalize}UserInfo".constantize
+      klass = "Oauth::#{provider.capitalize}User".constantize
       klass.new(access_token, nil, user).update_followers
     else
 

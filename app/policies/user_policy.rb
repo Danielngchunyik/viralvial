@@ -5,10 +5,6 @@ class UserPolicy < ApplicationPolicy
     edit?
   end
 
-  def edit_interest?
-    update?
-  end
-
   def edit?
     update?
   end

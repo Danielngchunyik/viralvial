@@ -14,7 +14,7 @@ class OauthsController < ApplicationController
 
     # Link or Log In User Social Network Accounts
     if logged_in?
-      add_provider_to_user(provider)
+      add_provider_to_user(provider) unless @user.authentications.find_by(provider: provider)
       auth.update_logged_in_user
 
       flash[:notice] = "You have successfully logged in with your #{provider.titleize} account."

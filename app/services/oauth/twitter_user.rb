@@ -1,4 +1,4 @@
-class Oauth::RetrieveTwitterUserInfo
+class Oauth::TwitterUser
   attr_accessor :token, :secret, :user, :screen_name, :country, :new_user
 
   def initialize(access_token, country=nil, user = nil)

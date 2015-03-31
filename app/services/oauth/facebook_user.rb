@@ -1,4 +1,4 @@
-class Oauth::RetrieveFacebookUserInfo
+class Oauth::FacebookUser
   attr_accessor :access_token, :user, :country, :new_user
   
   def initialize(access_token, country = nil, user = nil)
