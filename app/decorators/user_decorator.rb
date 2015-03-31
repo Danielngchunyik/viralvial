@@ -31,4 +31,10 @@ class UserDecorator < BaseDecorator
   def score
     model.social_score.viral_score
   end
+
+  def reward
+    amount = model.reward_transactions.pluck(:amount)
+
+    amount.inject{ |sum, el| sum + el }
+  end
 end

@@ -1,13 +1,14 @@
 header.logged-in
   #navbar
     .ui.grid
-      .eight.wide.column#navbar-left-no-animation.left
+      .four.wide.column#navbar-left-no-animation.left
         = link_to root_path
           = image_tag "header/logo.png"
-      .eight.wide.column#navbar-right-no-animation
+      .twelve.wide.column#navbar-right-no-animation
         #desktop
           .right.floated.column
             .ui.horizontal.list
+              = render partial: 'layouts/user_stats'
               .item
                 p.navlink BLOG
               .item
@@ -26,6 +27,7 @@ header.logged-in
               .menu-title
                 i.chevron.down.icon
               .menu
+                = render partial: 'layouts/user_stats'
                 = render partial: 'layouts/menu_items'
                 .item
                   p.navlink BLOG
