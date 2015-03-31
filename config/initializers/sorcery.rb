@@ -104,6 +104,7 @@ Rails.application.config.sorcery.configure do |config|
   # Twitter wil not accept any requests nor redirect uri containing localhost,
   # make sure you use 0.0.0.0:3000 to access your app in development
   #
+  # Production URL : viralvial-staging.herokuapp.com
   config.twitter.key = ENV['TWITTER_KEY']
   config.twitter.secret = ENV['TWITTER_SECRET']
   config.twitter.callback_url = "http://viralvial-staging.herokuapp.com/oauth/callback?provider=twitter"
@@ -115,7 +116,7 @@ Rails.application.config.sorcery.configure do |config|
   config.facebook.scope = "public_profile, user_hometown, user_location, user_birthday, email, offline_access, publish_actions, read_stream, user_friends"
   # config.facebook.user_info_mapping = {email: "email", name: "name", gender: "gender"}
   # config.facebook.display = "popup"
-  
+
   #
   # config.github.key = ""
   # config.github.secret = ""

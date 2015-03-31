@@ -30,12 +30,13 @@ class PostsController < ApplicationController
   def destroy
     begin
       @delete_post = @post.destroy_with_social_media
-      flash[:notice] = "#{@delete_post.post_type} Deleted!"
+      flash[:notice] = "Post Deleted!"
     rescue PublishError => e
       logger.info "[ERROR]: #{e.inspect}"
-      flash[:error] = "Error deleting #{@delete_post.post_type}"
+      flash[:error] = "Error deleting post!"
     end
     
+    # check redirection
     redirect_to campaign_path(@campaign)
   end
 
