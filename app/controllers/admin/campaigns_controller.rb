@@ -58,7 +58,7 @@ class Admin::CampaignsController < AdminController
 
   def campaign_params
     params.require(:campaign).permit(:status, :image, :banner, :start_date, :end_date, :title, :invitation_list,
-                                     :description, :organizer, :category_list, :language, :private, 
+                                     :description, :organizer, :category_list, :language, :private, :reward, 
                                      topics_attributes: [ :id, :_destroy, :title, :num_of_shares, { social_media_platform_list: [] },
                                        :description, default_images_attributes: [ :topic_id, :storage, :id, :_destroy ] ])
   end
