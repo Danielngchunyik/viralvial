@@ -1,7 +1,14 @@
 class Admin::UsersController < AdminController
+  before_action :set_user, except: [:index, :new]
 
   def new
     @user = User.new
+  end
+
+  def edit
+  end
+
+  def update
   end
 
   def create
@@ -31,6 +38,10 @@ class Admin::UsersController < AdminController
   end
 
   private
+
+  def set_user
+    @user = User.find(params[:id])
+  end
 
   def user_params
     params.require(:user).permit(:email, :password, :password_confirmation)

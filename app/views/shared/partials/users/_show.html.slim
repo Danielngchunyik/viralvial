@@ -46,7 +46,7 @@ p
 
 p
   strong Marital Status:
-  = @user.marital_status.capitalize unless @user.marital_status.nil
+  = @user.marital_status.capitalize unless @user.marital_status.nil?
 p
   strong Linked Accounts:
   - @user.authentications.each do |auth|

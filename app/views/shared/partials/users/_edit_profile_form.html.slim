@@ -108,7 +108,7 @@
 
       .spacing
         = f.label "Main interest: "
-        = f.text_field :main_interest, placeholder: "What's your main interest?"
+        = f.text_field :primary_interest_list, placeholder: "What's your main interest?"
 
       .spacing
         = f.label "Other interests: "
@@ -124,12 +124,3 @@
       - @user.authentications.each do |auth|
         ul 
           li = auth.provider
-
-    - providers = ["facebook", "twitter"]
-
-    -providers.each do |provider|
-      - if current_user.has_linked_provider?(provider)
-        - if current_user.authentications.count > 1
-          p = link_to "Unlink your #{provider.capitalize} account", delete_oauth_path(provider), method: :delete
-      - else
-        p = link_to "Link your #{provider.capitalize} account", auth_at_provider_path(provider: provider)
