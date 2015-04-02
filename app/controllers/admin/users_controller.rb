@@ -1,5 +1,21 @@
 class Admin::UsersController < AdminController
 
+  def new
+    @user = User.new
+  end
+
+  def create
+    @user = User.new(user_params.merge(role: "admin"))
+
+    if @user.save
+      flash[:notice] = "New user created"
+      redirect_to admin_user_path(@user)
+    else
+      flash[:error] = "Error!"
+      render :new
+    end
+  end
+
   def index
     @users = User.admin_order(params[:sort], params[:direction])
   end
@@ -14,31 +30,9 @@ class Admin::UsersController < AdminController
     end
   end
 
-  def change_password_and_email
-    account = params[:user]
-
-    if account[:password] == account[:password_confirmation]
-      if update_user_email_and_password(account)
-
-        flash[:notice] = "User details updated"
-        redirect_to successful_redirection_path
-      else
-        flash[:error] = "Wrong current password"
-        render action: 'edit'
-      end
-    else
-      flash[:error] = "Passwords do not match"
-      render action: 'edit'
-    end
-  end
-
   private
 
-  def successful_creation_message
-    "User created"
-  end
-
-  def successful_redirection_path
-    [:admin, @user]
+  def user_params
+    params.require(:user).permit(:email, :password, :password_confirmation)
   end
 end

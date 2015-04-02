@@ -5,6 +5,8 @@
 
   .row
     .eight.wide.column
+      p.center Featured Campaign
+
       table.ui.celled.striped.table
         thead
           tr
@@ -26,33 +28,21 @@
               td
                 p= "#{campaign.title}"
               td.collapsing
-                = form_for [:admin, campaign] do |f|
-                  = f.hidden_field :featured, value: false
-                  = f.submit "Unfeature"
+                = link_to "Delete", [:admin, campaign.featured], method: :delete, data: { confirm: "Unfeature Campaign?"}
         tfoot.full-width
           tr
             th colspan="4"
               = form_for [:admin, @new_featured_campaign] do |f|
                 = f.select :featurable_id, options_from_collection_for_select(@campaigns, "id", "refcode"), {}, { class: "ui fluid search dropdown featured-field spacing-top" }
-                = f.hidden_field :featurable_type "Campaign"
-                p= f.submit "Feature Campaign"
+                = f.hidden_field :featurable_type, value: "Campaign"
+                p.center= f.submit "Feature Campaign"
 
+    .eight.wide.column
+    
+      .spacing
+        p = link_to 'New user', new_admin_user_path
+        p = link_to 'Show users', admin_users_path
 
-
-
-
-
-
-
-
-    .spacing
-      p = link_to 'New user', new_admin_user_path
-      p = link_to 'Show users', admin_users_path
-
-    .spacing
-      p = link_to 'Show campaigns', admin_campaigns_path
-      p = link_to 'New campaign', new_admin_campaign_path
-
-    .spacing
-      p = link_to 'Show announcements', admin_announcements_path
-      p = link_to 'New announcement', new_admin_announcement_path
+      .spacing
+        p = link_to 'New campaign', new_admin_campaign_path
+        p = link_to 'Show campaigns', admin_campaigns_path

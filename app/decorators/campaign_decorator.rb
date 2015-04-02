@@ -40,6 +40,10 @@ class CampaignDecorator < BaseDecorator
     model.refcode || "None"
   end
 
+  def featured?
+    model.featured.present?
+  end
+
   private
 
   def convert_date(date)

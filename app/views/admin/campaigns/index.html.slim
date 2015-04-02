@@ -1,16 +1,36 @@
-h1 Campaign index
+#admin-campaigns-index.ui.grid
+  .row.center
+    .fourteen.wide.column
+      h1 Campaign index
+      p= link_to "Back to admin panel", admin_dashboard_path
 
-= link_to 'New campaign', new_admin_campaign_path
+      p= link_to 'New campaign', new_admin_campaign_path
 
-.spacing
-  - @campaigns.each do |campaign|
-
-    table
-      tr
-        td = link_to campaign.title, [:admin, campaign]
-        td = campaign.description
-        td = campaign.start_date
-        td = campaign.end_date
-        td = link_to 'Edit', edit_admin_campaign_path(campaign)
-        td = link_to [:admin, campaign], method: :delete, data: { confirm: 'delete?'} do
-          | Delete
+      table.ui.celled.stripped.table
+        thead
+          tr
+            th
+              p Campaign Title
+            th
+              p Campaign Description
+            th
+              p Start Date
+            th
+              p End Date
+            th colspan="2"
+              p Admin Actions
+        tbody
+          - @campaigns.each do |campaign|
+            tr
+              td 
+                p= link_to campaign.title, [:admin, campaign]
+              td 
+                p= campaign.description
+              td 
+                p= campaign.start_date
+              td 
+                p= campaign.end_date
+              td 
+                p= link_to 'Edit', edit_admin_campaign_path(campaign)
+              td 
+                p= link_to 'Delete', [:admin, campaign], method: :delete, data: { confirm: 'delete?'}

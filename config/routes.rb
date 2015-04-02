@@ -18,13 +18,9 @@ Rails.application.routes.draw do
   post 'contact', to: 'contacts#create'
   
   #Users
-  get 'login', to: 'user_sessions#new', as: :login
+  get 'warpgate', to: 'user_sessions#new', as: :warpgate
   post 'logout', to: 'user_sessions#destroy', as: :logout
-  resources :users do
-    member do
-      patch 'change_password_and_email'
-    end
-  end
+  resources :users
   resources :user_sessions, except: [:update, :edit]
   resources :password_resets
 
@@ -40,7 +36,7 @@ Rails.application.routes.draw do
   #Admin Panel
   namespace :admin do
     get 'dashboard', to: 'dashboard#index', as: :dashboard
-    resources :featured
+    resources :featureds
     resources :campaigns do
       resources :topics
     end

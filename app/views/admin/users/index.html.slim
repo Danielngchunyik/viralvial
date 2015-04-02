@@ -1,26 +1,36 @@
-h1 Listing users
+.users.index.ui.grid.center
+  .fourteen.wide.column
+    h1 Listing users
+    = link_to "Back to control panel", admin_dashboard_path
+      
+    table.ui.celled.striped.table
+      thead
+        tr
+          th 
+            p= link_to 'Email', url_for(sort: 'email', direction: render_direction)
+          th 
+            p= link_to 'Followers', url_for(sort: 'followers', direction: render_direction)
+          th 
+            p= link_to 'Viral Score', url_for(sort: 'viral', direction: render_direction)
+          th colspan="3"
+            p Admin Actions
 
-table
-  thead
-    tr
-      th = link_to 'Email', url_for(sort: 'email', direction: render_direction)
-      th = link_to 'Followers', url_for(sort: 'followers', direction: render_direction)
-      th = link_to 'Klout score', url_for(sort: 'klout', direction: render_direction)
-      th = link_to 'Localization', url_for(sort: 'localization', direction: render_direction)
-      th = link_to 'Reach', url_for(sort: 'reach', direction: render_direction)
-      th = link_to 'SX index', url_for(sort: 'sx', direction: render_direction)
-      th = link_to 'Influence score', url_for(sort: 'influence', direction: render_direction)
-      th = link_to 'Karma', url_for(sort: 'karma', direction: render_direction)
-      th = link_to 'Socialite score', url_for(sort: 'socialite', direction: render_direction)
+      tbody
+        - @users.each do |user|
+          tr
+            td
+              p= user.email
+            td 
+              p= user.social_score.total_followers
+            td 
+              p= user.social_score.viral_score
+            td 
+              p= link_to 'Show', [:admin, user]
+            td 
+              p= link_to 'Edit', edit_admin_user_path(user)
+            td 
+              p= link_to 'Destroy', [:admin, user], data: {:confirm => 'Are you sure?'}, :method => :delete
 
-  tbody
-    - @users.each do |user|
-      tr
-        td = user.email
-        td = link_to 'Show', [:admin, user]
-        td = link_to 'Edit', edit_admin_user_path(user)
-        td = link_to 'Destroy', [:admin, user], data: {:confirm => 'Are you sure?'}, :method => :delete
+    br
 
-br
-
-= link_to 'New User', new_admin_user_path
+    = link_to 'New User', new_admin_user_path

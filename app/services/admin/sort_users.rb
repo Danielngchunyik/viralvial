@@ -9,13 +9,15 @@ class Admin::SortUsers
   end
 
   def scope
-    User.order("#{sorting_column_name} #{sorting_direction}")
+    User.includes(:social_score).where(role: "user").order("#{sorting_column_name} #{sorting_direction}")
   end
 
   def sorting_column_name
     {
       'email' => 'email',
       'id' => 'id',
+      'followers' => 'social_scores.total_followers',
+      'viral' => 'social_scores.viral_score'
     }.fetch(attr, DEFAULT_ATTR)
   end
 
