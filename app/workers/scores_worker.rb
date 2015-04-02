@@ -4,12 +4,12 @@ class ScoresWorker
   def perform
 
   follower_list = SocialScore.pluck(:total_followers)
-  average_score_list = SocialScore.pluck(:average_post_scores)
+  average_score_list = SocialScore.pluck(:average_post_score)
 
     ActiveRecord::Base.transaction do
       SocialScore.find_each do |social_score|
         follower_percentile_score = calculate_percentile_score(follower_list, social_score.total_followers)
-        post_performance_score = calculate_percentile_score(average_score_list, social_score.average_post_scores)
+        post_performance_score = calculate_percentile_score(average_score_list, social_score.average_post_score)
 
         social_score.viral_score = follower_percentile_score + post_performance_score
         
