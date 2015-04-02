@@ -29,7 +29,7 @@ class PostsController < ApplicationController
   
   def destroy
     begin
-      @delete_post = @post.destroy_with_social_media
+      @post.destroy_with_social_media
       flash[:notice] = "Post Deleted!"
     rescue PublishError => e
       logger.info "[ERROR]: #{e.inspect}"

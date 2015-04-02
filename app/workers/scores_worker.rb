@@ -24,20 +24,21 @@ class ScoresWorker
 
   def calculate_percentile_score(list_of_values , compared_value)
     less, same = split_values(list_of_values, compared_value)
+    weightage = 45
 
-    ((less.length + (0.5 * same.length))/list_of_values.length * 45).round(2)
+    ((less + (0.5 * same))/list_of_values.length * weightage).round(2)
   end
 
   def split_values(list_of_values, compared_value)
 
-    less = []
-    same = []
+    less = 0
+    same = 0
 
     list_of_values.each do |value|
       if value < compared_value
-        less << value
+        less += 1
       elsif value == compared_value
-        same << value
+        same += 1
       end
     end
 

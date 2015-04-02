@@ -1,7 +1,7 @@
 class SocialScore < ActiveRecord::Base
   belongs_to :user
   after_save :tally_total_followers, if: :followers_changed?
-  after_save :update_social_scores, if: :followers_changed?
+  after_save :update_social_scores, if: :score_or_follower_changed?
   
   def update_followers
     ["facebook", "twitter"].each do |provider|  
@@ -36,9 +36,17 @@ class SocialScore < ActiveRecord::Base
     end
   end
 
+  def score_or_follower_changed?
+    followers_changed? || average_post_score_changed?
+  end
+
   def followers_changed?
     new_total_count = facebook_followers + twitter_followers
 
     new_total_count != total_followers
+  end
+
+  def average_post_score_changed?
+    previous_changes[:average_post_score].present?
   end
 end

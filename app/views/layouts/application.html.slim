@@ -8,19 +8,19 @@ html
   = csrf_meta_tags
   meta content="width=device-width, initial-scale=1.0" name="viewport"
 
-  body class="#{controller.controller_name} #{controller.action_name} #{'admin' if admin?}"
+  body class="#{controller.controller_name} #{controller.action_name}"
 
-    -if non_admin_user_logged_in?
+    - if current_user
       = render partial: 'shared/partials/sidebar/menu'
     
     #wrapper.pusher
       = render partial: "layouts/flash"
-      = render partial: "layouts/header"
+      = render partial: "layouts/partials_user/header"
 
       div (data-pjax-container)
         = yield
 
-      = render "layouts/footer"
+      = render "layouts/partials_user/footer"
 
       // Render User Interest Modal
       - if user_has_updated_interest?

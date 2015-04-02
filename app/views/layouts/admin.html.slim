@@ -1,0 +1,18 @@
+doctype html
+html
+ head
+  base(href = "/")
+  title Viral Vial
+  = stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track' => true
+  = javascript_include_tag 'application', 'data-turbolinks-track' => true
+  = csrf_meta_tags
+  meta content="width=device-width, initial-scale=1.0" name="viewport"
+
+  body class="admin #{controller.controller_name} #{controller.action_name}"
+
+    #wrapper.pusher
+      = render partial: "layouts/flash"
+
+      div (data-pjax-container)
+        = yield
+

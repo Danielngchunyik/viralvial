@@ -10,6 +10,7 @@ class Campaign < ActiveRecord::Base
   has_many :topics
   has_many :posts
   has_many :reward_transactions
+  has_one :featured, as: :featurable
   validates :title, :description, presence: true
   validate :at_least_one_topic_required
   validates_size_of :image, maximum: 5.megabytes, messaage: 'should be less than 5MB'

@@ -8,7 +8,7 @@ header.logged-in
         #desktop
           .right.floated.column
             .ui.horizontal.list
-              = render partial: 'layouts/user_stats'
+              = render partial: 'layouts/partials_user/user_stats'
               .item
                 p.navlink BLOG
               .item
@@ -19,7 +19,7 @@ header.logged-in
                       span#header-user-name= "#{current_user.name}"
                       i.margin-left-10.chevron.down.icon
                   .menu
-                    = render partial: 'layouts/menu_items'
+                    = render partial: 'layouts/partials_user/menu_items'
 
         #mobile
           .right.floated.column
@@ -27,7 +27,7 @@ header.logged-in
               .menu-title
                 i.chevron.down.icon
               .menu
-                = render partial: 'layouts/user_stats'
-                = render partial: 'layouts/menu_items'
+                = render partial: 'layouts/partials_user/user_stats'
+                = render partial: 'layouts/partials_user/menu_items'
                 .item
                   p.navlink BLOG

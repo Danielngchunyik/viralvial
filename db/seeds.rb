@@ -12,7 +12,6 @@ campaign_params = { campaign:{
 		start_date: Date.today,
 		end_date: Date.today + 30.days,
 		topics_attributes:[{ title: "Lorem Topic Title", description: "Lorem Ipsum Desc", num_of_shares: 2, social_media_platform_list: 'Facebook, Twitter' }],
-    featured: true,
     reward: 50
 	}
 }

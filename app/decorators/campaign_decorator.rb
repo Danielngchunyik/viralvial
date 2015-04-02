@@ -36,6 +36,10 @@ class CampaignDecorator < BaseDecorator
     model.topics
   end
 
+  def refcode
+    model.refcode || "None"
+  end
+
   private
 
   def convert_date(date)

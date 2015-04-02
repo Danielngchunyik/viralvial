@@ -1,7 +1,10 @@
 Rails.application.routes.draw do
 
-  #Home
-  root 'home#index'
+  #Root
+  root 'home#traffic_control'
+
+  #Landing
+  get "landing", to: "home#landing", as: :landing
 
   #Campaigns
   resources :campaigns do
@@ -19,7 +22,6 @@ Rails.application.routes.draw do
   post 'logout', to: 'user_sessions#destroy', as: :logout
   resources :users do
     member do
-      get 'edit_interest'
       patch 'change_password_and_email'
     end
   end
@@ -38,6 +40,7 @@ Rails.application.routes.draw do
   #Admin Panel
   namespace :admin do
     get 'dashboard', to: 'dashboard#index', as: :dashboard
+    resources :featured
     resources :campaigns do
       resources :topics
     end

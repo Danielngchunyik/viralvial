@@ -1,13 +1,58 @@
-h1 Admin Dashboard
+#admin-dashboard.ui.grid
+  .row.center
+    .sixteen.wide.column
+      h1 Admin Dashboard
 
-.spacing
-  p = link_to 'New user', new_admin_user_path
-  p = link_to 'Show users', admin_users_path
+  .row
+    .eight.wide.column
+      table.ui.celled.striped.table
+        thead
+          tr
+            th
+              p Index
+            th
+              p Reference
+            th
+              p Title
+            th
+              p Actions
+        tbody
+          - @featured_campaigns.each_with_index do |campaign, i|
+            tr
+              td.collapsing
+                p= i + 1
+              td.collapsing
+                p= "#{campaign.refcode}"
+              td
+                p= "#{campaign.title}"
+              td.collapsing
+                = form_for [:admin, campaign] do |f|
+                  = f.hidden_field :featured, value: false
+                  = f.submit "Unfeature"
+        tfoot.full-width
+          tr
+            th colspan="4"
+              = form_for [:admin, @new_featured_campaign] do |f|
+                = f.select :featurable_id, options_from_collection_for_select(@campaigns, "id", "refcode"), {}, { class: "ui fluid search dropdown featured-field spacing-top" }
+                = f.hidden_field :featurable_type "Campaign"
+                p= f.submit "Feature Campaign"
 
-.spacing
-  p = link_to 'Show campaigns', admin_campaigns_path
-  p = link_to 'New campaign', new_admin_campaign_path
 
-.spacing
-  p = link_to 'Show announcements', admin_announcements_path
-  p = link_to 'New announcement', new_admin_announcement_path
+
+
+
+
+
+
+
+    .spacing
+      p = link_to 'New user', new_admin_user_path
+      p = link_to 'Show users', admin_users_path
+
+    .spacing
+      p = link_to 'Show campaigns', admin_campaigns_path
+      p = link_to 'New campaign', new_admin_campaign_path
+
+    .spacing
+      p = link_to 'Show announcements', admin_announcements_path
+      p = link_to 'New announcement', new_admin_announcement_path

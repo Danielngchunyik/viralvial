@@ -1,6 +1,6 @@
 var runLandingPageScript = function() {
 
-  if ($("body").hasClass("home index")) {
+  if ($("body").hasClass("home landing")) {
 
     // Check Animation Trigger
     var triggered = false;

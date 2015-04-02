@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150331052239) do
+ActiveRecord::Schema.define(version: 20150402045216) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -42,8 +42,8 @@ ActiveRecord::Schema.define(version: 20150331052239) do
     t.string   "image"
     t.string   "organizer"
     t.string   "banner"
-    t.boolean  "featured"
     t.integer  "reward",         default: 0
+    t.string   "refcode"
   end
 
   create_table "default_images", force: :cascade do |t|
@@ -52,6 +52,15 @@ ActiveRecord::Schema.define(version: 20150331052239) do
     t.datetime "created_at"
     t.datetime "updated_at"
   end
+
+  create_table "featureds", force: :cascade do |t|
+    t.integer  "featurable_id"
+    t.string   "featurable_type"
+    t.datetime "created_at",      null: false
+    t.datetime "updated_at",      null: false
+  end
+
+  add_index "featureds", ["featurable_type", "featurable_id"], name: "index_featureds_on_featurable_type_and_featurable_id", using: :btree
 
   create_table "options", force: :cascade do |t|
     t.datetime "created_at", null: false
@@ -82,14 +91,14 @@ ActiveRecord::Schema.define(version: 20150331052239) do
   end
 
   create_table "social_scores", force: :cascade do |t|
-    t.integer  "facebook_followers",  default: 0
-    t.integer  "twitter_followers",   default: 0
-    t.integer  "total_followers",     default: 0
+    t.integer  "facebook_followers", default: 0
+    t.integer  "twitter_followers",  default: 0
+    t.integer  "total_followers",    default: 0
     t.integer  "user_id"
-    t.integer  "viral_score",         default: 0
-    t.datetime "created_at",                      null: false
-    t.datetime "updated_at",                      null: false
-    t.integer  "average_post_scores", default: 0
+    t.integer  "viral_score",        default: 0
+    t.datetime "created_at",                     null: false
+    t.datetime "updated_at",                     null: false
+    t.integer  "average_post_score", default: 0
   end
 
   create_table "taggings", force: :cascade do |t|

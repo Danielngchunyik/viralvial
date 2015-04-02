@@ -1,5 +1,6 @@
 class AdminController < ApplicationController
   before_action :check_authorization, :require_login
+  layout "admin"
 
   def check_authorization
     if current_user && !current_user.admin?

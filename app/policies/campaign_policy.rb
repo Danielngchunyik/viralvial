@@ -14,7 +14,7 @@ class CampaignPolicy < ApplicationPolicy
 
   def show?
     scope.where(id: record.id).exists?
-    (record.featured? && user.nil?) || create?
+    (record.featured.present? && user.nil?) || create?
   end
 
   private
