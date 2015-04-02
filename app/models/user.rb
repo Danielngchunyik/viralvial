@@ -16,7 +16,7 @@ class User < ActiveRecord::Base
   validates :password, length: { minimum: 8 }, if: :password
   validates :password, confirmation: true, if: :password
   validates :password_confirmation, presence: true, if: :password
-  validates :email, uniqueness: true, format: { with: /\A([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})\z/i }
+  validates :email, format: { with: /\A([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})\z/i }
   validate :correct_user_birthday
   validates_size_of :image, maximum: 5.megabytes, messaage: 'should be less than 5MB'
 

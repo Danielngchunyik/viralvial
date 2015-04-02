@@ -13,7 +13,7 @@ class Oauth::FacebookUser
     set_user_params
     set_user_location
 
-    @new_user = User.create(name: @fb_user.name, email: @fb_user.email,
+    @new_user = User.create!(name: @fb_user.name, email: @fb_user.email,
                         birthday: @fb_user.birthday, location: @user_location[0],
                         country: IsoCountryCodes.search_by_name(country)[0].alpha2,
                         remote_image_url: "#{@fb_user.picture}?redirect=1&height=300&type=normal&width=300")
