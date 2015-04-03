@@ -11,6 +11,8 @@ class Users::Authentication
   def update_logged_in_user
     user.set_access_token(access_token, provider)
     user.social_score.update_followers
+
+    SocialScore::CalculatePercentile
   end
 
   def register_new_user

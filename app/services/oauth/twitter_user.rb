@@ -21,6 +21,8 @@ class Oauth::TwitterUser
     # Build user associations
     create_auth_and_followers
     
+    SocialScore::CalculatePercentile.new.perform
+    
     @new_user
   end
 
