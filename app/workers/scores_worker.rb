@@ -3,8 +3,8 @@ class ScoresWorker
 
   def perform
 
-  follower_list = SocialScore.pluck(:total_followers)
-  average_score_list = SocialScore.pluck(:average_post_score)
+    follower_list = SocialScore.pluck(:total_followers)
+    average_score_list = SocialScore.pluck(:average_post_score)
 
     ActiveRecord::Base.transaction do
       SocialScore.find_each do |social_score|

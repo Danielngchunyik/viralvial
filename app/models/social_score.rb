@@ -1,25 +1,25 @@
 class SocialScore < ActiveRecord::Base
   belongs_to :user
   after_save :tally_total_followers, if: :followers_changed?
-  after_save :update_social_scores
-  
+
   def update_followers
     ["facebook", "twitter"].each do |provider|  
       fetch_and_save_new_follower_count(provider)
     end
   end
 
-  private
-
-  def update_social_scores
-    # Perform viral scores updates
+  def update_viral_score
     ScoresWorker.perform_async
   end
 
+  private
+
   def tally_total_followers
     update(total_followers: facebook_followers + twitter_followers)
+    update_viral_score
   end
 
+  # Pulls followers from social media when user links account
   def fetch_and_save_new_follower_count(provider)
     auth = user.authentications.find_by(provider: provider)
     
