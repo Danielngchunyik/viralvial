@@ -26,7 +26,7 @@ class SocialScore::PostPerformance
 
   def tally_average_score
     scores = user.posts.where(status: "active").order("created_at DESC").limit(8).pluck(:score)
-    average_score = scores.sum / 8
+    average_score = scores.sum / scores.length
     user.social_score.update(average_post_score: average_score)
   end
 end
