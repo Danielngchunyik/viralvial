@@ -15,8 +15,6 @@ class SocialScore::PostPerformance
 
       create_reward_transaction
     end
-
-    user.social_score.update_viral_score
   end
 
   private

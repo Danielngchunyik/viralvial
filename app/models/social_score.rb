@@ -8,15 +8,10 @@ class SocialScore < ActiveRecord::Base
     end
   end
 
-  def update_viral_score
-    ScoresWorker.perform_async
-  end
-
   private
 
   def tally_total_followers
     update(total_followers: facebook_followers + twitter_followers)
-    update_viral_score
   end
 
   # Pulls followers from social media when user links account

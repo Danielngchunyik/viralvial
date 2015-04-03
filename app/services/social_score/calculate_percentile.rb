@@ -1,6 +1,5 @@
-class ScoresWorker
-  include Sidekiq::Worker
-
+class SocialScore::CalculatePercentile
+  
   def perform
 
     follower_list = SocialScore.pluck(:total_followers)

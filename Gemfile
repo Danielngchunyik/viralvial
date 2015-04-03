@@ -55,8 +55,8 @@ gem 'pundit'
 gem 'unicorn-rails'
 gem 'pg'
 
-# background worker
-gem 'sidekiq'
+# scheduler
+gem 'whenever'
 
 # social media API wrappers
 gem 'fb_graph'
