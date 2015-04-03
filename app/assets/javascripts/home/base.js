@@ -57,7 +57,7 @@ var runLandingPageScript = function() {
       });
 
       //Contact Form Animations when scrolled into view
-      if (isScrolledIntoView('#contact-us') && triggered == false) {
+      if (isScrolledIntoView('#contact-us') && triggered == false && screen.width > 767) {
 
         setTimeout( function() {
           runAnimations('#contact-us-title', 'hide', 'fadeInLeft');

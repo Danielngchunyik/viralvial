@@ -3,3 +3,8 @@ $('#image-selection-container').html("<%= escape_javascript( render(partial: 'ca
 
 // Form Image Selection
 initImageSelection();
+
+// Select last uploaded image if available
+if ($('.selectable-image').size() > 0) {
+  $('.selectable-image').last().click();
+};
