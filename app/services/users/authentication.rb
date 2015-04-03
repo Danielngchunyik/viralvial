@@ -12,7 +12,7 @@ class Users::Authentication
     user.set_access_token(access_token, provider)
     user.social_score.update_followers
 
-    SocialScore::CalculatePercentile
+    SocialScore::CalculatePercentile.new.perform
   end
 
   def register_new_user
