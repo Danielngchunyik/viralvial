@@ -1,6 +1,6 @@
 = form_for [campaign, topic, post], html: { class: 'ui form' } do |f|
 
-  .selectable-images.hide
+  .selectable-images
     = f.radio_button :image, "nothing", id: "default-image-nothing-radio", class: 'default-image-radio'
     - images.each_with_index do |image, i|
       = f.radio_button :image, image.storage.url, checked: true, id: "default-image-#{@topic.id}-#{i}-radio", class: 'default-image-radio'
