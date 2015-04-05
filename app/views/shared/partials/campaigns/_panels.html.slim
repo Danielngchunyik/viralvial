@@ -3,7 +3,7 @@
     - campaigns.in_groups_of(4, false) do |row|
       .row
         - row.each do |campaign|
-          .column.ui.segment.campaign-card
+          .column
             - if current_user
               = link_to campaign_path(campaign.id)
                 = render partial: 'shared/partials/campaigns/campaign_card', locals: { campaign: campaign }
