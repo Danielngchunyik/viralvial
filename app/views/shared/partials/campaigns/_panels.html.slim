@@ -1,11 +1,13 @@
 #campaigns-list  
   .ui.doubling.stackable.four.column.grid
-    - campaigns.each do |campaign|
-      .ui.segment.column.margin-5.zero-padding
-        - if current_user
-          = link_to campaign_path(campaign.id)
-            = render partial: 'shared/partials/campaigns/campaign_card', locals: { campaign: campaign }
-        - else
-          = link_to campaign_path(campaign.id), remote: true, id: 'scroll-to-campaign'
-            = render partial: 'shared/partials/campaigns/campaign_card', locals: { campaign: campaign }
-        
+    - campaigns.in_groups_of(4, false) do |row|
+      .row
+        - row.each do |campaign|
+          .ui.segment.column
+            - if current_user
+              = link_to campaign_path(campaign.id)
+                = render partial: 'shared/partials/campaigns/campaign_card', locals: { campaign: campaign }
+            - else
+              = link_to campaign_path(campaign.id), remote: true, id: 'scroll-to-campaign'
+                = render partial: 'shared/partials/campaigns/campaign_card', locals: { campaign: campaign }
+            
