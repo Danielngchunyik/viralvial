@@ -1,8 +1,8 @@
-var initPreviewImage = function() {
+var initPreviewImage = function(previewer, uploader) {
 
-  var preview = $('.upload-previewer')
+  var preview = $(previewer)
 
-  $(".uploader").change(function(event) {
+  $(uploader).change(function(event) {
     var file, input, reader;
 
     input = $(event.currentTarget);
@@ -18,5 +18,10 @@ var initPreviewImage = function() {
   });
 }
 
-$(document).ready(initPreviewImage);
-$(document).ajaxComplete(initPreviewImage);
+$(document).ready(function() {
+  initPreviewImage('.upload-previewer', '.uploader');
+  initPreviewImage('.upload-previewer-1', '.uploader-1');
+  initPreviewImage('.upload-previewer-2', '.uploader-2');
+});
+
+$(document).ajaxComplete(initPreviewImage('.upload-previewer', '.uploader'));

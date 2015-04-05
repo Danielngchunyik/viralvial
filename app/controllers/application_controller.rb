@@ -18,7 +18,7 @@ class ApplicationController < ActionController::Base
     
     if current_user.try(:interest_not_selected?)
       @interest_user = UserDecorator.new(current_user)
-      @options = Option.first.interest_option_list
+      @options = Option.first.category_list
     end
   end
 

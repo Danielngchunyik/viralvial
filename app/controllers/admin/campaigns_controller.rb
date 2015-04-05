@@ -8,6 +8,7 @@ class Admin::CampaignsController < AdminController
 
   def new
     @campaign = Campaign.new
+    @options = Option.first.category_list
   end
 
   def create
@@ -49,7 +50,7 @@ class Admin::CampaignsController < AdminController
   private
 
   def set_platform_options
-    @options = Option.first.social_media_platform_option_list
+    @options = Option.first.social_media_list
   end
 
   def set_campaign
@@ -58,8 +59,8 @@ class Admin::CampaignsController < AdminController
 
   def campaign_params
     params.require(:campaign).permit(:status, :image, :banner, :start_date, :end_date, :title, :invitation_list,
-                                     :description, :organizer, :category_list, :language, :private, :reward, 
-                                     topics_attributes: [ :id, :_destroy, :title, :num_of_shares, { social_media_platform_list: [] },
+                                     :description, :organizer, :category_list, :language, :private, :reward, :refcode,
+                                     topics_attributes: [ :id, :_destroy, :title, :num_of_shares, { social_media_list: [] },
                                        :description, default_images_attributes: [ :topic_id, :storage, :id, :_destroy ] ])
   end
 end

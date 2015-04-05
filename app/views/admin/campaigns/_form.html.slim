@@ -1,4 +1,4 @@
-.form
+.ui.form#admin-campaign-form
   = form_for [:admin, campaign] do |f|
     - if f.object.errors.any?
       .alert.alert-danger
@@ -7,55 +7,63 @@
           - f.object.errors.full_messages.each do |msg|
             li= msg
 
-    .spacing
-      = f.label "Title:"
-      = f.text_field :title, placeholder: "Enter campaign title"
-
-    .spacing
-      = f.label "Reward"
-      = f.number_field :reward, placeholder: "Enter reward here"
+    .two.fields
+      .field
+        = f.label "Title:"
+        = f.text_field :title, placeholder: "Enter campaign title"
+      .field
+        = f.label "Organizer: "
+        = f.text_field :organizer, placeholder: "Enter the campaign organizer"
       
-    .spacing
+    .two.fields
+      .field
+        = f.label "Referral Code"
+        = f.text_field :refcode, placeholder: "Enter campaign referral code"
+
+      .field
+        = f.label "Reward"
+        = f.number_field :reward, placeholder: "Enter reward here"
+        
+    .field
       p= f.label "Description:"
       = f.text_area :description, cols: 100, rows: 10, placeholder: "Enter campaign description"
 
-    .spacing
-      = f.label "Organizer: "
-      = f.text_field :organizer, placeholder: "Enter the campaign organizer"
 
-    .spacing
+    .field.left
       p= f.label "Thumbnail Image:"
-      = f.file_field :image
+      = image_tag "shared/default.png", class: 'ui medium centered image upload-previewer-1'
+      = f.file_field :image, class: 'uploader-1'
       = f.hidden_field :image_cache
 
-    .spacing
+    .field.left
       p= f.label "Banner Image:"
-      = f.file_field :banner
+      = image_tag "shared/default.png", class: 'ui medium centered image upload-previewer-2'
+      = f.file_field :banner, class: 'uploader-2'
       = f.hidden_field :banner_cache
 
-    .spacing
+    .three.fields
       = f.label "Start date:"
-      = f.date_select :start_date
+      = f.date_select :start_date, order: [:day, :month, :year], with_css_classes: true
 
-    .spacing
+    .three.fields
       = f.label "End date:"
-      = f.date_select :end_date
+      = f.date_select :end_date, order: [:day, :month, :year], with_css_classes: true
 
-    .spacing
-      = f.label :category_list, "Category tags (separated by commas) "
-      = f.text_field :category_list, size: 50
+    .field
+      = f.label "Category"
+      = f.select :category_list, @options.map { |interest| [interest.titleize, interest] }, {}, { class: "ui fluid search dropdown interest-field spacing-top" }
 
-    .spacing
+    .field
       = f.fields_for :topics do |builder|
         = render partial: 'topic_fields', locals: { f: builder }
       = link_to_add_fields "Add Topic", f, :topics
 
-    .spacing
+    .field
       h1 
         b
           u Restrictions
 
-    .spacing
+    .field
       p Campaign privacy:
 
       span Public
@@ -64,9 +72,10 @@
       span Private
       = f.radio_button :private, true
 
-    .spacing#campaign_invite_list
+    .field#campaign_invite_list
       = f.label :invitation_list, "Invite users (separated by commas) "
       = f.text_field :invitation_list, size: 50, id: "campaign_invitation_text_field"
 
-    .spacing
+    .field
       = f.submit "Submit"
+      

@@ -1,34 +1,89 @@
-h2 Campaign
+#admin-campaign-show.ui.grid
+  .row.center
+    .ten.wide.column
+      h2 Campaign
+      p= link_to "Back to admin dashboard", admin_dashboard_path
+      p= link_to "Back to campaigns", admin_campaigns_path
 
-p= "Title: #{@campaign.title}"
+      table.ui.celled.stripped.table
+        thead
+          tr
+            th
+              p Campaign
+            th
+              p Details
+        tbody
+          tr
+            td
+              p Title
+            td
+              p= @campaign.title
+          tr
+            td
+              p Description
+            td
+              p= @campaign.description
+          tr
+            td
+              p Reward
+            td
+              p= @campaign.reward
+          tr
+            td
+              p Start Date
+            td
+              p= @campaign.start_date
+          tr
+            td
+              p End Date
+            td
+              p= @campaign.end_date
+          tr
+            td
+              p Category
+            td
+              p= @campaign.category_list
+          tr
+            td
+              p Thumbnail Image
+            td
+              p= image_tag @campaign.image
+          tr
+            td
+              p Banner Image
+            td
+              p= image_tag @campaign.banner.display
+          tr
+            td
+              p Social Networks
+            td
+              - @campaign.topics.first.social_media_list.each do |provider|
+                p= provider
+          tr
+            td
+              p Topic Description
+            td
+              p= @campaign.topics.first.description
+          tr
+            td
+              p Number of shares required
+            td
+              p= @campaign.topics.first.num_of_shares
+          tr
+            td
+              p Topic Images
+            td
+              - @campaign.topics.first.default_images.each do |image|
+                p= image_tag image.storage.small.url
 
-p= "Reward: #{@campaign.reward}"
-
-p= "Description: #{@campaign.description}"
-
-p= "Starting date: #{@campaign.start_date}"
-
-p= "Ending date: #{@campaign.end_date}"
-
-p= "Categories: #{@campaign.category_list}"
-
-- if @campaign.topics.present?
- - @campaign.topics.each do |topic|
-  .spacing
-  p= "Topic media platform: #{topic.social_media_platform_list}"
-  p=
-  p= "Topic description: #{topic.description}"
-  p= "Topic posts required: #{topic.num_of_shares}"
-
-  -if !admin?
-    p = link_to "Share this!", new_campaign_topic_post_path(@campaign, topic)
-
-h3
-  b
-    u Restrictions
-
-p = "Private campaign: #{@campaign.private}"
-
-p = "Categories: #{@campaign.invitation_list}"
-
-p = link_to 'Edit', edit_admin_campaign_path(@campaign)
+          tr
+            td
+              p Private?
+            td
+              p= @campaign.private
+          tr
+            td
+              p Invited Users
+            td
+              - @campaign.invitation_list.each do |user|
+                p User

@@ -3,5 +3,6 @@ class Admin::DashboardController < AdminController
     @campaigns = CampaignDecorator.wrap(Campaign.all)
     @featured_campaigns = FeaturedCampaignDecorator.wrap(Featured.where(featurable_type: "Campaign").limit(12))
     @new_featured_campaign = Featured.new
+    @options = Option.first
   end
 end

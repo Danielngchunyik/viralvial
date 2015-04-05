@@ -11,7 +11,7 @@ class UserSessionsController < ApplicationController
       if @user.admin?
         redirect_to admin_dashboard_path
       else 
-        redirect_back_or_to @user
+        redirect_back_or_to root_path
       end
     else
       flash[:error] = 'Login failed'

@@ -10,6 +10,8 @@
         thead
           tr
             th
+              p Refcode
+            th
               p Campaign Title
             th
               p Campaign Description
@@ -22,6 +24,8 @@
         tbody
           - @campaigns.each do |campaign|
             tr
+              td
+                p= campaign.refcode
               td 
                 p= link_to campaign.title, [:admin, campaign]
               td 

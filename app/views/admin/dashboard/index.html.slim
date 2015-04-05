@@ -3,46 +3,53 @@
     .sixteen.wide.column
       h1 Admin Dashboard
 
-  .row
-    .eight.wide.column
-      p.center Featured Campaign
-
-      table.ui.celled.striped.table
-        thead
-          tr
-            th
-              p Index
-            th
-              p Reference
-            th
-              p Title
-            th
-              p Actions
-        tbody
-          - @featured_campaigns.each_with_index do |campaign, i|
-            tr
-              td.collapsing
-                p= i + 1
-              td.collapsing
-                p= "#{campaign.refcode}"
-              td
-                p= "#{campaign.title}"
-              td.collapsing
-                = link_to "Delete", [:admin, campaign.featured], method: :delete, data: { confirm: "Unfeature Campaign?"}
-        tfoot.full-width
-          tr
-            th colspan="4"
-              = form_for [:admin, @new_featured_campaign] do |f|
-                = f.select :featurable_id, options_from_collection_for_select(@campaigns, "id", "refcode"), {}, { class: "ui fluid search dropdown featured-field spacing-top" }
-                = f.hidden_field :featurable_type, value: "Campaign"
-                p.center= f.submit "Feature Campaign"
-
-    .eight.wide.column
+  .row.center
+    #admin-sidebar.four.wide.column.center
+      p MENU OPTIONS 
+      p = link_to 'NEW USER', new_admin_user_path
+      p = link_to 'SHOW USERS', admin_users_path
+      p = link_to 'NEW CAMPAIGN', new_admin_campaign_path
+      p = link_to 'SHOW CAMPAIGNS', admin_campaigns_path
+      p = link_to "LOGOUT", :logout, method: :post
     
-      .spacing
-        p = link_to 'New user', new_admin_user_path
-        p = link_to 'Show users', admin_users_path
+    .eight.wide.column
+      #featured-campaigns
+        p.center FEATURED CAMPAIGNS
 
-      .spacing
-        p = link_to 'New campaign', new_admin_campaign_path
-        p = link_to 'Show campaigns', admin_campaigns_path
+        table.ui.celled.striped.table
+          thead
+            tr
+              th
+                p Index
+              th
+                p Reference
+              th
+                p Title
+              th
+                p Actions
+          tbody
+            - @featured_campaigns.each_with_index do |campaign, i|
+              tr
+                td.collapsing
+                  p= i + 1
+                td.collapsing
+                  p= "#{campaign.refcode}"
+                td
+                  p= "#{campaign.title}"
+                td.collapsing
+                  = link_to "Delete", [:admin, campaign.featured], method: :delete, data: { confirm: "Unfeature Campaign?"}
+          tfoot.full-width
+            tr
+              th colspan="4"
+                = form_for [:admin, @new_featured_campaign] do |f|
+                  = f.select :featurable_id, options_from_collection_for_select(@campaigns, "id", "refcode"), {}, { class: "ui fluid search dropdown featured-field spacing-top" }
+                  = f.hidden_field :featurable_type, value: "Campaign"
+                  p.center= f.submit "Feature Campaign"
+
+      #category-options
+        p.center ALLOWABLE CATEGORIES
+        p.center= "(Click to edit)"
+
+        #category-edit-activator.ui.segment
+          .ui.form
+            p= best_in_place @options, :category_list, as: :textarea, url: admin_option_path(@options), class: 'field', activator: '#category-edit-activator'

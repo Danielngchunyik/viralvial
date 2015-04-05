@@ -20,5 +20,5 @@
         - campaign.topics.each do |topic|
           = render partial: 'number_of_shares', locals: { topic: topic }
           p.font-18 SOCIAL SITES
-          - topic.social_media_platform_list.each do |platform|
+          - topic.social_media_list.each do |platform|
             i class= "#{platform.downcase} icon font-40"

@@ -1,22 +1,25 @@
 .nested_form_field
-  = f.label "Social media platform:  "
-  - @options.each do |platform|
-    .checkbox-option
-      span= platform
-      = f.check_box :social_media_platform_list, { :multiple => true }, platform, nil
+  p ALLOWED SOCIAL MEDIA NETWORKS:
+  .fields
+    - @options.each do |platform|
+      .field.checkbox-option
+        span= "#{platform}:"
+        = f.check_box :social_media_list, { multiple: true, class: 'ui checkbox' }, platform, nil
 
-  p= f.label "Title: "
-  p= f.text_field :title, placeholder: "Enter topic title here"
-
-  p= f.label "Number of Shares: "
-  p= f.number_field :num_of_shares, placeholder: "Number of shares"
+  .two.field
+    .field
+      p= f.label "Title: "
+      p= f.text_field :title, placeholder: "Enter topic title here"
+    .field
+      p= f.label "Number of Shares required: "
+      p= f.number_field :num_of_shares, placeholder: "Number of shares"
 
   p= f.label "Description: "
   p= f.text_area :description, cols: 100, rows: 10, placeholder: "Enter campaign objectives here"
 
   .spacing
-    = link_to_add_fields "Add Image", f, :default_images
+    = link_to_add_fields "ADD A DEFAULT IMAGE FOR TOPIC", f, :default_images
   .spacing
     = f.hidden_field :_destroy
-    = link_to "Remove", '#', class: "remove_fields"
+    = link_to "Remove Topic", '#', class: "remove_fields"
     
