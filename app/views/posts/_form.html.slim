@@ -1,6 +1,6 @@
 = form_for [campaign, topic, post], html: { class: 'ui form' } do |f|
 
-  .selectable-images
+  .selectable-images.hide
     = f.radio_button :image, "nothing", id: "default-image-nothing-radio", class: 'default-image-radio'
     - images.each_with_index do |image, i|
       = f.radio_button :image, image.storage.url, checked: true, id: "default-image-#{@topic.id}-#{i}-radio", class: 'default-image-radio'
@@ -11,7 +11,7 @@
   .share-buttons
     p.subtitle SHARE THIS ON...
     .ui.stackable.two.column.grid
-      - @topic.social_media_platform_list.each do |platform|
+      - @topic.social_media_list.each do |platform|
         - if user_linked_provider?(platform.downcase)
           .column
             p= f.submit "#{platform}", name: 'post[provider]', class: "fluid ui button #{platform.downcase}"

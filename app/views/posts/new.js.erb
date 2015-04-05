@@ -1,5 +1,5 @@
 // Render Form
-$('#campaign-post-container').hide().after("<%= escape_javascript(render(partial: 'posts/new', locals: { campaign: @campaign, topic: @topic, post: @post })) %>");
+$('#campaign-post-container').hide().after("<%= escape_javascript(render(partial: 'posts/new')) %>");
 $('.share-button-container').hide().after("<%= escape_javascript(render(partial: 'campaigns/back_link')) %>");
 
 $(".back-campaign-link").on('click', function(e) {

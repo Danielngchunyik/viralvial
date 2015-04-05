@@ -15,4 +15,4 @@
               p = f.file_field :storage, class: 'uploader'
               p = f.hidden_field :storage_cache
               .small-padding-top.margin-bottom-10
-                p = f.submit "Upload", class: 'ui submit button green'
+                p = f.submit "Upload", class: 'ui submit button green', id: 'image-loader', data: { disable_with: 'Uploading...'}

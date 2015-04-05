@@ -37,7 +37,8 @@
         p.title TWO
         p.subtitle WRITE SOMETHING ABOUT THE CAMPAIGN
 
-        = render partial: "posts/form", locals: { campaign: @campaign, topic: @topic, post: @post, images: @images }
+        #form-reload
+          = render partial: "posts/form", locals: { campaign: @campaign, topic: @topic, post: @post, images: @images }
 
 // User Image Uploade Modal
 = render partial: "shared/partials/image/user_share_image_form", locals: { image: @user_image, topic: @topic, campaign: @campaign, title: "Use your own image!" }

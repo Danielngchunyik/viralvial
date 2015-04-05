@@ -10,6 +10,7 @@ class UserImagesController < ApplicationController
     @user_image.user = current_user
 
     if @user_image.save
+      reload_form_params
       fetch_shareable_images
       respond_with(@images)
     end
@@ -34,5 +35,11 @@ class UserImagesController < ApplicationController
 
   def user_image_params
     params.require(:user_image).permit(:storage, :user_id, :topic_id)
+  end
+
+  def reload_form_params
+    @campaign = Campaign.find(params[:campaign_id])
+    @topic = Topic.find(params[:topic_id])
+    @post = Post.new
   end
 end

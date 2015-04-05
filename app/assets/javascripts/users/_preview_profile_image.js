@@ -24,4 +24,6 @@ $(document).ready(function() {
   initPreviewImage('.upload-previewer-2', '.uploader-2');
 });
 
-$(document).ajaxComplete(initPreviewImage('.upload-previewer', '.uploader'));
+$(document).ajaxComplete(function() {
+  initPreviewImage('.upload-previewer', '.uploader')
+});

@@ -1,5 +1,8 @@
 $('#user-share-image-modal').modal('hide');
-$('#image-selection-container').html("<%= escape_javascript( render(partial: 'campaigns/selectable_images', locals: { images: @images })) %>");
+var form_message = $('#text-share').val();
+$('#image-selection-container').html("<%= escape_javascript(render(partial: 'campaigns/selectable_images', locals: { images: @images })) %>");
+$('#form-reload').html("<%= escape_javascript(render(partial: 'posts/form', locals: { campaign: @campaign, topic: @topic, post: @post, images: @images })) %>");
+$('#text-share').val(form_message);
 
 // Form Image Selection
 initImageSelection();
