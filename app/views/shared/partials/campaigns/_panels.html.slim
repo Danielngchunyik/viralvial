@@ -1,7 +1,7 @@
 #campaigns-list  
   .ui.stackable.four.column.grid
     - campaigns.in_groups_of(4, false) do |row|
-      .equal.height.row
+      .row
         - row.each do |campaign|
           .column.ui.segment.campaign-card
             - if current_user
