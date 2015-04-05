@@ -6,10 +6,9 @@
     p.campaign-title= campaign.title.upcase
     p.campaign-description= truncate(campaign.description, length: 100)
     .spacing-top
-      .column
-        .rewards
-          - reward = reward_range(campaign)
-          span Earn 
-          span.bold= "#{reward[:lowest]} - #{reward[:highest]}MYR"
-      .column.timer
+      .rewards
+        - reward = reward_range(campaign)
+        span Earn 
+        span.bold= "#{reward[:lowest]} - #{reward[:highest]}MYR"
+      .timer
         p= campaign.time_remaining 
