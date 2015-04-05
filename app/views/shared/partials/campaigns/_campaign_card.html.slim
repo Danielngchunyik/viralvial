@@ -1,7 +1,7 @@
 .ui.segment.campaign-card 
   .image-panel
   // Image Size 400 x 400
-  = image_tag campaign.image, class: 'ui large image'
+  = image_tag campaign.image, class: 'ui fluid image'
   .ui.vertical.segment.content-panel
     p.campaign-title= campaign.title.upcase
     p.campaign-description= truncate(campaign.description, length: 100)
