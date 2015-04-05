@@ -1,7 +1,7 @@
 #campaigns-list  
   .ui.doubling.stackable.four.column.grid
     - campaigns.each do |campaign|
-      .ui.segment.column
+      .ui.segment.column.margin-5.zero-padding
         - if current_user
           = link_to campaign_path(campaign.id)
             = render partial: 'shared/partials/campaigns/campaign_card', locals: { campaign: campaign }
