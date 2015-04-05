@@ -18,7 +18,7 @@ RSpec.describe UserSessionsController, type: :controller do
 
     context 'non-admin user' do
       before { post :create, email: user.email, password: 'password' }
-      it { expect(response).to redirect_to(user) }
+      it { expect(response).to redirect_to(root_path) }
     end
 
     context 'invalid credential' do
