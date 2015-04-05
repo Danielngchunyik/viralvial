@@ -49,9 +49,11 @@
       = f.label "End date:"
       = f.date_select :end_date, order: [:day, :month, :year], with_css_classes: true
 
-    .field
-      = f.label "Category"
-      = f.select :category_list, @options.category_list.map { |interest| [interest.titleize, interest] }, {}, { class: "ui fluid search dropdown interest-field spacing-top" }
+    .fields
+    - @options.category_list.each do |category|
+      .field.checkbox-option
+        span= "#{category}:"
+        = f.check_box :category_list, { multiple: true, class: 'ui checkbox' }, category, nil
 
     .field
       = f.fields_for :topics do |builder|
