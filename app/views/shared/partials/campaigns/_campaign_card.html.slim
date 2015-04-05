@@ -5,7 +5,7 @@
   .ui.vertical.segment.content-panel
     p.campaign-title= campaign.title.upcase
     p.campaign-description= truncate(campaign.description, length: 100)
-    .ui.two.column.grid.spacing-top
+    .spacing-top
       .column
         .rewards
           - reward = reward_range(campaign)
