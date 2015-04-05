@@ -37,6 +37,7 @@ Rails.application.routes.draw do
   namespace :admin do
     get 'dashboard', to: 'dashboard#index', as: :dashboard
     resources :options, only: [:edit, :update]
+    resources :reward_transactions, only: [:edit, :update]
     resources :featureds
     resources :campaigns do
       resources :topics

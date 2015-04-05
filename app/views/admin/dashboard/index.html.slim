@@ -54,3 +54,55 @@
         #category-edit-activator.ui.segment
           .ui.form
             p= best_in_place @options, :category_list, as: :textarea, url: admin_option_path(@options), class: 'field', activator: '#category-edit-activator'
+
+  .row.center
+    .twelve.wide.column
+      #rewards-table
+        p.center REWARDS TRANSACTIONS
+
+        table.ui.celled.striped.table
+          thead
+            tr
+              th
+                p NO
+              th
+                p ID
+              th
+                p USER EMAIL
+              th
+                p CAMPAIGN REFCODE
+              th
+                p AMOUNT
+              th
+                p PAID?
+              th
+                p CREATED AT
+              th
+                p ADMIN ACTION
+
+          tbody
+            - @transactions.each_with_index do |transaction, i|
+              tr
+                td
+                  p= i
+                td
+                  p= transaction.id
+                td
+                  p= transaction.user.email
+                td
+                  p= transaction.campaign.refcode
+                td
+                  p= transaction.amount
+                td
+                  p= transaction.paid
+                td
+                  p= transaction.created_at
+                td
+                  - if transaction.paid?
+                    = form_for [:admin, transaction] do |f|
+                      = f.hidden_field :paid, value: false
+                      = f.submit "Unpaid", data: { confirm: "Set status to paid?" }
+                  - else
+                    = form_for [:admin, transaction] do |f|
+                      = f.hidden_field :paid, value: true
+                      = f.submit "Paid", data: { confirm: "Set status to unpaid?" }

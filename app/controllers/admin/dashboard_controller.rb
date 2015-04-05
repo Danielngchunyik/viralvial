@@ -4,5 +4,6 @@ class Admin::DashboardController < AdminController
     @featured_campaigns = FeaturedCampaignDecorator.wrap(Featured.where(featurable_type: "Campaign").limit(12))
     @new_featured_campaign = Featured.new
     @options = Option.first
+    @transactions = RewardTransaction.all
   end
 end
