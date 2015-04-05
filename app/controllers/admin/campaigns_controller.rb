@@ -8,7 +8,6 @@ class Admin::CampaignsController < AdminController
 
   def new
     @campaign = Campaign.new
-    @options = Option.first
   end
 
   def create
@@ -50,7 +49,7 @@ class Admin::CampaignsController < AdminController
   private
 
   def set_platform_options
-    @options = Option.first.social_media_list
+    @options = Option.first
   end
 
   def set_campaign
