@@ -1,7 +1,7 @@
 .nested_form_field
   p ALLOWED SOCIAL MEDIA NETWORKS:
   .fields
-    - @options.each do |platform|
+    - @options.social_media_list.each do |platform|
       .field.checkbox-option
         span= "#{platform}:"
         = f.check_box :social_media_list, { multiple: true, class: 'ui checkbox' }, platform, nil

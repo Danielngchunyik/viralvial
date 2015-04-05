@@ -51,7 +51,7 @@
 
     .field
       = f.label "Category"
-      = f.select :category_list, @options.map { |interest| [interest.titleize, interest] }, {}, { class: "ui fluid search dropdown interest-field spacing-top" }
+      = f.select :category_list, @options.category_list.map { |interest| [interest.titleize, interest] }, {}, { class: "ui fluid search dropdown interest-field spacing-top" }
 
     .field
       = f.fields_for :topics do |builder|

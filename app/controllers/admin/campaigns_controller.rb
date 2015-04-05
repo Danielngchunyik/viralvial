@@ -8,7 +8,7 @@ class Admin::CampaignsController < AdminController
 
   def new
     @campaign = Campaign.new
-    @options = Option.first.category_list
+    @options = Option.first
   end
 
   def create
