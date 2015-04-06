@@ -30,3 +30,8 @@ $('.trigger-user-image-upload').on('click', function(e) {
 });
 
 $('#user-share-image-modal').modal('attach events', '.trigger-user-image-upload', 'show');
+
+// Select last uploaded image if available
+if ($('.selectable-image').size() > 0) {
+  $('.selectable-image').last().click();
+};
